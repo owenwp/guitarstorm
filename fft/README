@@ -1,0 +1,15 @@
+This directory contains the packages realfft(3) and fft(3) that do Cooley-Tukey
+fast Fourier transform on an arbitrary number of real or complex samples,
+respectively.
+
+The package was tested on 4.[12] bsd & Sun Release 3.5, but it should work on
+any UNIX system featuring sin(3M) and malloc(3).
+
+Contents:
+	complex.h	- include file (for users of fft(3) routines).
+	fft		- manual and source of fft(3).
+	realfft		- manual and source of realfft(3).
+	example		- example of how to use realfft(3).
+
+See the README's in fft/, realfft/ and example/ to find out how to compile and
+use things.

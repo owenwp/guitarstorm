@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="Guitar"
-	ProjectGUID="{3ABDAEB9-C07A-4C97-829E-0F695DB01C4C}"
+	Name="GuitarStorm"
+	ProjectGUID="{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}"
 	RootNamespace="Guitar"
 	>
 	<Platforms>
@@ -249,10 +249,6 @@
 			>
 			<File
 				RelativePath=".\fft\complex.h"
-				>
-			</File>
-			<File
-				RelativePath=".\fft\example.c"
 				>
 			</File>
 			<File

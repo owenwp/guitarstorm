@@ -144,10 +144,10 @@ void Capture::run()
 		memset(Buffer, 0, BUFFERSIZE);
 		for(int j=0; j<bcount; j++)
 		{
-			alBufferData(uiBuffer[j], AL_FORMAT_MONO16, Buffer, sizeof(Buffer), freq);
+			alBufferData(uiBuffer[j], AL_FORMAT_MONO16, Buffer, 10, freq);
 		}
-		//alSourceQueueBuffers(uiSource, bcount, uiBuffer);
-		//alSourcePlay(uiSource);
+		alSourceQueueBuffers(uiSource, bcount, uiBuffer);
+		alSourcePlay(uiSource);
 
 		// Start audio capture
 		alcCaptureStart(pCaptureDevice);
@@ -169,7 +169,7 @@ void Capture::run()
 			//ALFWprintf("Samples available : %d\r", iSamplesAvailable);
 
 			// When we have enough data to fill our BUFFERSIZE byte buffer, grab the samples
-			if (iSamplesAvailable > 50)
+			if (iSamplesAvailable > 0)
 			{
 				// Consume Samples
 				alcCaptureSamples(pCaptureDevice, Buffer, iSamplesAvailable);

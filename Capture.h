@@ -2,7 +2,6 @@
 #define CAPTURE
 
 #include "Framework/Framework.h"
-//#include "playstream.cpp"
 
 #include <OpenThreads/Thread>
 

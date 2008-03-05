@@ -24,22 +24,7 @@
 
 #include "Capture.h"
 
-#define	OUTPUT_WAVE_FILE		"Capture.wav"
-#define BUFFERSIZE				44100
-
-#pragma pack (push,1)
-typedef struct
-{
-	char			szRIFF[4];
-	long			lRIFFSize;
-	char			szWave[4];
-	char			szFmt[4];
-	long			lFmtSize;
-	WAVEFORMATEX	wfex;
-	char			szData[4];
-	long			lDataSize;
-} WAVEHEADER;
-#pragma pack (pop)
+#define BUFFERSIZE				22050
 
 void Capture::stop()
 {
@@ -53,26 +38,16 @@ void Capture::run()
 	ALCdevice		*pCaptureDevice;
 	const ALCchar	*szDefaultCaptureDevice;
 	ALint			iSamplesAvailable;
-	FILE			*pFile;
 	ALchar			Buffer[BUFFERSIZE];
-	WAVEHEADER		sWaveHeader;
-	ALuint			iDataSize = 0;
-	ALuint			iSize;
 	ALuint			minSize = 200;
 	ALuint			freq = 22050;
+	const ALuint	bcount = 4;
 
-	const int bcount = 4;
 	ALuint		    uiSource;
 	ALuint			uiBuffer[bcount];
 
-	// NOTE : This code does NOT setup the Wave Device's Audio Mixer to select a recording input
-	// or a recording level.
-
 	// Initialize Framework
 	ALFWInit();
-
-	ALFWprintf("Capture Application\n");
-
 	if (!ALFWInitOpenAL())
 	{
 		ALFWprintf("Failed to initialize OpenAL\n");
@@ -95,50 +70,13 @@ void Capture::run()
 		return;
 	}
 
-	// Get list of available Capture Devices
-	const ALchar *pDeviceList = alcGetString(NULL, ALC_CAPTURE_DEVICE_SPECIFIER);
-	if (pDeviceList)
-	{
-		ALFWprintf("\nAvailable Capture Devices are:-\n");
-
-		while (*pDeviceList)
-		{
-			ALFWprintf("%s\n", pDeviceList);
-			pDeviceList += strlen(pDeviceList) + 1;
-		}
-	}
-
 	// Get the name of the 'default' capture device
 	szDefaultCaptureDevice = alcGetString(NULL, ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER);
 	ALFWprintf("\nDefault Capture Device is '%s'\n\n", szDefaultCaptureDevice);
-
-	// Open the default Capture device to record a 22050Hz 16bit Mono Stream using an internal buffer
-	// of BUFFERSIZE Samples (== BUFFERSIZE * 2 bytes)
 	pCaptureDevice = alcCaptureOpenDevice(szDefaultCaptureDevice, freq, AL_FORMAT_MONO16, BUFFERSIZE/2);
 	if (pCaptureDevice)
 	{
 		ALFWprintf("Opened '%s' Capture Device\n\n", alcGetString(pCaptureDevice, ALC_CAPTURE_DEVICE_SPECIFIER));
-
-		// Create / open a file for the captured data
-		//pFile = fopen(OUTPUT_WAVE_FILE, "wb");
-
-		// Prepare a WAVE file header for the captured data
-		sprintf(sWaveHeader.szRIFF, "RIFF");
-		sWaveHeader.lRIFFSize = 0;
-		sprintf(sWaveHeader.szWave, "WAVE");
-		sprintf(sWaveHeader.szFmt, "fmt ");
-		sWaveHeader.lFmtSize = sizeof(WAVEFORMATEX);		
-		sWaveHeader.wfex.nChannels = 1;
-		sWaveHeader.wfex.wBitsPerSample = 16;
-		sWaveHeader.wfex.wFormatTag = WAVE_FORMAT_PCM;
-		sWaveHeader.wfex.nSamplesPerSec = freq;
-		sWaveHeader.wfex.nBlockAlign = sWaveHeader.wfex.nChannels * sWaveHeader.wfex.wBitsPerSample / 8;
-		sWaveHeader.wfex.nAvgBytesPerSec = sWaveHeader.wfex.nSamplesPerSec * sWaveHeader.wfex.nBlockAlign;
-		sWaveHeader.wfex.cbSize = 0;
-		sprintf(sWaveHeader.szData, "data");
-		sWaveHeader.lDataSize = 0;
-
-		//fwrite(&sWaveHeader, sizeof(WAVEHEADER), 1, pFile);
 
 		/* Setup some initial silent data to play out of the source */
 		memset(Buffer, 0, BUFFERSIZE);
@@ -151,63 +89,36 @@ void Capture::run()
 
 		// Start audio capture
 		alcCaptureStart(pCaptureDevice);
-
 		stopped = false;
 
 		// Record and play back
-		DWORD dwStartTime = timeGetTime();
-		int b = 0;
 		while (!stopped)
 		{
-			// Release some CPU time ...
-			Sleep(1);
-
 			// Find out how many samples have been captured
 			alcGetIntegerv(pCaptureDevice, ALC_CAPTURE_SAMPLES, 1, &iSamplesAvailable);
 			iSamplesAvailable = min(BUFFERSIZE, iSamplesAvailable);
 
-			//ALFWprintf("Samples available : %d\r", iSamplesAvailable);
+			if(iSamplesAvailable <= 0)
+				continue;
 
-			// When we have enough data to fill our BUFFERSIZE byte buffer, grab the samples
-			if (iSamplesAvailable > 0)
-			{
-				// Consume Samples
-				alcCaptureSamples(pCaptureDevice, Buffer, iSamplesAvailable);
+			// Consume Samples
+			alcCaptureSamples(pCaptureDevice, Buffer, iSamplesAvailable);
 
-				//alBufferData(uiBuffer[b], AL_FORMAT_MONO16, Buffer, iSamplesAvailable, freq);
-				//alSourceQueueBuffers(uiSource, 1, &uiBuffer[b]);
+			// buffer data
+			ALuint buf;
+			alSourceUnqueueBuffers(uiSource, 1, &buf);
+			alBufferData(buf, AL_FORMAT_MONO16, Buffer, iSamplesAvailable, freq);
+			alSourceQueueBuffers(uiSource, 1, &buf);
 
-				ALuint buf;
-				alSourceUnqueueBuffers(uiSource, 1, &buf);
-				alBufferData(buf, AL_FORMAT_MONO16, Buffer, iSamplesAvailable, freq);
-				alSourceQueueBuffers(uiSource, 1, &buf);
-
-				 /* Make sure the source is still playing */
-				 ALint val;
-				 alGetSourcei(uiSource, AL_SOURCE_STATE, &val);
-				 if(val != AL_PLAYING)
-					   alSourcePlay(uiSource);;
-
-				// Record total amount of data recorded
-				iDataSize += iSamplesAvailable;
-			}
+			 /* Make sure the source is still playing */
+			 ALint val;
+			 alGetSourcei(uiSource, AL_SOURCE_STATE, &val);
+			 if(val != AL_PLAYING)
+				   alSourcePlay(uiSource);;
 		}
 
 		// Stop capture
 		alcCaptureStop(pCaptureDevice);
-
-		// Check if any Samples haven't been consumed yet
-
-		// Fill in Size information in Wave Header
-		//fseek(pFile, 4, SEEK_SET);
-		iSize = iDataSize + sizeof(WAVEHEADER) - 8;
-		//fwrite(&iSize, 4, 1, pFile);
-		//fseek(pFile, 42, SEEK_SET);
-		//fwrite(&iDataSize, 4, 1, pFile);
-
-		//fclose(pFile);
-
-		ALFWprintf("\nSaved captured audio data to '%s'\n", OUTPUT_WAVE_FILE);
 
 		// Close the Capture Device
 		alcCaptureCloseDevice(pCaptureDevice);

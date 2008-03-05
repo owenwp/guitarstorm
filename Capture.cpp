@@ -38,8 +38,7 @@ void Capture::run()
 	ALCdevice		*pCaptureDevice;
 	const ALCchar	*szDefaultCaptureDevice;
 	ALint			iSamplesAvailable;
-	ALchar			Buffer[BUFFERSIZE];
-	ALuint			minSize = 200;
+	ALchar			Data[BUFFERSIZE];
 	ALuint			freq = 22050;
 	const ALuint	bcount = 4;
 
@@ -73,16 +72,16 @@ void Capture::run()
 	// Get the name of the 'default' capture device
 	szDefaultCaptureDevice = alcGetString(NULL, ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER);
 	ALFWprintf("\nDefault Capture Device is '%s'\n\n", szDefaultCaptureDevice);
-	pCaptureDevice = alcCaptureOpenDevice(szDefaultCaptureDevice, freq, AL_FORMAT_MONO16, BUFFERSIZE/2);
+	pCaptureDevice = alcCaptureOpenDevice(szDefaultCaptureDevice, freq, AL_FORMAT_MONO16, BUFFERSIZE*2);
 	if (pCaptureDevice)
 	{
 		ALFWprintf("Opened '%s' Capture Device\n\n", alcGetString(pCaptureDevice, ALC_CAPTURE_DEVICE_SPECIFIER));
 
 		/* Setup some initial silent data to play out of the source */
-		memset(Buffer, 0, BUFFERSIZE);
+		memset(Data, 0, BUFFERSIZE);
 		for(int j=0; j<bcount; j++)
 		{
-			alBufferData(uiBuffer[j], AL_FORMAT_MONO16, Buffer, 10, freq);
+			alBufferData(uiBuffer[j], AL_FORMAT_MONO16, Data, 10, freq);
 		}
 		alSourceQueueBuffers(uiSource, bcount, uiBuffer);
 		alSourcePlay(uiSource);
@@ -102,12 +101,12 @@ void Capture::run()
 				continue;
 
 			// Consume Samples
-			alcCaptureSamples(pCaptureDevice, Buffer, iSamplesAvailable);
+			alcCaptureSamples(pCaptureDevice, Data, iSamplesAvailable);
 
 			// buffer data
 			ALuint buf;
 			alSourceUnqueueBuffers(uiSource, 1, &buf);
-			alBufferData(buf, AL_FORMAT_MONO16, Buffer, iSamplesAvailable, freq);
+			alBufferData(buf, AL_FORMAT_MONO16, Data, iSamplesAvailable, freq);
 			alSourceQueueBuffers(uiSource, 1, &buf);
 
 			 /* Make sure the source is still playing */

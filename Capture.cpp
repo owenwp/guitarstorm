@@ -69,7 +69,7 @@ void Capture::run()
     printf("Wire on. Will run one minute.\n"); fflush(stdout);
 
     /* -- Here's the loop where we pass data from input to output -- */
-	void* sampleBlock = NULL;
+	void* sampleBlock = new float[FRAMES_PER_BUFFER];
 	while( !stopped )
     {
        err = Pa_WriteStream( stream, sampleBlock, FRAMES_PER_BUFFER );

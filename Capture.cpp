@@ -24,8 +24,6 @@
 
 #include "Capture.h"
 
-#define BUFFERSIZE				22050
-
 void Capture::stop()
 {
 	stopped = true;
@@ -33,107 +31,57 @@ void Capture::stop()
 
 void Capture::run()
 {
-	ALCdevice		*pDevice;
-	ALCcontext		*pContext;
-	ALCdevice		*pCaptureDevice;
-	const ALCchar	*szDefaultCaptureDevice;
-	ALint			iSamplesAvailable;
-	ALchar			Data[BUFFERSIZE];
-	ALuint			freq = 22050;
-	const ALuint	bcount = 4;
+	/* -- initialize PortAudio -- */
+    PaError err = Pa_Initialize();
+    if( err != paNoError ) return;
 
-	ALuint		    uiSource;
-	ALuint			uiBuffer[bcount];
+    /* -- setup input and output -- */
+	PaStreamParameters inputParameters;
+    inputParameters.device = Pa_GetDefaultInputDevice(); /* default input device */
+    inputParameters.channelCount = NUM_CHANNELS;
+    inputParameters.sampleFormat = PA_SAMPLE_TYPE;
+    inputParameters.suggestedLatency = Pa_GetDeviceInfo( inputParameters.device )->defaultHighInputLatency ;
+    inputParameters.hostApiSpecificStreamInfo = NULL;
 
-	// Initialize Framework
-	ALFWInit();
-	if (!ALFWInitOpenAL())
-	{
-		ALFWprintf("Failed to initialize OpenAL\n");
-		ALFWShutdown();
-		return;
-	}
-	
-    // Generate some AL Buffers for streaming
-	alGenBuffers( bcount, uiBuffer );
-	alGenSources( 1, &uiSource );
+	PaStreamParameters outputParameters;
+    outputParameters.device = Pa_GetDefaultOutputDevice(); /* default output device */
+    outputParameters.channelCount = NUM_CHANNELS;
+    outputParameters.sampleFormat = PA_SAMPLE_TYPE;
+    outputParameters.suggestedLatency = Pa_GetDeviceInfo( outputParameters.device )->defaultHighOutputLatency;
+    outputParameters.hostApiSpecificStreamInfo = NULL;
 
-	// Check for Capture Extension support
-	pContext = alcGetCurrentContext();
-	pDevice = alcGetContextsDevice(pContext);
-	if (alcIsExtensionPresent(pDevice, "ALC_EXT_CAPTURE") == AL_FALSE)
-	{
-		ALFWprintf("Failed to detect Capture Extension\n");
-		ALFWShutdownOpenAL();
-		ALFWShutdown();
-		return;
-	}
+    /* -- setup stream -- */
+	PaStream* stream;
+    err = Pa_OpenStream(
+              &stream,
+              &inputParameters,
+              &outputParameters,
+              SAMPLE_RATE,
+              FRAMES_PER_BUFFER,
+              paClipOff,      /* we won't output out of range samples so don't bother clipping them */
+              NULL, /* no callback, use blocking API */
+              NULL ); /* no callback, so no callback userData */
+    if( err != paNoError ) return;
 
-	// Get the name of the 'default' capture device
-	szDefaultCaptureDevice = alcGetString(NULL, ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER);
-	ALFWprintf("\nDefault Capture Device is '%s'\n\n", szDefaultCaptureDevice);
-	pCaptureDevice = alcCaptureOpenDevice(szDefaultCaptureDevice, freq, AL_FORMAT_MONO16, BUFFERSIZE*2);
-	if (pCaptureDevice)
-	{
-		ALFWprintf("Opened '%s' Capture Device\n\n", alcGetString(pCaptureDevice, ALC_CAPTURE_DEVICE_SPECIFIER));
+    /* -- start stream -- */
+    err = Pa_StartStream( stream );
+    if( err != paNoError ) return;
+    printf("Wire on. Will run one minute.\n"); fflush(stdout);
 
-		/* Setup some initial silent data to play out of the source */
-		memset(Data, 0, BUFFERSIZE);
-		for(int j=0; j<bcount; j++)
-		{
-			alBufferData(uiBuffer[j], AL_FORMAT_MONO16, Data, 10, freq);
-		}
-		alSourceQueueBuffers(uiSource, bcount, uiBuffer);
-		alSourcePlay(uiSource);
+    /* -- Here's the loop where we pass data from input to output -- */
+	void* sampleBlock = NULL;
+	while( !stopped )
+    {
+       err = Pa_WriteStream( stream, sampleBlock, FRAMES_PER_BUFFER );
+       if( err ) break;
+       err = Pa_ReadStream( stream, sampleBlock, FRAMES_PER_BUFFER );
+       if( err ) break;
+    }
+    /* -- Now we stop the stream -- */
+    err = Pa_StopStream( stream );
 
-		// Start audio capture
-		alcCaptureStart(pCaptureDevice);
-		stopped = false;
+    /* -- don't forget to cleanup! -- */
+    err = Pa_CloseStream( stream );
 
-		// Record and play back
-		while (!stopped)
-		{
-			// Find out how many samples have been captured
-			alcGetIntegerv(pCaptureDevice, ALC_CAPTURE_SAMPLES, 1, &iSamplesAvailable);
-			iSamplesAvailable = min(BUFFERSIZE, iSamplesAvailable);
-
-			if(iSamplesAvailable <= 0)
-				continue;
-
-			// Consume Samples
-			alcCaptureSamples(pCaptureDevice, Data, iSamplesAvailable);
-
-			// buffer data
-			ALuint buf;
-			alSourceUnqueueBuffers(uiSource, 1, &buf);
-			alBufferData(buf, AL_FORMAT_MONO16, Data, iSamplesAvailable, freq);
-			alSourceQueueBuffers(uiSource, 1, &buf);
-
-			 /* Make sure the source is still playing */
-			 ALint val;
-			 alGetSourcei(uiSource, AL_SOURCE_STATE, &val);
-			 if(val != AL_PLAYING)
-				   alSourcePlay(uiSource);;
-		}
-
-		// Stop capture
-		alcCaptureStop(pCaptureDevice);
-
-		// Close the Capture Device
-		alcCaptureCloseDevice(pCaptureDevice);
-
-		// Stop the Source and clear the Queue
-		alSourceStop(uiSource);
-		alSourcei(uiSource, AL_BUFFER, 0);
-	}
-
-	// Clean up buffers and sources
-	alDeleteSources( 1, &uiSource );
-	alDeleteBuffers( bcount, uiBuffer );
-
-	// Close down OpenAL
-	ALFWShutdownOpenAL();
-
-	// Close down the Framework
-	ALFWShutdown();
+    Pa_Terminate();
 }

@@ -3,7 +3,27 @@
 double gInOutScaler = 1.0;
 #define CONVERT_IN_TO_OUT(in)  ((OUTPUT_SAMPLE) ((in) * gInOutScaler))
 
+// these have to be global, because the callback can't access the object's memory space
 WireConfig_t config;
+const int rblen = SAMPLE_RATE/10;
+int rbi = 0;
+int rblast = 0;
+float ringBuffer[rblen];
+
+float* Capture::readLast(int l)
+{
+	float* last = new float[l];
+
+	int i = rblast-1;
+	for(int j=l-1; j>=0; j--)
+	{
+		if(i<0) 
+			i = rblen-1;
+
+		last[j] = ringBuffer[i];
+	}
+	return last;
+}
 
 /* This routine will be called by the PortAudio engine when audio is needed.
 ** It may be called at interrupt level on some machines so don't do anything
@@ -57,10 +77,14 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
 
         for( i=0; i<framesPerBuffer; i++ )
         {
-            *out = CONVERT_IN_TO_OUT( *in );
+			if(rbi >= rblen)
+				rbi = 0;
+
+            *out = ringBuffer[rbi++] = CONVERT_IN_TO_OUT( *in );
             out += outStride;
             in += inStride;
         }
+		rblast = rbi;
 
         if(inChannel < (config.numInputChannels - 1)) inChannel++;
         else inDone = 1;

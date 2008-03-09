@@ -44,9 +44,11 @@ typedef struct WireConfig_s
 class Capture
 {
 public:
-	void start();
+	void start();	// begin capture and playback
 
-	void stop();
+	void stop();	// stop capture
+
+	float* readLast(int l);	// get the last l samples captured
 
 protected:
     PaStream *stream;

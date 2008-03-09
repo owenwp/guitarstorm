@@ -6,25 +6,56 @@
 #include <OpenThreads/Thread>
 #include <iostream>
 
-/* #define SAMPLE_RATE  (17932) // Test failure to open with this value. */
-#define SAMPLE_RATE  (44100)
-#define FRAMES_PER_BUFFER (64)
-#define NUM_CHANNELS    (1)
-/* #define DITHER_FLAG     (paDitherOff)  */
-#define DITHER_FLAG     (0) /**/
+#define SAMPLE_RATE            (44100)
 
-/* Select sample format. */
-#define PA_SAMPLE_TYPE  paFloat32
+typedef struct WireConfig_s
+{
+    int isInputInterleaved;
+    int isOutputInterleaved;
+    int numInputChannels;
+    int numOutputChannels;
+    int framesPerCallback;
+} WireConfig_t;
 
-class Capture : public OpenThreads::Thread
+#define USE_FLOAT_INPUT        (1)
+#define USE_FLOAT_OUTPUT       (1)
+
+/* Latencies set to defaults. */
+
+#if USE_FLOAT_INPUT
+    #define INPUT_FORMAT  paFloat32
+    typedef float INPUT_SAMPLE;
+#else
+    #define INPUT_FORMAT  paInt16
+    typedef short INPUT_SAMPLE;
+#endif
+
+#if USE_FLOAT_OUTPUT
+    #define OUTPUT_FORMAT  paFloat32
+    typedef float OUTPUT_SAMPLE;
+#else
+    #define OUTPUT_FORMAT  paInt16
+    typedef short OUTPUT_SAMPLE;
+#endif
+
+#define INPUT_DEVICE           (Pa_GetDefaultInputDevice())
+#define OUTPUT_DEVICE          (Pa_GetDefaultOutputDevice())
+
+class Capture
 {
 public:
-	void run();
+	void start();
 
 	void stop();
 
 protected:
-	bool stopped;
+    PaStream *stream;
+
+	static int wireCallback( const void *inputBuffer, void *outputBuffer,
+                         unsigned long framesPerBuffer,
+                         const PaStreamCallbackTimeInfo* timeInfo,
+                         PaStreamCallbackFlags statusFlags,
+                         void *userData );
 };
 
 #endif

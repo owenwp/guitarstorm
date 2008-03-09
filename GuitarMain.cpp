@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 
 	// begin audio capture
 	Capture* cap = new Capture();
-	Capture::Init();
+	//Capture::Init();
 	cap->start();
 
 	viewer.realize();
@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 
 	// shutdown
 	cap->stop();
-	cap->join();
+	//cap->join();
 
 	return 0;
 }

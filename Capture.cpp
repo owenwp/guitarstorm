@@ -1,87 +1,148 @@
-/*
- * Copyright (c) 2006, Creative Labs Inc.
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification, are permitted provided
- * that the following conditions are met:
- * 
- *     * Redistributions of source code must retain the above copyright notice, this list of conditions and
- * 	     the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright notice, this list of conditions
- * 	     and the following disclaimer in the documentation and/or other materials provided with the distribution.
- *     * Neither the name of Creative Labs Inc. nor the names of its contributors may be used to endorse or
- * 	     promote products derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
- * PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
- * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
-
 #include "Capture.h"
+
+double gInOutScaler = 1.0;
+#define CONVERT_IN_TO_OUT(in)  ((OUTPUT_SAMPLE) ((in) * gInOutScaler))
+
+WireConfig_t config;
+
+/* This routine will be called by the PortAudio engine when audio is needed.
+** It may be called at interrupt level on some machines so don't do anything
+** that could mess up the system like calling malloc() or free().
+*/
+int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
+                         unsigned long framesPerBuffer,
+                         const PaStreamCallbackTimeInfo* timeInfo,
+                         PaStreamCallbackFlags statusFlags,
+                         void *userData )
+{
+    INPUT_SAMPLE *in;
+    OUTPUT_SAMPLE *out;
+    int inStride;
+    int outStride;
+    int inDone = 0;
+    int outDone = 0;
+	Capture* cap = static_cast<Capture*>(userData);
+	// pointer does not evaluate correctly, possible this callback is in a separate memory space
+	//WireConfig_t *config = cap->config;  
+    unsigned int i;
+    int inChannel, outChannel;
+
+    /* This may get called with NULL inputBuffer during initial setup. */
+    if( inputBuffer == NULL) return 0;
+
+    inChannel=0, outChannel=0;
+    while( !(inDone && outDone) )
+    {
+        if( config.isInputInterleaved )
+        {
+            in = ((INPUT_SAMPLE*)inputBuffer) + inChannel;
+            inStride = config.numInputChannels;
+        }
+        else
+        {
+            in = ((INPUT_SAMPLE**)inputBuffer)[inChannel];
+            inStride = 1;
+        }
+
+        if( config.isOutputInterleaved )
+        {
+            out = ((OUTPUT_SAMPLE*)outputBuffer) + outChannel;
+            outStride = config.numOutputChannels;
+        }
+        else
+        {
+            out = ((OUTPUT_SAMPLE**)outputBuffer)[outChannel];
+            outStride = 1;
+        }
+
+        for( i=0; i<framesPerBuffer; i++ )
+        {
+            *out = CONVERT_IN_TO_OUT( *in );
+            out += outStride;
+            in += inStride;
+        }
+
+        if(inChannel < (config.numInputChannels - 1)) inChannel++;
+        else inDone = 1;
+        if(outChannel < (config.numOutputChannels - 1)) outChannel++;
+        else outDone = 1;
+    }
+    return 0;
+}
 
 void Capture::stop()
 {
-	stopped = true;
+	Pa_CloseStream( stream );
+	Pa_Terminate();
 }
 
-void Capture::run()
+void Capture::start()
 {
-	/* -- initialize PortAudio -- */
-    PaError err = Pa_Initialize();
+	PaError err = paNoError;
+    //WireConfig_t CONFIG;
+    //config = &CONFIG;
+    int configIndex = 0;
+
+    err = Pa_Initialize();
     if( err != paNoError ) return;
 
-    /* -- setup input and output -- */
-	PaStreamParameters inputParameters;
-    inputParameters.device = Pa_GetDefaultInputDevice(); /* default input device */
-    inputParameters.channelCount = NUM_CHANNELS;
-    inputParameters.sampleFormat = PA_SAMPLE_TYPE;
-    inputParameters.suggestedLatency = Pa_GetDeviceInfo( inputParameters.device )->defaultHighInputLatency ;
+    //printf("Please connect audio signal to input and listen for it on output!\n");
+    //printf("input format = %lu\n", INPUT_FORMAT );
+    //printf("output format = %lu\n", OUTPUT_FORMAT );
+    //printf("input device ID  = %d\n", INPUT_DEVICE );
+    //printf("output device ID = %d\n", OUTPUT_DEVICE );
+
+    if( INPUT_FORMAT == OUTPUT_FORMAT )
+    {
+        gInOutScaler = 1.0;
+    }
+    else if( (INPUT_FORMAT == paInt16) && (OUTPUT_FORMAT == paFloat32) )
+    {
+        gInOutScaler = 1.0/32768.0;
+    }
+    else if( (INPUT_FORMAT == paFloat32) && (OUTPUT_FORMAT == paInt16) )
+    {
+        gInOutScaler = 32768.0;
+    }
+     
+	config.isInputInterleaved = 0; 
+    config.isOutputInterleaved = 0;
+    config.numInputChannels = 1; 
+    config.numOutputChannels = 2;
+    config.framesPerCallback = 256;
+                
+	int c;
+    err = paNoError;
+    PaStreamParameters inputParameters, outputParameters;
+   
+    inputParameters.device = INPUT_DEVICE;              /* default input device */
+    if (inputParameters.device == paNoDevice) {
+        return;
+    }
+    inputParameters.channelCount = config.numInputChannels;
+    inputParameters.sampleFormat = INPUT_FORMAT | (config.isInputInterleaved ? 0 : paNonInterleaved);
+    inputParameters.suggestedLatency = Pa_GetDeviceInfo( inputParameters.device )->defaultLowInputLatency;
     inputParameters.hostApiSpecificStreamInfo = NULL;
 
-	PaStreamParameters outputParameters;
-    outputParameters.device = Pa_GetDefaultOutputDevice(); /* default output device */
-    outputParameters.channelCount = NUM_CHANNELS;
-    outputParameters.sampleFormat = PA_SAMPLE_TYPE;
-    outputParameters.suggestedLatency = Pa_GetDeviceInfo( outputParameters.device )->defaultHighOutputLatency;
+    outputParameters.device = OUTPUT_DEVICE;            /* default output device */
+    if (outputParameters.device == paNoDevice) {
+        return;
+    }
+    outputParameters.channelCount = config.numOutputChannels;
+    outputParameters.sampleFormat = OUTPUT_FORMAT | (config.isOutputInterleaved ? 0 : paNonInterleaved);
+    outputParameters.suggestedLatency = Pa_GetDeviceInfo( outputParameters.device )->defaultLowOutputLatency;
     outputParameters.hostApiSpecificStreamInfo = NULL;
 
-    /* -- setup stream -- */
-	PaStream* stream;
     err = Pa_OpenStream(
               &stream,
               &inputParameters,
               &outputParameters,
               SAMPLE_RATE,
-              FRAMES_PER_BUFFER,
-              paClipOff,      /* we won't output out of range samples so don't bother clipping them */
-              NULL, /* no callback, use blocking API */
-              NULL ); /* no callback, so no callback userData */
+              config.framesPerCallback, /* frames per buffer */
+              paClipOff, /* we won't output out of range samples so don't bother clipping them */
+			  this->wireCallback,
+              this );
     if( err != paNoError ) return;
-
-    /* -- start stream -- */
+    
     err = Pa_StartStream( stream );
-    if( err != paNoError ) return;
-    printf("Wire on. Will run one minute.\n"); fflush(stdout);
-
-    /* -- Here's the loop where we pass data from input to output -- */
-	void* sampleBlock = new float[FRAMES_PER_BUFFER];
-	while( !stopped )
-    {
-       err = Pa_WriteStream( stream, sampleBlock, FRAMES_PER_BUFFER );
-       if( err ) break;
-       err = Pa_ReadStream( stream, sampleBlock, FRAMES_PER_BUFFER );
-       if( err ) break;
-    }
-    /* -- Now we stop the stream -- */
-    err = Pa_StopStream( stream );
-
-    /* -- don't forget to cleanup! -- */
-    err = Pa_CloseStream( stream );
-
-    Pa_Terminate();
 }

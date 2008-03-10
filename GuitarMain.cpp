@@ -79,6 +79,7 @@ int main(int argc, char *argv[])
 
 	// begin audio capture
 	Capture* cap = new Capture();
+	notes->scorer = new Scorer(cap);
 	//Capture::Init();
 	cap->start();
 

@@ -83,8 +83,8 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
             *out = ringBuffer[rbi++] = CONVERT_IN_TO_OUT( *in );
             out += outStride;
             in += inStride;
+			rblast = rbi;
         }
-		rblast = rbi;
 
         if(inChannel < (config.numInputChannels - 1)) inChannel++;
         else inDone = 1;
@@ -129,11 +129,11 @@ void Capture::start()
         gInOutScaler = 32768.0;
     }
      
-	config.isInputInterleaved = 0; 
-    config.isOutputInterleaved = 0;
+	config.isInputInterleaved = 1; 
+    config.isOutputInterleaved = 1;
     config.numInputChannels = 1; 
     config.numOutputChannels = 2;
-    config.framesPerCallback = 256;
+    config.framesPerCallback = 640;
                 
 	int c;
     err = paNoError;

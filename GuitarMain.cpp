@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 {
 	string filename;
 	if(argc == 1)
-		filename = "tabs/message_in_a_bottle.gp4";
+		filename = "tabs/iron_man_ver5.gp4";
 	else
 	{
 		filename = argv[1];

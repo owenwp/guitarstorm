@@ -210,42 +210,6 @@
 			>
 		</Filter>
 		<Filter
-			Name="Framework"
-			>
-			<File
-				RelativePath=".\Framework\aldlist.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Framework\aldlist.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Framework\CWaves.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Framework\CWaves.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Framework\Framework.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Framework\Framework.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Framework\LoadOAL.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Framework\LoadOAL.h"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="FFT"
 			>
 			<File

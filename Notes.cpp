@@ -186,7 +186,7 @@ void Notes::PlaceBeat(double t)
 {
 	for(int s=0; s<6; s++)
 	{
-		osg::Vec3 origin((float)t, -0.5f, (float)s);
+		osg::Vec3 origin((float)t, 0.5f, (float)s);
 
 		osg::Geode* geodeUp = new osg::Geode;
 		{

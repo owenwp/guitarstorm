@@ -184,6 +184,10 @@
 				RelativePath=".\Notes.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\Scorer.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -200,6 +204,10 @@
 			</File>
 			<File
 				RelativePath=".\Notes.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Scorer.h"
 				>
 			</File>
 		</Filter>

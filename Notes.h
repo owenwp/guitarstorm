@@ -18,6 +18,7 @@
 #include <fstream>
 
 #include "kguitar/convertgtp.h"
+#include "Scorer.h"
 
 using namespace std;
 
@@ -33,6 +34,8 @@ public:
 	void setSong(std::string name);
 
 	void Update();
+
+	Scorer* scorer;
 
 protected:
 	~Notes() {}

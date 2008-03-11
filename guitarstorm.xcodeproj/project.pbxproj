@@ -1,0 +1,466 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F49F70F07AD6F2D0058BE5D /* osgParticle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F70407AD6F2D0058BE5D /* osgParticle.framework */; };
+		1F49F71007AD6F2D0058BE5D /* osgSim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F70507AD6F2D0058BE5D /* osgSim.framework */; };
+		1F49F71107AD6F2D0058BE5D /* OpenThreads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F70607AD6F2D0058BE5D /* OpenThreads.framework */; };
+		1F49F71207AD6F2D0058BE5D /* osgGA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F70707AD6F2D0058BE5D /* osgGA.framework */; };
+		1F49F71307AD6F2D0058BE5D /* osg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F70807AD6F2D0058BE5D /* osg.framework */; };
+		1F49F71507AD6F2D0058BE5D /* osgFX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F70A07AD6F2D0058BE5D /* osgFX.framework */; };
+		1F49F71607AD6F2D0058BE5D /* osgText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F70B07AD6F2D0058BE5D /* osgText.framework */; };
+		1F49F71807AD6F2D0058BE5D /* osgDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F70D07AD6F2D0058BE5D /* osgDB.framework */; };
+		1F49F83707AD6F520058BE5D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F83507AD6F520058BE5D /* OpenGL.framework */; };
+		1F9A4951082D65C40032CDE9 /* osgUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9A4950082D65C40032CDE9 /* osgUtil.framework */; };
+		1FD8F432088C87A500B4318C /* osgIntrospection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8F431088C87A500B4318C /* osgIntrospection.framework */; };
+		1FF6110B082F118D004EB1E4 /* osgViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF61109082F118D004EB1E4 /* osgViewer.framework */; };
+		3CCF0FC90D86E13B003173B5 /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC00D86E13B003173B5 /* Capture.cpp */; };
+		3CCF0FCA0D86E13B003173B5 /* GuitarMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC20D86E13B003173B5 /* GuitarMain.cpp */; };
+		3CCF0FCB0D86E13B003173B5 /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC30D86E13B003173B5 /* Keyboard.cpp */; };
+		3CCF0FCC0D86E13B003173B5 /* Notes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC50D86E13B003173B5 /* Notes.cpp */; };
+		3CCF0FCD0D86E13B003173B5 /* Scorer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC70D86E13B003173B5 /* Scorer.cpp */; };
+		3CCF0FE50D86E16E003173B5 /* accidentals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FDA0D86E16E003173B5 /* accidentals.cpp */; };
+		3CCF0FE60D86E16E003173B5 /* convertgtp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FDC0D86E16E003173B5 /* convertgtp.cpp */; };
+		3CCF0FE70D86E16E003173B5 /* tabcolumn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FDF0D86E16E003173B5 /* tabcolumn.cpp */; };
+		3CCF0FE80D86E16E003173B5 /* tabsong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FE10D86E16E003173B5 /* tabsong.cpp */; };
+		3CCF0FE90D86E16E003173B5 /* tabtrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FE30D86E16E003173B5 /* tabtrack.cpp */; };
+		3CCF0FF70D86E19B003173B5 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF0FF60D86E19B003173B5 /* libportaudio.a */; };
+		3CCF10190D86E4F8003173B5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF10180D86E4F8003173B5 /* AudioToolbox.framework */; };
+		3CCF101B0D86E502003173B5 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF101A0D86E502003173B5 /* AudioUnit.framework */; };
+		3CCF101D0D86E513003173B5 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF101C0D86E513003173B5 /* CoreAudio.framework */; };
+		3CCF101F0D86E520003173B5 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF101E0D86E520003173B5 /* CoreServices.framework */; };
+		3CCF102F0D86E71B003173B5 /* tabs in Resources */ = {isa = PBXBuildFile; fileRef = 3CCF102A0D86E71B003173B5 /* tabs */; };
+		3CCF10340D86EA11003173B5 /* fourier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF10320D86EA11003173B5 /* fourier.cpp */; };
+		3CCF10350D86EA11003173B5 /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF10330D86EA11003173B5 /* fft.cpp */; };
+		8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */; };
+		8D0C4E8E0486CD37000505A6 /* main.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02345980000FD03B11CA0E72 /* main.nib */; };
+		8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0867D6ABFE840B52C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1870340FFE93FCAF11CA0CD7 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/main.nib; sourceTree = "<group>"; };
+		1F49F70407AD6F2D0058BE5D /* osgParticle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgParticle.framework; path = /Library/Frameworks/osgParticle.framework; sourceTree = "<absolute>"; };
+		1F49F70507AD6F2D0058BE5D /* osgSim.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgSim.framework; path = /Library/Frameworks/osgSim.framework; sourceTree = "<absolute>"; };
+		1F49F70607AD6F2D0058BE5D /* OpenThreads.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenThreads.framework; path = /Library/Frameworks/OpenThreads.framework; sourceTree = "<absolute>"; };
+		1F49F70707AD6F2D0058BE5D /* osgGA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgGA.framework; path = /Library/Frameworks/osgGA.framework; sourceTree = "<absolute>"; };
+		1F49F70807AD6F2D0058BE5D /* osg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osg.framework; path = /Library/Frameworks/osg.framework; sourceTree = "<absolute>"; };
+		1F49F70907AD6F2D0058BE5D /* osgTerrain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgTerrain.framework; path = /Library/Frameworks/osgTerrain.framework; sourceTree = "<absolute>"; };
+		1F49F70A07AD6F2D0058BE5D /* osgFX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgFX.framework; path = /Library/Frameworks/osgFX.framework; sourceTree = "<absolute>"; };
+		1F49F70B07AD6F2D0058BE5D /* osgText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgText.framework; path = /Library/Frameworks/osgText.framework; sourceTree = "<absolute>"; };
+		1F49F70D07AD6F2D0058BE5D /* osgDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgDB.framework; path = /Library/Frameworks/osgDB.framework; sourceTree = "<absolute>"; };
+		1F49F83507AD6F520058BE5D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		1F9A4950082D65C40032CDE9 /* osgUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgUtil.framework; path = /Library/Frameworks/osgUtil.framework; sourceTree = "<absolute>"; };
+		1FD8F431088C87A500B4318C /* osgIntrospection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgIntrospection.framework; path = /Library/Frameworks/osgIntrospection.framework; sourceTree = "<absolute>"; };
+		1FF61109082F118D004EB1E4 /* osgViewer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgViewer.framework; path = /Library/Frameworks/osgViewer.framework; sourceTree = "<absolute>"; };
+		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		32DBCF6D0370B57F00C91783 /* guitarstorm_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guitarstorm_Prefix.pch; sourceTree = "<group>"; };
+		3CCF0FC00D86E13B003173B5 /* Capture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Capture.cpp; sourceTree = "<group>"; };
+		3CCF0FC10D86E13B003173B5 /* Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capture.h; sourceTree = "<group>"; };
+		3CCF0FC20D86E13B003173B5 /* GuitarMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarMain.cpp; sourceTree = "<group>"; };
+		3CCF0FC30D86E13B003173B5 /* Keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Keyboard.cpp; sourceTree = "<group>"; };
+		3CCF0FC40D86E13B003173B5 /* Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keyboard.h; sourceTree = "<group>"; };
+		3CCF0FC50D86E13B003173B5 /* Notes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Notes.cpp; sourceTree = "<group>"; };
+		3CCF0FC60D86E13B003173B5 /* Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notes.h; sourceTree = "<group>"; };
+		3CCF0FC70D86E13B003173B5 /* Scorer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scorer.cpp; sourceTree = "<group>"; };
+		3CCF0FC80D86E13B003173B5 /* Scorer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scorer.h; sourceTree = "<group>"; };
+		3CCF0FD00D86E157003173B5 /* complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = complex.h; path = fft/complex.h; sourceTree = "<group>"; };
+		3CCF0FD50D86E157003173B5 /* w.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = w.h; path = fft/w.h; sourceTree = "<group>"; };
+		3CCF0FDA0D86E16E003173B5 /* accidentals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = accidentals.cpp; path = kguitar/accidentals.cpp; sourceTree = "<group>"; };
+		3CCF0FDB0D86E16E003173B5 /* accidentals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = accidentals.h; path = kguitar/accidentals.h; sourceTree = "<group>"; };
+		3CCF0FDC0D86E16E003173B5 /* convertgtp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = convertgtp.cpp; path = kguitar/convertgtp.cpp; sourceTree = "<group>"; };
+		3CCF0FDD0D86E16E003173B5 /* convertgtp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = convertgtp.h; path = kguitar/convertgtp.h; sourceTree = "<group>"; };
+		3CCF0FDE0D86E16E003173B5 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = kguitar/global.h; sourceTree = "<group>"; };
+		3CCF0FDF0D86E16E003173B5 /* tabcolumn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tabcolumn.cpp; path = kguitar/tabcolumn.cpp; sourceTree = "<group>"; };
+		3CCF0FE00D86E16E003173B5 /* tabcolumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tabcolumn.h; path = kguitar/tabcolumn.h; sourceTree = "<group>"; };
+		3CCF0FE10D86E16E003173B5 /* tabsong.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tabsong.cpp; path = kguitar/tabsong.cpp; sourceTree = "<group>"; };
+		3CCF0FE20D86E16E003173B5 /* tabsong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tabsong.h; path = kguitar/tabsong.h; sourceTree = "<group>"; };
+		3CCF0FE30D86E16E003173B5 /* tabtrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tabtrack.cpp; path = kguitar/tabtrack.cpp; sourceTree = "<group>"; };
+		3CCF0FE40D86E16E003173B5 /* tabtrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tabtrack.h; path = kguitar/tabtrack.h; sourceTree = "<group>"; };
+		3CCF0FEE0D86E19B003173B5 /* portaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = portaudio.h; path = mac/portaudio/portaudio.h; sourceTree = "<group>"; };
+		3CCF0FF20D86E19B003173B5 /* pa_mac_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pa_mac_core.h; path = mac/portaudio/pa_mac_core.h; sourceTree = "<group>"; };
+		3CCF0FF40D86E19B003173B5 /* pa_jack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pa_jack.h; path = mac/portaudio/pa_jack.h; sourceTree = "<group>"; };
+		3CCF0FF50D86E19B003173B5 /* pa_asio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pa_asio.h; path = mac/portaudio/pa_asio.h; sourceTree = "<group>"; };
+		3CCF0FF60D86E19B003173B5 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = mac/portaudio/libportaudio.a; sourceTree = "<group>"; };
+		3CCF10180D86E4F8003173B5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
+		3CCF101A0D86E502003173B5 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = /System/Library/Frameworks/AudioUnit.framework; sourceTree = "<absolute>"; };
+		3CCF101C0D86E513003173B5 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
+		3CCF101E0D86E520003173B5 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
+		3CCF102A0D86E71B003173B5 /* tabs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tabs; sourceTree = "<group>"; };
+		3CCF10320D86EA11003173B5 /* fourier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fourier.cpp; path = fft/fourier.cpp; sourceTree = "<group>"; };
+		3CCF10330D86EA11003173B5 /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fft.cpp; path = fft/fft.cpp; sourceTree = "<group>"; };
+		8D0C4E960486CD37000505A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D0C4E970486CD37000505A6 /* guitarstorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = guitarstorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D0C4E910486CD37000505A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */,
+				1F49F70F07AD6F2D0058BE5D /* osgParticle.framework in Frameworks */,
+				1F49F71007AD6F2D0058BE5D /* osgSim.framework in Frameworks */,
+				1F49F71107AD6F2D0058BE5D /* OpenThreads.framework in Frameworks */,
+				1F49F71207AD6F2D0058BE5D /* osgGA.framework in Frameworks */,
+				1F49F71307AD6F2D0058BE5D /* osg.framework in Frameworks */,
+				1F49F71507AD6F2D0058BE5D /* osgFX.framework in Frameworks */,
+				1F49F71607AD6F2D0058BE5D /* osgText.framework in Frameworks */,
+				1F49F71807AD6F2D0058BE5D /* osgDB.framework in Frameworks */,
+				1F49F83707AD6F520058BE5D /* OpenGL.framework in Frameworks */,
+				1F9A4951082D65C40032CDE9 /* osgUtil.framework in Frameworks */,
+				1FF6110B082F118D004EB1E4 /* osgViewer.framework in Frameworks */,
+				1FD8F432088C87A500B4318C /* osgIntrospection.framework in Frameworks */,
+				3CCF0FF70D86E19B003173B5 /* libportaudio.a in Frameworks */,
+				3CCF10190D86E4F8003173B5 /* AudioToolbox.framework in Frameworks */,
+				3CCF101B0D86E502003173B5 /* AudioUnit.framework in Frameworks */,
+				3CCF101D0D86E513003173B5 /* CoreAudio.framework in Frameworks */,
+				3CCF101F0D86E520003173B5 /* CoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		195DF8CFFE9D517E11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D0C4E970486CD37000505A6 /* guitarstorm.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F49F6FE07AD6F150058BE5D /* OSG */ = {
+			isa = PBXGroup;
+			children = (
+				1FF61109082F118D004EB1E4 /* osgViewer.framework */,
+				1F9A4950082D65C40032CDE9 /* osgUtil.framework */,
+				1F49F70407AD6F2D0058BE5D /* osgParticle.framework */,
+				1F49F70507AD6F2D0058BE5D /* osgSim.framework */,
+				1F49F70607AD6F2D0058BE5D /* OpenThreads.framework */,
+				1F49F70707AD6F2D0058BE5D /* osgGA.framework */,
+				1FD8F431088C87A500B4318C /* osgIntrospection.framework */,
+				1F49F70807AD6F2D0058BE5D /* osg.framework */,
+				1F49F70907AD6F2D0058BE5D /* osgTerrain.framework */,
+				1F49F70A07AD6F2D0058BE5D /* osgFX.framework */,
+				1F49F70B07AD6F2D0058BE5D /* osgText.framework */,
+				1F49F70D07AD6F2D0058BE5D /* osgDB.framework */,
+			);
+			name = OSG;
+			sourceTree = "<group>";
+		};
+		20286C29FDCF999611CA2CEA /* guitarstorm */ = {
+			isa = PBXGroup;
+			children = (
+				20286C2AFDCF999611CA2CEA /* Sources */,
+				20286C2CFDCF999611CA2CEA /* Resources */,
+				20286C32FDCF999611CA2CEA /* External Frameworks and Libraries */,
+				195DF8CFFE9D517E11CA2CBB /* Products */,
+			);
+			name = guitarstorm;
+			sourceTree = "<group>";
+		};
+		20286C2AFDCF999611CA2CEA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3CCF0FED0D86E191003173B5 /* portaudio */,
+				3CCF0FCF0D86E149003173B5 /* kguitar */,
+				3CCF0FCE0D86E143003173B5 /* fft */,
+				3CCF0FC00D86E13B003173B5 /* Capture.cpp */,
+				3CCF0FC10D86E13B003173B5 /* Capture.h */,
+				3CCF0FC20D86E13B003173B5 /* GuitarMain.cpp */,
+				3CCF0FC30D86E13B003173B5 /* Keyboard.cpp */,
+				3CCF0FC40D86E13B003173B5 /* Keyboard.h */,
+				3CCF0FC50D86E13B003173B5 /* Notes.cpp */,
+				3CCF0FC60D86E13B003173B5 /* Notes.h */,
+				3CCF0FC70D86E13B003173B5 /* Scorer.cpp */,
+				3CCF0FC80D86E13B003173B5 /* Scorer.h */,
+				32DBCF6D0370B57F00C91783 /* guitarstorm_Prefix.pch */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		20286C2CFDCF999611CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3CCF102A0D86E71B003173B5 /* tabs */,
+				8D0C4E960486CD37000505A6 /* Info.plist */,
+				0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */,
+				02345980000FD03B11CA0E72 /* main.nib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		20286C32FDCF999611CA2CEA /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				3CCF101E0D86E520003173B5 /* CoreServices.framework */,
+				3CCF101C0D86E513003173B5 /* CoreAudio.framework */,
+				3CCF101A0D86E502003173B5 /* AudioUnit.framework */,
+				3CCF10180D86E4F8003173B5 /* AudioToolbox.framework */,
+				3CCF0FF60D86E19B003173B5 /* libportaudio.a */,
+				1F49F6FE07AD6F150058BE5D /* OSG */,
+				1F49F83507AD6F520058BE5D /* OpenGL.framework */,
+				20286C33FDCF999611CA2CEA /* Carbon.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		3CCF0FCE0D86E143003173B5 /* fft */ = {
+			isa = PBXGroup;
+			children = (
+				3CCF10320D86EA11003173B5 /* fourier.cpp */,
+				3CCF10330D86EA11003173B5 /* fft.cpp */,
+				3CCF0FD00D86E157003173B5 /* complex.h */,
+				3CCF0FD50D86E157003173B5 /* w.h */,
+			);
+			name = fft;
+			sourceTree = "<group>";
+		};
+		3CCF0FCF0D86E149003173B5 /* kguitar */ = {
+			isa = PBXGroup;
+			children = (
+				3CCF0FDA0D86E16E003173B5 /* accidentals.cpp */,
+				3CCF0FDB0D86E16E003173B5 /* accidentals.h */,
+				3CCF0FDC0D86E16E003173B5 /* convertgtp.cpp */,
+				3CCF0FDD0D86E16E003173B5 /* convertgtp.h */,
+				3CCF0FDE0D86E16E003173B5 /* global.h */,
+				3CCF0FDF0D86E16E003173B5 /* tabcolumn.cpp */,
+				3CCF0FE00D86E16E003173B5 /* tabcolumn.h */,
+				3CCF0FE10D86E16E003173B5 /* tabsong.cpp */,
+				3CCF0FE20D86E16E003173B5 /* tabsong.h */,
+				3CCF0FE30D86E16E003173B5 /* tabtrack.cpp */,
+				3CCF0FE40D86E16E003173B5 /* tabtrack.h */,
+			);
+			name = kguitar;
+			sourceTree = "<group>";
+		};
+		3CCF0FED0D86E191003173B5 /* portaudio */ = {
+			isa = PBXGroup;
+			children = (
+				3CCF0FEE0D86E19B003173B5 /* portaudio.h */,
+				3CCF0FF20D86E19B003173B5 /* pa_mac_core.h */,
+				3CCF0FF40D86E19B003173B5 /* pa_jack.h */,
+				3CCF0FF50D86E19B003173B5 /* pa_asio.h */,
+			);
+			name = portaudio;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D0C4E890486CD37000505A6 /* guitarstorm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CCF0F9A0D86DFEF003173B5 /* Build configuration list for PBXNativeTarget "guitarstorm" */;
+			buildPhases = (
+				8D0C4E8C0486CD37000505A6 /* Resources */,
+				8D0C4E8F0486CD37000505A6 /* Sources */,
+				8D0C4E910486CD37000505A6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = guitarstorm;
+			productInstallPath = "$(HOME)/Applications";
+			productName = guitarstorm;
+			productReference = 8D0C4E970486CD37000505A6 /* guitarstorm.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20286C28FDCF999611CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 3CCF0F990D86DFEF003173B5 /* Build configuration list for PBXProject "guitarstorm" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 20286C29FDCF999611CA2CEA /* guitarstorm */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D0C4E890486CD37000505A6 /* guitarstorm */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D0C4E8C0486CD37000505A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */,
+				8D0C4E8E0486CD37000505A6 /* main.nib in Resources */,
+				3CCF102F0D86E71B003173B5 /* tabs in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D0C4E8F0486CD37000505A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CCF0FC90D86E13B003173B5 /* Capture.cpp in Sources */,
+				3CCF0FCA0D86E13B003173B5 /* GuitarMain.cpp in Sources */,
+				3CCF0FCB0D86E13B003173B5 /* Keyboard.cpp in Sources */,
+				3CCF0FCC0D86E13B003173B5 /* Notes.cpp in Sources */,
+				3CCF0FCD0D86E13B003173B5 /* Scorer.cpp in Sources */,
+				3CCF0FE50D86E16E003173B5 /* accidentals.cpp in Sources */,
+				3CCF0FE60D86E16E003173B5 /* convertgtp.cpp in Sources */,
+				3CCF0FE70D86E16E003173B5 /* tabcolumn.cpp in Sources */,
+				3CCF0FE80D86E16E003173B5 /* tabsong.cpp in Sources */,
+				3CCF0FE90D86E16E003173B5 /* tabtrack.cpp in Sources */,
+				3CCF10340D86EA11003173B5 /* fourier.cpp in Sources */,
+				3CCF10350D86EA11003173B5 /* fft.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		02345980000FD03B11CA0E72 /* main.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1870340FFE93FCAF11CA0CD7 /* English */,
+			);
+			name = main.nib;
+			sourceTree = "<group>";
+		};
+		0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0867D6ABFE840B52C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3CCF0F930D86DFEF003173B5 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Development;
+		};
+		3CCF0F940D86DFEF003173B5 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Deployment;
+		};
+		3CCF0F950D86DFEF003173B5 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Default;
+		};
+		3CCF0F960D86DFEF003173B5 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = guitarstorm_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__USE_OSX_AGL_IMPLEMENTATION__,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/portaudio\"";
+				PREBINDING = NO;
+				PRODUCT_NAME = guitarstorm;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		3CCF0F970D86DFEF003173B5 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = guitarstorm_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__USE_OSX_AGL_IMPLEMENTATION__,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/portaudio\"";
+				PRODUCT_NAME = guitarstorm;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		3CCF0F980D86DFEF003173B5 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = guitarstorm_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__USE_OSX_AGL_IMPLEMENTATION__,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/portaudio\"";
+				PRODUCT_NAME = guitarstorm;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3CCF0F990D86DFEF003173B5 /* Build configuration list for PBXProject "guitarstorm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CCF0F930D86DFEF003173B5 /* Development */,
+				3CCF0F940D86DFEF003173B5 /* Deployment */,
+				3CCF0F950D86DFEF003173B5 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		3CCF0F9A0D86DFEF003173B5 /* Build configuration list for PBXNativeTarget "guitarstorm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CCF0F960D86DFEF003173B5 /* Development */,
+				3CCF0F970D86DFEF003173B5 /* Deployment */,
+				3CCF0F980D86DFEF003173B5 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20286C28FDCF999611CA2CEA /* Project object */;
+}

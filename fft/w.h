@@ -1,3 +1,5 @@
+#ifndef FFTW
+#define FFTW
 /*
  * "w.h", Pjotr '87.
  */
@@ -10,3 +12,5 @@ extern unsigned Nfactors;
  * Notice that the powerseries of Wn has period Nfactors.
  */
 #define	W(n, k)		(W_factors [((k) * (Nfactors / (n))) % Nfactors])
+
+#endif

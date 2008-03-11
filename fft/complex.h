@@ -1,3 +1,5 @@
+#ifndef FFTCOMPLEX
+#define FFTCOMPLEX
 /*
  * "complex.h", Pjotr '87.
  */
@@ -24,3 +26,5 @@ typedef struct {
  * C_realdiv divides complex c by real.
  */
 #define	c_realdiv(c, real)	{ c_re (c) /= (real); c_im (c) /= (real); }
+
+#endif

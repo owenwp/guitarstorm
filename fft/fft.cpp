@@ -7,26 +7,38 @@
  * transform op reele samples doen.  Gebruikt pakket fft(3).
  */
 
-#include	"complex.h"
+#include "fft.h"
 
-char *malloc ();
+COMPLEX *W_factors = 0;		/* array of W-factors */
+unsigned Nfactors = 0;		/* number of entries in W-factors */
 
-/*
- * Reele forward fast fourier transform van n samples van in naar
- * amplitudes van out.
- * De cosinus komponent van de dc komt in out [0], dan volgen in
- * out [2 * i - 1] en out [2 * i] steeds resp. de cosinus en sinus
- * komponenten van de i-de harmonische.  Bij een even aantal samples
- * bevat out [n - 1] de cosinus komponent van de Nyquist frequentie. 
- * Extraatje: Na afloop is in onaangetast.
- */
-realfft (in, n, out)
-double *in;
-unsigned n;
-double *out;
+int W_init (int n)
+{
+	//char *malloc ();
+#	define pi	3.1415926535897932384626434
+	unsigned k;
+
+	if (n == Nfactors)
+		return 0;
+	if (Nfactors != 0 && W_factors != 0)
+		free ((char *) W_factors);
+	if ((Nfactors = n) == 0)
+		return 0;
+	if ((W_factors = (COMPLEX *) malloc (n * sizeof (COMPLEX))) == 0)
+		return -1;
+
+	for (k = 0; k < n; k++) {
+		c_re (W_factors [k]) = cos (2 * pi * k / n);
+		c_im (W_factors [k]) = sin (2 * pi * k / n);
+	}
+
+	return 0;
+}
+
+void realfft (double *in, int n, double *out)
 {
 	COMPLEX *c_in, *c_out;
-	unsigned i;
+	unsigned int i;
 
 	if (n == 0 ||
 	    (c_in = (COMPLEX *) malloc (n * sizeof (COMPLEX))) == 0 ||
@@ -52,19 +64,7 @@ double *out;
 	free ((char *) c_out);
 }
 
-/*
- * Reele reverse fast fourier transform van amplitudes van in naar
- * n samples van out.
- * De cosinus komponent van de dc staat in in [0], dan volgen in
- * in [2 * i - 1] en in [2 * i] steeds resp. de cosinus en sinus
- * komponenten van de i-de harmonische.  Bij een even aantal samples
- * bevat in [n - 1] de cosinus komponent van de Nyquist frequentie. 
- * Extraatje: Na afloop is in onaangetast.
- */
-realrft (in, n, out)
-double *in;
-unsigned n;
-double *out;
+void realrft (double *in, int n, double *out)
 {
 	COMPLEX *c_in, *c_out;
 	unsigned i;
@@ -94,4 +94,34 @@ double *out;
 
 	free ((char *) c_in);
 	free ((char *) c_out);
+}
+
+int fft (COMPLEX *in, int n, COMPLEX *out)
+{
+	unsigned i;
+
+	for (i = 0; i < n; i++)
+		c_conj (in [i]);
+	
+	if (W_init (n) == -1)
+		return -1;
+
+	Fourier (in, n, out);
+
+	for (i = 0; i < n; i++) {
+		c_conj (out [i]);
+		c_realdiv (out [i], n);
+	}
+
+	return 0;
+}
+
+int rft (COMPLEX *in, int n, COMPLEX *out)
+{
+	if (W_init (n) == -1)
+		return -1;
+
+	Fourier (in, n, out);
+
+	return 0;
 }

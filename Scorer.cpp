@@ -23,7 +23,12 @@ int Scorer::Test(list<Fret> &frets)
 		it->hit = true;
 	}
 
-	//realfft (buf, samples, spec);
+	// compute frequency spectrum
+	realfft (buf, samples, spec);
 
+	// do the tests
+
+	// clean up
+	delete spec;
 	return 1;
 }

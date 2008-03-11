@@ -14,7 +14,7 @@
 
 #include <osgText/Text>
 
-//#include "fft/realfft.c"
+#include "fft/fft.h"
 #include "Capture.h"
 
 using namespace std;

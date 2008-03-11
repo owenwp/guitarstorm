@@ -225,23 +225,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\fft\fft.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\fft\fft.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fft\fourier.c"
+				RelativePath=".\fft\fourier.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\fft\ft.c"
-				>
-			</File>
-			<File
-				RelativePath=".\fft\realfft.c"
-				>
-			</File>
-			<File
-				RelativePath=".\fft\w.c"
+				RelativePath=".\fft\fourier.h"
 				>
 			</File>
 			<File

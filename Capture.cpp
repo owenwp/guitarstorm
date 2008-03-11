@@ -137,7 +137,7 @@ void Capture::start()
     config.isOutputInterleaved = 1;
     config.numInputChannels = 1; 
     config.numOutputChannels = 2;
-    config.framesPerCallback = 1024;
+    config.framesPerCallback = 64;
                 
 	int c;
     err = paNoError;

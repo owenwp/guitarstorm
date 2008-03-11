@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 
 	// setup viewer
     osgViewer::Viewer viewer;
-	viewer.setUpViewInWindow(10, 50, 800, 600, 1);
+	viewer.setUpViewInWindow(10, 50, 800, 600, 0);
 
 	// setup keyboard input
 	osg::ref_ptr<KeyboardModel> keyboardModel = new KeyboardModel;

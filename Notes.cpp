@@ -44,6 +44,13 @@ void Notes::Update()
 	double t = time->time_s() * speed;
 	
 	// place beat lines
+	while(bar != tab->b.end() && t + offset > count3)
+	{
+		if(bar->tempo != -1)
+			tempo = bar->tempo;
+
+		count3 += 240 / tempo * speed;
+	}
 	while(col != tab->c.end() && t + offset > count2)
 	{
 		PlaceBeat(count2);
@@ -288,7 +295,8 @@ void Notes::setSong(std::string name)
 	multiplier = 1;
 
 	col = tab->c.begin();
-	count2 = count = offset = 30;
+	bar = tab->b.begin();
+	count3 = count2 = count = offset = 30;
 
 	// setup interface
 	osg::Geode* geodeTrack = new osg::Geode;

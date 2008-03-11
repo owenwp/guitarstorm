@@ -474,6 +474,7 @@ void ConvertGtp::readTabs()
 			trk->b[j].keysig = bars[j].keysig;
 			trk->b[j].start = x;
 			trk->b[j].notes = numBeats;
+			trk->b[j].tempo = -1;
 
 			for (int k = 0; k < numBeats; k++) {
 				trk->c[x].flags = 0;
@@ -531,6 +532,8 @@ void ConvertGtp::readTabs()
 					phase = readChar();        // GREYFIX: new
 					tremolo = readChar();      // GREYFIX: new
 					int tempo = readDelphiInteger(); // GREYFIX: new tempo
+
+					trk->b[j].tempo = tempo;
 
 					// GREYFIX: transitions
 					if (volume != -1)   num = readChar();

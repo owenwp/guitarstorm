@@ -21,6 +21,7 @@ typedef struct {
 	int time1,time2;                  // Time signature
 	short keysig;                       // Key signature
 	string section;
+	int tempo;
 } TabBar;
 
 #include "tabcolumn.h"

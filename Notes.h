@@ -33,11 +33,12 @@ protected:
 	osg::Timer* time;
 
 	vector<TabColumn>::iterator col;
+	vector<TabBar>::iterator bar;
 
 	float speed;
 	float offset;
 
-	double count, count2;
+	double count, count2, count3;
 
 	static const float tolerance;
 

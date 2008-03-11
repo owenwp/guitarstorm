@@ -48,7 +48,7 @@ public:
 
 	void stop();	// stop capture
 
-	float* readLast(int l);	// get the last l samples captured
+	double* readLast(int l);	// get the last l samples captured
 
 protected:
     PaStream *stream;

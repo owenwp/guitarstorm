@@ -1,19 +1,6 @@
 #ifndef NOTES
 #define NOTES
 
-#include <osgViewer/Viewer>
-#include <osgViewer/ViewerEventHandlers>
-#include <osg/io_utils>
-
-#include <osg/MatrixTransform>
-#include <osg/Geode>
-#include <osg/Group>
-#include <osg/Switch>
-#include <osg/Notify>
-#include <osg/Geometry>
-
-#include <osgText/Text>
-
 #include <sstream>
 #include <fstream>
 

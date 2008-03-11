@@ -225,6 +225,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\fft\fft.h"
+				>
+			</File>
+			<File
 				RelativePath=".\fft\fourier.c"
 				>
 			</File>

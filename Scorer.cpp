@@ -11,8 +11,12 @@ Scorer::Scorer(Capture* c)
 	sstates[5] = -1;
 }
 
-char Scorer::Test(int s1, int s2, int s3, int s4, int s5, int s6)
+int Scorer::Test(list<Fret> &frets)
 {
-	float* buf = cap->readLast(1000);
+	double* buf = cap->readLast(1000);
+	double* spec = new double[1000];
+
+	//realfft (buf, 1000, spec);
+
 	return 0;
 }

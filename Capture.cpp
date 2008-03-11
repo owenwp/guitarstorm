@@ -10,9 +10,9 @@ int rbi = 0;
 int rblast = 0;
 float ringBuffer[rblen];
 
-float* Capture::readLast(int l)
+double* Capture::readLast(int l)
 {
-	float* last = new float[l];
+	double* last = new double[l];
 
 	int i = rblast-1;
 	for(int j=l-1; j>=0; j--)
@@ -133,7 +133,7 @@ void Capture::start()
     config.isOutputInterleaved = 1;
     config.numInputChannels = 1; 
     config.numOutputChannels = 2;
-    config.framesPerCallback = 640;
+    config.framesPerCallback = 64;
                 
 	int c;
     err = paNoError;

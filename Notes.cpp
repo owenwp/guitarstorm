@@ -75,6 +75,8 @@ void Notes::Update()
 		}
 	}
 
+	list<Fret> frets;
+
 	itr = chart.begin();
 	while(itr!=chart.end())
 	{
@@ -85,9 +87,10 @@ void Notes::Update()
 
 		if(itr->second->getValue(0) && x < -tolerance)
 		{
-			itr->second->setSingleChildOn(1);
-			combo = 0;
-			multiplier = 1;
+			frets.push_back(*static_cast<Fret*>(itr->second->getUserData()));
+			//itr->second->setSingleChildOn(1);
+			//combo = 0;
+			//multiplier = 1;
 		}
 
 		if(itr->second->getValue(1))
@@ -112,11 +115,24 @@ void Notes::Update()
 		if(x < -5)
 		{
 			itr->second->setAllChildrenOff();
-			//_scene->removeChild(itr->second.get());
-			//itr->second = NULL;
 		}
 
 		itr++;
+	}
+
+	if(scorer->Test(frets) == 0)
+	{
+		combo = 0;
+		multiplier = 1;
+	}
+
+	list<Fret>::iterator fi = frets.begin();
+	for(fi = frets.begin(); fi != frets.end(); fi++)
+	{
+		if(!fi->hit)
+		{
+			fi->m->setSingleChildOn(1);
+		}
 	}
 
 	// update score text
@@ -147,7 +163,7 @@ void Notes::PlaceNote(double t, int s, int f)
 		osgText::Text* textUp = new osgText::Text;
 		//textUp->setFont("fonts/arial.ttf");
 		textUp->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
-		textUp->setCharacterSize(2.0f);
+		textUp->setCharacterSize(1.0f);
 		textUp->setPosition(origin);
 		textUp->setDrawMode(osgText::Text::TEXT |osgText::Text::BOUNDINGBOX);
 		textUp->setAlignment(osgText::Text::CENTER_CENTER);
@@ -162,7 +178,7 @@ void Notes::PlaceNote(double t, int s, int f)
 		osgText::Text* textDown = new osgText::Text;
 		//textDown->setFont("fonts/arial.ttf");
 		textDown->setColor(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
-		textDown->setCharacterSize(2.0f);
+		textDown->setCharacterSize(1.0f);
 		textDown->setPosition(origin);
 		textDown->setDrawMode(osgText::Text::TEXT/*||osgText::Text::BOUNDINGBOX*/);
 		textDown->setAlignment(osgText::Text::CENTER_CENTER);
@@ -177,6 +193,11 @@ void Notes::PlaceNote(double t, int s, int f)
 	model->addChild(geodeDown,false);
 	//model->setName(string);
 	_scene->addChild(model);
+	Fret* fr = new Fret;
+	fr->s = s;
+	fr->f = f;
+	model->setUserData(fr);
+	fr->m = model;
 
 	chart[t+s*0.00001f] = model;
 }
@@ -193,7 +214,7 @@ void Notes::PlaceBeat(double t)
 			osgText::Text* textUp = new osgText::Text;
 			//textUp->setFont("fonts/arial.ttf");
 			textUp->setColor(osg::Vec4(0.3f,0.3f,0.3f,1.0f));
-			textUp->setCharacterSize(3.0f);
+			textUp->setCharacterSize(2.0f);
 			textUp->setPosition(origin);
 			textUp->setDrawMode(osgText::Text::TEXT);
 			textUp->setAlignment(osgText::Text::CENTER_CENTER);
@@ -247,7 +268,7 @@ void Notes::setSong(std::string name)
 	multiplier = 1;
 
 	col = tab->c.begin();
-	count2 = count = offset = 25;
+	count2 = count = offset = 30;
 
 	// setup interface
 	osg::Geode* geodeTrack = new osg::Geode;

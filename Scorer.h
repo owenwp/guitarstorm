@@ -17,7 +17,11 @@
 #include "fft/fft.h"
 #include "Capture.h"
 
+#include <math.h>
+
 using namespace std;
+
+const double twelfthroot = 1.05946309;
 
 struct Fret : public osg::Referenced
 {
@@ -34,9 +38,11 @@ public:
 
 	int Test(list<Fret> &frets);
 private:
+	float Tune(Fret &f);
+
 	Capture* cap;
 	int sstates[6];
-
+	float tuning[6];
 	int samples;
 };
 

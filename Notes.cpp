@@ -50,6 +50,7 @@ void Notes::Update()
 			tempo = bar->tempo;
 
 		count3 += 240 / tempo * speed;
+		bar++;
 	}
 	while(col != tab->c.end() && t + offset > count2)
 	{

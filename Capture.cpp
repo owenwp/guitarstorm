@@ -80,7 +80,11 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
 			if(rbi >= rblen)
 				rbi = 0;
 
-            *out = ringBuffer[rbi++] = CONVERT_IN_TO_OUT( *in );
+            *out = CONVERT_IN_TO_OUT( *in );
+
+			if(outChannel == 0)
+				ringBuffer[rbi++] = *out;
+
             out += outStride;
             in += inStride;
 			rblast = rbi;
@@ -133,7 +137,7 @@ void Capture::start()
     config.isOutputInterleaved = 1;
     config.numInputChannels = 1; 
     config.numOutputChannels = 2;
-    config.framesPerCallback = 64;
+    config.framesPerCallback = 1024;
                 
 	int c;
     err = paNoError;

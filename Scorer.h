@@ -36,6 +36,8 @@ public:
 private:
 	Capture* cap;
 	int sstates[6];
+
+	int samples;
 };
 
 #endif

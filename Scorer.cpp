@@ -3,6 +3,7 @@
 Scorer::Scorer(Capture* c)
 {
 	cap = c;
+	samples = 1000;
 	sstates[0] = -1;
 	sstates[1] = -1;
 	sstates[2] = -1;
@@ -13,10 +14,16 @@ Scorer::Scorer(Capture* c)
 
 int Scorer::Test(list<Fret> &frets)
 {
-	double* buf = cap->readLast(1000);
-	double* spec = new double[1000];
+	double* buf = cap->readLast(samples);
+	double* spec = new double[samples];
 
-	//realfft (buf, 1000, spec);
+	list<Fret>::iterator it;
+	for(it = frets.begin(); it != frets.end(); it++)
+	{
+		it->hit = true;
+	}
 
-	return 0;
+	//realfft (buf, samples, spec);
+
+	return 1;
 }

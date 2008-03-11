@@ -87,10 +87,9 @@ void Notes::Update()
 
 		if(itr->second->getValue(0) && x < -tolerance)
 		{
-			frets.push_back(*static_cast<Fret*>(itr->second->getUserData()));
-			//itr->second->setSingleChildOn(1);
-			//combo = 0;
-			//multiplier = 1;
+			Fret* fr = static_cast<Fret*>(itr->second->getUserData());
+			if(fr)
+				frets.push_back(*fr);
 		}
 
 		if(itr->second->getValue(1))
@@ -125,6 +124,20 @@ void Notes::Update()
 		combo = 0;
 		multiplier = 1;
 	}
+	else if(frets.size() > 0)
+	{
+		if(multiplier < 4)
+		{
+			combo++;
+			if(combo > 5)
+			{
+				multiplier++;
+				if(multiplier < 4)
+					combo = 0;
+			}
+		}
+		score += 10 * multiplier * frets.size();
+	}
 
 	list<Fret>::iterator fi = frets.begin();
 	for(fi = frets.begin(); fi != frets.end(); fi++)
@@ -132,6 +145,12 @@ void Notes::Update()
 		if(!fi->hit)
 		{
 			fi->m->setSingleChildOn(1);
+			combo = 0;
+			multiplier = 1;
+		}
+		else
+		{
+			fi->m->setAllChildrenOff();
 		}
 	}
 
@@ -194,6 +213,7 @@ void Notes::PlaceNote(double t, int s, int f)
 	//model->setName(string);
 	_scene->addChild(model);
 	Fret* fr = new Fret;
+	fr->hit = false;
 	fr->s = s;
 	fr->f = f;
 	model->setUserData(fr);

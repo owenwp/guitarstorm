@@ -42,7 +42,7 @@ protected:
 
 	static const float tolerance;
 
-	typedef std::map<double, osg::ref_ptr<osg::Switch>> NoteChart;
+	typedef std::map<double, osg::ref_ptr<osg::Switch> > NoteChart;
 
 	TabTrack* tab;
 

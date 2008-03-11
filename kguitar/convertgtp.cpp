@@ -459,7 +459,6 @@ void ConvertGtp::readTabs()
 		trk++;
 	}
 
-	vector<TabTrack>::iterator;
 	for (int j = 0; j < numBars; j++) {
 		for (trk = song->t.begin(); trk != song->t.end(); trk++) {
 			int numBeats = readDelphiInteger();

@@ -17,8 +17,8 @@ typedef struct WireConfig_s
     int framesPerCallback;
 } WireConfig_t;
 
-#define USE_FLOAT_INPUT        (1)
-#define USE_FLOAT_OUTPUT       (1)
+#define USE_FLOAT_INPUT        (0)
+#define USE_FLOAT_OUTPUT       (0)
 
 /* Latencies set to defaults. */
 
@@ -53,6 +53,10 @@ public:
 protected:
     PaStream *stream;
 
+	/* This routine will be called by the PortAudio engine when audio is needed.
+	** It may be called at interrupt level on some machines so don't do anything
+	** that could mess up the system like calling malloc() or free().
+	*/
 	static int wireCallback( const void *inputBuffer, void *outputBuffer,
                          unsigned long framesPerBuffer,
                          const PaStreamCallbackTimeInfo* timeInfo,

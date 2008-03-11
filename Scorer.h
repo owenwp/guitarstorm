@@ -43,7 +43,9 @@ private:
 	Capture* cap;
 	int sstates[6];
 	float tuning[6];
-	int samples;
+	const int samples;
+
+	double *spec;
 };
 
 #endif

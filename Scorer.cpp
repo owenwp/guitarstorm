@@ -1,9 +1,9 @@
 #include "Scorer.h"
 
-Scorer::Scorer(Capture* c)
+Scorer::Scorer(Capture* c) : 
+samples(4000)
 {
 	cap = c;
-	samples = 1000;
 	sstates[0] = -1;
 	sstates[1] = -1;
 	sstates[2] = -1;
@@ -18,6 +18,8 @@ Scorer::Scorer(Capture* c)
 	tuning[3] = 196.0f;
 	tuning[4] = 246.92f;
 	tuning[5] = 329.6f;
+
+	spec = new double[samples];
 }
 
 float Scorer::Tune(Fret &f)
@@ -28,18 +30,19 @@ float Scorer::Tune(Fret &f)
 int Scorer::Test(list<Fret> &frets)
 {
 	double* buf = cap->readLast(samples);
-	double* spec = new double[samples];
 
 	// compute frequency spectrum
 	realfft (buf, samples, spec);
 
+	delete [] buf;
+
 	// do the tests
 
 	// for now, just check the bass note
-	double ffreq=0.0; 
+	double ffreq = 0.0; 
 	double norm;
-	double maxnorm=0.0; 
-	int li=samples-2;
+	double maxnorm = 0.0; 
+	int li = samples - 2;
 
 	// find the dominant frequency
     for (int i=1; i<li; i+=2) 
@@ -59,9 +62,6 @@ int Scorer::Test(list<Fret> &frets)
 		frequency = -1.0;
 	else
 		frequency = 2.0 * ffreq * (double)SAMPLE_RATE / (double)samples;
-
-	// cleanup
-	delete spec;
 
 	// compare
 	double bass = 100000.0;

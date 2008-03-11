@@ -59,8 +59,6 @@ int main(int argc, char *argv[])
 	osg::Group* nnode = notes->getScene();
 	nnode->setUserData(notes.get()); 
 	nnode->setUpdateCallback(new notesCallback);
-	//notes->Load("message_in_a_bottle.gp4");
-	//notes->Load("sweet_child_o_mine.gp4");
 
 	// setup scene
 	osg::Group* root = NULL;

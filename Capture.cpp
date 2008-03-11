@@ -13,22 +13,24 @@ float ringBuffer[rblen];
 double* Capture::readLast(int l)
 {
 	double* last = new double[l];
+	double average = 0.0;
 
-	int i = rblast-1;
-	for(int j=l-1; j>=0; j--)
+	int i = rblast-1, j;
+	for(j=l-1; j>=0; j--)
 	{
 		if(i<0) 
 			i = rblen-1;
 
-		last[j] = ringBuffer[i];
+		average += last[j] = ringBuffer[i];
 	}
+	average /= l;
+	/*for(j=0; j<l; j++)
+	{
+		last[j] -= average;
+	}*/
 	return last;
 }
 
-/* This routine will be called by the PortAudio engine when audio is needed.
-** It may be called at interrupt level on some machines so don't do anything
-** that could mess up the system like calling malloc() or free().
-*/
 int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
                          unsigned long framesPerBuffer,
                          const PaStreamCallbackTimeInfo* timeInfo,

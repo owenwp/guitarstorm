@@ -12,10 +12,10 @@ float ringBuffer[rblen];
 
 double* Capture::readLast(int l)
 {
-	double* last = new double[l];
+	last = new double[l];
 
-	double min =  1000000.0;
-	double max = -1000000.0;
+	double min =  10000000000.0;
+	double max = -10000000000.0;
 
 	int i = rblast-1, j;
 	for(j=l-1; j>=0; j--)
@@ -23,15 +23,18 @@ double* Capture::readLast(int l)
 		if(i<0) 
 			i = rblen-1;
 
+		last[j] = ringBuffer[i++];
+
 		if(last[j] > max)
 			max = last[j];
 		if(last[j] < min)
 			min = last[j];
 	}
+	double dif = max - min;
 	// normalize array
 	for(j=0; j<l; j++)
 	{
-		last[j] = (2 * last[j] - max - min) / (max - min);
+		//last[j] = (2 * last[j] - dif) / dif;
 	}
 	return last;
 }
@@ -117,6 +120,8 @@ void Capture::start()
     //WireConfig_t CONFIG;
     //config = &CONFIG;
     int configIndex = 0;
+
+	memset(ringBuffer, 0, rblen);
 
     err = Pa_Initialize();
     if( err != paNoError ) return;

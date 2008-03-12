@@ -36,15 +36,13 @@ int Scorer::Test(list<Fret> &frets)
 	// compute frequency spectrum
 	realfft (buf, samples, spec);
 
-	delete [] buf;
-
 	// do the tests
 
 	// for now, just check the bass note
 	double ffreq = 0.0; 
 	double norm;
 	double maxnorm = 0.0; 
-	int li = samples - 2;
+	int li = (samples - 1)/2;
 
 	// find the dominant frequency
     for (int i=1; i<li; i+=2) 
@@ -63,7 +61,7 @@ int Scorer::Test(list<Fret> &frets)
 	else if(maxnorm < 1.1) 
 		frequency = -1.0;
 	else
-		frequency = 2.0 * ffreq * (double)SAMPLE_RATE / (double)samples;
+		frequency = 0.5 * ffreq * (double)SAMPLE_RATE / (double)samples;
 
 	lastfreq = frequency;
 

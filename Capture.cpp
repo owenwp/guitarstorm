@@ -13,7 +13,9 @@ float ringBuffer[rblen];
 double* Capture::readLast(int l)
 {
 	double* last = new double[l];
-	double average = 0.0;
+
+	double min =  1000000.0;
+	double max = -1000000.0;
 
 	int i = rblast-1, j;
 	for(j=l-1; j>=0; j--)
@@ -21,13 +23,16 @@ double* Capture::readLast(int l)
 		if(i<0) 
 			i = rblen-1;
 
-		average += last[j] = ringBuffer[i];
+		if(last[j] > max)
+			max = last[j];
+		if(last[j] < min)
+			min = last[j];
 	}
-	average /= l;
-	/*for(j=0; j<l; j++)
+	// normalize array
+	for(j=0; j<l; j++)
 	{
-		last[j] -= average;
-	}*/
+		last[j] = (2 * last[j] - max - min) / (max - min);
+	}
 	return last;
 }
 

@@ -1,7 +1,7 @@
 #include "Scorer.h"
 
 Scorer::Scorer(Capture* c) : 
-samples(4000)
+samples(1024)
 {
 	cap = c;
 	sstates[0] = -1;

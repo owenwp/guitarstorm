@@ -137,7 +137,7 @@ void Notes::Update()
 		if(multiplier < 4)
 		{
 			combo++;
-			if(combo > 5)
+			if(combo > 8)
 			{
 				multiplier++;
 				if(multiplier < 4)
@@ -166,13 +166,14 @@ void Notes::Update()
 	std::ostringstream s;
 	s	<< "Score:      " << score << "\n"
 		<< "Multiplier: " << multiplier << "X ";
-	for(int i=0; i< 5; i++)
+	for(int i=0; i< 8; i++)
 	{
 		if(i<combo)
 			s << "+";
 		else
 			s << "-";
 	}
+	s << "\nInput Frequency: " << scorer->lastfreq;
 	scoreText->setText(s.str());
 }
 
@@ -327,7 +328,7 @@ void Notes::setSong(std::string name)
         scoreText->setDrawMode(osgText::Text::TEXT);
 		scoreText->setAlignment(osgText::Text::LEFT_TOP);
         scoreText->setAxisAlignment(osgText::Text::XZ_PLANE);
-		scoreText->setText("Score: ");
+		scoreText->setText("Score: \nCombo: \nInput Frequency:");
         
         geodeScore->addDrawable(scoreText.get());
         

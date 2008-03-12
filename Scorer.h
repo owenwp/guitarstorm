@@ -37,6 +37,9 @@ public:
 	Scorer(Capture* c);
 
 	int Test(list<Fret> &frets);
+
+	float lastfreq;
+
 private:
 	float Tune(Fret &f);
 

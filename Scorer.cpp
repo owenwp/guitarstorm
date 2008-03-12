@@ -19,6 +19,8 @@ samples(4000)
 	tuning[4] = 246.92f;
 	tuning[5] = 329.6f;
 
+	lastfreq = 0.0f;
+
 	spec = new double[samples];
 }
 
@@ -62,6 +64,8 @@ int Scorer::Test(list<Fret> &frets)
 		frequency = -1.0;
 	else
 		frequency = 2.0 * ffreq * (double)SAMPLE_RATE / (double)samples;
+
+	lastfreq = frequency;
 
 	// compare
 	double bass = 100000.0;

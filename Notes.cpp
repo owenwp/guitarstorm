@@ -127,24 +127,27 @@ void Notes::Update()
 		itr++;
 	}
 
-	if(scorer->Test(frets) == 0)
+	if(frets.size() > 0)
 	{
-		combo = 0;
-		multiplier = 1;
-	}
-	else if(frets.size() > 0)
-	{
-		if(multiplier < 4)
+		if(scorer->Test(frets) == 0)
 		{
-			combo++;
-			if(combo > 8)
-			{
-				multiplier++;
-				if(multiplier < 4)
-					combo = 0;
-			}
+			combo = 0;
+			multiplier = 1;
 		}
-		score += 10 * multiplier * frets.size();
+		else 
+		{
+			if(multiplier < 4)
+			{
+				combo++;
+				if(combo > 8)
+				{
+					multiplier++;
+					if(multiplier < 4)
+						combo = 0;
+				}
+			}
+			score += 10 * multiplier * frets.size();
+		}
 	}
 
 	list<Fret>::iterator fi = frets.begin();

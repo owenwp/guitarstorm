@@ -32,6 +32,11 @@ float Scorer::Tune(Fret &f)
 int Scorer::Test(list<Fret> &frets)
 {
 	double* buf = cap->readLast(samples);
+	
+	for(int k=0; k < samples; k++)
+	{
+		//buf[k] = sin(2.0 * PI * (k * 800.0 / SAMPLE_RATE));
+	}
 
 	// compute frequency spectrum
 	realfft (buf, samples, spec);
@@ -60,7 +65,7 @@ int Scorer::Test(list<Fret> &frets)
 		frequency = 0.0;
 	else if(maxnorm < 1.1) 
 		frequency = -1.0;
-	else
+	//else
 		frequency = 0.5 * ffreq * (double)SAMPLE_RATE / (double)samples;
 
 	lastfreq = frequency;
@@ -77,7 +82,7 @@ int Scorer::Test(list<Fret> &frets)
 	}
 
 	double delta = fabs(bass - frequency);
-	if(delta < 50.0)
+	if(delta < 40.0)
 	{
 		for(it = frets.begin(); it != frets.end(); it++)
 		{

@@ -34,7 +34,7 @@ double* Capture::readLast(int l)
 	// normalize array
 	for(j=0; j<l; j++)
 	{
-		//last[j] = (2 * last[j] - dif) / dif;
+		last[j] = (2 * last[j] - dif) / dif;
 	}
 	return last;
 }
@@ -149,7 +149,7 @@ void Capture::start()
     config.isOutputInterleaved = 1;
     config.numInputChannels = 1; 
     config.numOutputChannels = 2;
-    config.framesPerCallback = 64;
+    config.framesPerCallback = 128;
                 
 	int c;
     err = paNoError;

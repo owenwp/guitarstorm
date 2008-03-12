@@ -23,6 +23,8 @@ using namespace std;
 
 const double twelfthroot = 1.05946309;
 
+#define PI (3.141592653589793)
+
 struct Fret : public osg::Referenced
 {
 	int s;

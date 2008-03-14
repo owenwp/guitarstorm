@@ -43,7 +43,10 @@ public:
 	float lastfreq;
 
 private:
-	float Tune(Fret &f);
+	// returns an array consisting of the lower range, perfect pitch, and upper range of the note
+	float* Tune(Fret &f);
+
+	float freqcoeffs[50];
 
 	Capture* cap;
 	int sstates[6];

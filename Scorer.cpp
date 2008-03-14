@@ -22,11 +22,23 @@ samples(1024)
 	lastfreq = 0.0f;
 
 	spec = new double[samples];
+
+	// twelvth root lookup table
+	for(int i=-1; i<49; i++)
+	{
+		freqcoeffs[i+1] = pow(twelfthroot, i/2.0);
+	}
 }
 
-float Scorer::Tune(Fret &f)
+float* Scorer::Tune(Fret &f)
 {
-	return tuning[f.s] * pow(twelfthroot, f.f);
+	float range[3];
+
+	range[0] = tuning[f.s] * freqcoeffs[f.f * 2];
+	range[1] = tuning[f.s] * freqcoeffs[f.f * 2 + 1];
+	range[2] = tuning[f.s] * freqcoeffs[f.f * 2 + 2];
+
+	return range;
 }
 
 int Scorer::Test(list<Fret> &frets)
@@ -71,18 +83,17 @@ int Scorer::Test(list<Fret> &frets)
 	lastfreq = frequency;
 
 	// compare
-	double bass = 100000.0;
-	double freq;
+	float* bass = 0;
+	float* freq;
 	list<Fret>::iterator it;
 	for(it = frets.begin(); it != frets.end(); it++)
 	{
 		freq = Tune(*it);
-		if(freq < bass)
+		if(!bass || freq[1] < bass[1])
 			bass = freq;
 	}
 
-	double delta = fabs(bass - frequency);
-	if(delta < 40.0)
+	if(frequency > bass[0] && frequency < bass[2])
 	{
 		for(it = frets.begin(); it != frets.end(); it++)
 		{

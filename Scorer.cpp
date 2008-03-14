@@ -94,6 +94,7 @@ int Scorer::Test(list<Fret> &frets)
 		else
 			delete[] freq;
 	}
+	float target = bass[1];
 
 	if(frequency > bass[0] && frequency < bass[2])
 	{

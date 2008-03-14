@@ -21,7 +21,12 @@ void KeyboardModel::keyChange(int key,int value)
             _inputText->getText().push_back(key);
             _inputText->update();
 
-			notes->hitNote(key);
+			//notes->hitNote(key);
+
+			if(key >= '0' && key <= '9')
+			{
+				notes->setSpeed((key - '0') * 10);
+			}
         }
         else if (key==osgGA::GUIEventAdapter::KEY_Return)
         {
@@ -30,6 +35,7 @@ void KeyboardModel::keyChange(int key,int value)
         }
         else if (key==osgGA::GUIEventAdapter::KEY_BackSpace || key==osgGA::GUIEventAdapter::KEY_Delete) 
         {
+			notes->setSpeed(100);
             if (!_inputText->getText().empty())
             {
                 _inputText->getText().pop_back();

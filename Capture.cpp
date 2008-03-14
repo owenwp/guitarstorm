@@ -145,9 +145,9 @@ void Capture::start()
         gInOutScaler = 32768.0;
     }
      
-	config.isInputInterleaved = 1; 
-    config.isOutputInterleaved = 1;
-    config.numInputChannels = 1; 
+	config.isInputInterleaved = 0; 
+    config.isOutputInterleaved = 0;
+    config.numInputChannels = 2; 
     config.numOutputChannels = 2;
     config.framesPerCallback = 128;
                 

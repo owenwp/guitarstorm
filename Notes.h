@@ -20,6 +20,8 @@ public:
 
 	void setSong(std::string name);
 
+	void setSpeed(int percent);
+
 	void Update();
 
 	Scorer* scorer;
@@ -35,8 +37,14 @@ protected:
 	vector<TabColumn>::iterator col;
 	vector<TabBar>::iterator bar;
 
-	float speed;
-	float offset;
+	double speed;
+	double spacing;
+	double offset;
+
+	double last;
+	double current;
+
+	double stopped;
 
 	double count, count2, count3;
 

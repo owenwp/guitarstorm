@@ -41,48 +41,69 @@ void Notes::hitNote(int key)
 
 void Notes::Update()
 {
-	double t = time->time_s() * speed;
+	double t = time->time_s();
+	double delta = t - last;
+	if(stopped && delta < 0.2)
+		return;
+
+	last = t;
+	if(speed != 0)
+	{
+		current += delta * spacing * speed;
+	}
 	
-	// place beat lines
-	while(bar != tab->b.end() && t + offset > count3)
+	else
 	{
-		if(bar->tempo != -1)
-			tempo = bar->tempo;
-
-		count3 += 240 / tempo * speed;
-		bar++;
-	}
-	while(col != tab->c.end() && t + offset > count2)
-	{
-		PlaceBeat(count2);
-		
-		count2 += 60 / tempo * speed;
+		if(stopped)
+			current = stopped;
+		else
+			current += delta * spacing;
 	}
 
-	// place new notes
-	while(col != tab->c.end() && t + offset > count)
+	NoteChart::iterator itr;
+	if(!stopped)
 	{
-		for(int s=0; s<6; s++)
+		// place beat lines
+		while(bar != tab->b.end() && current + offset > count3)
 		{
-			if(col->a[s] != -1)
-				PlaceNote(count, s, col->a[s]);
-		}
-		count += col->l * 240 / tempo * speed;
-		col++;
-	}
+			if(bar->tempo != -1)
+				tempo = bar->tempo;
 
-	NoteChart::iterator itr = chart.begin();
-	for(;itr!=chart.end();itr++)
-	{
-		if(!(itr->second->getValue(0) ||
-			itr->second->getValue(1)))
+			count3 += 240 / tempo * spacing;
+			bar++;
+		}
+		while(col != tab->c.end() && current + offset > count2)
 		{
-			_scene->removeChild(itr->second.get());
-			chart.erase(itr);
-			break;
+			PlaceBeat(count2);
+			
+			count2 += 60 / tempo * spacing;
+		}
+
+		// place new notes
+		while(col != tab->c.end() && current + offset > count)
+		{
+			for(int s=0; s<6; s++)
+			{
+				if(col->a[s] != -1)
+					PlaceNote(count, s, col->a[s]);
+			}
+			count += col->l * 240 / tempo * spacing;
+			col++;
+		}
+
+		for(itr = chart.begin();itr!=chart.end();itr++)
+		{
+			if(!(itr->second->getValue(0) ||
+				itr->second->getValue(1)))
+			{
+				_scene->removeChild(itr->second.get());
+				chart.erase(itr);
+				break;
+			}
 		}
 	}
 
+	// update fret positions
 	list<Fret> frets;
 
 	itr = chart.begin();
@@ -91,7 +112,7 @@ void Notes::Update()
 		if(!itr->second)
 			continue;
 
-		float x = itr->first - t;
+		float x = itr->first - current;
 
 		if(itr->second->getValue(0) && x < -tolerance)
 		{
@@ -127,8 +148,12 @@ void Notes::Update()
 		itr++;
 	}
 
+	// fret reached
 	if(frets.size() > 0)
 	{
+		if(speed == 0)
+			stopped = current;
+
 		if(scorer->Test(frets) == 0)
 		{
 			combo = 0;
@@ -146,22 +171,26 @@ void Notes::Update()
 						combo = 0;
 				}
 			}
-			score += 10 * multiplier * frets.size();
+			score += 10 * speed * multiplier * frets.size();
+			stopped = 0;
 		}
 	}
 
-	list<Fret>::iterator fi = frets.begin();
-	for(fi = frets.begin(); fi != frets.end(); fi++)
+	if(!stopped)
 	{
-		if(!fi->hit)
+		list<Fret>::iterator fi = frets.begin();
+		for(fi = frets.begin(); fi != frets.end(); fi++)
 		{
-			fi->m->setSingleChildOn(1);
-			combo = 0;
-			multiplier = 1;
-		}
-		else
-		{
-			fi->m->setAllChildrenOff();
+			if(!fi->hit)
+			{
+				fi->m->setSingleChildOn(1);
+				combo = 0;
+				multiplier = 1;
+			}
+			else
+			{
+				fi->m->setAllChildrenOff();
+			}
 		}
 	}
 
@@ -281,6 +310,12 @@ void Notes::PlaceBeat(double t)
 	}
 }
 
+void Notes::setSpeed(int percent)
+{
+	stopped = 0;
+	speed = percent / 100.0f;
+}
+
 void Notes::setSong(std::string name)
 {
 	
@@ -293,11 +328,16 @@ void Notes::setSong(std::string name)
 	transcription = song->info["TRANSCRIBER"];
 	
 	// gameplay variables
-	speed = 5.0f;
+	speed = 1.0f;
+	spacing = 5.0f;
 	
 	score = 0;
 	combo = 0;
 	multiplier = 1;
+	stopped = 0;
+
+	last = 0;
+	current = 0;
 
 	col = tab->c.begin();
 	bar = tab->b.begin();

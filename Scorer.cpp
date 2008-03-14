@@ -32,7 +32,7 @@ samples(1024)
 
 float* Scorer::Tune(Fret &f)
 {
-	float range[3];
+	float* range = new float[3];
 
 	range[0] = tuning[f.s] * freqcoeffs[f.f * 2];
 	range[1] = tuning[f.s] * freqcoeffs[f.f * 2 + 1];
@@ -91,6 +91,8 @@ int Scorer::Test(list<Fret> &frets)
 		freq = Tune(*it);
 		if(!bass || freq[1] < bass[1])
 			bass = freq;
+		else
+			delete[] freq;
 	}
 
 	if(frequency > bass[0] && frequency < bass[2])
@@ -101,6 +103,7 @@ int Scorer::Test(list<Fret> &frets)
 		}
 		return 1;
 	}
+	delete[] bass;
 
 	return 0;
 }

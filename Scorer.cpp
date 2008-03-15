@@ -45,6 +45,8 @@ int Scorer::Test(list<Fret> &frets)
 {
 	double* buf = cap->readLast(samples);
 	
+	/*
+	// use for test tones
 	double f1 = 600.0;
 	double f2 = 1600.0;
 	for(int k=0; k < samples; k++)
@@ -52,6 +54,7 @@ int Scorer::Test(list<Fret> &frets)
 		buf[k] = 0.6 * sin(2.0 * PI * (k * f1 / SAMPLE_RATE)) +
 				 0.4 * sin(2.0 * PI * (k * f2 / SAMPLE_RATE)) ;
 	}
+	*/
 
 	// compute frequency spectrum
 	realfft (buf, samples, spec);

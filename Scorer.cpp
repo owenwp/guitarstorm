@@ -1,7 +1,7 @@
 #include "Scorer.h"
 
 Scorer::Scorer(Capture* c) : 
-samples(1024)
+samples(1024)	// changing this may affect frequency calculations
 {
 	cap = c;
 	sstates[0] = -1;
@@ -45,9 +45,12 @@ int Scorer::Test(list<Fret> &frets)
 {
 	double* buf = cap->readLast(samples);
 	
+	double f1 = 600.0;
+	double f2 = 1600.0;
 	for(int k=0; k < samples; k++)
 	{
-		//buf[k] = sin(2.0 * PI * (k * 800.0 / SAMPLE_RATE));
+		buf[k] = 0.6 * sin(2.0 * PI * (k * f1 / SAMPLE_RATE)) +
+				 0.4 * sin(2.0 * PI * (k * f2 / SAMPLE_RATE)) ;
 	}
 
 	// compute frequency spectrum
@@ -59,19 +62,36 @@ int Scorer::Test(list<Fret> &frets)
 	double ffreq = 0.0; 
 	double norm;
 	double maxnorm = 0.0; 
-	int li = (samples - 1)/2;
+	float li = (int)(samples - 1)/2;
 
 	// find the dominant frequency
-    for (int i=1; i<li; i+=2) 
+	if(1)
 	{
-		norm = (spec[i] * spec[i]) + (spec[i+1] * spec[i+1]);
-
-		if (norm>maxnorm)
+		for (int i=1; i<li; i+=2) 
 		{
-			maxnorm = norm; 
-			ffreq = i;
+			norm = (spec[i] * spec[i]) + (spec[i+1] * spec[i+1]);
+
+			if (norm>maxnorm)
+			{
+				maxnorm = norm; 
+				ffreq = i + 0.5 - 3.0*i/li;	// beware: empirically derived expressions
+			}
 		}
 	}
+	else
+	{
+		for (int i=1; i<li; i++) 
+		{
+			norm = spec[i];
+
+			if (norm>maxnorm)
+			{
+				maxnorm = norm; 
+				ffreq = i;
+			}
+		}
+	}
+
 	double frequency;
 	if(maxnorm == 0.0) 
 		frequency = 0.0;

@@ -1,7 +1,13 @@
 #include "Scorer.h"
 
+char *note[]={
+    "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"
+};
+
+const int sampleBits = 11;	// changing this may affect frequency calculations
+
 Scorer::Scorer(Capture* c) : 
-samples(1024)	// changing this may affect frequency calculations
+samples(2 << sampleBits)	
 {
 	cap = c;
 	sstates[0] = -1;
@@ -18,6 +24,13 @@ samples(1024)	// changing this may affect frequency calculations
 	tuning[3] = 196.0f;
 	tuning[4] = 246.92f;
 	tuning[5] = 329.6f;
+
+	chrom[0] = 7;
+	chrom[1] = 0;
+	chrom[2] = 5;
+	chrom[3] = 10;
+	chrom[4] = 2;
+	chrom[5] = 7;
 
 	lastfreq = 0.0f;
 
@@ -39,6 +52,13 @@ float* Scorer::Tune(Fret &f)
 	range[2] = tuning[f.s] * freqcoeffs[f.f * 2 + 2];
 
 	return range;
+}
+
+int Scorer::Chroma(Fret &f)
+{
+	int c = chrom[f.s] + f.f;
+	if(c > 12) c -= 12;
+	return c;
 }
 
 int Scorer::Test(list<Fret> &frets)
@@ -64,62 +84,57 @@ int Scorer::Test(list<Fret> &frets)
 	// for now, just check the bass note
 	double ffreq = 0.0; 
 	double norm;
-	double maxnorm = 0.0; 
+	double maxnorm = -100.0; 
 	float li = (int)(samples - 1)/2;
 
-	// find the dominant frequency
-	if(1)
-	{
-		for (int i=1; i<li; i+=2) 
-		{
-			norm = (spec[i] * spec[i]) + (spec[i+1] * spec[i+1]);
-
-			if (norm>maxnorm)
-			{
-				maxnorm = norm; 
-				ffreq = i + 0.5 - 3.0*i/li;	// beware: empirically derived expressions
-			}
-		}
-	}
-	else
-	{
-		for (int i=1; i<li; i++) 
-		{
-			norm = spec[i];
-
-			if (norm>maxnorm)
-			{
-				maxnorm = norm; 
-				ffreq = i;
-			}
-		}
-	}
-
-	double frequency;
-	if(maxnorm == 0.0) 
-		frequency = 0.0;
-	else if(maxnorm < 1.1) 
-		frequency = -1.0;
-	//else
-		frequency = 0.5 * ffreq * (double)SAMPLE_RATE / (double)samples;
-
-	lastfreq = frequency;
-
 	// compare
-	float* bass = 0;
+	float* bass = 0;	
+	int bassn = 0;
 	float* freq;
 	list<Fret>::iterator it;
 	for(it = frets.begin(); it != frets.end(); it++)
 	{
 		freq = Tune(*it);
 		if(!bass || freq[1] < bass[1])
+		{
 			bass = freq;
+			bassn = Chroma(*it);
+		}
 		else
 			delete[] freq;
 	}
 	float target = bass[1];
+	double frequency;
 
-	if(frequency > bass[0] && frequency < bass[2])
+	// find the dominant frequency
+	for (int i=1; i<li; i+=2) 
+	{
+		norm = (spec[i] * spec[i]) + (spec[i+1] * spec[i+1]);
+
+		if (norm>maxnorm)
+		{
+			maxnorm = norm; 
+			ffreq = i;
+		}
+	}
+
+	frequency = 2.0 * ffreq * (double)SAMPLE_RATE / (double)samples;
+
+	double a,r; 
+	int o,n;
+
+	// determine note
+	a=log(frequency/440.0)/log(2.0); 
+	o=(int)floor(a); 
+	r=(a-o)*12.0; 
+	n=(int)(r+0.5);
+
+	lastfreq = frequency;
+	lastnote = string(note[n]);
+	
+	delete[] bass;
+
+	if(n == bassn)
 	{
 		for(it = frets.begin(); it != frets.end(); it++)
 		{
@@ -127,7 +142,6 @@ int Scorer::Test(list<Fret> &frets)
 		}
 		return 1;
 	}
-	delete[] bass;
 
 	return 0;
 }

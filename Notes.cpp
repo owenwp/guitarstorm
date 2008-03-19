@@ -85,7 +85,10 @@ void Notes::Update()
 			for(int s=0; s<6; s++)
 			{
 				if(col->a[s] != -1)
+				{
 					PlaceNote(count, s, col->a[s]);
+					break;
+				}
 			}
 			count += col->l * 240 / tempo * spacing;
 			col++;
@@ -205,7 +208,7 @@ void Notes::Update()
 		else
 			s << "-";
 	}
-	s << "\nInput Frequency: " << scorer->lastfreq;
+	s << "\nNote: " << scorer->lastnote;
 	scoreText->setText(s.str());
 }
 

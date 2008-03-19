@@ -23,7 +23,7 @@ double* Capture::readLast(int l)
 		if(i<0) 
 			i = rblen-1;
 
-		last[j] = ringBuffer[i++];
+		last[j] = ringBuffer[i--];
 
 		if(last[j] > max)
 			max = last[j];
@@ -92,7 +92,7 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
 
             *out = CONVERT_IN_TO_OUT( *in );
 
-			if(outChannel == 0)
+			if(inChannel == 0)
 				ringBuffer[rbi++] = *out;
 
             out += outStride;

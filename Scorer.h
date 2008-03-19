@@ -41,16 +41,19 @@ public:
 	int Test(list<Fret> &frets);
 
 	float lastfreq;
+	string lastnote;
 
 private:
 	// returns an array consisting of the lower range, perfect pitch, and upper range of the note
 	float* Tune(Fret &f);
+	int Chroma(Fret &f);
 
 	float freqcoeffs[50];
 
 	Capture* cap;
 	int sstates[6];
 	float tuning[6];
+	int chrom[6];
 	const int samples;
 
 	double *spec;

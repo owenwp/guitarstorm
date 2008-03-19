@@ -320,4 +320,5 @@ void KeyboardModel::createKeyboard()
         //_scene->addChild(geodeInput);
     }
 
+	_scene->setNodeMask(0);
 }

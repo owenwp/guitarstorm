@@ -12,7 +12,7 @@ using namespace std;
 class Notes : public osg::Referenced
 {
 public:
-	Notes() { _scene = new osg::Group; }
+	Notes() { _scene = new osg::Group; running = false; visible(false); }
 
 	osg::Group* getScene() { return _scene.get(); }
 
@@ -25,6 +25,8 @@ public:
 	void Update();
 
 	Scorer* scorer;
+
+	void visible(bool v) { _scene->setNodeMask(v); }
 
 protected:
 	~Notes() {}
@@ -45,6 +47,8 @@ protected:
 	double current;
 
 	double stopped;
+
+	bool running;
 
 	double count, count2, count3;
 

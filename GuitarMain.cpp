@@ -34,6 +34,7 @@
 #include "Capture.h"
 #include "Notes.h"
 #include "Keyboard.h"
+#include "SongPick.h"
 
 int main(int argc, char *argv[])
 {
@@ -51,6 +52,10 @@ int main(int argc, char *argv[])
 
 	// setup keyboard input
 	osg::ref_ptr<KeyboardModel> keyboardModel = new KeyboardModel;
+	keyboardModel->visible(true);
+
+	// setup song picker
+	osg::ref_ptr<SongPick> songPick = new SongPick;
 
 	// setup note chart
 	osg::ref_ptr<Notes> notes = new Notes;
@@ -66,6 +71,7 @@ int main(int argc, char *argv[])
     backdrop->setClearColor(osg::Vec4(0.1f,0.1f,0.1f,1.0f));
 	root = new osg::Group();
 	root->addChild(keyboardModel->getScene());
+	root->addChild(songPick->getScene());
     root->addChild(nnode);
     root->addChild(backdrop);
 	viewer.setSceneData( root );

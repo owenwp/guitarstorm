@@ -188,6 +188,10 @@
 				RelativePath=".\Scorer.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\SongPick.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -208,6 +212,10 @@
 			</File>
 			<File
 				RelativePath=".\Scorer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SongPick.h"
 				>
 			</File>
 		</Filter>
@@ -290,6 +298,18 @@
 			</File>
 			<File
 				RelativePath=".\kguitar\tabtrack.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="utilities"
+			>
+			<File
+				RelativePath=".\utilities\Directory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\utilities\Directory_win.cpp"
 				>
 			</File>
 		</Filter>

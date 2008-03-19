@@ -27,6 +27,8 @@ public:
         void keyChange(int key,int value);
 
 		void setNotes(osg::ref_ptr<Notes> n) {notes = n;}
+
+		void visible(bool v) { _scene->setNodeMask(v); }
         
 protected:
 

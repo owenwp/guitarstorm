@@ -41,6 +41,9 @@ void Notes::hitNote(int key)
 
 void Notes::Update()
 {
+	if(!running)
+		return;
+
 	double t = time->time_s();
 	double delta = t - last;
 	if(stopped && delta < 0.2)
@@ -380,6 +383,10 @@ void Notes::setSong(std::string name)
         
         _scene->addChild(geodeScore);
     }
+
+	running = true;
+
+	visible(true);
 
 	time = new osg::Timer();
 }

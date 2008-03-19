@@ -1,5 +1,40 @@
 #include "Scorer.h"
 
+/*
+License for gTune (c) 1999 by Michael Celli and Harold C.L. Baur.
+
+The following are the terms which the program "gTune" including all its source
+files and the resultant binary files fall under:
+
+	- You may distribute gTune and all or any piece of it so long as this 
+license is included and remains unchanged and credit to all the authors 
+remains.  A fee may be charged for distribution of gTune so long as the above 
+terms are met.  Distribution of gTune or any piece of gTune in any way shape or
+form must be under this license.
+
+	- You may modify gTune and distribute any modifications as long as the 
+source code to your modifications are included in any distribution of these 
+modifications, and the terms outlined in the above section are met.  This 
+means that any modified distribution of gTune or any piece of gTune must 
+contain this license with no modifications to the license, be released under 
+this license, include the source code to the modifications, and credit to the 
+original authors must be stated explicitly.
+
+	- gTune has no warranty whatsoever.  gTune is provided "as is" without 
+warranty of any kind.  Should gTune malfunction or cause dammage, you assume 
+the cost of servicing or dammages caused.  The authors of gTune or any 
+party who may distribute or modify gTune cannot be held accountable for any of
+its actions as all accountability is assumed by the user.  Liability for 
+dammages caused by this program is assumed entirely by the user.
+
+	- If distribution or usage of this program under this license is 
+restricted in any country for any reason including patent or copyright 
+interferences, then this software may not be distributed or used in such a 
+country.
+
+End of Terms and Restrictions.
+*/
+
 char *note[]={
     "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"
 };

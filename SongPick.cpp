@@ -11,9 +11,39 @@ void SongPick::CreateList()
     {
 		osg::ref_ptr<osgText::Text> trackText = new osgText::Text;
         //scoreText->setFont("fonts/arial.ttf");
+        trackText->setColor(osg::Vec4(6.0f,1.0f,0.0f,1.0f));
+        trackText->setCharacterSize(5.0f);
+        trackText->setPosition(osg::Vec3(4.0f,1.0f,8.0f));
+        trackText->setDrawMode(osgText::Text::TEXT);
+		trackText->setAlignment(osgText::Text::CENTER_TOP);
+        trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
+		trackText->setText("GUITAR STORM");
+        
+        geodeTrack->addDrawable(trackText.get());
+        
+        _scene->addChild(geodeTrack);
+    }
+	{
+		osg::ref_ptr<osgText::Text> trackText = new osgText::Text;
+        //scoreText->setFont("fonts/arial.ttf");
+        trackText->setColor(osg::Vec4(6.0f,1.0f,0.0f,1.0f));
+        trackText->setCharacterSize(1.0f);
+        trackText->setPosition(osg::Vec3(4.0f,1.0f,6.0f));
+        trackText->setDrawMode(osgText::Text::TEXT);
+		trackText->setAlignment(osgText::Text::CENTER_TOP);
+        trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
+		trackText->setText("by Owen Pedrotti");
+        
+        geodeTrack->addDrawable(trackText.get());
+        
+        _scene->addChild(geodeTrack);
+    }
+	{
+		osg::ref_ptr<osgText::Text> trackText = new osgText::Text;
+        //scoreText->setFont("fonts/arial.ttf");
         trackText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
         trackText->setCharacterSize(1.5f);
-        trackText->setPosition(osg::Vec3(4.0f,1.0f,10.0f));
+        trackText->setPosition(osg::Vec3(4.0f,1.0f,4.0f));
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::LEFT_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -38,7 +68,7 @@ void SongPick::CreateList()
 			//scoreText->setFont("fonts/arial.ttf");
 			trackText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
 			trackText->setCharacterSize(1.5f);
-			trackText->setPosition(osg::Vec3(1.0f,1.0f,8.0f - select));
+			trackText->setPosition(osg::Vec3(1.0f,1.0f,2.0f - select));
 			trackText->setDrawMode(osgText::Text::TEXT);
 			trackText->setAlignment(osgText::Text::LEFT_TOP);
 			trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -57,7 +87,7 @@ void SongPick::CreateList()
 		//scoreText->setFont("fonts/arial.ttf");
 		cursor->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
 		cursor->setCharacterSize(1.5f);
-		cursor->setPosition(osg::Vec3(1.0f,1.0f,8.0f - select));
+		cursor->setPosition(osg::Vec3(1.0f,1.0f,2.0f - select));
 		cursor->setDrawMode(osgText::Text::TEXT);
 		cursor->setAlignment(osgText::Text::LEFT_TOP);
 		cursor->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -93,7 +123,7 @@ void SongPick::pick(int p)
 		p = dir->contents.size()-1;
 
 	select = p;
-	cursor->setPosition(osg::Vec3(0.0f,1.0f,8.0f - select));
+	cursor->setPosition(osg::Vec3(0.0f,1.0f,2.0f - select));
 }
 
 void SongPick::up()

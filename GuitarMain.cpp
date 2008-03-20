@@ -48,19 +48,20 @@ int main(int argc, char *argv[])
 
 	// setup viewer
     osgViewer::Viewer viewer;
-	viewer.setUpViewInWindow(10, 50, 1024, 768, 0);
+	viewer.setUpViewInWindow(10, 50, 1024, 768, 1);
 
 	// setup keyboard input
 	osg::ref_ptr<KeyboardModel> keyboardModel = new KeyboardModel;
-	keyboardModel->visible(true);
+	//keyboardModel->visible(true);
 
 	// setup song picker
-	osg::ref_ptr<SongPick> songPick = new SongPick;
+	osg::ref_ptr<SongPick> pick = new SongPick;
+	keyboardModel->setPicker(pick.get());
 
 	// setup note chart
 	osg::ref_ptr<Notes> notes = new Notes;
 	keyboardModel->setNotes(notes.get());
-	notes->setSong(filename);
+	//notes->setSong(filename);
 	osg::Group* nnode = notes->getScene();
 	nnode->setUserData(notes.get()); 
 	nnode->setUpdateCallback(new notesCallback);
@@ -71,7 +72,7 @@ int main(int argc, char *argv[])
     backdrop->setClearColor(osg::Vec4(0.1f,0.1f,0.1f,1.0f));
 	root = new osg::Group();
 	root->addChild(keyboardModel->getScene());
-	root->addChild(songPick->getScene());
+	root->addChild(pick->getScene());
     root->addChild(nnode);
     root->addChild(backdrop);
 	viewer.setSceneData( root );
@@ -85,7 +86,7 @@ int main(int argc, char *argv[])
 	Capture* cap = new Capture();
 	notes->scorer = new Scorer(cap);
 	//Capture::Init();
-	cap->start();
+	//cap->start();
 
 	viewer.realize();
 

@@ -25,10 +25,18 @@ public:
 
 	void visible(bool v) { _scene->setNodeMask(v); }
 
+	string get();
+
+	void pick(int p);
+
+	void up();
+	void down();
+
 private:
 	void CreateList();
 
 	osg::ref_ptr<osg::Group>    _scene;
+	osg::ref_ptr<osgText::Text> cursor;
 	int select;
 	Directory* dir;
 };

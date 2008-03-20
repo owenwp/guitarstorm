@@ -27,6 +27,8 @@ public:
 	Scorer* scorer;
 
 	void visible(bool v) { _scene->setNodeMask(v); }
+	
+	bool running;
 
 protected:
 	~Notes() {}
@@ -47,8 +49,6 @@ protected:
 	double current;
 
 	double stopped;
-
-	bool running;
 
 	double count, count2, count3;
 

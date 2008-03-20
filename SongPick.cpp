@@ -1,6 +1,107 @@
 #include "SongPick.h"
 
+const string location = "tabs";
+
 void SongPick::CreateList()
 {
 	_scene = new osg::Group;
+
+	// setup interface
+	osg::Geode* geodeTrack = new osg::Geode;
+    {
+		osg::ref_ptr<osgText::Text> trackText = new osgText::Text;
+        //scoreText->setFont("fonts/arial.ttf");
+        trackText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
+        trackText->setCharacterSize(1.5f);
+        trackText->setPosition(osg::Vec3(4.0f,1.0f,10.0f));
+        trackText->setDrawMode(osgText::Text::TEXT);
+		trackText->setAlignment(osgText::Text::LEFT_TOP);
+        trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
+		trackText->setText("Choose Song");
+        
+        geodeTrack->addDrawable(trackText.get());
+        
+        _scene->addChild(geodeTrack);
+    }
+
+	dir = new Directory(location);
+	select = 0;
+
+	//dir->contents["Iron Man"] = "tabs/iron_man_ver5.gp4";
+
+	map<string, string>::iterator itr;
+	for(itr = dir->contents.begin(); itr != dir->contents.end(); itr++)
+	{
+		geodeTrack = new osg::Geode;
+		{
+			osg::ref_ptr<osgText::Text> trackText = new osgText::Text;
+			//scoreText->setFont("fonts/arial.ttf");
+			trackText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
+			trackText->setCharacterSize(1.5f);
+			trackText->setPosition(osg::Vec3(1.0f,1.0f,8.0f - select));
+			trackText->setDrawMode(osgText::Text::TEXT);
+			trackText->setAlignment(osgText::Text::LEFT_TOP);
+			trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
+			trackText->setText(itr->first);
+	        
+			geodeTrack->addDrawable(trackText.get());
+	        
+			_scene->addChild(geodeTrack);
+		}
+		select++;
+	}
+
+	geodeTrack = new osg::Geode;
+	{
+		cursor = new osgText::Text;
+		//scoreText->setFont("fonts/arial.ttf");
+		cursor->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
+		cursor->setCharacterSize(1.5f);
+		cursor->setPosition(osg::Vec3(1.0f,1.0f,8.0f - select));
+		cursor->setDrawMode(osgText::Text::TEXT);
+		cursor->setAlignment(osgText::Text::LEFT_TOP);
+		cursor->setAxisAlignment(osgText::Text::XZ_PLANE);
+		cursor->setText(">");
+        
+		geodeTrack->addDrawable(cursor.get());
+        
+		_scene->addChild(geodeTrack);
+	}
+
+	pick(0);
+}
+
+string SongPick::get()
+{
+	map<string, string>::iterator itr;
+	int i=0;
+	for(itr = dir->contents.begin(); itr != dir->contents.end(); itr++)
+	{
+		if(select == i++)
+		{
+			return location + "/" + itr->second;
+		}
+	}
+	return "";
+}
+
+void SongPick::pick(int p)
+{
+	if(p < 0)
+		p = 0;
+	if(p >= dir->contents.size())
+		p = dir->contents.size()-1;
+
+	select = p;
+	cursor->setPosition(osg::Vec3(0.0f,1.0f,8.0f - select));
+}
+
+void SongPick::up()
+{
+	pick(select-1);
+}
+
+void SongPick::down()
+{
+	pick(select+1);
 }

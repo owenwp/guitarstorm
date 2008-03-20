@@ -28,10 +28,23 @@ void KeyboardModel::keyChange(int key,int value)
 				notes->setSpeed((key - '0') * 10);
 			}
         }
+		else if(key == osgGA::GUIEventAdapter::KEY_Up)
+		{
+			picker->up();
+		}
+		else if(key == osgGA::GUIEventAdapter::KEY_Down)
+		{
+			picker->down();
+		}
         else if (key==osgGA::GUIEventAdapter::KEY_Return)
         {
-            _inputText->getText().push_back('\n');
-            _inputText->update();
+			string n = picker->get();
+			if(!notes->running) 
+			{
+				visible(true);
+				picker->visible(false);
+				notes->setSong(n);
+			}
         }
         else if (key==osgGA::GUIEventAdapter::KEY_BackSpace || key==osgGA::GUIEventAdapter::KEY_Delete) 
         {

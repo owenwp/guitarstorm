@@ -15,6 +15,7 @@
 #include <osgText/Text>
 
 #include "Notes.h"
+#include "SongPick.h"
 
 class KeyboardModel : public osg::Referenced
 {
@@ -27,12 +28,14 @@ public:
         void keyChange(int key,int value);
 
 		void setNotes(osg::ref_ptr<Notes> n) {notes = n;}
+		void setPicker(osg::ref_ptr<SongPick> p) {picker = p;}
 
 		void visible(bool v) { _scene->setNodeMask(v); }
         
 protected:
 
 		osg::ref_ptr<Notes> notes;
+		osg::ref_ptr<SongPick> picker;
         
         ~KeyboardModel() {}
 

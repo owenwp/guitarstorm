@@ -125,6 +125,8 @@ void Notes::Update()
 			Fret* fr = static_cast<Fret*>(itr->second->getUserData());
 			if(fr)
 				frets.push_back(*fr);
+			else
+				itr->second->setAllChildrenOff();
 		}
 
 		if(itr->second->getValue(1))
@@ -217,7 +219,7 @@ void Notes::Update()
 
 void Notes::PlaceNote(double t, int s, int f)
 {
-	osg::Vec3 origin((float)t, 0.0f, (float)s);
+	osg::Vec3 origin((float)t, -0.1f, (float)s);
 
 	string fret;
 	stringstream str;
@@ -266,7 +268,7 @@ void Notes::PlaceNote(double t, int s, int f)
 	model->setUserData(fr);
 	fr->m = model;
 
-	chart[t+s*0.00001f] = model;
+	chart[t+s*0.000011f] = model;
 }
 
 
@@ -274,7 +276,7 @@ void Notes::PlaceBeat(double t)
 {
 	for(int s=0; s<6; s++)
 	{
-		osg::Vec3 origin((float)t, 0.5f, (float)s);
+		osg::Vec3 origin((float)t, 0.1f, (float)s);
 
 		osg::Geode* geodeUp = new osg::Geode;
 		{

@@ -67,7 +67,7 @@ osg::Switch* KeyboardModel::addKey(osg::Vec3& pos, int key,const std::string& te
     {
         osgText::Text* textUp = new osgText::Text;
         //textUp->setFont("fonts/arial.ttf");
-        textUp->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
+        textUp->setColor(osg::Vec4(0.3f,0.3f,0.3f,1.0f));
         textUp->setCharacterSize(height);
         textUp->setPosition(pos);
         textUp->setDrawMode(osgText::Text::TEXT/*|osgText::Text::BOUNDINGBOX*/);
@@ -121,22 +121,22 @@ void KeyboardModel::createKeyboard()
     osg::Vec3 pos=origin;
 
 	pos.x() = 0.0f;
-	addKey('E',addKey(pos,'e',"E                                                           -",1.0f,1.0f));
+	addKey('E',addKey(pos,'e',"E------------------------------------------------------------",1.0f,1.0f));
 	pos.x() = 0.0f;
     pos.z() += 1.0f;
-	addKey('A',addKey(pos,'a',"A                                                           -",1.0f,1.0f));
+	addKey('A',addKey(pos,'a',"A------------------------------------------------------------",1.0f,1.0f));
 	pos.x() = 0.0f;
     pos.z() += 1.0f;
-	addKey('D',addKey(pos,'d',"D                                                           -",1.0f,1.0f));
+	addKey('D',addKey(pos,'d',"D------------------------------------------------------------",1.0f,1.0f));
 	pos.x() = 0.0f;
     pos.z() += 1.0f;
-	addKey('G',addKey(pos,'g',"G                                                           -",1.0f,1.0f));
+	addKey('G',addKey(pos,'g',"G------------------------------------------------------------",1.0f,1.0f));
 	pos.x() = 0.0f;
     pos.z() += 1.0f;
-	addKey('B',addKey(pos,'b',"B                                                           -",1.0f,1.0f));
+	addKey('B',addKey(pos,'b',"B------------------------------------------------------------",1.0f,1.0f));
 	pos.x() = 0.0f;
     pos.z() += 1.0f;
-	addKey('e',addKey(pos,'e',"e                                                           -",1.0f,1.0f));
+	addKey('e',addKey(pos,'e',"e------------------------------------------------------------",1.0f,1.0f));
 	pos.x() = 0.0f;
     pos.z() += 1.0f;
     

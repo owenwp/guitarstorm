@@ -94,7 +94,6 @@ int Scorer::Chroma(Fret &f)
 	int c = chrom[f.s] + f.f;
 	if(c > 12) c -= 12;
 	if(c > 12) c -= 12;
-	if(c > 12) c -= 12;
 	return c;
 }
 

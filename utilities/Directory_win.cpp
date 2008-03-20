@@ -10,7 +10,7 @@ Directory::Directory(string n)
 	WIN32_FIND_DATA FindData;
     HANDLE hFind;
 
-	hFind = FindFirstFile((n + "\\*.*").c_str(), &FindData);
+	hFind = FindFirstFile((resdir + n + "\\*.*").c_str(), &FindData);
 
 	if (hFind != INVALID_HANDLE_VALUE) 
 	{ 

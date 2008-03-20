@@ -38,17 +38,9 @@
 
 int main(int argc, char *argv[])
 {
-	string filename;
-	if(argc == 1)
-		filename = "tabs/iron_man_ver5.gp4";
-	else
-	{
-		filename = argv[1];
-	}
-
 	// setup viewer
     osgViewer::Viewer viewer;
-	viewer.setUpViewInWindow(10, 50, 1024, 768, 1);
+	viewer.setUpViewInWindow(10, 50, 1024, 768, 0);
 
 	// setup keyboard input
 	osg::ref_ptr<KeyboardModel> keyboardModel = new KeyboardModel;

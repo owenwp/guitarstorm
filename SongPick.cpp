@@ -32,7 +32,7 @@ void SongPick::CreateList()
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::CENTER_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
-		trackText->setText("by Owen Pedrotti");
+		trackText->setText("by Owen Pedrotti 2008");
         
         geodeTrack->addDrawable(trackText.get());
         
@@ -56,8 +56,6 @@ void SongPick::CreateList()
 
 	dir = new Directory(location);
 	select = 0;
-
-	//dir->contents["Iron Man"] = "tabs/iron_man_ver5.gp4";
 
 	map<string, string>::iterator itr;
 	for(itr = dir->contents.begin(); itr != dir->contents.end(); itr++)

@@ -30,11 +30,17 @@ void KeyboardModel::keyChange(int key,int value)
         }
 		else if(key == osgGA::GUIEventAdapter::KEY_Up)
 		{
-			picker->up();
+			if(!notes->running) 
+			{
+				picker->up();
+			}
 		}
 		else if(key == osgGA::GUIEventAdapter::KEY_Down)
 		{
-			picker->down();
+			if(!notes->running) 
+			{
+				picker->down();
+			}
 		}
         else if (key==osgGA::GUIEventAdapter::KEY_Return)
         {
@@ -44,6 +50,15 @@ void KeyboardModel::keyChange(int key,int value)
 				visible(true);
 				picker->visible(false);
 				notes->setSong(n);
+			}
+			else if(notes->finished)
+			{
+				notes->running = false;
+				notes->finished = false;
+				notes->visible(false);
+				visible(false);
+
+				picker->visible(true);
 			}
         }
         else if (key==osgGA::GUIEventAdapter::KEY_BackSpace || key==osgGA::GUIEventAdapter::KEY_Delete) 

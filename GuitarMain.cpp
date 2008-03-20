@@ -53,10 +53,6 @@ int main(int argc, char *argv[])
 	// setup note chart
 	osg::ref_ptr<Notes> notes = new Notes;
 	keyboardModel->setNotes(notes.get());
-	//notes->setSong(filename);
-	osg::Group* nnode = notes->getScene();
-	nnode->setUserData(notes.get()); 
-	nnode->setUpdateCallback(new notesCallback);
 
 	// setup scene
 	osg::Group* root = NULL;
@@ -65,7 +61,7 @@ int main(int argc, char *argv[])
 	root = new osg::Group();
 	root->addChild(keyboardModel->getScene());
 	root->addChild(pick->getScene());
-    root->addChild(nnode);
+    root->addChild(notes->getScene());
     root->addChild(backdrop);
 	viewer.setSceneData( root );
 

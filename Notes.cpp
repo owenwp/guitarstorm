@@ -2,6 +2,17 @@
 
 const float Notes::tolerance = 0.2f;
 
+Notes::Notes()
+{
+	_scene = new osg::Group;
+	_scene->setUserData(this); 
+	_scene->setUpdateCallback(new notesCallback);
+
+	running = false; 
+	finished = false;
+	visible(false);
+}
+
 void Notes::hitNote(int key)
 {
 	bool miss = true;
@@ -74,6 +85,11 @@ void Notes::Update()
 
 			count3 += 240 / tempo * spacing;
 			bar++;
+
+			if(bar == tab->b.end())
+			{
+				finished = true;
+			}
 		}
 		while(col != tab->c.end() && current + offset > count2)
 		{
@@ -120,6 +136,10 @@ void Notes::Update()
 
 		float x = itr->first - current;
 
+		if(itr->second->getValue(0) && !itr->second->getUserData() && x < 0)
+		{
+			itr->second->setAllChildrenOff();
+		}
 		if(itr->second->getValue(0) && x < -tolerance)
 		{
 			Fret* fr = static_cast<Fret*>(itr->second->getUserData());
@@ -145,6 +165,8 @@ void Notes::Update()
 		}
 		else if(x > tolerance)
 		{
+			// beat hit
+			scorer->tick();
 			itr->second->setSingleChildOn(0);
 		}
 
@@ -326,6 +348,7 @@ void Notes::setSpeed(int percent)
 
 void Notes::setSong(std::string name)
 {
+	_scene->removeChildren(0, _scene->getNumChildren());
 	
 	// load song
 	TabSong* song = ConvertGtp::load(name);

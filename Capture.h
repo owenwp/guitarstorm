@@ -50,6 +50,8 @@ public:
 
 	double* readLast(int l);	// get the last l samples captured
 
+	void tick();
+
 protected:
     PaStream *stream;
 

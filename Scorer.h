@@ -40,6 +40,8 @@ public:
 
 	int Test(list<Fret> &frets);
 
+	void tick() { cap->tick(); }
+
 	float lastfreq;
 	string lastnote;
 

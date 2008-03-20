@@ -8,6 +8,8 @@ WireConfig_t config;
 const int rblen = SAMPLE_RATE/10;
 int rbi = 0;
 int rblast = 0;
+bool mtick = false;
+int tickvol = 40;
 float ringBuffer[rblen];
 
 double* Capture::readLast(int l)
@@ -37,6 +39,11 @@ double* Capture::readLast(int l)
 		last[j] = (2 * last[j] - dif) / dif;
 	}
 	return last;
+}
+
+void Capture::tick()
+{
+	mtick = true;
 }
 
 int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
@@ -105,6 +112,7 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
         if(outChannel < (config.numOutputChannels - 1)) outChannel++;
         else outDone = 1;
     }
+	mtick = false;
     return 0;
 }
 

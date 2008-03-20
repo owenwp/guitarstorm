@@ -12,7 +12,7 @@ using namespace std;
 class Notes : public osg::Referenced
 {
 public:
-	Notes() { _scene = new osg::Group; running = false; visible(false); }
+	Notes();
 
 	osg::Group* getScene() { return _scene.get(); }
 
@@ -29,6 +29,7 @@ public:
 	void visible(bool v) { _scene->setNodeMask(v); }
 	
 	bool running;
+	bool finished;
 
 protected:
 	~Notes() {}

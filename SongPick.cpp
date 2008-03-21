@@ -13,7 +13,7 @@ void SongPick::CreateList()
         //scoreText->setFont("fonts/arial.ttf");
         trackText->setColor(osg::Vec4(6.0f,1.0f,0.0f,1.0f));
         trackText->setCharacterSize(5.0f);
-        trackText->setPosition(osg::Vec3(4.0f,1.0f,8.0f));
+        trackText->setPosition(osg::Vec3(4.0f,1.0f,11.0f));
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::CENTER_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -32,7 +32,7 @@ void SongPick::CreateList()
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::CENTER_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
-		trackText->setText("by Owen Pedrotti 2008");
+		trackText->setText("Copyright 2008 Zombie Process");
         
         geodeTrack->addDrawable(trackText.get());
         

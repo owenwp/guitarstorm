@@ -38,6 +38,11 @@
 
 int main(int argc, char *argv[])
 {
+	int samples = 128;
+	if(argc == 2)
+	{
+		samples = atoi(argv[1]);
+	}
 	// setup viewer
     osgViewer::Viewer viewer;
 	viewer.setUpViewInWindow(10, 50, 1024, 768, 0);
@@ -71,7 +76,7 @@ int main(int argc, char *argv[])
     viewer.addEventHandler(new KeyboardEventHandler(keyboardModel.get()));
 
 	// begin audio capture
-	Capture* cap = new Capture();
+	Capture* cap = new Capture(samples);
 	notes->scorer = new Scorer(cap);
 	cap->start();
 

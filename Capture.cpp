@@ -12,8 +12,15 @@ int rblast = 0;
 bool mtick = false;
 double tickfreq = 2400.0;
 double tickvol = 4000.0;
+int ticklen = 128;
 int currvol = 0;
+int samples = 128;
 float ringBuffer[rblen];
+
+Capture::Capture(int s)
+{
+	samples = s;
+}
 
 int Capture::readVol()
 {
@@ -109,7 +116,7 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
             *out = CONVERT_IN_TO_OUT( *in );
 			if(*in > currvol)
 				currvol = *in;
-			if(mtick)
+			if(mtick && i<ticklen)
 				*out += tickvol * sin(2.0 * PI * (i * tickfreq / SAMPLE_RATE));
 
 			if(inChannel == 0)
@@ -170,7 +177,7 @@ void Capture::start()
     config.isOutputInterleaved = 0;
     config.numInputChannels = 2; 
     config.numOutputChannels = 2;
-    config.framesPerCallback = 128;
+    config.framesPerCallback = samples;
                 
 	int c;
     err = paNoError;

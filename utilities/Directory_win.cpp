@@ -17,7 +17,7 @@ Directory::Directory(string n)
 		do
 		{
 
-			strlwr(FindData.cFileName); 
+			_strlwr(FindData.cFileName); 
 			string szFileName(FindData.cFileName); 
 			string name = szFileName.substr(szFileName.find_last_of("\\")+1);
 

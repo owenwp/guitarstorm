@@ -45,6 +45,8 @@ typedef struct WireConfig_s
 class Capture
 {
 public:
+	Capture(int s);
+
 	void start();	// begin capture and playback
 
 	void stop();	// stop capture

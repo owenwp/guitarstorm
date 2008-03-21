@@ -39,10 +39,10 @@ char *note[]={
     "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"
 };
 
-const int sampleBits = 11;	// changing this may affect frequency calculations
+const int sampleBits = 13;	// 12 seems to be absolute minimum
 
 Scorer::Scorer(Capture* c) : 
-samples(2 << sampleBits)	
+samples(1 << sampleBits)	
 {
 	cap = c;
 	sstates[0] = -1;

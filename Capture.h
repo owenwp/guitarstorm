@@ -5,6 +5,7 @@
 
 #include <OpenThreads/Thread>
 #include <iostream>
+#include <math.h>
 
 #define SAMPLE_RATE            (48000)
 
@@ -49,6 +50,7 @@ public:
 	void stop();	// stop capture
 
 	double* readLast(int l);	// get the last l samples captured
+	int readVol();				// get the current volume
 
 	void tick();
 

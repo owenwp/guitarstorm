@@ -2,15 +2,23 @@
 
 double gInOutScaler = 1.0;
 #define CONVERT_IN_TO_OUT(in)  ((OUTPUT_SAMPLE) ((in) * gInOutScaler))
+#define PI (3.141592653589793)
 
 // these have to be global, because the callback can't access the object's memory space
 WireConfig_t config;
-const int rblen = SAMPLE_RATE/10;
+const int rblen = SAMPLE_RATE;
 int rbi = 0;
 int rblast = 0;
 bool mtick = false;
-int tickvol = 40;
+double tickfreq = 2400.0;
+double tickvol = 4000.0;
+int currvol = 0;
 float ringBuffer[rblen];
+
+int Capture::readVol()
+{
+	return currvol;
+}
 
 double* Capture::readLast(int l)
 {
@@ -58,6 +66,7 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
     int outStride;
     int inDone = 0;
     int outDone = 0;
+	currvol = 0;
 	Capture* cap = static_cast<Capture*>(userData);
 	// pointer does not evaluate correctly, possible this callback is in a separate memory space
 	//WireConfig_t *config = cap->config;  
@@ -98,6 +107,10 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
 				rbi = 0;
 
             *out = CONVERT_IN_TO_OUT( *in );
+			if(*in > currvol)
+				currvol = *in;
+			if(mtick)
+				*out += tickvol * sin(2.0 * PI * (i * tickfreq / SAMPLE_RATE));
 
 			if(inChannel == 0)
 				ringBuffer[rbi++] = *out;

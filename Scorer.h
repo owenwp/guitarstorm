@@ -41,6 +41,7 @@ public:
 	int Test(list<Fret> &frets);
 
 	void tick() { cap->tick(); }
+	int getVolume() { return cap->readVol(); }
 
 	float lastfreq;
 	string lastnote;

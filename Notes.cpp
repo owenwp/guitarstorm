@@ -139,6 +139,7 @@ void Notes::Update()
 		if(itr->second->getValue(0) && !itr->second->getUserData() && x < 0)
 		{
 			itr->second->setAllChildrenOff();
+			scorer->tick();
 		}
 		if(itr->second->getValue(0) && x < -tolerance)
 		{
@@ -166,7 +167,6 @@ void Notes::Update()
 		else if(x > tolerance)
 		{
 			// beat hit
-			scorer->tick();
 			itr->second->setSingleChildOn(0);
 		}
 
@@ -235,7 +235,7 @@ void Notes::Update()
 		else
 			s << "-";
 	}
-	s << "\nNote: " << scorer->lastnote;
+	s << "\nNote: " << scorer->lastnote << " Volume: " << scorer->getVolume();
 	scoreText->setText(s.str());
 }
 

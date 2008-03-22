@@ -7,6 +7,8 @@
 #include <iostream>
 #include <math.h>
 
+using namespace std;
+
 #define SAMPLE_RATE            (48000)
 
 typedef struct WireConfig_s

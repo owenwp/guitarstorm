@@ -20,6 +20,7 @@ float ringBuffer[rblen];
 Capture::Capture(int s)
 {
 	samples = s;
+	stream = NULL;
 }
 
 int Capture::readVol()
@@ -138,7 +139,7 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
 
 void Capture::stop()
 {
-	Pa_CloseStream( stream );
+	if(stream) Pa_CloseStream( stream );
 	Pa_Terminate();
 }
 
@@ -152,7 +153,7 @@ void Capture::start()
 	memset(ringBuffer, 0, rblen);
 
     err = Pa_Initialize();
-    if( err != paNoError ) return;
+    if( err != paNoError ) throw string("Audio failed to initialize");
 
     //printf("Please connect audio signal to input and listen for it on output!\n");
     //printf("input format = %lu\n", INPUT_FORMAT );
@@ -185,7 +186,7 @@ void Capture::start()
    
     inputParameters.device = INPUT_DEVICE;              /* default input device */
     if (inputParameters.device == paNoDevice) {
-        return;
+        throw string("No ASIO Input Device Detected");
     }
     inputParameters.channelCount = config.numInputChannels;
     inputParameters.sampleFormat = INPUT_FORMAT | (config.isInputInterleaved ? 0 : paNonInterleaved);
@@ -194,7 +195,7 @@ void Capture::start()
 
     outputParameters.device = OUTPUT_DEVICE;            /* default output device */
     if (outputParameters.device == paNoDevice) {
-        return;
+       throw string("No ASIO Output Device Detected");
     }
     outputParameters.channelCount = config.numOutputChannels;
     outputParameters.sampleFormat = OUTPUT_FORMAT | (config.isOutputInterleaved ? 0 : paNonInterleaved);
@@ -210,7 +211,7 @@ void Capture::start()
               paClipOff, /* we won't output out of range samples so don't bother clipping them */
 			  this->wireCallback,
               this );
-    if( err != paNoError ) return;
+    if( err != paNoError ) throw string("Failed to open stream");
     
     err = Pa_StartStream( stream );
 }

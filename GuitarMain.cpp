@@ -80,7 +80,30 @@ int main(int argc, char *argv[])
 	// begin audio capture
 	Capture* cap = new Capture(samples);
 	notes->scorer = new Scorer(cap);
-	cap->start();
+	try 
+	{
+		cap->start();
+	}
+	catch(string err)
+	{
+		// setup interface
+		osg::Geode* geodeErr = new osg::Geode;
+		{
+			osg::ref_ptr<osgText::Text> errText = new osgText::Text;
+			//scoreText->setFont("fonts/arial.ttf");
+			errText->setColor(osg::Vec4(1.0f,0.0f,0.0f,1.0f));
+			errText->setCharacterSize(5.0f);
+			errText->setPosition(osg::Vec3(4.0f,-1.0f,6.0f));
+			errText->setDrawMode(osgText::Text::TEXT);
+			errText->setAlignment(osgText::Text::CENTER_TOP);
+			errText->setAxisAlignment(osgText::Text::XZ_PLANE);
+			errText->setText(err);
+	        
+			geodeErr->addDrawable(errText.get());
+	        
+			root->addChild(geodeErr);
+		}
+	}
 
 	viewer.realize();
 

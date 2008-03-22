@@ -38,11 +38,13 @@
 
 int main(int argc, char *argv[])
 {
+	// parse command line
 	int samples = 128;
 	if(argc == 2)
 	{
 		samples = atoi(argv[1]);
 	}
+
 	// setup viewer
     osgViewer::Viewer viewer;
 	viewer.setUpViewInWindow(10, 50, 1024, 768, 0);

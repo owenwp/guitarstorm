@@ -11,4 +11,5 @@ string Directory::resdir = "";
 // fill the contents map with all of the files in the given directory
 Directory::Directory(string n)
 {
+#error POSIX Directory not implemented
 }

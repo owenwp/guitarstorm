@@ -16,8 +16,6 @@ public:
 
 	osg::Group* getScene() { return _scene.get(); }
 
-	void hitNote(int key);
-
 	void setSong(std::string name);
 
 	void setSpeed(int percent);
@@ -31,11 +29,16 @@ public:
 	bool running;
 	bool finished;
 
+	osg::Vec3 origin;
+
 protected:
 	~Notes() {}
 
 	void PlaceBeat(double t);
 	void PlaceNote(double t, int s, int f);
+
+	void addString(osg::Vec3& pos,const std::string& text, float height);
+	void createStrings();
 	
 	osg::Timer* time;
 

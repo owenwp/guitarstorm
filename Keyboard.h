@@ -20,17 +20,12 @@
 class KeyboardModel : public osg::Referenced
 {
 public:
-
-        KeyboardModel() { createKeyboard(); }
-        
         osg::Group* getScene() { return _scene.get(); }
         
         void keyChange(int key,int value);
 
 		void setNotes(osg::ref_ptr<Notes> n) {notes = n;}
 		void setPicker(osg::ref_ptr<SongPick> p) {picker = p;}
-
-		void visible(bool v) { _scene->setNodeMask(v); }
         
 protected:
 
@@ -38,11 +33,6 @@ protected:
 		osg::ref_ptr<SongPick> picker;
         
         ~KeyboardModel() {}
-
-        osg::Switch* addKey(osg::Vec3& pos, int key,const std::string& text,float width, float height);
-        osg::Switch* addKey(int key,osg::Switch* sw);
-
-        void createKeyboard();
 
         typedef std::map<int, osg::ref_ptr<osg::Switch> > KeyModelMap;
         

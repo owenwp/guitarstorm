@@ -8,46 +8,11 @@ Notes::Notes()
 	_scene->setUserData(this); 
 	_scene->setUpdateCallback(new notesCallback);
 
+	origin = osg::Vec3(-12.0, 0.0, 0.0);
+
 	running = false; 
 	finished = false;
 	visible(false);
-}
-
-void Notes::hitNote(int key)
-{
-	bool miss = true;
-	if(key == 'r')
-		time = new osg::Timer();
-
-	double t = time->time_s();
-	NoteChart::iterator itr = chart.lower_bound(t-tolerance);
-	while(itr!=chart.end() && itr->first < t + tolerance)
-	{
-		int k = itr->second->getName()[0];
-		if(k == key)
-		{
-			itr->second->setAllChildrenOff();
-			if(multiplier < 4)
-			{
-				combo++;
-				if(combo > 5)
-				{
-					multiplier++;
-					if(multiplier < 4)
-						combo = 0;
-				}
-			}
-			score += 10 * multiplier;
-			miss = false;
-		}
-
-		itr++;
-	}
-	if(miss)
-	{
-		combo = 0;
-		multiplier = 1;
-	}
 }
 
 void Notes::Update()
@@ -136,12 +101,13 @@ void Notes::Update()
 
 		float x = itr->first - current;
 
-		if(itr->second->getValue(0) && !itr->second->getUserData() && x < 0)
+		if(itr->second->getValue(0) && !itr->second->getUserData() && x < origin.x()+tolerance)
 		{
+			// beat hit
 			itr->second->setAllChildrenOff();
 			scorer->tick();
 		}
-		if(itr->second->getValue(0) && x < -tolerance)
+		if(itr->second->getValue(0) && x < origin.x()-tolerance)
 		{
 			Fret* fr = static_cast<Fret*>(itr->second->getUserData());
 			if(fr)
@@ -164,13 +130,12 @@ void Notes::Update()
 			pos.x() = x;
 			n->setPosition(pos);
 		}
-		else if(x > tolerance)
+		else if(x > origin.x()+tolerance)
 		{
-			// beat hit
 			itr->second->setSingleChildOn(0);
 		}
 
-		if(x < -5)
+		if(x < origin.x()-5)
 		{
 			itr->second->setAllChildrenOff();
 		}
@@ -241,7 +206,7 @@ void Notes::Update()
 
 void Notes::PlaceNote(double t, int s, int f)
 {
-	osg::Vec3 origin((float)t, -0.1f, (float)s);
+	osg::Vec3 pos = origin + osg::Vec3((float)t, -0.1f, 2.0f*(s-2.5f));
 
 	string fret;
 	stringstream str;
@@ -253,8 +218,8 @@ void Notes::PlaceNote(double t, int s, int f)
 		osgText::Text* textUp = new osgText::Text;
 		//textUp->setFont("fonts/arial.ttf");
 		textUp->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
-		textUp->setCharacterSize(1.0f);
-		textUp->setPosition(origin);
+		textUp->setCharacterSize(2.0f);
+		textUp->setPosition(pos);
 		textUp->setDrawMode(osgText::Text::TEXT |osgText::Text::BOUNDINGBOX);
 		textUp->setAlignment(osgText::Text::CENTER_CENTER);
 		textUp->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -268,8 +233,8 @@ void Notes::PlaceNote(double t, int s, int f)
 		osgText::Text* textDown = new osgText::Text;
 		//textDown->setFont("fonts/arial.ttf");
 		textDown->setColor(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
-		textDown->setCharacterSize(1.0f);
-		textDown->setPosition(origin);
+		textDown->setCharacterSize(2.0f);
+		textDown->setPosition(pos);
 		textDown->setDrawMode(osgText::Text::TEXT/*||osgText::Text::BOUNDINGBOX*/);
 		textDown->setAlignment(osgText::Text::CENTER_CENTER);
 		textDown->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -298,15 +263,15 @@ void Notes::PlaceBeat(double t)
 {
 	for(int s=0; s<6; s++)
 	{
-		osg::Vec3 origin((float)t, 0.1f, (float)s);
+		osg::Vec3 pos = origin + osg::Vec3((float)t, 0.1f, 2.0f*(s-2.5f));
 
 		osg::Geode* geodeUp = new osg::Geode;
 		{
 			osgText::Text* textUp = new osgText::Text;
 			//textUp->setFont("fonts/arial.ttf");
 			textUp->setColor(osg::Vec4(0.3f,0.3f,0.3f,1.0f));
-			textUp->setCharacterSize(2.0f);
-			textUp->setPosition(origin);
+			textUp->setCharacterSize(3.0f);
+			textUp->setPosition(pos);
 			textUp->setDrawMode(osgText::Text::TEXT);
 			textUp->setAlignment(osgText::Text::CENTER_CENTER);
 			textUp->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -320,8 +285,8 @@ void Notes::PlaceBeat(double t)
 			osgText::Text* textDown = new osgText::Text;
 			//textDown->setFont("fonts/arial.ttf");
 			textDown->setColor(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
-			textDown->setCharacterSize(2.0f);
-			textDown->setPosition(origin);
+			textDown->setCharacterSize(3.0f);
+			textDown->setPosition(pos);
 			textDown->setDrawMode(osgText::Text::TEXT/*||osgText::Text::BOUNDINGBOX*/);
 			textDown->setAlignment(osgText::Text::CENTER_CENTER);
 			textDown->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -340,6 +305,73 @@ void Notes::PlaceBeat(double t)
 	}
 }
 
+void Notes::addString(osg::Vec3& pos,const std::string& text, float height)
+{
+
+    osg::Geode* geodeUp = new osg::Geode;
+    {
+        osgText::Text* textUp = new osgText::Text;
+        //textUp->setFont("fonts/arial.ttf");
+        textUp->setColor(osg::Vec4(0.3f,0.3f,0.3f,1.0f));
+        textUp->setCharacterSize(height);
+        textUp->setPosition(pos);
+        textUp->setDrawMode(osgText::Text::TEXT/*|osgText::Text::BOUNDINGBOX*/);
+        textUp->setAlignment(osgText::Text::LEFT_CENTER);
+        textUp->setAxisAlignment(osgText::Text::XZ_PLANE);
+        textUp->setText(text);
+        
+        geodeUp->addDrawable(textUp);
+    }
+    
+    osg::Geode* geodeDown = new osg::Geode;
+    {
+        osgText::Text* textDown = new osgText::Text;
+        //textDown->setFont("fonts/arial.ttf");
+        textDown->setColor(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
+        textDown->setCharacterSize(height);
+        textDown->setPosition(pos);
+        textDown->setDrawMode(osgText::Text::TEXT/*||osgText::Text::BOUNDINGBOX*/);
+        textDown->setAlignment(osgText::Text::LEFT_CENTER);
+        textDown->setAxisAlignment(osgText::Text::XZ_PLANE);
+        textDown->setText(text);
+        
+        geodeDown->addDrawable(textDown);
+    }
+
+    osg::Switch* model = new osg::Switch;
+    model->addChild(geodeUp,true);
+    model->addChild(geodeDown,false);
+    
+    _scene->addChild(model);  
+}
+
+void Notes::createStrings()
+{    
+    osg::Vec3 pos=origin;
+	float ox = origin.x();
+
+	pos.x() =ox;
+	pos.z() -= 5.0f;
+	addString(pos,"E============================================================",2.0f);
+	pos.x() = ox;
+    pos.z() += 2.0f;
+	addString(pos,"A------------------------------------------------------------",2.0f);
+	pos.x() = ox;
+    pos.z() += 2.0f;
+	addString(pos,"D------------------------------------------------------------",2.0f);
+	pos.x() = ox;
+    pos.z() += 2.0f;
+	addString(pos,"G------------------------------------------------------------",2.0f);
+	pos.x() = ox;
+    pos.z() += 2.0f;
+	addString(pos,"B------------------------------------------------------------",2.0f);
+	pos.x() = ox;
+    pos.z() += 2.0f;
+	addString(pos,"e------------------------------------------------------------",2.0f);
+	pos.x() = ox;
+    pos.z() += 2.0f;
+}
+
 void Notes::setSpeed(int percent)
 {
 	stopped = 0;
@@ -349,6 +381,8 @@ void Notes::setSpeed(int percent)
 void Notes::setSong(std::string name)
 {
 	_scene->removeChildren(0, _scene->getNumChildren());
+
+	createStrings();
 	
 	// load song
 	TabSong* song = ConvertGtp::load(name);
@@ -360,7 +394,7 @@ void Notes::setSong(std::string name)
 	
 	// gameplay variables
 	speed = 1.0f;
-	spacing = 5.0f;
+	spacing = 8.0f;
 	
 	score = 0;
 	combo = 0;
@@ -372,7 +406,7 @@ void Notes::setSong(std::string name)
 
 	col = tab->c.begin();
 	bar = tab->b.begin();
-	count3 = count2 = count = offset = 30;
+	count3 = count2 = count = offset = 17;
 
 	// setup interface
 	osg::Geode* geodeTrack = new osg::Geode;
@@ -381,7 +415,7 @@ void Notes::setSong(std::string name)
         //scoreText->setFont("fonts/arial.ttf");
         trackText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
         trackText->setCharacterSize(1.5f);
-        trackText->setPosition(osg::Vec3(2.0f,0.0f,10.0f));
+        trackText->setPosition(osg::Vec3(-15.0f,0.0f,10.0f));
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::LEFT_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -398,7 +432,7 @@ void Notes::setSong(std::string name)
         //scoreText->setFont("fonts/arial.ttf");
         scoreText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
         scoreText->setCharacterSize(2.0f);
-        scoreText->setPosition(osg::Vec3(6.0f,0.0f,-3.0f));
+        scoreText->setPosition(osg::Vec3(1.0f,0.0f,-8.0f));
         scoreText->setDrawMode(osgText::Text::TEXT);
 		scoreText->setAlignment(osgText::Text::LEFT_TOP);
         scoreText->setAxisAlignment(osgText::Text::XZ_PLANE);

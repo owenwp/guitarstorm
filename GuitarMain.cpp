@@ -51,7 +51,6 @@ int main(int argc, char *argv[])
 
 	// setup keyboard input
 	osg::ref_ptr<KeyboardModel> keyboardModel = new KeyboardModel;
-	//keyboardModel->visible(true);
 
 	// setup song picker
 	osg::ref_ptr<SongPick> pick = new SongPick;
@@ -105,15 +104,17 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	viewer.realize();
-
+	// setup camera
 	viewer.getCamera()->setViewMatrixAsLookAt(
-		osg::Vec3(0,5,0),
+		osg::Vec3(0,-50,0),
 		osg::Vec3(0,0,0),
 		osg::Vec3(0,0,1));
 
 	// run main loop
-    viewer.run();
+	while (!viewer.done()) 
+	{  
+		viewer.frame(); 
+	}
 
 	// shutdown
 	cap->stop();

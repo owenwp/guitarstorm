@@ -14,7 +14,7 @@ void SongPick::CreateList()
         trackText->setColor(osg::Vec4(6.0f,1.0f,0.0f,1.0f));
         trackText->setCharacterSize(3.0f);
         trackText->setPosition(osg::Vec3(0.0f,1.0f,11.0f));
-		trackText->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
+		trackText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
 		trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::CENTER_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -30,7 +30,7 @@ void SongPick::CreateList()
         trackText->setColor(osg::Vec4(6.0f,1.0f,0.0f,1.0f));
         trackText->setCharacterSize(1.0f);
         trackText->setPosition(osg::Vec3(0.0f,1.0f,8.0f));
-		trackText->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
+		trackText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::CENTER_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -46,7 +46,7 @@ void SongPick::CreateList()
         trackText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
         trackText->setCharacterSize(1.5f);
         trackText->setPosition(osg::Vec3(-4.0f,1.0f,4.0f));
-		trackText->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
+		trackText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::LEFT_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -70,7 +70,7 @@ void SongPick::CreateList()
 			trackText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
 			trackText->setCharacterSize(1.0f);
 			trackText->setPosition(osg::Vec3(-4.0f,1.0f,2.0f - select));
-			trackText->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
+			trackText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
 			trackText->setDrawMode(osgText::Text::TEXT);
 			trackText->setAlignment(osgText::Text::LEFT_TOP);
 			trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -90,7 +90,7 @@ void SongPick::CreateList()
 		cursor->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
 		cursor->setCharacterSize(1.0f);
 		cursor->setPosition(osg::Vec3(-5.0f,1.0f,2.0f - select));
-		cursor->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
+		cursor->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
 		cursor->setDrawMode(osgText::Text::TEXT);
 		cursor->setAlignment(osgText::Text::LEFT_TOP);
 		cursor->setAxisAlignment(osgText::Text::XZ_PLANE);

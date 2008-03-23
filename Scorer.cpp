@@ -36,7 +36,7 @@ End of Terms and Restrictions.
 */
 
 char *note[]={
-    "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"
+    "A ", "A#", "B ", "C ", "C#", "D ", "D#", "E ", "F ", "F#", "G ", "G#", "A "
 };
 
 const int sampleBits = 13;	// 12 seems to be absolute minimum
@@ -68,6 +68,7 @@ samples(1 << sampleBits)
 	chrom[5] = 7;
 
 	lastfreq = 0.0f;
+	lastnote = "  ";
 
 	spec = new double[samples];
 
@@ -115,8 +116,6 @@ int Scorer::Test(list<Fret> &frets)
 	// compute frequency spectrum
 	realfft (buf, samples, spec);
 
-	// do the tests
-
 	// for now, just check the bass note
 	double ffreq = 0.0; 
 	double norm;
@@ -153,7 +152,12 @@ int Scorer::Test(list<Fret> &frets)
 			ffreq = i;
 		}
 	}
-
+	if(cap->readVol() < 500)
+	{
+		lastfreq = 0;
+		lastnote = "  ";
+		return 0;
+	}
 	frequency = 2.0 * ffreq * (double)SAMPLE_RATE / (double)samples;
 
 	double a,r; 
@@ -170,6 +174,7 @@ int Scorer::Test(list<Fret> &frets)
 	
 	delete[] bass;
 
+	// compare
 	if(n == bassn)
 	{
 		for(it = frets.begin(); it != frets.end(); it++)

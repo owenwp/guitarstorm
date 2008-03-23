@@ -218,8 +218,9 @@ void Notes::PlaceNote(double t, int s, int f)
 		osgText::Text* textUp = new osgText::Text;
 		//textUp->setFont("fonts/arial.ttf");
 		textUp->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
-		textUp->setCharacterSize(2.0f);
+		textUp->setCharacterSize(1.5f);
 		textUp->setPosition(pos);
+		textUp->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
 		textUp->setDrawMode(osgText::Text::TEXT |osgText::Text::BOUNDINGBOX);
 		textUp->setAlignment(osgText::Text::CENTER_CENTER);
 		textUp->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -233,8 +234,9 @@ void Notes::PlaceNote(double t, int s, int f)
 		osgText::Text* textDown = new osgText::Text;
 		//textDown->setFont("fonts/arial.ttf");
 		textDown->setColor(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
-		textDown->setCharacterSize(2.0f);
+		textDown->setCharacterSize(1.5f);
 		textDown->setPosition(pos);
+		textDown->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
 		textDown->setDrawMode(osgText::Text::TEXT/*||osgText::Text::BOUNDINGBOX*/);
 		textDown->setAlignment(osgText::Text::CENTER_CENTER);
 		textDown->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -272,6 +274,7 @@ void Notes::PlaceBeat(double t)
 			textUp->setColor(osg::Vec4(0.3f,0.3f,0.3f,1.0f));
 			textUp->setCharacterSize(3.0f);
 			textUp->setPosition(pos);
+			textUp->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
 			textUp->setDrawMode(osgText::Text::TEXT);
 			textUp->setAlignment(osgText::Text::CENTER_CENTER);
 			textUp->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -287,6 +290,7 @@ void Notes::PlaceBeat(double t)
 			textDown->setColor(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
 			textDown->setCharacterSize(3.0f);
 			textDown->setPosition(pos);
+			textDown->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
 			textDown->setDrawMode(osgText::Text::TEXT/*||osgText::Text::BOUNDINGBOX*/);
 			textDown->setAlignment(osgText::Text::CENTER_CENTER);
 			textDown->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -315,6 +319,7 @@ void Notes::addString(osg::Vec3& pos,const std::string& text, float height)
         textUp->setColor(osg::Vec4(0.3f,0.3f,0.3f,1.0f));
         textUp->setCharacterSize(height);
         textUp->setPosition(pos);
+		textUp->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
         textUp->setDrawMode(osgText::Text::TEXT/*|osgText::Text::BOUNDINGBOX*/);
         textUp->setAlignment(osgText::Text::LEFT_CENTER);
         textUp->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -330,6 +335,7 @@ void Notes::addString(osg::Vec3& pos,const std::string& text, float height)
         textDown->setColor(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
         textDown->setCharacterSize(height);
         textDown->setPosition(pos);
+		textDown->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
         textDown->setDrawMode(osgText::Text::TEXT/*||osgText::Text::BOUNDINGBOX*/);
         textDown->setAlignment(osgText::Text::LEFT_CENTER);
         textDown->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -352,22 +358,22 @@ void Notes::createStrings()
 
 	pos.x() =ox;
 	pos.z() -= 5.0f;
-	addString(pos,"E============================================================",2.0f);
+	addString(pos,"E============================================================",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
-	addString(pos,"A------------------------------------------------------------",2.0f);
+	addString(pos,"A------------------------------------------------------------",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
-	addString(pos,"D------------------------------------------------------------",2.0f);
+	addString(pos,"D------------------------------------------------------------",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
-	addString(pos,"G------------------------------------------------------------",2.0f);
+	addString(pos,"G------------------------------------------------------------",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
-	addString(pos,"B------------------------------------------------------------",2.0f);
+	addString(pos,"B------------------------------------------------------------",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
-	addString(pos,"e------------------------------------------------------------",2.0f);
+	addString(pos,"e------------------------------------------------------------",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
 }
@@ -414,8 +420,9 @@ void Notes::setSong(std::string name)
 		osg::ref_ptr<osgText::Text> trackText = new osgText::Text;
         //scoreText->setFont("fonts/arial.ttf");
         trackText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
-        trackText->setCharacterSize(1.5f);
-        trackText->setPosition(osg::Vec3(-15.0f,0.0f,10.0f));
+        trackText->setCharacterSize(1.0f);
+        trackText->setPosition(osg::Vec3(-16.0f,0.0f,12.0f));
+		trackText->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::LEFT_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
@@ -431,8 +438,9 @@ void Notes::setSong(std::string name)
         scoreText = new osgText::Text;
         //scoreText->setFont("fonts/arial.ttf");
         scoreText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
-        scoreText->setCharacterSize(2.0f);
-        scoreText->setPosition(osg::Vec3(1.0f,0.0f,-8.0f));
+        scoreText->setCharacterSize(1.5f);
+        scoreText->setPosition(osg::Vec3(-6.0f,0.0f,-8.0f));
+		scoreText->setCharacterSizeMode(osgText::Text::CharacterSizeMode::OBJECT_COORDS);
         scoreText->setDrawMode(osgText::Text::TEXT);
 		scoreText->setAlignment(osgText::Text::LEFT_TOP);
         scoreText->setAxisAlignment(osgText::Text::XZ_PLANE);

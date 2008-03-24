@@ -42,6 +42,9 @@ protected:
 	
 	osg::Timer* time;
 
+	osg::ref_ptr<osgText::Text> tnote[25];
+	osg::ref_ptr<osgText::Text> tbeat;
+
 	vector<TabColumn>::iterator col;
 	vector<TabBar>::iterator bar;
 

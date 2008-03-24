@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
 		osg::Geode* geodeErr = new osg::Geode;
 		{
 			osg::ref_ptr<osgText::Text> errText = new osgText::Text;
-			//scoreText->setFont("fonts/arial.ttf");
+			errText->setFont("fonts/arial.ttf");
 			errText->setColor(osg::Vec4(1.0f,0.0f,0.0f,1.0f));
 			errText->setCharacterSize(5.0f);
 			errText->setPosition(osg::Vec3(4.0f,-1.0f,6.0f));

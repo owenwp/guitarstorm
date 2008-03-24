@@ -13,6 +13,38 @@ Notes::Notes()
 	running = false; 
 	finished = false;
 	visible(false);
+
+	// create fret textures
+	for(int i=0; i<25; i++)
+	{	
+		string fret;
+		stringstream str;
+		str << i;
+		str >> fret;
+
+		tnote[i] = new osgText::Text;
+		tnote[i]->setFont("fonts/arial.ttf");
+		tnote[i]->setDataVariance(osg::Object::DYNAMIC);
+		//tnote[i]->setFontResolution(10,10);
+		tnote[i]->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
+		tnote[i]->setCharacterSize(1.5f);
+		tnote[i]->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
+		tnote[i]->setDrawMode(osgText::Text::TEXT |osgText::Text::BOUNDINGBOX);
+		tnote[i]->setAlignment(osgText::Text::CENTER_CENTER);
+		tnote[i]->setAxisAlignment(osgText::Text::XZ_PLANE);
+		tnote[i]->setText(fret);
+	}
+	tbeat = new osgText::Text;
+	tbeat->setFont("fonts/arial.ttf");
+	tbeat->setDataVariance(osg::Object::DYNAMIC);
+	//tbeat->setFontResolution(10,10);
+	tbeat->setColor(osg::Vec4(0.3f,0.3f,0.3f,1.0f));
+	tbeat->setCharacterSize(3.0f);
+	tbeat->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
+	tbeat->setDrawMode(osgText::Text::TEXT);
+	tbeat->setAlignment(osgText::Text::CENTER_CENTER);
+	tbeat->setAxisAlignment(osgText::Text::XZ_PLANE);
+	tbeat->setText("|");
 }
 
 void Notes::Update()
@@ -208,47 +240,26 @@ void Notes::PlaceNote(double t, int s, int f)
 {
 	osg::Vec3 pos = origin + osg::Vec3((float)t, -0.1f, 2.0f*(s-2.5f));
 
-	string fret;
-	stringstream str;
-	str << f;
-	str >> fret;
-
 	osg::Geode* geodeUp = new osg::Geode;
 	{
-		osgText::Text* textUp = new osgText::Text;
-		//textUp->setFont("fonts/arial.ttf");
-		textUp->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
-		textUp->setCharacterSize(1.5f);
+		osg::ref_ptr<osgText::Text> textUp = (osgText::Text*)tnote[f]->clone(osg::CopyOp::SHALLOW_COPY);
 		textUp->setPosition(pos);
-		textUp->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-		textUp->setDrawMode(osgText::Text::TEXT |osgText::Text::BOUNDINGBOX);
-		textUp->setAlignment(osgText::Text::CENTER_CENTER);
-		textUp->setAxisAlignment(osgText::Text::XZ_PLANE);
-		textUp->setText(fret);
 
-		geodeUp->setUserData(textUp);
-		geodeUp->addDrawable(textUp);
+		geodeUp->setUserData(textUp.get());
+		geodeUp->addDrawable(textUp.get());
 	}
 	osg::Geode* geodeDown = new osg::Geode;
 	{
-		osgText::Text* textDown = new osgText::Text;
-		//textDown->setFont("fonts/arial.ttf");
-		textDown->setColor(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
-		textDown->setCharacterSize(1.5f);
+		osg::ref_ptr<osgText::Text> textDown = (osgText::Text*)tnote[f]->clone(osg::CopyOp::SHALLOW_COPY);
+		textDown->setColor(osg::Vec4(1.0f,0.0f,0.0f,1.0f));
 		textDown->setPosition(pos);
-		textDown->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-		textDown->setDrawMode(osgText::Text::TEXT/*||osgText::Text::BOUNDINGBOX*/);
-		textDown->setAlignment(osgText::Text::CENTER_CENTER);
-		textDown->setAxisAlignment(osgText::Text::XZ_PLANE);
-		textDown->setText(fret);
 
-		geodeDown->setUserData(textDown);
-		geodeDown->addDrawable(textDown);
+		geodeDown->setUserData(textDown.get());
+		geodeDown->addDrawable(textDown.get());
 	}
 	osg::Switch* model = new osg::Switch;
 	model->addChild(geodeUp,true);
 	model->addChild(geodeDown,false);
-	//model->setName(string);
 	_scene->addChild(model);
 	Fret* fr = new Fret;
 	fr->hit = false;
@@ -269,40 +280,22 @@ void Notes::PlaceBeat(double t)
 
 		osg::Geode* geodeUp = new osg::Geode;
 		{
-			osgText::Text* textUp = new osgText::Text;
-			//textUp->setFont("fonts/arial.ttf");
-			textUp->setColor(osg::Vec4(0.3f,0.3f,0.3f,1.0f));
-			textUp->setCharacterSize(3.0f);
+			osg::ref_ptr<osgText::Text> textUp = (osgText::Text*)tbeat->clone(osg::CopyOp::SHALLOW_COPY);
 			textUp->setPosition(pos);
-			textUp->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-			textUp->setDrawMode(osgText::Text::TEXT);
-			textUp->setAlignment(osgText::Text::CENTER_CENTER);
-			textUp->setAxisAlignment(osgText::Text::XZ_PLANE);
-			textUp->setText("|");
 
-			geodeUp->setUserData(textUp);
-			geodeUp->addDrawable(textUp);
+			geodeUp->setUserData(textUp.get());
+			geodeUp->addDrawable(textUp.get());
 		}
 		osg::Geode* geodeDown = new osg::Geode;
 		{
-			osgText::Text* textDown = new osgText::Text;
-			//textDown->setFont("fonts/arial.ttf");
-			textDown->setColor(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
-			textDown->setCharacterSize(3.0f);
+			osg::ref_ptr<osgText::Text> textDown = (osgText::Text*)tbeat->clone(osg::CopyOp::SHALLOW_COPY);
 			textDown->setPosition(pos);
-			textDown->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-			textDown->setDrawMode(osgText::Text::TEXT/*||osgText::Text::BOUNDINGBOX*/);
-			textDown->setAlignment(osgText::Text::CENTER_CENTER);
-			textDown->setAxisAlignment(osgText::Text::XZ_PLANE);
-			textDown->setText("");
 
-			geodeDown->setUserData(textDown);
-			geodeDown->addDrawable(textDown);
+			geodeDown->setUserData(textDown.get());
 		}
 		osg::Switch* model = new osg::Switch;
 		model->addChild(geodeUp,true);
 		model->addChild(geodeDown,false);
-		//model->setName(string);
 		_scene->addChild(model);
 
 		chart[t+s*0.00001f] = model;
@@ -315,12 +308,12 @@ void Notes::addString(osg::Vec3& pos,const std::string& text, float height)
     osg::Geode* geodeUp = new osg::Geode;
     {
         osgText::Text* textUp = new osgText::Text;
-        //textUp->setFont("fonts/arial.ttf");
+        textUp->setFont("fonts/arial.ttf");
         textUp->setColor(osg::Vec4(0.3f,0.3f,0.3f,1.0f));
         textUp->setCharacterSize(height);
         textUp->setPosition(pos);
 		textUp->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-        textUp->setDrawMode(osgText::Text::TEXT/*|osgText::Text::BOUNDINGBOX*/);
+        textUp->setDrawMode(osgText::Text::TEXT);
         textUp->setAlignment(osgText::Text::LEFT_CENTER);
         textUp->setAxisAlignment(osgText::Text::XZ_PLANE);
         textUp->setText(text);
@@ -331,7 +324,7 @@ void Notes::addString(osg::Vec3& pos,const std::string& text, float height)
     osg::Geode* geodeDown = new osg::Geode;
     {
         osgText::Text* textDown = new osgText::Text;
-        //textDown->setFont("fonts/arial.ttf");
+        textDown->setFont("fonts/arial.ttf");
         textDown->setColor(osg::Vec4(1.0f,0.0f,1.0f,1.0f));
         textDown->setCharacterSize(height);
         textDown->setPosition(pos);
@@ -361,19 +354,19 @@ void Notes::createStrings()
 	addString(pos,"E============================================================",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
-	addString(pos,"A------------------------------------------------------------",1.0f);
+	addString(pos,"A------------------------------------------------------------------------------------------------------------------------",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
-	addString(pos,"D------------------------------------------------------------",1.0f);
+	addString(pos,"D------------------------------------------------------------------------------------------------------------------------",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
-	addString(pos,"G------------------------------------------------------------",1.0f);
+	addString(pos,"G------------------------------------------------------------------------------------------------------------------------",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
-	addString(pos,"B------------------------------------------------------------",1.0f);
+	addString(pos,"B------------------------------------------------------------------------------------------------------------------------",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
-	addString(pos,"e------------------------------------------------------------",1.0f);
+	addString(pos,"e------------------------------------------------------------------------------------------------------------------------",1.0f);
 	pos.x() = ox;
     pos.z() += 2.0f;
 }
@@ -418,7 +411,7 @@ void Notes::setSong(std::string name)
 	osg::Geode* geodeTrack = new osg::Geode;
     {
 		osg::ref_ptr<osgText::Text> trackText = new osgText::Text;
-        //scoreText->setFont("fonts/arial.ttf");
+        trackText->setFont("fonts/arial.ttf");
         trackText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
         trackText->setCharacterSize(1.0f);
         trackText->setPosition(osg::Vec3(-16.0f,0.0f,12.0f));
@@ -436,10 +429,10 @@ void Notes::setSong(std::string name)
 	osg::Geode* geodeScore = new osg::Geode;
     {
         scoreText = new osgText::Text;
-        //scoreText->setFont("fonts/arial.ttf");
+        scoreText->setFont("fonts/arial.ttf");
         scoreText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
         scoreText->setCharacterSize(1.5f);
-        scoreText->setPosition(osg::Vec3(-6.0f,0.0f,-8.0f));
+        scoreText->setPosition(osg::Vec3(3.0f,0.0f,-8.0f));
 		scoreText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
         scoreText->setDrawMode(osgText::Text::TEXT);
 		scoreText->setAlignment(osgText::Text::LEFT_TOP);

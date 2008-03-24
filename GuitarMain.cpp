@@ -36,17 +36,18 @@
 #include "Keyboard.h"
 #include "SongPick.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
+	osg::ArgumentParser arguments(&argc, argv);
+
+    // construct the viewer.
+    osgViewer::Viewer viewer(arguments);
+	
 	// parse command line
 	int samples = 128;
-	if(argc == 2)
-	{
-		samples = atoi(argv[1]);
-	}
+    arguments.read("-samples", samples);
 
 	// setup viewer
-    osgViewer::Viewer viewer;
 	viewer.setUpViewInWindow(10, 50, 1024, 768, 0);
 
 	// setup keyboard input

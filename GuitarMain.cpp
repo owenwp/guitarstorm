@@ -92,8 +92,8 @@ int main(int argc, char **argv)
 			osg::ref_ptr<osgText::Text> errText = new osgText::Text;
 			errText->setFont("fonts/arial.ttf");
 			errText->setColor(osg::Vec4(1.0f,0.0f,0.0f,1.0f));
-			errText->setCharacterSize(5.0f);
-			errText->setPosition(osg::Vec3(4.0f,-1.0f,6.0f));
+			errText->setCharacterSize(2.0f);
+			errText->setPosition(osg::Vec3(0.0f,-1.0f,6.0f));
 			errText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
 			errText->setDrawMode(osgText::Text::TEXT);
 			errText->setAlignment(osgText::Text::CENTER_TOP);

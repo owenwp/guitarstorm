@@ -51,7 +51,7 @@ void SongPick::CreateList()
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::CENTER_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
-		trackText->setText("Copyright 2008 Zombie Process");
+		trackText->setText("Copyright 2008 Zombie Process\nhttp://guitarstormgame.com/\nhttp://zombieprocess.org/");
         
         geodeTrack->addDrawable(trackText.get());
         

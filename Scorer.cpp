@@ -97,96 +97,106 @@ samples(1 << sampleBits)
 	{
 		freqcoeffs[i+1] = pow(twelfthroot, i/2.0);
 	}
+
+	this->start();
 }
 
 void Scorer::run()
 {
-	double* buf = cap->readLast(samples);
-	
-	/*
-	// use for test tones
-	double f1 = 600.0;
-	double f2 = 1600.0;
-	for(int k=0; k < samples; k++)
+	while(true)
 	{
-		buf[k] = 0.6 * sin(2.0 * PI * (k * f1 / SAMPLE_RATE)) +
-				 0.4 * sin(2.0 * PI * (k * f2 / SAMPLE_RATE)) ;
-	}
-	*/
+		while(!active) YieldCurrentThread();
 
-	// compute frequency spectrum
-	realfft (buf, samples, spec);
-
-	// for now, just check the bass note
-	double ffreq = 0.0; 
-	double norm;
-	double maxnorm = -100.0; 
-	float li = (int)(samples - 1)/2;
-
-	// compare
-	float* bass = 0;	
-	int bassn = 0;
-	float* freq;
-	list<Fret>::iterator it;
-	for(it = frets.begin(); it != frets.end(); it++)
-	{
-		freq = Tune(*it);
-		if(!bass || freq[1] < bass[1])
+		double* buf = cap->readLast(samples);
+		
+		/*
+		// use for test tones
+		double f1 = 600.0;
+		double f2 = 1600.0;
+		for(int k=0; k < samples; k++)
 		{
-			bass = freq;
-			bassn = Chroma(*it);
+			buf[k] = 0.6 * sin(2.0 * PI * (k * f1 / SAMPLE_RATE)) +
+					 0.4 * sin(2.0 * PI * (k * f2 / SAMPLE_RATE)) ;
 		}
-		else
-			delete[] freq;
-	}
-	float target = bass[1];
-	double frequency;
+		*/
 
-	// find the dominant frequency
-	for (int i=1; i<li; i+=2) 
-	{
-		norm = (spec[i] * spec[i]) + (spec[i+1] * spec[i+1]);
+		// compute frequency spectrum
+		realfft (buf, samples, spec);
 
-		if (norm>maxnorm)
-		{
-			maxnorm = norm; 
-			ffreq = i;
-		}
-	}
-	if(cap->readVol() < 500)
-	{
-		lastfreq = 0;
-		lastnote = "  ";
-		return;
-	}
-	frequency = 2.0 * ffreq * (double)SAMPLE_RATE / (double)samples;
+		// for now, just check the bass note
+		double ffreq = 0.0; 
+		double norm;
+		double maxnorm = -100.0; 
+		float li = (int)(samples - 1)/2;
 
-	double a,r; 
-	int o,n;
-
-	// determine note
-	a=log(frequency/440.0)/log(2.0); 
-	o=(int)floor(a); 
-	r=(a-o)*12.0; 
-	n=(int)(r+0.5);
-	if(n >= 12) n -= 12;
-
-	lastfreq = frequency;
-	lastnote = string(note[n]);
-	
-	delete[] bass;
-
-	// compare
-	if(n == bassn)
-	{
+		// compare
+		float* bass = 0;	
+		int bassn = 0;
+		float* freq;
+		list<Fret>::iterator it;
 		for(it = frets.begin(); it != frets.end(); it++)
 		{
-			it->hit = true;
+			freq = Tune(*it);
+			if(!bass || freq[1] < bass[1])
+			{
+				bass = freq;
+				bassn = Chroma(*it);
+			}
+			else
+				delete[] freq;
 		}
-		//return 1;
-	}
+		float target = bass[1];
+		double frequency;
 
-	//return 0;
+		// find the dominant frequency
+		for (int i=1; i<li; i+=2) 
+		{
+			norm = (spec[i] * spec[i]) + (spec[i+1] * spec[i+1]);
+
+			if (norm>maxnorm)
+			{
+				maxnorm = norm; 
+				ffreq = i;
+			}
+		}
+		if(cap->readVol() < 500)
+		{
+			lastfreq = 0;
+			lastnote = "  ";
+			
+			taken = false;
+			while(!taken) YieldCurrentThread();
+			continue;
+		}
+		frequency = 2.0 * ffreq * (double)SAMPLE_RATE / (double)samples;
+
+		double a,r; 
+		int o,n;
+
+		// determine note
+		a=log(frequency/440.0)/log(2.0); 
+		o=(int)floor(a); 
+		r=(a-o)*12.0; 
+		n=(int)(r+0.5);
+		if(n >= 12) n -= 12;
+
+		lastfreq = frequency;
+		lastnote = string(note[n]);
+		
+		delete[] bass;
+
+		// compare
+		if(n == bassn)
+		{
+			for(it = frets.begin(); it != frets.end(); it++)
+			{
+				it->hit = true;
+			}
+		}
+
+		taken = false;
+		while(!taken) YieldCurrentThread();
+	}
 }
 
 float* Scorer::Tune(Fret &f)
@@ -211,15 +221,15 @@ int Scorer::Chroma(Fret &f)
 void Scorer::Test(list<Fret> &f)
 {
 	frets = f;
+	taken = true;
 	active = true;
-
-	this->start();
 }
 
 list<Fret>& Scorer::GetResult()
 {
-	this->join();
+	while(taken) YieldCurrentThread();
 
 	active = false;
+	taken = true;
 	return frets;
 }

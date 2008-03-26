@@ -83,6 +83,7 @@ private:
 	const int samples;
 
 	bool active;
+	bool taken;
 
 	double *spec;
 };

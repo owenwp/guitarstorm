@@ -246,50 +246,6 @@ void Notes::Update()
 	{
 		scorer->Test(frets);
 	}
-	/*if(frets.size() > 0)
-	{
-		if(speed == 0)
-			stopped = current;
-
-		if(scorer->Test(frets) == 0)
-		{
-			combo = 0;
-			multiplier = 1;
-		}
-		else 
-		{
-			if(multiplier < 4)
-			{
-				combo++;
-				if(combo > 8)
-				{
-					multiplier++;
-					if(multiplier < 4)
-						combo = 0;
-				}
-			}
-			score += 10 * speed * multiplier * frets.size();
-			stopped = 0;
-		}
-	}
-
-	if(!stopped)
-	{
-		list<Fret>::iterator fi = frets.begin();
-		for(fi = frets.begin(); fi != frets.end(); fi++)
-		{
-			if(!fi->hit)
-			{
-				fi->m->setSingleChildOn(1);
-				combo = 0;
-				multiplier = 1;
-			}
-			else
-			{
-				fi->m->setAllChildrenOff();
-			}
-		}
-	}*/
 
 	// update score text
 	std::ostringstream s;

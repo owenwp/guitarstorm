@@ -656,10 +656,11 @@ void ConvertGtp::readNote(vector<TabTrack>::iterator &trk, int x, int y)
 
 	if (variant == 2) {                      // link with previous beat
 		trk->c[x].flags |= FLAG_ARC;
-		for (int i = 0; i < MAX_STRINGS; i++) {
-			trk->c[x].a[i] = NULL_NOTE;
-			trk->c[x].e[i] = 0;
-		}
+		//for (int i = 0; i < MAX_STRINGS; i++) {
+			//trk->c[x].a[i] = NULL_NOTE;
+			trk->c[x].a[y] = NULL_NOTE;
+			//trk->c[x].e[i] = 0;
+		//}
 	}
 
 	if (variant == 3)                        // dead notes

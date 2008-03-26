@@ -50,15 +50,19 @@ struct Fret : public osg::Referenced
 	bool hit;
 };
 
-class Scorer
+class Scorer : public OpenThreads::Thread
 {
 public:
 	Scorer(Capture* c);
 
-	int Test(list<Fret> &frets);
+	void Test(list<Fret> &f);
+	bool HasResults() { return active; }
+	list<Fret>& GetResult();
 
 	void tick() { cap->tick(); }
 	int getVolume() { return cap->readVol(); }
+
+	void run();
 
 	float lastfreq;
 	string lastnote;
@@ -68,6 +72,8 @@ private:
 	float* Tune(Fret &f);
 	int Chroma(Fret &f);
 
+	list<Fret> frets;
+
 	float freqcoeffs[50];
 
 	Capture* cap;
@@ -75,6 +81,8 @@ private:
 	float tuning[6];
 	int chrom[6];
 	const int samples;
+
+	bool active;
 
 	double *spec;
 };

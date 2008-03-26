@@ -204,7 +204,49 @@ void Notes::Update()
 	}
 
 	// fret reached
+	if(scorer->HasResults())
+	{
+		if(speed == 0)
+			stopped = current;
+
+		list<Fret> f = scorer->GetResult();
+
+		list<Fret>::iterator fi = f.begin();
+		for(fi = f.begin(); fi != f.end(); fi++)
+		{
+			if(!fi->hit)
+			{
+				if(!stopped)
+					fi->m->setSingleChildOn(1);
+	
+				combo = 0;
+				multiplier = 1;
+			}
+			else
+			{
+				fi->m->setAllChildrenOff();
+				if(multiplier < 4)
+				{
+					combo++;
+					if(combo > 8)
+					{
+						multiplier++;
+						if(multiplier < 4)
+							combo = 0;
+					}
+				}
+				if(stopped)
+					frets.clear();
+				stopped = 0;
+				score += 10 * speed * multiplier * f.size();
+			}
+		}
+	}
 	if(frets.size() > 0)
+	{
+		scorer->Test(frets);
+	}
+	/*if(frets.size() > 0)
 	{
 		if(speed == 0)
 			stopped = current;
@@ -247,7 +289,7 @@ void Notes::Update()
 				fi->m->setAllChildrenOff();
 			}
 		}
-	}
+	}*/
 
 	// update score text
 	std::ostringstream s;

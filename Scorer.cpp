@@ -61,6 +61,9 @@ const int sampleBits = 13;	// 12 seems to be absolute minimum
 Scorer::Scorer(Capture* c) : 
 samples(1 << sampleBits)	
 {
+	Init();
+	active = false;
+
 	cap = c;
 	sstates[0] = -1;
 	sstates[1] = -1;
@@ -96,26 +99,7 @@ samples(1 << sampleBits)
 	}
 }
 
-float* Scorer::Tune(Fret &f)
-{
-	float* range = new float[3];
-
-	range[0] = tuning[f.s] * freqcoeffs[f.f * 2];
-	range[1] = tuning[f.s] * freqcoeffs[f.f * 2 + 1];
-	range[2] = tuning[f.s] * freqcoeffs[f.f * 2 + 2];
-
-	return range;
-}
-
-int Scorer::Chroma(Fret &f)
-{
-	int c = chrom[f.s] + f.f;
-	if(c >= 12) c -= 12;
-	if(c >= 12) c -= 12;
-	return c;
-}
-
-int Scorer::Test(list<Fret> &frets)
+void Scorer::run()
 {
 	double* buf = cap->readLast(samples);
 	
@@ -173,7 +157,7 @@ int Scorer::Test(list<Fret> &frets)
 	{
 		lastfreq = 0;
 		lastnote = "  ";
-		return 0;
+		return;
 	}
 	frequency = 2.0 * ffreq * (double)SAMPLE_RATE / (double)samples;
 
@@ -185,6 +169,7 @@ int Scorer::Test(list<Fret> &frets)
 	o=(int)floor(a); 
 	r=(a-o)*12.0; 
 	n=(int)(r+0.5);
+	if(n >= 12) n -= 12;
 
 	lastfreq = frequency;
 	lastnote = string(note[n]);
@@ -198,8 +183,43 @@ int Scorer::Test(list<Fret> &frets)
 		{
 			it->hit = true;
 		}
-		return 1;
+		//return 1;
 	}
 
-	return 0;
+	//return 0;
+}
+
+float* Scorer::Tune(Fret &f)
+{
+	float* range = new float[3];
+
+	range[0] = tuning[f.s] * freqcoeffs[f.f * 2];
+	range[1] = tuning[f.s] * freqcoeffs[f.f * 2 + 1];
+	range[2] = tuning[f.s] * freqcoeffs[f.f * 2 + 2];
+
+	return range;
+}
+
+int Scorer::Chroma(Fret &f)
+{
+	int c = chrom[f.s] + f.f;
+	if(c >= 12) c -= 12;
+	if(c >= 12) c -= 12;
+	return c;
+}
+
+void Scorer::Test(list<Fret> &f)
+{
+	frets = f;
+	active = true;
+
+	this->start();
+}
+
+list<Fret>& Scorer::GetResult()
+{
+	this->join();
+
+	active = false;
+	return frets;
 }

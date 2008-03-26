@@ -41,7 +41,7 @@ private:
 	static void readTabs();
 	static void readColumnEffects(vector<TabTrack>::iterator &trk, int x);
 	static void readNote(vector<TabTrack>::iterator &trk, int x, int y);
-	static void readChromaticGraph();
+	static void readChromaticGraph(TabColumn &col);
 	static void readChord(vector<TabTrack>::iterator &trk, int x);
 
 	static char readChar();

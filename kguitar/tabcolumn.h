@@ -19,12 +19,13 @@
 #define FLAG_PM         4
 #define FLAG_TRIPLET	8
 
-#define EFFECT_HARMONIC 1
-#define EFFECT_ARTHARM  2
-#define EFFECT_LEGATO   3
-#define EFFECT_SLIDE    4
-#define EFFECT_LETRING	5
-#define EFFECT_STOPRING	6
+#define EFFECT_HARMONIC 1 << 0
+#define EFFECT_ARTHARM  1 << 2
+#define EFFECT_LEGATO   1 << 3
+#define EFFECT_SLIDE    1 << 4
+#define EFFECT_LETRING	1 << 5
+#define EFFECT_STOPRING	1 << 6
+#define EFFECT_BEND		1 << 7
 
 #define NULL_NOTE       -1
 #define DEAD_NOTE       -2
@@ -52,6 +53,7 @@ public:
 	float l;                              // Duration of note or chord
 	char a[MAX_STRINGS];                // Number of fret
 	char e[MAX_STRINGS];                // Effect parameter
+	vector<osg::Vec2> bend;
 	unsigned int flags;                         // Various flags
 
 	// TabColumn "volatile" data is calculated when needed,

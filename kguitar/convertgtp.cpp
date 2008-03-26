@@ -128,18 +128,22 @@ int ConvertGtp::readDelphiInteger()
 	return r;
 }
 
-void ConvertGtp::readChromaticGraph()
+void ConvertGtp::readChromaticGraph(TabColumn &col)
 {
 	char num;
 	int n;
+
+	int t, p;
 
 	// GREYFIX: currently just skips over chromatic graph
 	num = readChar();                        // icon
 	readDelphiInteger();                     // shown amplitude
 	n = readDelphiInteger();                 // number of points
 	for (int i = 0; i < n; i++) {
-		readDelphiInteger();                 // time
-		readDelphiInteger();                 // pitch
+		t = readDelphiInteger();                 // time
+		p = readDelphiInteger();                 // pitch
+		if(p % 50 == 0)
+			col.bend.push_back(osg::Vec2(t,p));
 		num = readChar();                    // vibrato
 	}
 }
@@ -615,7 +619,7 @@ void ConvertGtp::readColumnEffects(vector<TabTrack>::iterator &trk, int x)
 			trk->c[x].e[y] |= EFFECT_ARTHARM;
         }
 	if (fx_bitmask2 & 0x04)
-		readChromaticGraph();  // GREYFIX: tremolo graph
+		readChromaticGraph(trk->c[x]);  // GREYFIX: tremolo graph
 	if (fx_bitmask1 & 0x40) {
 		num = readChar();      // GREYFIX: down stroke length
 		num = readChar();      // GREYFIX: up stroke length
@@ -680,7 +684,8 @@ void ConvertGtp::readNote(vector<TabTrack>::iterator &trk, int x, int y)
 			osg::notify(osg::INFO) << "note mod: mask1=" << mod_mask1 << "\n";
 		}
 		if (mod_mask1 & 0x01) {
-			readChromaticGraph();            // GREYFIX: bend graph
+			trk->c[x].e[y] |= EFFECT_BEND;
+			readChromaticGraph(trk->c[x]);            // GREYFIX: bend graph
 		}
 		if (mod_mask1 & 0x02)                // hammer on / pull off
 			trk->c[x].e[y] |= EFFECT_LEGATO;

@@ -120,6 +120,17 @@ void Notes::Update()
 				if(col->a[s] != -1)
 				{
 					PlaceNote(count, s, col->a[s]);
+					if(col->e[s] & EFFECT_BEND)
+					{
+						double dur = col->l * 240 / tempo * spacing;
+						double t = 0.0;
+						for(int i=0; i<col->bend.size(); i++)
+						{
+							t += col->bend[i].x() / 60.0;
+							PlaceNote(count + dur * t, s, 
+								col->a[s] + col->bend[i].y()/50);
+						}
+					}
 					break;
 				}
 			}

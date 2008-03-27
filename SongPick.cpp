@@ -81,9 +81,9 @@ void SongPick::CreateList()
 
 	map<string, string>::iterator itr;
 	spos = _scene->getNumChildren();
-	for(itr = dir->contents.begin(); itr != dir->contents.end(); itr++)
+	for(itr = dir->files.begin(); itr != dir->files.end(); itr++)
 	{
-		map<string, string> head = ConvertGtp::header(location + "/" + itr->second);
+		map<string, string> head = ConvertGtp::header(itr->second);
 		if(head.size() == 0)
 			continue;
 
@@ -132,11 +132,11 @@ string SongPick::get()
 {
 	map<string, string>::iterator itr;
 	int i=0;
-	for(itr = dir->contents.begin(); itr != dir->contents.end(); itr++)
+	for(itr = dir->files.begin(); itr != dir->files.end(); itr++)
 	{
 		if(select == i++)
 		{
-			return location + "/" + itr->second;
+			return itr->second;
 		}
 	}
 	return "";
@@ -146,8 +146,8 @@ void SongPick::pick(int p)
 {
 	if(p < 0)
 		p = 0;
-	if(p >= dir->contents.size())
-		p = dir->contents.size()-1;
+	if(p >= dir->files.size())
+		p = dir->files.size()-1;
 
 	select = p;
 	cursor->setPosition(osg::Vec3(-5.0f,1.0f,2.0f - select));

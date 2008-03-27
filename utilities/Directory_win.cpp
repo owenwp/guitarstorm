@@ -33,20 +33,18 @@ Directory::Directory(string n)
 	{ 
 		do
 		{
-
 			_strlwr_s(FindData.cFileName); 
-			string szFileName(FindData.cFileName); 
-			string name = szFileName.substr(0,szFileName.find_last_of("."));
+			string fileName(FindData.cFileName); 
+			string path = n+"/"+fileName;
 
-			 // we looking at a directory?? then call this function *again* to look in it 
 			if (FindData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) 
 			{ 
-				//if (szFileName != "." && szFileName != "..") 
-				//	FindFiles(szDirectory + "/" + szFileName); 
+				if (fileName != "." && fileName != "..") 
+					dirs[fileName] = Directory(path);
 			} 
 			else 
 			{ 
-				contents[name] = szFileName;
+				files[fileName] = resdir + path;
 			} 
 		}
 		while(FindNextFile(hFind, &FindData));

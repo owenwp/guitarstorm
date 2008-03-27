@@ -26,9 +26,20 @@ using namespace std;
 class Directory
 {
 public:
+	Directory(){}
 	Directory(string n);
 
-	map<string, string> contents;
+	map<string, Directory> dirs;
+	map<string, string> files;
+
+	Directory& operator=(Directory &d) 
+	{ 
+		if(this != &d) 
+		{
+			dirs = d.dirs; files = d.files; 
+		}
+		return *this; 
+	}
 
 private:
 	static string resdir;

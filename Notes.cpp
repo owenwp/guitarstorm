@@ -167,13 +167,11 @@ void Notes::Update()
 			itr->second->setAllChildrenOff();
 			scorer->tick();
 		}
-		if(itr->second->getValue(0) && x < origin.x()-tolerance)
+		else if(itr->second->getValue(0) && x < origin.x()-tolerance)
 		{
 			Fret* fr = static_cast<Fret*>(itr->second->getUserData());
 			if(fr)
 				frets.push_back(*fr);
-			else
-				itr->second->setAllChildrenOff();
 		}
 
 		if(itr->second->getValue(1))
@@ -204,12 +202,17 @@ void Notes::Update()
 	}
 
 	// fret reached
+	if(frets.size() > 0)
+	{
+		scorer->Test(frets);
+	}
 	if(scorer->HasResults())
 	{
 		if(speed == 0)
 			stopped = current;
 
-		list<Fret> f = scorer->GetResult();
+		list<Fret> f;
+		f = scorer->GetResult();
 
 		list<Fret>::iterator fi = f.begin();
 		for(fi = f.begin(); fi != f.end(); fi++)
@@ -241,10 +244,6 @@ void Notes::Update()
 				score += 10 * speed * multiplier * f.size();
 			}
 		}
-	}
-	if(frets.size() > 0)
-	{
-		scorer->Test(frets);
 	}
 
 	// update score text

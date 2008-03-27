@@ -29,15 +29,21 @@ int rblast = 0;
 bool mtick = false;
 double tickfreq = 2400.0;
 double tickvol = 4000.0;
-int ticklen = 128;
+const int ticklen = 128;
 int currvol = 0;
 int samples = 128;
 float ringBuffer[rblen];
+int ticksamp[ticklen];
 
 Capture::Capture(int s)
 {
 	samples = s;
 	stream = NULL;
+
+	for(int i=0; i<ticklen; i++)
+	{
+		ticksamp[i] = sin(2.0 * PI * (i * tickfreq / SAMPLE_RATE));
+	}
 }
 
 int Capture::readVol()
@@ -91,7 +97,6 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
     int outStride;
     int inDone = 0;
     int outDone = 0;
-	currvol = 0;
 	Capture* cap = static_cast<Capture*>(userData);
 	// pointer does not evaluate correctly, possible this callback is in a separate memory space
 	//WireConfig_t *config = cap->config;  
@@ -126,16 +131,19 @@ int Capture::wireCallback( const void *inputBuffer, void *outputBuffer,
             outStride = 1;
         }
 
+		currvol = 0;
         for( i=0; i<framesPerBuffer; i++ )
         {
 			if(rbi >= rblen)
 				rbi = 0;
 
-            *out = CONVERT_IN_TO_OUT( *in );
 			if(*in > currvol)
 				currvol = *in;
+
+			// create output
+            *out = CONVERT_IN_TO_OUT( *in );
 			if(mtick && i<ticklen)
-				*out += tickvol * sin(2.0 * PI * (i * tickfreq / SAMPLE_RATE));
+				*out += tickvol * ticksamp[i];
 
 			if(inChannel == 0)
 				ringBuffer[rbi++] = *out;

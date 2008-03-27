@@ -63,6 +63,7 @@ samples(1 << sampleBits)
 {
 	Init();
 	active = false;
+	taken = true;
 
 	cap = c;
 	sstates[0] = -1;
@@ -220,15 +221,15 @@ int Scorer::Chroma(Fret &f)
 
 void Scorer::Test(list<Fret> &f)
 {
+	if(active)
+		return;
+
 	frets = f;
-	taken = true;
 	active = true;
 }
 
 list<Fret>& Scorer::GetResult()
 {
-	while(taken) YieldCurrentThread();
-
 	active = false;
 	taken = true;
 	return frets;

@@ -56,7 +56,7 @@ public:
 	Scorer(Capture* c);
 
 	void Test(list<Fret> &f);
-	bool HasResults() { return active; }
+	bool HasResults() { return active && !taken; }
 	list<Fret>& GetResult();
 
 	void tick() { cap->tick(); }

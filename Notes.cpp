@@ -45,6 +45,7 @@ Notes::Notes()
 		//tnote[i]->setFontResolution(10,10);
 		tnote[i]->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
 		tnote[i]->setCharacterSize(1.5f);
+		//tnote[i]->setBackdropType(osgText::Text::OUTLINE);
 		tnote[i]->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
 		tnote[i]->setDrawMode(osgText::Text::TEXT |osgText::Text::BOUNDINGBOX);
 		tnote[i]->setAlignment(osgText::Text::CENTER_CENTER);
@@ -299,6 +300,7 @@ void Notes::PlaceNote(double t, int s, int f)
 
 void Notes::PlaceBeat(double t)
 {
+	//float s = 2.5;
 	for(int s=0; s<6; s++)
 	{
 		osg::Vec3 pos = origin + osg::Vec3((float)t, 0.1f, 2.0f*(s-2.5f));

@@ -30,7 +30,9 @@ void SongPick::CreateList()
         trackText->setFont("fonts/arial.ttf");
         trackText->setColor(osg::Vec4(6.0f,1.0f,0.0f,1.0f));
         trackText->setCharacterSize(3.0f);
-        trackText->setPosition(osg::Vec3(0.0f,1.0f,11.0f));
+		trackText->setFontResolution(80,80);
+		trackText->setBackdropType(osgText::Text::DROP_SHADOW_BOTTOM_RIGHT);
+		trackText->setPosition(osg::Vec3(0.0f,1.0f,11.0f));
 		trackText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
 		trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::CENTER_TOP);
@@ -51,7 +53,7 @@ void SongPick::CreateList()
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::CENTER_TOP);
         trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
-		trackText->setText("Copyright 2008 Zombie Process\nhttp://guitarstormgame.com/\nhttp://zombieprocess.org/");
+		trackText->setText("Prototype 0.1\nCopyright 2008 Zombie Process\nhttp://guitarstormgame.com/");
         
         geodeTrack->addDrawable(trackText.get());
         
@@ -81,6 +83,10 @@ void SongPick::CreateList()
 	spos = _scene->getNumChildren();
 	for(itr = dir->contents.begin(); itr != dir->contents.end(); itr++)
 	{
+		map<string, string> head = ConvertGtp::header(location + "/" + itr->second);
+		if(head.size() == 0)
+			continue;
+
 		geodeTrack = new osg::Geode;
 		{
 			osg::ref_ptr<osgText::Text> trackText = new osgText::Text;
@@ -92,7 +98,7 @@ void SongPick::CreateList()
 			trackText->setDrawMode(osgText::Text::TEXT);
 			trackText->setAlignment(osgText::Text::LEFT_CENTER);
 			trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
-			trackText->setText(itr->first);
+			trackText->setText(head["TITLE"]+" - "+head["ARTIST"]);
 	        
 			geodeTrack->addDrawable(trackText.get());
 	        

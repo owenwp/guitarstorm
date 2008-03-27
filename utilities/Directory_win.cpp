@@ -36,7 +36,7 @@ Directory::Directory(string n)
 
 			_strlwr_s(FindData.cFileName); 
 			string szFileName(FindData.cFileName); 
-			string name = szFileName.substr(szFileName.find_last_of("\\")+1);
+			string name = szFileName.substr(0,szFileName.find_last_of("."));
 
 			 // we looking at a directory?? then call this function *again* to look in it 
 			if (FindData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) 

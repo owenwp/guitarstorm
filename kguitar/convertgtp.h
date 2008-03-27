@@ -28,6 +28,7 @@ public:
 	 * file named fileName into TabSong.
 	 */
 	static TabSong* load(string fileName);
+	static map<string, string> header(string fileName);
 
 private:
 

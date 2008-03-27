@@ -218,7 +218,7 @@ void ConvertGtp::readSignature()
 	} else if (s == "FICHIER GUITAR PRO L4.06") {
 		versionMajor = 4; versionMinor = 6;
 	} else {
-		osg::notify(osg::INFO) << "Invalid file format\n";
+		throw string("Invalid file format\n");
 	}
 }
 
@@ -718,6 +718,36 @@ void ConvertGtp::readNote(vector<TabTrack>::iterator &trk, int x, int y)
 			}
 		}
 	}
+}
+
+map<string, string> ConvertGtp::header(string fileName)
+{
+	stream.open(fileName.c_str() , ios::binary);
+
+	try 
+	{
+		song = new TabSong();
+		
+		if(stream.fail())
+			return song->info;
+
+		readSignature();
+		song->t.clear();
+		readSongAttributes();
+	}
+	catch (string msg) 
+	{
+		osg::notify(osg::WARN) << "Error loading Header: " << msg;
+		song->info.clear();
+	}
+	catch ( exception e )
+	{
+		osg::notify(osg::WARN) << "Error loading Header: " << e.what();	
+		song->info.clear();
+	}
+
+	stream.close();
+	return song->info;
 }
 
 TabSong* ConvertGtp::load(string fileName)

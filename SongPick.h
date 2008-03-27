@@ -32,6 +32,7 @@
 #include <osgText/Text>
 
 #include "utilities/Directory.h"
+#include "kguitar/convertgtp.h"
 
 class SongPick : public osg::Referenced
 {

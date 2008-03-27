@@ -264,6 +264,9 @@ void Notes::Update()
 
 void Notes::PlaceNote(double t, int s, int f)
 {
+	if(chart.find(t+s*0.000011f) != chart.end())
+		return;
+
 	osg::Vec3 pos = origin + osg::Vec3((float)t, -0.1f, 2.0f*(s-2.5f));
 
 	osg::Geode* geodeUp = new osg::Geode;
@@ -300,9 +303,13 @@ void Notes::PlaceNote(double t, int s, int f)
 
 void Notes::PlaceBeat(double t)
 {
+
 	//float s = 2.5;
 	for(int s=0; s<6; s++)
 	{
+		if(chart.find(t+s*0.00001f) != chart.end())
+			continue;
+
 		osg::Vec3 pos = origin + osg::Vec3((float)t, 0.1f, 2.0f*(s-2.5f));
 
 		osg::Geode* geodeUp = new osg::Geode;

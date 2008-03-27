@@ -404,14 +404,18 @@ void Notes::setSpeed(int percent)
 	speed = percent / 100.0f;
 }
 
-void Notes::setSong(std::string name)
+bool Notes::setSong(std::string name)
 {
-	_scene->removeChildren(0, _scene->getNumChildren());
-
-	createStrings();
-	
 	// load song
 	TabSong* song = ConvertGtp::load(name);
+	if(!song)
+	{
+		return false;
+	}
+
+	_scene->removeChildren(0, _scene->getNumChildren());
+	createStrings();
+	
 	tab = &song->t[0];
 	tempo = song->tempo;
 	title = song->info["TITLE"];
@@ -476,4 +480,6 @@ void Notes::setSong(std::string name)
 	visible(true);
 
 	time = new osg::Timer();
+
+	return true;
 }

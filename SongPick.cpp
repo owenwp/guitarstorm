@@ -78,6 +78,7 @@ void SongPick::CreateList()
 	select = 0;
 
 	map<string, string>::iterator itr;
+	spos = _scene->getNumChildren();
 	for(itr = dir->contents.begin(); itr != dir->contents.end(); itr++)
 	{
 		geodeTrack = new osg::Geode;
@@ -144,6 +145,29 @@ void SongPick::pick(int p)
 
 	select = p;
 	cursor->setPosition(osg::Vec3(-5.0f,1.0f,2.0f - select));
+}
+
+void SongPick::error()
+{
+	_scene->getChild(spos + select)->setNodeMask(0);
+	
+	osg::Geode* geodeTrack = new osg::Geode;
+	{
+		osg::ref_ptr<osgText::Text> trackText = new osgText::Text;
+		trackText->setFont("fonts/arial.ttf");
+		trackText->setColor(osg::Vec4(1.0f,0.0f,0.0f,1.0f));
+		trackText->setCharacterSize(1.0f);
+		trackText->setPosition(osg::Vec3(-4.0f,1.0f,2.0f - select));
+		trackText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
+		trackText->setDrawMode(osgText::Text::TEXT);
+		trackText->setAlignment(osgText::Text::LEFT_CENTER);
+		trackText->setAxisAlignment(osgText::Text::XZ_PLANE);
+		trackText->setText("Failed to Load");
+        
+		geodeTrack->addDrawable(trackText.get());
+        
+		_scene->addChild(geodeTrack);
+	}
 }
 
 void SongPick::up()

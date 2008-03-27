@@ -33,7 +33,7 @@ public:
 
 	osg::Group* getScene() { return _scene.get(); }
 
-	void setSong(std::string name);
+	bool setSong(std::string name);
 
 	void setSpeed(int percent);
 

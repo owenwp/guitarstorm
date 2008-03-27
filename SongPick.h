@@ -45,12 +45,14 @@ public:
 	string get();
 
 	void pick(int p);
+	void error();
 
 	void up();
 	void down();
 
 private:
 	void CreateList();
+	int spos;
 
 	osg::ref_ptr<osg::Group>    _scene;
 	osg::ref_ptr<osgText::Text> cursor;

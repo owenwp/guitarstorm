@@ -19,7 +19,7 @@
 
 void KeyboardModel::keyChange(int key,int value)
 {
-    osg::notify(osg::INFO) << "key value change, code="<<std::hex << key << "\t value="<< value << std::dec  << std::endl;
+    //osg::notify(osg::INFO) << "key value change, code="<<std::hex << key << "\t value="<< value << std::dec  << std::endl;
     
     if (value)
     {    
@@ -53,8 +53,14 @@ void KeyboardModel::keyChange(int key,int value)
 			string n = picker->get();
 			if(!notes->running) 
 			{
-				picker->visible(false);
-				notes->setSong(n);
+				if(notes->setSong(n))
+				{
+					picker->visible(false);
+				}
+				else
+				{
+					picker->error();
+				}
 			}
 			else if(notes->finished)
 			{

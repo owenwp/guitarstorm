@@ -62,7 +62,7 @@ void KeyboardModel::keyChange(int key,int value)
 					picker->error();
 				}
 			}
-			else if(notes->finished)
+			else //if(notes->finished)
 			{
 				notes->running = false;
 				notes->finished = false;

@@ -14,7 +14,7 @@ int ConvertGtp::trackPatch[TRACK_MAX_NUMBER * 2];
 vector<TabBar> ConvertGtp::bars;
 ifstream ConvertGtp::stream;
 string ConvertGtp::currentStage;
-bool ConvertGtp::strongChecks;
+bool ConvertGtp::strongChecks = true;
 
 char ConvertGtp::readChar()
 {
@@ -408,13 +408,15 @@ void ConvertGtp::readTrackProperties()
 		osg::notify(osg::INFO) << "pos: " << stream.tellg() << "\n";
 
 		strings = readDelphiInteger();
-		if (strings <= 0 || strings > STRING_MAX_NUMBER)  throw string("Track %1: insane # of strings (%2)\n");
+		if (strings <= 0 || strings > STRING_MAX_NUMBER)  
+			throw string("Track %1: insane # of strings (%2)\n");
 		trk->strings = strings;
 
 		// Parse [0..string-1] with real string tune data in reverse order
 		for (int j = trk->strings - 1; j >= 0; j--) {
 			trk->tune[j] = readDelphiInteger();
-			if (trk->tune[j] > 127)  throw string("Track %1: insane tuning on string %2 = %3\n");
+			if (trk->tune[j] > 127)  
+				throw string("Track %1: insane tuning on string %2 = %3\n");
 		}
 
 		// Throw out the other useless garbage in [string..MAX-1] range
@@ -436,9 +438,12 @@ void ConvertGtp::readTrackProperties()
 			(int) trk->frets << " frets, capo " <<
 			capo << "\n";
 
-		if (trk->frets <= 0 || (strongChecks && trk->frets > 100))  throw string("Track %1: insane number of frets (%2)\n");
-		if (trk->channel > 16)  throw string("Track %1: insane MIDI channel 1 (%2)\n");
-		if (midiChannel2 < 0 || midiChannel2 > 16) throw string("Track %1: insane MIDI channel 2 (%2)\n");
+		if (trk->frets <= 0 || (strongChecks && trk->frets > 100))  
+			throw string("Track %1: insane number of frets (%2)\n");
+		if (trk->channel > 16)  
+			throw string("Track %1: insane MIDI channel 1 (%2)\n");
+		if (midiChannel2 < 0 || midiChannel2 > 16) 
+			throw string("Track %1: insane MIDI channel 2 (%2)\n");
 
 		// Fill remembered values from defaults
 		trk->patch = trackPatch[i];
@@ -468,7 +473,8 @@ void ConvertGtp::readTabs()
 			int numBeats = readDelphiInteger();
 			//osg::notify(osg::INFO) << "TRACK " << tr << ", BAR " << j << ", numBeats " << numBeats << " (position: " << stream.tellg() << ")\n";
 
-			if (numBeats < 0 || (strongChecks && numBeats > 128))  throw string("Track %1, bar %2, insane number of beats: %3");
+			if (numBeats < 0 || (strongChecks && numBeats > 128))  
+				throw string("Track %1, bar %2, insane number of beats: %3");
 
 			x = trk->c.size();
 			trk->c.resize(trk->c.size() + numBeats);
@@ -508,7 +514,8 @@ void ConvertGtp::readTabs()
 				if (beat_bitmask & 0x20) {
 					int tuple = readDelphiInteger();
 					osg::notify(osg::INFO) << "Tuple: " << tuple << "\n"; // GREYFIX: t for tuples
-					if (!(tuple == 3 || (tuple >= 5 && tuple <= 7) || (tuple >= 9 && tuple <= 13)))  throw string("Insane tuple t: %1");
+					if (!(tuple == 3 || (tuple >= 5 && tuple <= 7) || (tuple >= 9 && tuple <= 13)))  
+						throw string("Insane tuple t: %1");
 				}
 				
 				if (beat_bitmask & 0x02)     // Chord diagram
@@ -517,7 +524,7 @@ void ConvertGtp::readTabs()
 				}
 
 				if (beat_bitmask & 0x04) {
-					//osg::notify(osg::INFO) << "Text: " << readDelphiString() << "\n"; // GREYFIX: text with a beat
+					readDelphiString();
 				}  
 
 				// GREYFIX: column-wide effects
@@ -770,11 +777,13 @@ TabSong* ConvertGtp::load(string fileName)
 		//stream.read(st, 50);
 
 	 	numBars = readDelphiInteger();           // Number of bars
-		if (numBars <= 0 || (strongChecks && numBars > 16384))  throw string("Insane number of bars: %1");
+		if (numBars <= 0 || (strongChecks && numBars > 16384))  
+			throw string("Insane number of bars: %1");
 		osg::notify(osg::INFO) << "Bars: " << numBars << "\n";
 
 	 	numTracks = readDelphiInteger();         // Number of tracks
-		if (numTracks <= 0 || (strongChecks && numTracks > 32))  throw string("Insane number of tracks: %1");
+		if (numTracks <= 0 || (strongChecks && numTracks > 32))  
+			throw string("Insane number of tracks: %1");
 		osg::notify(osg::INFO) << "Tracks: " << numTracks << "\n";
 
 	 	readBarProperties();

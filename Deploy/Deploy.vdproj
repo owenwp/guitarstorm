@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_04A34912F06D4B4D936D0E3862D111D3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_087A557B8A324BB3860DA6787890BC3C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -33,13 +39,49 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_120127318774491C9064B190A103C2CF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_14330CD3FA00DA0E6D3F346C6323E8DA"
+        "OwnerKey" = "8:_97EAE327D0E444E198D82B8C3BC414C8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_14330CD3FA00DA0E6D3F346C6323E8DA"
+        "OwnerKey" = "8:_D6F2BC07CD034EA08E5F720081F77B17"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_217BCDAD710F5F6157280395B82643FB"
         "OwnerKey" = "8:_087A557B8A324BB3860DA6787890BC3C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_2E212F170AAD4732BEC11822A24CBDBA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2F2DB3EEC1AE4621A7F126662EC58426"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3022FFD605BE4D0EA9A4EB5A1F8BDB04"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_56CBA6C6787A4E5AAC85105CC90F88DE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -51,7 +93,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_67217EDF4DEE46A491BADF7DF202F4D5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_67234E84CFBB4FF5ABA22AB1EB987526"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_74AE66AF6C454490B256BF1D5AE05F4F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -59,6 +113,30 @@
         {
         "MsmKey" = "8:_8609E89A8B493AA19FE3F2FC61276F88"
         "OwnerKey" = "8:_087A557B8A324BB3860DA6787890BC3C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8F90AB5477ED499E99299D19D0665146"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_94E7CC61534B4E278FD4D19535247384"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_97EAE327D0E444E198D82B8C3BC414C8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B15003015BCB4ED08A7F64A0DC6E3F07"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -81,6 +159,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D6F2BC07CD034EA08E5F720081F77B17"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DD5EC5A87D42BBF9E15E26CCF01AAE03"
         "OwnerKey" = "8:_087A557B8A324BB3860DA6787890BC3C"
         "MsmSig" = "8:_UNDEFINED"
@@ -89,6 +173,36 @@
         {
         "MsmKey" = "8:_DEFC574BDDCA49CA99234CFA9517EA6E"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F515FEB5AAEB4BE989A7434C6F49B8B5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_14330CD3FA00DA0E6D3F346C6323E8DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2E212F170AAD4732BEC11822A24CBDBA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D6F2BC07CD034EA08E5F720081F77B17"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_97EAE327D0E444E198D82B8C3BC414C8"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -169,6 +283,14 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_A6E12FD87E9C47EC96585071082CDE29"
+                {
+                "Name" = "8:.NET Framework"
+                "Message" = "8:[VSDNETMSG]"
+                "Version" = "8:2.0.50727"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=9832"
+                }
             }
         }
         "File"
@@ -193,6 +315,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_04A34912F06D4B4D936D0E3862D111D3"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\osg25-osgUtil.dll"
+            "TargetName" = "8:osg25-osgUtil.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0DEFFA51E5B247D898E9C26E997B747A"
             {
             "SourcePath" = "8:..\\tabs\\Message in a Bottle.gp4"
@@ -211,6 +353,57 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_120127318774491C9064B190A103C2CF"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.CRT\\msvcr80.dll"
+            "TargetName" = "8:msvcr80.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_14330CD3FA00DA0E6D3F346C6323E8DA"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:MFCMIFC80, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_14330CD3FA00DA0E6D3F346C6323E8DA"
+                    {
+                    "Name" = "8:MFCMIFC80.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MFCMIFC80.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_217BCDAD710F5F6157280395B82643FB"
@@ -233,12 +426,83 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2E212F170AAD4732BEC11822A24CBDBA"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:msvcm80, Version=8.0.50727.762, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_2E212F170AAD4732BEC11822A24CBDBA"
+                    {
+                    "Name" = "8:msvcm80.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.CRT\\msvcm80.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2F2DB3EEC1AE4621A7F126662EC58426"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\osg25-osgDB.dll"
+            "TargetName" = "8:osg25-osgDB.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3022FFD605BE4D0EA9A4EB5A1F8BDB04"
             {
             "SourcePath" = "8:..\\tabs\\Iron Man.gp4"
             "TargetName" = "8:Iron Man.gp4"
             "Tag" = "8:"
             "Folder" = "8:_16613AC8CF644B8FB17630D6EB575DED"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56CBA6C6787A4E5AAC85105CC90F88DE"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\osgPlugins-2.2.0\\osgdb_freetype.dll"
+            "TargetName" = "8:osgdb_freetype.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_309EBD53626A49C086874EE9C2E6945A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -273,10 +537,50 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_67217EDF4DEE46A491BADF7DF202F4D5"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.MFC\\mfc80.dll"
+            "TargetName" = "8:mfc80.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_67234E84CFBB4FF5ABA22AB1EB987526"
             {
             "SourcePath" = "8:..\\README.txt"
             "TargetName" = "8:README.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_74AE66AF6C454490B256BF1D5AE05F4F"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.CRT\\msvcp80.dll"
+            "TargetName" = "8:msvcp80.dll"
             "Tag" = "8:"
             "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
             "Condition" = "8:"
@@ -311,6 +615,97 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F90AB5477ED499E99299D19D0665146"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\osg25-osgFX.dll"
+            "TargetName" = "8:osg25-osgFX.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_94E7CC61534B4E278FD4D19535247384"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.CRT\\Microsoft.VC80.CRT.manifest"
+            "TargetName" = "8:Microsoft.VC80.CRT.manifest"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_97EAE327D0E444E198D82B8C3BC414C8"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MFCM80, Version=8.0.50727.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_97EAE327D0E444E198D82B8C3BC414C8"
+                    {
+                    "Name" = "8:mfcm80.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.MFC\\mfcm80.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B15003015BCB4ED08A7F64A0DC6E3F07"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.MFC\\Microsoft.VC80.MFC.manifest"
+            "TargetName" = "8:Microsoft.VC80.MFC.manifest"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BBCBF88220302CB120B7AB9720773E28"
@@ -373,6 +768,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D6F2BC07CD034EA08E5F720081F77B17"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MFCM80U, Version=8.0.50727.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_D6F2BC07CD034EA08E5F720081F77B17"
+                    {
+                    "Name" = "8:mfcm80u.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.MFC\\mfcm80u.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DD5EC5A87D42BBF9E15E26CCF01AAE03"
             {
             "SourcePath" = "8:portaudio_x86.dll"
@@ -413,6 +839,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F515FEB5AAEB4BE989A7434C6F49B8B5"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.MFC\\mfc80u.dll"
+            "TargetName" = "8:mfc80u.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -436,6 +882,17 @@
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_3DA6F5A54D4C4CC1B1D0DD56BD44305D"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_309EBD53626A49C086874EE9C2E6945A"
+                    {
+                    "Name" = "8:osgPlugins-2.2.0"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_392BC2EAC9E44B79A96678D5D086428C"
                         "Folders"
                         {
                         }
@@ -491,7 +948,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Guitar Storm"
         "ProductCode" = "8:{C43F3426-4ACA-4093-A6DB-EE429FFD16F9}"
-        "PackageCode" = "8:{4CBE95F1-9465-42CB-AD88-C12C43E71E43}"
+        "PackageCode" = "8:{547303E5-2682-4615-9372-BEEE71FCB71C}"
         "UpgradeCode" = "8:{6AC689BB-814F-42FC-84A9-3F59DF2B5D72}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"

@@ -469,7 +469,7 @@ bool Notes::setSong(std::string name)
         scoreText = new osgText::Text;
         scoreText->setFont("fonts/arial.ttf");
         scoreText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
-        scoreText->setCharacterSize(1.5f);
+        scoreText->setCharacterSize(1.0f);
         scoreText->setPosition(osg::Vec3(3.0f,0.0f,-8.0f));
 		scoreText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
         scoreText->setDrawMode(osgText::Text::TEXT);

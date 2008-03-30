@@ -64,7 +64,7 @@ void SongPick::CreateList()
         trackText->setFont("fonts/arial.ttf");
         trackText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
         trackText->setCharacterSize(1.5f);
-        trackText->setPosition(osg::Vec3(-4.0f,1.0f,4.0f));
+        trackText->setPosition(osg::Vec3(-8.0f,1.0f,4.0f));
 		trackText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
         trackText->setDrawMode(osgText::Text::TEXT);
 		trackText->setAlignment(osgText::Text::LEFT_TOP);
@@ -93,7 +93,7 @@ void SongPick::CreateList()
 			trackText->setFont("fonts/arial.ttf");
 			trackText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
 			trackText->setCharacterSize(1.0f);
-			trackText->setPosition(osg::Vec3(-4.0f,1.0f,2.0f - select));
+			trackText->setPosition(osg::Vec3(-8.0f,1.0f,2.0f - select));
 			trackText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
 			trackText->setDrawMode(osgText::Text::TEXT);
 			trackText->setAlignment(osgText::Text::LEFT_CENTER);
@@ -113,7 +113,7 @@ void SongPick::CreateList()
 		cursor->setFont("fonts/arial.ttf");
 		cursor->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
 		cursor->setCharacterSize(1.0f);
-		cursor->setPosition(osg::Vec3(-5.0f,1.0f,2.0f - select));
+		cursor->setPosition(osg::Vec3(-9.0f,1.0f,2.0f - select));
 		cursor->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
 		cursor->setDrawMode(osgText::Text::TEXT);
 		cursor->setAlignment(osgText::Text::LEFT_CENTER);
@@ -150,7 +150,7 @@ void SongPick::pick(int p)
 		p = dir->files.size()-1;
 
 	select = p;
-	cursor->setPosition(osg::Vec3(-5.0f,1.0f,2.0f - select));
+	cursor->setPosition(osg::Vec3(-9.0f,1.0f,2.0f - select));
 }
 
 void SongPick::error()

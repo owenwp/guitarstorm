@@ -178,7 +178,8 @@ void Capture::start()
 	memset(ringBuffer, 0, rblen);
 
     err = Pa_Initialize();
-    if( err != paNoError ) throw string("Audio failed to initialize");
+    if( err != paNoError ) 
+		throw string("Audio failed to initialize");
 
     //printf("Please connect audio signal to input and listen for it on output!\n");
     //printf("input format = %lu\n", INPUT_FORMAT );
@@ -210,18 +211,18 @@ void Capture::start()
     PaStreamParameters inputParameters, outputParameters;
    
     inputParameters.device = INPUT_DEVICE;              /* default input device */
-    if (inputParameters.device == paNoDevice) {
+    if (inputParameters.device == paNoDevice) 
         throw string("No ASIO Input Device Detected");
-    }
+    
     inputParameters.channelCount = config.numInputChannels;
     inputParameters.sampleFormat = INPUT_FORMAT | (config.isInputInterleaved ? 0 : paNonInterleaved);
     inputParameters.suggestedLatency = Pa_GetDeviceInfo( inputParameters.device )->defaultLowInputLatency;
     inputParameters.hostApiSpecificStreamInfo = NULL;
 
     outputParameters.device = OUTPUT_DEVICE;            /* default output device */
-    if (outputParameters.device == paNoDevice) {
+    if (outputParameters.device == paNoDevice) 
        throw string("No ASIO Output Device Detected");
-    }
+    
     outputParameters.channelCount = config.numOutputChannels;
     outputParameters.sampleFormat = OUTPUT_FORMAT | (config.isOutputInterleaved ? 0 : paNonInterleaved);
     outputParameters.suggestedLatency = Pa_GetDeviceInfo( outputParameters.device )->defaultLowOutputLatency;
@@ -236,7 +237,8 @@ void Capture::start()
               paClipOff, /* we won't output out of range samples so don't bother clipping them */
 			  this->wireCallback,
               this );
-    if( err != paNoError ) throw string("Failed to open stream");
+    if( err != paNoError )
+		throw string("Failed to open stream");
     
     err = Pa_StartStream( stream );
 }

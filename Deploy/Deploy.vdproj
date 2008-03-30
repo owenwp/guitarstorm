@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_11EC55F2242B4F5CB5478B5691649EC1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_120127318774491C9064B190A103C2CF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -190,12 +196,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2E212F170AAD4732BEC11822A24CBDBA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D6F2BC07CD034EA08E5F720081F77B17"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -203,6 +203,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_97EAE327D0E444E198D82B8C3BC414C8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2E212F170AAD4732BEC11822A24CBDBA"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -341,6 +347,26 @@
             "TargetName" = "8:Message in a Bottle.gp4"
             "Tag" = "8:"
             "Folder" = "8:_16613AC8CF644B8FB17630D6EB575DED"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_11EC55F2242B4F5CB5478B5691649EC1"
+            {
+            "SourcePath" = "8:..\\Icon.ico"
+            "TargetName" = "8:Icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1078,7 +1104,7 @@
             "Target" = "8:_087A557B8A324BB3860DA6787890BC3C"
             "Folder" = "8:_BAA17E29D55448638AADD625F91A88B7"
             "WorkingFolder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
-            "Icon" = "8:"
+            "Icon" = "8:_11EC55F2242B4F5CB5478B5691649EC1"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B38A5CEAC0504474A824E60EFDEE1E2F"

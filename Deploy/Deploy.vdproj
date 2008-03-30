@@ -451,6 +451,17 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_BAA17E29D55448638AADD625F91A88B7"
+                    {
+                    "Name" = "8:Guitar Storm"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_5CACF4C8792D44EC9C9DF73CAB1F85FB"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_BDC2F2CA6D3B43ECA7E97C7660ABE286"
@@ -480,7 +491,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Guitar Storm"
         "ProductCode" = "8:{C43F3426-4ACA-4093-A6DB-EE429FFD16F9}"
-        "PackageCode" = "8:{6D62A917-9E8E-473B-A665-E19F0B0B21B3}"
+        "PackageCode" = "8:{4CBE95F1-9465-42CB-AD88-C12C43E71E43}"
         "UpgradeCode" = "8:{6AC689BB-814F-42FC-84A9-3F59DF2B5D72}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -608,7 +619,7 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_087A557B8A324BB3860DA6787890BC3C"
-            "Folder" = "8:_95524FF747624492AFB9CBF43AD18098"
+            "Folder" = "8:_BAA17E29D55448638AADD625F91A88B7"
             "WorkingFolder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
             "Icon" = "8:"
             "Feature" = "8:"
@@ -622,7 +633,7 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_67234E84CFBB4FF5ABA22AB1EB987526"
-            "Folder" = "8:_95524FF747624492AFB9CBF43AD18098"
+            "Folder" = "8:_BAA17E29D55448638AADD625F91A88B7"
             "WorkingFolder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
             "Icon" = "8:"
             "Feature" = "8:"

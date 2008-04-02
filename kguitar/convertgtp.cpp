@@ -32,6 +32,7 @@ string ConvertGtp::readDelphiString()
 	int maxl = readDelphiInteger();
 	if (stream.eof())  
 		throw string("readDelphiString: EOF");
+
 	l = readChar();
 
 	if (maxl != l + 1)  

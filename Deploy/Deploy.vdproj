@@ -51,26 +51,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_14330CD3FA00DA0E6D3F346C6323E8DA"
-        "OwnerKey" = "8:_97EAE327D0E444E198D82B8C3BC414C8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_14330CD3FA00DA0E6D3F346C6323E8DA"
-        "OwnerKey" = "8:_D6F2BC07CD034EA08E5F720081F77B17"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_217BCDAD710F5F6157280395B82643FB"
         "OwnerKey" = "8:_087A557B8A324BB3860DA6787890BC3C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2E212F170AAD4732BEC11822A24CBDBA"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,12 +64,6 @@
         "Entry"
         {
         "MsmKey" = "8:_3022FFD605BE4D0EA9A4EB5A1F8BDB04"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_56CBA6C6787A4E5AAC85105CC90F88DE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -105,12 +81,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_67234E84CFBB4FF5ABA22AB1EB987526"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_74AE66AF6C454490B256BF1D5AE05F4F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -119,6 +89,12 @@
         {
         "MsmKey" = "8:_8609E89A8B493AA19FE3F2FC61276F88"
         "OwnerKey" = "8:_087A557B8A324BB3860DA6787890BC3C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -135,7 +111,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_97EAE327D0E444E198D82B8C3BC414C8"
+        "MsmKey" = "8:_A09132977120474B839D52D31A618449"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -165,12 +141,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D6F2BC07CD034EA08E5F720081F77B17"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DD5EC5A87D42BBF9E15E26CCF01AAE03"
         "OwnerKey" = "8:_087A557B8A324BB3860DA6787890BC3C"
         "MsmSig" = "8:_UNDEFINED"
@@ -183,32 +153,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F515FEB5AAEB4BE989A7434C6F49B8B5"
+        "MsmKey" = "8:_F0491AF2274B4D3994BB5B04C34AD5DA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_14330CD3FA00DA0E6D3F346C6323E8DA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D6F2BC07CD034EA08E5F720081F77B17"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_97EAE327D0E444E198D82B8C3BC414C8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2E212F170AAD4732BEC11822A24CBDBA"
+        "MsmKey" = "8:_F515FEB5AAEB4BE989A7434C6F49B8B5"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -289,14 +241,6 @@
         {
             "LaunchCondition"
             {
-                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_A6E12FD87E9C47EC96585071082CDE29"
-                {
-                "Name" = "8:.NET Framework"
-                "Message" = "8:[VSDNETMSG]"
-                "Version" = "8:2.0.50727"
-                "AllowLaterVersions" = "11:FALSE"
-                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=9832"
-                }
             }
         }
         "File"
@@ -401,37 +345,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_14330CD3FA00DA0E6D3F346C6323E8DA"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:MFCMIFC80, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_14330CD3FA00DA0E6D3F346C6323E8DA"
-                    {
-                    "Name" = "8:MFCMIFC80.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MFCMIFC80.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_217BCDAD710F5F6157280395B82643FB"
             {
             "SourcePath" = "8:osg25-osg.dll"
@@ -450,37 +363,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2E212F170AAD4732BEC11822A24CBDBA"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:msvcm80, Version=8.0.50727.762, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_2E212F170AAD4732BEC11822A24CBDBA"
-                    {
-                    "Name" = "8:msvcm80.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.CRT\\msvcm80.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2F2DB3EEC1AE4621A7F126662EC58426"
@@ -523,26 +405,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56CBA6C6787A4E5AAC85105CC90F88DE"
-            {
-            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\osgPlugins-2.2.0\\osgdb_freetype.dll"
-            "TargetName" = "8:osgdb_freetype.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_309EBD53626A49C086874EE9C2E6945A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_614E066D7E1C492B894F92C65C26604F"
             {
             "SourcePath" = "8:..\\tabs\\My Iron Lung.gp4"
@@ -567,26 +429,6 @@
             {
             "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.MFC\\mfc80.dll"
             "TargetName" = "8:mfc80.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_67234E84CFBB4FF5ABA22AB1EB987526"
-            {
-            "SourcePath" = "8:..\\README.txt"
-            "TargetName" = "8:README.txt"
             "Tag" = "8:"
             "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
             "Condition" = "8:"
@@ -643,6 +485,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8E706F6D1BA244FEB276ACFBB490E29D"
+            {
+            "SourcePath" = "8:banner.jpg"
+            "TargetName" = "8:banner.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F90AB5477ED499E99299D19D0665146"
             {
             "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\osg25-osgFX.dll"
@@ -683,21 +545,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_97EAE327D0E444E198D82B8C3BC414C8"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A09132977120474B839D52D31A618449"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MFCM80, Version=8.0.50727.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_97EAE327D0E444E198D82B8C3BC414C8"
-                    {
-                    "Name" = "8:mfcm80.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.MFC\\mfcm80.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\README.rtf"
+            "TargetName" = "8:README.rtf"
             "Tag" = "8:"
             "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
             "Condition" = "8:"
@@ -794,37 +645,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D6F2BC07CD034EA08E5F720081F77B17"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MFCM80U, Version=8.0.50727.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_D6F2BC07CD034EA08E5F720081F77B17"
-                    {
-                    "Name" = "8:mfcm80u.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\Microsoft.VC80.MFC\\mfcm80u.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DD5EC5A87D42BBF9E15E26CCF01AAE03"
             {
             "SourcePath" = "8:portaudio_x86.dll"
@@ -849,6 +669,26 @@
             {
             "SourcePath" = "8:..\\gpl.txt"
             "TargetName" = "8:gpl.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F0491AF2274B4D3994BB5B04C34AD5DA"
+            {
+            "SourcePath" = "8:C:\\Program Files\\OpenSceneGraph\\bin\\osgPlugins-2.2.0\\osgdb_freetype.dll"
+            "TargetName" = "8:osgdb_freetype.dll"
             "Tag" = "8:"
             "Folder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
             "Condition" = "8:"
@@ -912,17 +752,6 @@
                         {
                         }
                     }
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_309EBD53626A49C086874EE9C2E6945A"
-                    {
-                    "Name" = "8:osgPlugins-2.2.0"
-                    "AlwaysCreate" = "11:FALSE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_392BC2EAC9E44B79A96678D5D086428C"
-                        "Folders"
-                        {
-                        }
-                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_95524FF747624492AFB9CBF43AD18098"
@@ -974,7 +803,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Guitar Storm"
         "ProductCode" = "8:{C43F3426-4ACA-4093-A6DB-EE429FFD16F9}"
-        "PackageCode" = "8:{547303E5-2682-4615-9372-BEEE71FCB71C}"
+        "PackageCode" = "8:{9C075E0C-BB9D-4F99-A36F-3B9D9E126B2B}"
         "UpgradeCode" = "8:{6AC689BB-814F-42FC-84A9-3F59DF2B5D72}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -990,7 +819,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:http://zombieprocess.org"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_11EC55F2242B4F5CB5478B5691649EC1"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -1107,7 +936,7 @@
             "Icon" = "8:_11EC55F2242B4F5CB5478B5691649EC1"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B38A5CEAC0504474A824E60EFDEE1E2F"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A820F6C1E51843A192FE8E39BE31ED42"
             {
             "Name" = "8:ReadMe"
             "Arguments" = "8:"
@@ -1115,7 +944,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_67234E84CFBB4FF5ABA22AB1EB987526"
+            "Target" = "8:_A09132977120474B839D52D31A618449"
             "Folder" = "8:_BAA17E29D55448638AADD625F91A88B7"
             "WorkingFolder" = "8:_7988F7B446A640B4BCAE5E6F55506E38"
             "Icon" = "8:"
@@ -1148,7 +977,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -1179,7 +1009,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -1223,7 +1054,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -1267,7 +1099,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -1296,7 +1129,7 @@
                 {
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_25267BE0DF61445DBE0C2E0DD219029F"
                     {
-                    "Sequence" = "3:200"
+                    "Sequence" = "3:300"
                     "DisplayName" = "8:Installation Folder"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -1311,14 +1144,15 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_4E1138C4784446B2B6EADFF7178B3E87"
                     {
-                    "Sequence" = "3:300"
+                    "Sequence" = "3:400"
                     "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -1333,7 +1167,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -1355,7 +1190,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -1366,8 +1202,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1202"
+                            "Setting" = "3:2"
+                            "Value" = "8:Guitar Storm © Zombie Process, Licensed under the GNU GPLv3."
                             "DefaultValue" = "8:#1202"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -1382,6 +1218,54 @@
                             "Setting" = "3:1"
                             "Value" = "8:#1203"
                             "DefaultValue" = "8:#1203"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_52148B1EB90B43E7BC1CF4045022BEFD"
+                    {
+                    "Sequence" = "3:200"
+                    "DisplayName" = "8:Read Me"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminReadmeDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "ReadmeText"
+                            {
+                            "Name" = "8:ReadmeText"
+                            "DisplayName" = "8:#1010"
+                            "Description" = "8:#1110"
+                            "Type" = "3:6"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:_A09132977120474B839D52D31A618449"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Sunken"
+                            {
+                            "Name" = "8:Sunken"
+                            "DisplayName" = "8:#1007"
+                            "Description" = "8:#1107"
+                            "Type" = "3:5"
+                            "ContextData" = "8:4;True=4;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:4"
+                            "DefaultValue" = "3:4"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -1418,7 +1302,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -1429,8 +1314,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1202"
+                            "Setting" = "3:2"
+                            "Value" = "8:Guitar Storm © Zombie Process, Licensed under the GNU GPLv3."
                             "DefaultValue" = "8:#1202"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -1451,7 +1336,7 @@
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_80D3723561A2463AA7295096790C9F3F"
                     {
-                    "Sequence" = "3:200"
+                    "Sequence" = "3:300"
                     "DisplayName" = "8:Installation Folder"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -1466,7 +1351,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -1486,7 +1372,7 @@
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_8892CA267C5F42CC93306F36C2642DD9"
                     {
-                    "Sequence" = "3:300"
+                    "Sequence" = "3:400"
                     "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -1501,7 +1387,56 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_FCFD187F04F848B9928F95FEC0CFEBEF"
+                    {
+                    "Sequence" = "3:200"
+                    "DisplayName" = "8:Read Me"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdReadmeDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:2"
+                            "Value" = "8:_8E706F6D1BA244FEB276ACFBB490E29D"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "ReadmeText"
+                            {
+                            "Name" = "8:ReadmeText"
+                            "DisplayName" = "8:#1010"
+                            "Description" = "8:#1110"
+                            "Type" = "3:6"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:_A09132977120474B839D52D31A618449"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Sunken"
+                            {
+                            "Name" = "8:Sunken"
+                            "DisplayName" = "8:#1007"
+                            "Description" = "8:#1107"
+                            "Type" = "3:5"
+                            "ContextData" = "8:4;True=4;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:4"
+                            "DefaultValue" = "3:4"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }

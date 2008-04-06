@@ -81,7 +81,9 @@ int main(int argc, char **argv)
 	notes->scorer = new Scorer(cap);
 	try 
 	{
+#ifndef _DEBUG
 		cap->start();
+#endif
 	}
 	catch(string err)
 	{

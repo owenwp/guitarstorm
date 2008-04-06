@@ -804,12 +804,14 @@ TabSong* ConvertGtp::load(string fileName)
 	{
 		osg::notify(osg::WARN) << "Error loading Tab: " << msg;
 		stream.close();
+		stream.clear();
 		return NULL;
 	}
 	catch ( exception e )
 	{
 		osg::notify(osg::WARN) << "Error loading Tab: " << e.what();
 		stream.close();
+		stream.clear();
 		return NULL;
 	}
 

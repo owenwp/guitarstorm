@@ -17,10 +17,13 @@
 */
 #include "Directory.h"
 #include <dirent.h>
+#include <sys/stat.h>
+#include <iostream>
+#include <errno.h>
 
 // relative location of resource files
-#ifdef MACOSX
-string Directory::resdir = "../resources/";
+#if MACOSX
+string Directory::resdir = "guitarstorm.app/Contents/Resources/";
 #else
 string Directory::resdir = "";
 #endif
@@ -28,5 +31,49 @@ string Directory::resdir = "";
 // fill the contents map with all of the files in the given directory
 Directory::Directory(string n)
 {
-#error POSIX Directory not implemented
+	long size = pathconf(".", _PC_PATH_MAX);
+	char *buf;
+	if ((buf = (char *)malloc((size_t)size)) != NULL) {
+		getcwd(buf, (size_t)size);
+		cout << buf << endl;
+		free(buf);
+	}
+
+
+	cout << "Directory: " << (resdir + n) << endl; 
+	DIR *dirp = opendir((resdir + n).c_str());
+	if(dirp != NULL)
+	{
+		struct dirent *dp = NULL;
+		
+		while((dp = readdir(dirp)) != NULL)
+		{
+			struct stat file_stats;
+			
+			string name(dp->d_name);
+			
+			cout << (resdir + n + "/" + name) << endl;
+			
+			if(name == "." || name == "..")
+				continue;
+			
+			if(stat((resdir + n + "/" + name).c_str(), &file_stats) == 0)
+			{
+				if(S_ISDIR(file_stats.st_mode))
+				{
+					string path = n + "/" + name;
+					Directory dir(path);
+					dirs[name] = dir;
+				}
+				else
+				{
+					cout << "Adding " << name << endl;
+					files[name] = resdir + n + "/" + name;
+				}
+			}
+			
+		}
+		
+		closedir(dirp);
+	}
 }

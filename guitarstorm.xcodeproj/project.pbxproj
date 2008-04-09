@@ -19,6 +19,8 @@
 		1F9A4951082D65C40032CDE9 /* osgUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9A4950082D65C40032CDE9 /* osgUtil.framework */; };
 		1FD8F432088C87A500B4318C /* osgIntrospection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8F431088C87A500B4318C /* osgIntrospection.framework */; };
 		1FF6110B082F118D004EB1E4 /* osgViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF61109082F118D004EB1E4 /* osgViewer.framework */; };
+		3C671B690DAC55650062B480 /* SongPick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C671B670DAC55650062B480 /* SongPick.cpp */; };
+		3C671B6E0DAC557C0062B480 /* Directory_posix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C671B6C0DAC557C0062B480 /* Directory_posix.cpp */; };
 		3CCF0FC90D86E13B003173B5 /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC00D86E13B003173B5 /* Capture.cpp */; };
 		3CCF0FCA0D86E13B003173B5 /* GuitarMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC20D86E13B003173B5 /* GuitarMain.cpp */; };
 		3CCF0FCB0D86E13B003173B5 /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC30D86E13B003173B5 /* Keyboard.cpp */; };
@@ -60,6 +62,10 @@
 		1FF61109082F118D004EB1E4 /* osgViewer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgViewer.framework; path = /Library/Frameworks/osgViewer.framework; sourceTree = "<absolute>"; };
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		32DBCF6D0370B57F00C91783 /* guitarstorm_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guitarstorm_Prefix.pch; sourceTree = "<group>"; };
+		3C671B670DAC55650062B480 /* SongPick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SongPick.cpp; sourceTree = "<group>"; };
+		3C671B680DAC55650062B480 /* SongPick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongPick.h; sourceTree = "<group>"; };
+		3C671B6B0DAC557C0062B480 /* Directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Directory.h; sourceTree = "<group>"; };
+		3C671B6C0DAC557C0062B480 /* Directory_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Directory_posix.cpp; sourceTree = "<group>"; };
 		3CCF0FC00D86E13B003173B5 /* Capture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Capture.cpp; sourceTree = "<group>"; };
 		3CCF0FC10D86E13B003173B5 /* Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capture.h; sourceTree = "<group>"; };
 		3CCF0FC20D86E13B003173B5 /* GuitarMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarMain.cpp; sourceTree = "<group>"; };
@@ -168,6 +174,9 @@
 		20286C2AFDCF999611CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3C671B6A0DAC557C0062B480 /* utilities */,
+				3C671B670DAC55650062B480 /* SongPick.cpp */,
+				3C671B680DAC55650062B480 /* SongPick.h */,
 				3CCF0FED0D86E191003173B5 /* portaudio */,
 				3CCF0FCF0D86E149003173B5 /* kguitar */,
 				3CCF0FCE0D86E143003173B5 /* fft */,
@@ -209,6 +218,15 @@
 				20286C33FDCF999611CA2CEA /* Carbon.framework */,
 			);
 			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		3C671B6A0DAC557C0062B480 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3C671B6B0DAC557C0062B480 /* Directory.h */,
+				3C671B6C0DAC557C0062B480 /* Directory_posix.cpp */,
+			);
+			path = utilities;
 			sourceTree = "<group>";
 		};
 		3CCF0FCE0D86E143003173B5 /* fft */ = {
@@ -319,6 +337,8 @@
 				3CCF0FE90D86E16E003173B5 /* tabtrack.cpp in Sources */,
 				3CCF10340D86EA11003173B5 /* fourier.cpp in Sources */,
 				3CCF10350D86EA11003173B5 /* fft.cpp in Sources */,
+				3C671B690DAC55650062B480 /* SongPick.cpp in Sources */,
+				3C671B6E0DAC557C0062B480 /* Directory_posix.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,9 +392,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = guitarstorm_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					__USE_OSX_AGL_IMPLEMENTATION__,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = __USE_OSX_AGL_IMPLEMENTATION__;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -383,6 +401,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/portaudio\"";
+				OTHER_CFLAGS = "-DMACOSX";
 				PREBINDING = NO;
 				PRODUCT_NAME = guitarstorm;
 				WRAPPER_EXTENSION = app;
@@ -398,9 +417,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = guitarstorm_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					__USE_OSX_AGL_IMPLEMENTATION__,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = __USE_OSX_AGL_IMPLEMENTATION__;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -409,6 +426,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/portaudio\"";
+				OTHER_CFLAGS = "-DMACOSX";
 				PRODUCT_NAME = guitarstorm;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
@@ -421,9 +439,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = guitarstorm_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					__USE_OSX_AGL_IMPLEMENTATION__,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = __USE_OSX_AGL_IMPLEMENTATION__;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -432,6 +448,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/portaudio\"";
+				OTHER_CFLAGS = "-DMACOSX";
 				PRODUCT_NAME = guitarstorm;
 				WRAPPER_EXTENSION = app;
 			};

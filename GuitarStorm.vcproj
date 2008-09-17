@@ -15,7 +15,7 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug|Win32"
+			Name="Debug NoAudio|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
@@ -39,7 +39,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32"
+				PreprocessorDefinitions="WIN32;NOAUDIO"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -58,7 +58,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="portaudio_x86.lib OpenThreadsd.lib osgd.lib osgDBd.lib osgUtild.lib osgGAd.lib osgViewerd.lib osgTextd.lib osgFXd.lib $(NOINHERIT)"
+				AdditionalDependencies="portaudio_x86.lib libmad.lib libid3tag.lib zlib.lib OpenThreadsd.lib osgd.lib osgDBd.lib osgUtild.lib osgGAd.lib osgViewerd.lib osgTextd.lib osgFXd.lib $(NOINHERIT)"
+				IgnoreAllDefaultLibraries="false"
+				IgnoreDefaultLibraryNames="LIBCMTD.lib;LIBCMT.lib"
 				DelayLoadDLLs=""
 				GenerateDebugInformation="true"
 				TargetMachine="1"
@@ -130,7 +132,157 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="portaudio_x86.lib OpenThreads.lib osg.lib osgDB.lib osgUtil.lib osgGA.lib osgViewer.lib osgText.lib osgFX.lib"
+				AdditionalDependencies="portaudio_x86.lib libmad.lib libid3tag.lib zlib.lib OpenThreads.lib osg.lib osgDB.lib osgUtil.lib osgGA.lib osgViewer.lib osgText.lib osgFX.lib"
+				IgnoreDefaultLibraryNames="LIBCMTD.lib"
+				GenerateDebugInformation="true"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="WIN32"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="portaudio_x86.lib libmad.lib libid3tag.lib zlib.lib OpenThreads.lib osg.lib osgDB.lib osgUtil.lib osgGA.lib osgViewer.lib osgText.lib osgFX.lib"
+				IgnoreDefaultLibraryNames="LIBCMTD.lib;LIBCMT.lib"
+				DelayLoadDLLs=""
+				GenerateDebugInformation="true"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release NoAudio|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				PreprocessorDefinitions="WIN32;NOAUDIO"
+				RuntimeLibrary="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="portaudio_x86.lib libmad.lib libid3tag.lib zlib.lib libid3tag.lib OpenThreads.lib osg.lib osgDB.lib osgUtil.lib osgGA.lib osgViewer.lib osgText.lib osgFX.lib"
+				IgnoreDefaultLibraryNames="LIBCMTD.lib"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -166,24 +318,34 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Source Files"
-			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			Name="graphics"
 			>
 			<File
-				RelativePath=".\Capture.cpp"
+				RelativePath=".\LineSprite.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\GuitarMain.cpp"
+				RelativePath=".\LineSprite.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Keyboard.cpp"
+				RelativePath=".\Sprite.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Notes.cpp"
+				RelativePath=".\Sprite.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="game"
+			>
+			<File
+				RelativePath=".\Guitar.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Guitar.h"
 				>
 			</File>
 			<File
@@ -191,33 +353,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SongPick.cpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
-			>
-			<File
-				RelativePath=".\Capture.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Keyboard.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Notes.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Scorer.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SongPick.h"
+				RelativePath=".\Song.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Song.h"
 				>
 			</File>
 		</Filter>
@@ -318,7 +462,163 @@
 				RelativePath=".\utilities\Directory_win.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\utilities\FileCopy.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\utilities\FileCopy.h"
+				>
+			</File>
 		</Filter>
+		<Filter
+			Name="samplerate"
+			>
+			<File
+				RelativePath=".\samplerate\common.h"
+				>
+			</File>
+			<File
+				RelativePath=".\samplerate\config.h"
+				>
+			</File>
+			<File
+				RelativePath=".\samplerate\fastest_coeffs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\samplerate\float_cast.h"
+				>
+			</File>
+			<File
+				RelativePath=".\samplerate\high_qual_coeffs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\samplerate\mid_qual_coeffs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\samplerate\samplerate.c"
+				>
+			</File>
+			<File
+				RelativePath=".\samplerate\samplerate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\samplerate\src_linear.c"
+				>
+			</File>
+			<File
+				RelativePath=".\samplerate\src_sinc.c"
+				>
+			</File>
+			<File
+				RelativePath=".\samplerate\src_zoh.c"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="menus"
+			>
+			<File
+				RelativePath=".\FilePick.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\FilePick.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Input.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Input.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Menu.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Menu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Options.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Options.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SongEditMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SongEditMenu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SongListItem.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SongListItem.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SongPlayMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SongPlayMenu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TunerMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\TunerMenu.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="audio"
+			>
+			<File
+				RelativePath=".\Audio.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Audio.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Backing.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Backing.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Tuner.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Tuner.h"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath=".\GuitarMain.cpp"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

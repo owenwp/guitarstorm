@@ -318,6 +318,9 @@ void ConvertGtp::readBarProperties()
 
 	for (int i = 0; i < numBars; i++) 
 	{
+		bool begin = false;
+		int end = 0;
+
 		bar_bitmask = readChar();                   // bar property bitmask
 		if (bar_bitmask != 0)
 			osg::notify(osg::INFO) << "BAR #" << i << " - flags " << (int) bar_bitmask << "\n";
@@ -335,11 +338,13 @@ void ConvertGtp::readBarProperties()
 		}
 		// GREYFIX: begin repeat
 		if (bar_bitmask & 0x04) {
+			begin = true;
 			osg::notify(osg::INFO) << "begin repeat\n";
 		}
 		// GREYFIX: number_of_repeats
 		if (bar_bitmask & 0x08) {
 			num = readChar();
+			end = num;
 			osg::notify(osg::INFO) << "end repeat " << (int) num << "x\n";
 		}
 		// GREYFIX: alternative_ending_to
@@ -369,6 +374,8 @@ void ConvertGtp::readBarProperties()
 		bars[i].time2 = time1;
 		bars[i].keysig = keysig;
 		bars[i].section = text;
+		bars[i].begin = begin;
+		bars[i].end = end;
 	}
 	osg::notify(osg::INFO) << "readBarProperties(): end\n";
 }
@@ -485,6 +492,8 @@ void ConvertGtp::readTabs()
 			trk->b[j].start = x;
 			trk->b[j].notes = numBeats;
 			trk->b[j].tempo = -1;
+			trk->b[j].begin = bars[j].begin;
+			trk->b[j].end = bars[j].end;
 
 			for (int k = 0; k < numBeats; k++) {
 				trk->c[x].flags = 0;
@@ -644,6 +653,7 @@ void ConvertGtp::readColumnEffects(vector<TabTrack>::iterator &trk, int x)
 void ConvertGtp::readNote(vector<TabTrack>::iterator &trk, int x, int y)
 {
 	char note_bitmask, variant, num, mod_mask1, mod_mask2;
+	bool dotted = false;
 
 	note_bitmask = readChar();               // note bitmask
 	variant = readChar();                    // variant
@@ -657,7 +667,10 @@ void ConvertGtp::readNote(vector<TabTrack>::iterator &trk, int x, int y)
 		num = readChar();                    // t
 	}
 
-	if (note_bitmask & 0x02) {};             // GREYFIX: note is dotted
+	if (note_bitmask & 0x02)  // GREYFIX: note is dotted
+	{
+		dotted = true;
+	}            
 
 	if (note_bitmask & 0x10) {               // GREYFIX: dynamic
 		num = readChar();

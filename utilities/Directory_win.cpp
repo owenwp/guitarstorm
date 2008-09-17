@@ -17,36 +17,74 @@
 */
 #include "Directory.h"
 #include <windows.h>
+#include <direct.h>
 
 // relative location of resource files
-string Directory::resdir = "";
+const string res = "";
 
 // fill the contents map with all of the files in the given directory
-Directory::Directory(string n)
+void Directory::Load()
 {
 	WIN32_FIND_DATA FindData;
     HANDLE hFind;
 
-	hFind = FindFirstFile((resdir + n + "\\*.*").c_str(), &FindData);
+	if(path.length())
+	{
+		if(path[0] != '/')
+			resdir = res;
 
-	if (hFind != INVALID_HANDLE_VALUE) 
-	{ 
-		do
-		{
-			_strlwr_s(FindData.cFileName); 
-			string fileName(FindData.cFileName); 
-			string path = n+"/"+fileName;
+		hFind = FindFirstFile((resdir+ path + "\\*.*").c_str(), &FindData);
 
-			if (FindData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) 
-			{ 
-				if (fileName != "." && fileName != "..") 
-					dirs[fileName] = Directory(path);
-			} 
-			else 
-			{ 
-				files[fileName] = resdir + path;
-			} 
+		if (hFind != INVALID_HANDLE_VALUE) 
+		{ 
+			do
+			{
+				_strlwr_s(FindData.cFileName); 
+				string fileName(FindData.cFileName); 
+				string p = path+"/"+fileName;
+
+				if(FindData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN)
+				{
+					// do nothing
+				}
+				else if (FindData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) 
+				{ 
+					// create the folder structure, but do not load its contents
+					if (fileName[0] != '.') 
+						dirs[fileName] = Directory(p, false);
+				} 
+				else 
+				{ 
+					files[fileName.substr(0, fileName.find("."))] = resdir + p;
+				} 
+				
+			}
+			while(FindNextFile(hFind, &FindData));
 		}
-		while(FindNextFile(hFind, &FindData));
+		else
+		{
+			_mkdir(Path().c_str());
+		}
+	}
+	else
+	{
+		// windows root, display list of disk volumes
+		const int bufsize = 512;
+		TCHAR buffer[bufsize];
+		TCHAR* drives = buffer;
+        drives[0] = '\0';
+		GetLogicalDriveStrings(bufsize, buffer);
+
+		while(drives[0])
+		{
+			char letter = tolower(drives[0]);
+			TCHAR namebuf[bufsize];
+			namebuf[0] = '\0';
+			// volume info call is really slow, not worth it
+			//GetVolumeInformation(drives, namebuf, bufsize, NULL, NULL, NULL, NULL, 0);
+			string name(namebuf);
+			dirs[string(&letter,1)+string(": ")+name] = Directory(string(&letter,1)+string(":"), false);
+			drives = drives + 4;
+		}
 	}
 }

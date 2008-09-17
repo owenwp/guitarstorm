@@ -58,14 +58,13 @@ char *note[]={
 
 const int sampleBits = 13;	// 12 seems to be absolute minimum
 
-Scorer::Scorer(Capture* c) : 
+Scorer::Scorer() : 
 samples(1 << sampleBits)	
 {
 	Init();
 	active = false;
 	taken = true;
 
-	cap = c;
 	sstates[0] = -1;
 	sstates[1] = -1;
 	sstates[2] = -1;
@@ -108,7 +107,7 @@ void Scorer::run()
 	{
 		while(!active) YieldCurrentThread();
 
-		double* buf = cap->readLast(samples);
+		double* buf = Audio::readLast(samples);
 		
 		/*
 		// use for test tones
@@ -160,7 +159,7 @@ void Scorer::run()
 				ffreq = i;
 			}
 		}
-		if(cap->readVol() < 500)
+		if(Audio::readVol() < 500)
 		{
 			lastfreq = 0;
 			lastnote = "  ";

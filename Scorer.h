@@ -32,7 +32,8 @@
 #include <osgText/Text>
 
 #include "fft/fft.h"
-#include "Capture.h"
+#include "Audio.h"
+#include "Sprite.h"
 
 #include <math.h>
 
@@ -46,21 +47,19 @@ struct Fret : public osg::Referenced
 {
 	int s;
 	int f;
-	osg::ref_ptr<osg::Switch> m;
+	double t;
+	Sprite* m;
 	bool hit;
 };
 
 class Scorer : public OpenThreads::Thread
 {
 public:
-	Scorer(Capture* c);
+	Scorer();
 
 	void Test(list<Fret> &f);
 	bool HasResults() { return active && !taken; }
 	list<Fret>& GetResult();
-
-	void tick() { cap->tick(); }
-	int getVolume() { return cap->readVol(); }
 
 	void run();
 
@@ -76,7 +75,6 @@ private:
 
 	float freqcoeffs[50];
 
-	Capture* cap;
 	int sstates[6];
 	float tuning[6];
 	int chrom[6];

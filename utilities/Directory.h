@@ -27,7 +27,10 @@ class Directory
 {
 public:
 	Directory(){}
-	Directory(string n);
+	Directory(string n, bool load = true):path(n) {if(load) Load();}
+
+	void Load();
+	string Path(){return resdir + path;}
 
 	map<string, Directory> dirs;
 	map<string, string> files;
@@ -36,13 +39,16 @@ public:
 	{ 
 		if(this != &d) 
 		{
-			dirs = d.dirs; files = d.files; 
+			dirs = d.dirs; 
+			files = d.files; 
+			path = d.path;
 		}
 		return *this; 
 	}
 
 private:
-	static string resdir;
+	string resdir;
+	string path;
 };
 
 #endif

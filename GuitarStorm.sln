@@ -15,15 +15,15 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}.Debug NoAudio|Win32.ActiveCfg = Debug NoAudio|Win32
 		{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}.Debug NoAudio|Win32.Build.0 = Debug NoAudio|Win32
-		{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}.Debug|Win32.ActiveCfg = Debug NoAudio|Win32
-		{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}.Debug|Win32.Build.0 = Debug NoAudio|Win32
+		{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}.Debug|Win32.Build.0 = Debug|Win32
 		{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}.Release NoAudio|Win32.ActiveCfg = Release NoAudio|Win32
 		{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}.Release NoAudio|Win32.Build.0 = Release NoAudio|Win32
 		{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}.Release|Win32.ActiveCfg = Release|Win32
 		{EA0856F5-B8EF-4435-A6F7-83230ACE05A5}.Release|Win32.Build.0 = Release|Win32
 		{F96C6E16-0A87-428D-B8AC-48D77B4FF5E5}.Debug NoAudio|Win32.ActiveCfg = Debug
 		{F96C6E16-0A87-428D-B8AC-48D77B4FF5E5}.Debug|Win32.ActiveCfg = Debug
-		{F96C6E16-0A87-428D-B8AC-48D77B4FF5E5}.Release NoAudio|Win32.ActiveCfg = Release NoAudio
+		{F96C6E16-0A87-428D-B8AC-48D77B4FF5E5}.Release NoAudio|Win32.ActiveCfg = Release
 		{F96C6E16-0A87-428D-B8AC-48D77B4FF5E5}.Release|Win32.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution

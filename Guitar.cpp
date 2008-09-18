@@ -353,7 +353,8 @@ void Guitar::Update()
 		if(pos.x() < nutpos)
 		{
 			beats->removeChild(i);
-			Audio::tick();
+			if(!playing || !scorer)
+				Audio::tick();
 		}
 	}
 

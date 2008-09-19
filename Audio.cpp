@@ -23,6 +23,7 @@ double gInOutScaler = 1.0;
 
 // these have to be global, because the callback can't access the object's memory space
 WireConfig_t config;
+FILE* outfile;
 const int rblen = SAMPLE_RATE;
 int rbi = 0;
 int rblast = 0;
@@ -45,6 +46,7 @@ int backingOptVol = 100;
 int metronomeOptVol = 50;
 int inputDevice = 0;
 int outputDevice = 0;
+bool recordRaw = false;
 
 // static members
 PaStream* Audio::stream = NULL;
@@ -140,7 +142,7 @@ int Audio::wireCallback( const void *inputBuffer, void *outputBuffer,
     /* This may get called with NULL inputBuffer during initial setup. */
     if( inputBuffer == NULL) return 0;
 
-	if(playing && back.Valid())
+	if(!recordRaw && playing && back.Valid())
 		back.GetSamples(backBuffer, framesPerBuffer * 2);
 
     inChannel=0, outChannel=0, backChannel = 0;
@@ -183,11 +185,16 @@ int Audio::wireCallback( const void *inputBuffer, void *outputBuffer,
 			if(mtick && i<ticklen)
 				*out += tickvol * (metronomeOptVol/100.0) * ticksamp[i];
 
-			if(playing && back.Valid())
+			if(!recordRaw && playing && back.Valid())
 				*out += backvol * (backingOptVol/100.0) * backBuffer[backChannel + i * backStride];
 
 			if(inChannel == 0)
+			{
 				ringBuffer[rbi++] = *out;
+
+				if(recordRaw)
+					fwrite( out, sizeof(OUTPUT_SAMPLE), 1, outfile );
+			}
 
             out += outStride;
             in += inStride;
@@ -199,12 +206,15 @@ int Audio::wireCallback( const void *inputBuffer, void *outputBuffer,
 		if(outChannel < (config.numOutputChannels - 1)) {outChannel++; backChannel++;}
         else outDone = 1;
     }
+
 	mtick = false;
     return 0;
 }
 
 void Audio::stopCapture()
 {
+	if(recordRaw)
+		fclose(outfile);
 	if(stream) Pa_CloseStream( stream );
 	Pa_Terminate();
 }
@@ -275,6 +285,14 @@ void Audio::startCapture()
 
 	Backing::SampleRate(srate);
 
+	if(recordRaw)
+	{
+		stringstream fname;
+		fname	<< "rec " << sizeof(OUTPUT_SAMPLE)*8 << "bit " 
+				<< srate << "hz mono.raw";
+		outfile = fopen(fname.str().c_str(), "wb");
+	}
+
     err = Pa_OpenStream(
               &stream,
               &inputParameters,
@@ -324,7 +342,8 @@ void Audio::pauseMusic()
 
 void Audio::advanceMusic(float s)
 {
-	back.Advance(s);
+	if(!recordRaw) 
+		back.Advance(s);
 }
 
 float Audio::timeMusic()

@@ -22,6 +22,7 @@
 
 #include <OpenThreads/Thread>
 #include <iostream>
+#include <fstream>
 #include <math.h>
 #include "Options.h"
 #include "Backing.h"

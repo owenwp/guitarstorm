@@ -17,6 +17,12 @@
 */
 #include "Options.h"
 
+#if MACOSX
+string optionsfile = string(getenv("HOME")) + "/Library/Preferences/GuitarStorm.dat";
+#else 
+string optionsfile = "options.dat";
+#endif
+
 Options* Options::instance = new Options;
 
 // default values
@@ -114,7 +120,7 @@ Options::Options()
 void Options::Save()
 {
 	ofstream out;
-	out.open("options.dat", ios_base::binary);
+	out.open(optionsfile.c_str(), ios_base::binary);
 
 	if(out.fail())
 		throw string("Failed to open options.dat for writing\n");
@@ -167,7 +173,7 @@ void Options::Save()
 void Options::Load()
 {
 	ifstream in;
-	in.open("options.dat", ios_base::binary);
+	in.open(optionsfile.c_str(), ios_base::binary);
 
 	if(in.fail())
 		return;

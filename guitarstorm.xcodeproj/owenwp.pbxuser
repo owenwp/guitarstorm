@@ -1,0 +1,59 @@
+// !$*UTF8*$!
+{
+	20286C28FDCF999611CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Development;
+		activeExecutable = 25B65ECE0FA72F0F008A03BA /* guitarstorm */;
+		activeTarget = 8D0C4E890486CD37000505A6 /* guitarstorm */;
+		codeSenseManager = 25B65F030FA72F2E008A03BA /* Code sense */;
+		executables = (
+			25B65ECE0FA72F0F008A03BA /* guitarstorm */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 262614799;
+			PBXWorkspaceStateSaveDate = 262614799;
+		};
+		sourceControlManager = 25B65F020FA72F2E008A03BA /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	25B65ECE0FA72F0F008A03BA /* guitarstorm */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = guitarstorm;
+		sourceDirectories = (
+		);
+	};
+	25B65F020FA72F2E008A03BA /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	25B65F030FA72F2E008A03BA /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	8D0C4E890486CD37000505A6 /* guitarstorm */ = {
+		activeExec = 0;
+		executables = (
+			25B65ECE0FA72F0F008A03BA /* guitarstorm */,
+		);
+	};
+}

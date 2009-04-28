@@ -19,19 +19,50 @@
 		1F9A4951082D65C40032CDE9 /* osgUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9A4950082D65C40032CDE9 /* osgUtil.framework */; };
 		1FD8F432088C87A500B4318C /* osgIntrospection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8F431088C87A500B4318C /* osgIntrospection.framework */; };
 		1FF6110B082F118D004EB1E4 /* osgViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF61109082F118D004EB1E4 /* osgViewer.framework */; };
-		3C671B690DAC55650062B480 /* SongPick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C671B670DAC55650062B480 /* SongPick.cpp */; };
-		3C671B6E0DAC557C0062B480 /* Directory_posix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C671B6C0DAC557C0062B480 /* Directory_posix.cpp */; };
-		3CCF0FC90D86E13B003173B5 /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC00D86E13B003173B5 /* Capture.cpp */; };
-		3CCF0FCA0D86E13B003173B5 /* GuitarMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC20D86E13B003173B5 /* GuitarMain.cpp */; };
-		3CCF0FCB0D86E13B003173B5 /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC30D86E13B003173B5 /* Keyboard.cpp */; };
-		3CCF0FCC0D86E13B003173B5 /* Notes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC50D86E13B003173B5 /* Notes.cpp */; };
-		3CCF0FCD0D86E13B003173B5 /* Scorer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FC70D86E13B003173B5 /* Scorer.cpp */; };
+		254322C30FA6771200D258A6 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 254322C20FA6771200D258A6 /* libportaudio.a */; };
+		25F5002A0FA725D60002BE66 /* libsamplerate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F500290FA725D60002BE66 /* libsamplerate.a */; };
+		25F500470FA726890002BE66 /* arm.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500370FA726890002BE66 /* arm.tga */; };
+		25F500480FA726890002BE66 /* body.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500380FA726890002BE66 /* body.tga */; };
+		25F500490FA726890002BE66 /* bstring.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500390FA726890002BE66 /* bstring.tga */; };
+		25F5004A0FA726890002BE66 /* cd.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003A0FA726890002BE66 /* cd.tga */; };
+		25F5004B0FA726890002BE66 /* circle.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003B0FA726890002BE66 /* circle.tga */; };
+		25F5004C0FA726890002BE66 /* duskcloudy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003C0FA726890002BE66 /* duskcloudy.jpg */; };
+		25F5004D0FA726890002BE66 /* duskcontrast.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003D0FA726890002BE66 /* duskcontrast.jpg */; };
+		25F5004E0FA726890002BE66 /* duskstormy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003E0FA726890002BE66 /* duskstormy.jpg */; };
+		25F5004F0FA726890002BE66 /* fret.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003F0FA726890002BE66 /* fret.tga */; };
+		25F500500FA726890002BE66 /* head.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500400FA726890002BE66 /* head.tga */; };
+		25F500510FA726890002BE66 /* neck.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500410FA726890002BE66 /* neck.tga */; };
+		25F500520FA726890002BE66 /* nut.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500420FA726890002BE66 /* nut.tga */; };
+		25F500530FA726890002BE66 /* pick.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500430FA726890002BE66 /* pick.tga */; };
+		25F500540FA726890002BE66 /* tick.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500440FA726890002BE66 /* tick.tga */; };
+		25F500550FA726890002BE66 /* tstring.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500450FA726890002BE66 /* tstring.tga */; };
+		25F500560FA726890002BE66 /* tuner.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500460FA726890002BE66 /* tuner.tga */; };
+		25F5FF4B0FA71A790002BE66 /* libid3tag.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F5FF490FA71A790002BE66 /* libid3tag.a */; };
+		25F5FF4C0FA71A790002BE66 /* libmad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F5FF4A0FA71A790002BE66 /* libmad.a */; };
+		25F5FF6A0FA71E9D0002BE66 /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF680FA71E9D0002BE66 /* Audio.cpp */; };
+		25F5FF6D0FA71EA70002BE66 /* Backing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF6C0FA71EA70002BE66 /* Backing.cpp */; };
+		25F5FF900FA71ED40002BE66 /* TunerMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF700FA71ED40002BE66 /* TunerMenu.cpp */; };
+		25F5FF910FA71ED40002BE66 /* Tuner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF720FA71ED40002BE66 /* Tuner.cpp */; };
+		25F5FF920FA71ED40002BE66 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF740FA71ED40002BE66 /* Sprite.cpp */; };
+		25F5FF930FA71ED40002BE66 /* SongPlayMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF760FA71ED40002BE66 /* SongPlayMenu.cpp */; };
+		25F5FF940FA71ED40002BE66 /* SongListItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF780FA71ED40002BE66 /* SongListItem.cpp */; };
+		25F5FF950FA71ED40002BE66 /* SongEditMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF7A0FA71ED40002BE66 /* SongEditMenu.cpp */; };
+		25F5FF960FA71ED40002BE66 /* Song.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF7C0FA71ED40002BE66 /* Song.cpp */; };
+		25F5FF970FA71ED40002BE66 /* Scorer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF7E0FA71ED40002BE66 /* Scorer.cpp */; };
+		25F5FF980FA71ED40002BE66 /* Options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF800FA71ED40002BE66 /* Options.cpp */; };
+		25F5FF990FA71ED40002BE66 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF820FA71ED40002BE66 /* Menu.cpp */; };
+		25F5FF9A0FA71ED40002BE66 /* LineSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF840FA71ED40002BE66 /* LineSprite.cpp */; };
+		25F5FF9B0FA71ED40002BE66 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF860FA71ED40002BE66 /* Input.cpp */; };
+		25F5FF9D0FA71ED40002BE66 /* FilePick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF8A0FA71ED40002BE66 /* FilePick.cpp */; };
+		25F5FF9E0FA71ED40002BE66 /* GuitarMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF8B0FA71ED40002BE66 /* GuitarMain.cpp */; };
+		25F5FF9F0FA71ED40002BE66 /* Guitar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF8D0FA71ED40002BE66 /* Guitar.cpp */; };
+		25F5FFC50FA71F4C0002BE66 /* Directory_posix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */; };
+		25F5FFC70FA71F4C0002BE66 /* FileCopy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FFC30FA71F4C0002BE66 /* FileCopy.cpp */; };
 		3CCF0FE50D86E16E003173B5 /* accidentals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FDA0D86E16E003173B5 /* accidentals.cpp */; };
 		3CCF0FE60D86E16E003173B5 /* convertgtp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FDC0D86E16E003173B5 /* convertgtp.cpp */; };
 		3CCF0FE70D86E16E003173B5 /* tabcolumn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FDF0D86E16E003173B5 /* tabcolumn.cpp */; };
 		3CCF0FE80D86E16E003173B5 /* tabsong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FE10D86E16E003173B5 /* tabsong.cpp */; };
 		3CCF0FE90D86E16E003173B5 /* tabtrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FE30D86E16E003173B5 /* tabtrack.cpp */; };
-		3CCF0FF70D86E19B003173B5 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF0FF60D86E19B003173B5 /* libportaudio.a */; };
 		3CCF10190D86E4F8003173B5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF10180D86E4F8003173B5 /* AudioToolbox.framework */; };
 		3CCF101B0D86E502003173B5 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF101A0D86E502003173B5 /* AudioUnit.framework */; };
 		3CCF101D0D86E513003173B5 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF101C0D86E513003173B5 /* CoreAudio.framework */; };
@@ -61,20 +92,64 @@
 		1FD8F431088C87A500B4318C /* osgIntrospection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgIntrospection.framework; path = /Library/Frameworks/osgIntrospection.framework; sourceTree = "<absolute>"; };
 		1FF61109082F118D004EB1E4 /* osgViewer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgViewer.framework; path = /Library/Frameworks/osgViewer.framework; sourceTree = "<absolute>"; };
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		254322C20FA6771200D258A6 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = /usr/local/lib/libportaudio.a; sourceTree = "<absolute>"; };
+		25F500290FA725D60002BE66 /* libsamplerate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsamplerate.a; path = /usr/local/lib/libsamplerate.a; sourceTree = "<absolute>"; };
+		25F500370FA726890002BE66 /* arm.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.tga; sourceTree = "<group>"; };
+		25F500380FA726890002BE66 /* body.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = body.tga; sourceTree = "<group>"; };
+		25F500390FA726890002BE66 /* bstring.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = bstring.tga; sourceTree = "<group>"; };
+		25F5003A0FA726890002BE66 /* cd.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = cd.tga; sourceTree = "<group>"; };
+		25F5003B0FA726890002BE66 /* circle.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = circle.tga; sourceTree = "<group>"; };
+		25F5003C0FA726890002BE66 /* duskcloudy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = duskcloudy.jpg; sourceTree = "<group>"; };
+		25F5003D0FA726890002BE66 /* duskcontrast.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = duskcontrast.jpg; sourceTree = "<group>"; };
+		25F5003E0FA726890002BE66 /* duskstormy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = duskstormy.jpg; sourceTree = "<group>"; };
+		25F5003F0FA726890002BE66 /* fret.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = fret.tga; sourceTree = "<group>"; };
+		25F500400FA726890002BE66 /* head.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = head.tga; sourceTree = "<group>"; };
+		25F500410FA726890002BE66 /* neck.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = neck.tga; sourceTree = "<group>"; };
+		25F500420FA726890002BE66 /* nut.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = nut.tga; sourceTree = "<group>"; };
+		25F500430FA726890002BE66 /* pick.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = pick.tga; sourceTree = "<group>"; };
+		25F500440FA726890002BE66 /* tick.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = tick.tga; sourceTree = "<group>"; };
+		25F500450FA726890002BE66 /* tstring.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = tstring.tga; sourceTree = "<group>"; };
+		25F500460FA726890002BE66 /* tuner.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuner.tga; sourceTree = "<group>"; };
+		25F5FF490FA71A790002BE66 /* libid3tag.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libid3tag.a; path = /sw/lib/libid3tag.a; sourceTree = "<absolute>"; };
+		25F5FF4A0FA71A790002BE66 /* libmad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmad.a; path = /sw/lib/libmad.a; sourceTree = "<absolute>"; };
+		25F5FF680FA71E9D0002BE66 /* Audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Audio.cpp; sourceTree = "<group>"; };
+		25F5FF690FA71E9D0002BE66 /* Audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Audio.h; sourceTree = "<group>"; };
+		25F5FF6B0FA71EA70002BE66 /* Backing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backing.h; sourceTree = "<group>"; };
+		25F5FF6C0FA71EA70002BE66 /* Backing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Backing.cpp; sourceTree = "<group>"; };
+		25F5FF6F0FA71ED40002BE66 /* TunerMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TunerMenu.h; sourceTree = "<group>"; };
+		25F5FF700FA71ED40002BE66 /* TunerMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TunerMenu.cpp; sourceTree = "<group>"; };
+		25F5FF710FA71ED40002BE66 /* Tuner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tuner.h; sourceTree = "<group>"; };
+		25F5FF720FA71ED40002BE66 /* Tuner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tuner.cpp; sourceTree = "<group>"; };
+		25F5FF730FA71ED40002BE66 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		25F5FF740FA71ED40002BE66 /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
+		25F5FF750FA71ED40002BE66 /* SongPlayMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongPlayMenu.h; sourceTree = "<group>"; };
+		25F5FF760FA71ED40002BE66 /* SongPlayMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SongPlayMenu.cpp; sourceTree = "<group>"; };
+		25F5FF770FA71ED40002BE66 /* SongListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongListItem.h; sourceTree = "<group>"; };
+		25F5FF780FA71ED40002BE66 /* SongListItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SongListItem.cpp; sourceTree = "<group>"; };
+		25F5FF790FA71ED40002BE66 /* SongEditMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongEditMenu.h; sourceTree = "<group>"; };
+		25F5FF7A0FA71ED40002BE66 /* SongEditMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SongEditMenu.cpp; sourceTree = "<group>"; };
+		25F5FF7B0FA71ED40002BE66 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		25F5FF7C0FA71ED40002BE66 /* Song.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Song.cpp; sourceTree = "<group>"; };
+		25F5FF7D0FA71ED40002BE66 /* Scorer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scorer.h; sourceTree = "<group>"; };
+		25F5FF7E0FA71ED40002BE66 /* Scorer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scorer.cpp; sourceTree = "<group>"; };
+		25F5FF7F0FA71ED40002BE66 /* Options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Options.h; sourceTree = "<group>"; };
+		25F5FF800FA71ED40002BE66 /* Options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Options.cpp; sourceTree = "<group>"; };
+		25F5FF810FA71ED40002BE66 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		25F5FF820FA71ED40002BE66 /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		25F5FF830FA71ED40002BE66 /* LineSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineSprite.h; sourceTree = "<group>"; };
+		25F5FF840FA71ED40002BE66 /* LineSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LineSprite.cpp; sourceTree = "<group>"; };
+		25F5FF850FA71ED40002BE66 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
+		25F5FF860FA71ED40002BE66 /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
+		25F5FF890FA71ED40002BE66 /* FilePick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePick.h; sourceTree = "<group>"; };
+		25F5FF8A0FA71ED40002BE66 /* FilePick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FilePick.cpp; sourceTree = "<group>"; };
+		25F5FF8B0FA71ED40002BE66 /* GuitarMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarMain.cpp; sourceTree = "<group>"; };
+		25F5FF8C0FA71ED40002BE66 /* Guitar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guitar.h; sourceTree = "<group>"; };
+		25F5FF8D0FA71ED40002BE66 /* Guitar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Guitar.cpp; sourceTree = "<group>"; };
+		25F5FFC00FA71F4C0002BE66 /* Directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Directory.h; path = utilities/Directory.h; sourceTree = "<group>"; };
+		25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Directory_posix.cpp; path = utilities/Directory_posix.cpp; sourceTree = "<group>"; };
+		25F5FFC30FA71F4C0002BE66 /* FileCopy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileCopy.cpp; path = utilities/FileCopy.cpp; sourceTree = "<group>"; };
+		25F5FFC40FA71F4C0002BE66 /* FileCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileCopy.h; path = utilities/FileCopy.h; sourceTree = "<group>"; };
 		32DBCF6D0370B57F00C91783 /* guitarstorm_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guitarstorm_Prefix.pch; sourceTree = "<group>"; };
-		3C671B670DAC55650062B480 /* SongPick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SongPick.cpp; sourceTree = "<group>"; };
-		3C671B680DAC55650062B480 /* SongPick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongPick.h; sourceTree = "<group>"; };
-		3C671B6B0DAC557C0062B480 /* Directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Directory.h; sourceTree = "<group>"; };
-		3C671B6C0DAC557C0062B480 /* Directory_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Directory_posix.cpp; sourceTree = "<group>"; };
-		3CCF0FC00D86E13B003173B5 /* Capture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Capture.cpp; sourceTree = "<group>"; };
-		3CCF0FC10D86E13B003173B5 /* Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capture.h; sourceTree = "<group>"; };
-		3CCF0FC20D86E13B003173B5 /* GuitarMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarMain.cpp; sourceTree = "<group>"; };
-		3CCF0FC30D86E13B003173B5 /* Keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Keyboard.cpp; sourceTree = "<group>"; };
-		3CCF0FC40D86E13B003173B5 /* Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keyboard.h; sourceTree = "<group>"; };
-		3CCF0FC50D86E13B003173B5 /* Notes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Notes.cpp; sourceTree = "<group>"; };
-		3CCF0FC60D86E13B003173B5 /* Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notes.h; sourceTree = "<group>"; };
-		3CCF0FC70D86E13B003173B5 /* Scorer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scorer.cpp; sourceTree = "<group>"; };
-		3CCF0FC80D86E13B003173B5 /* Scorer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scorer.h; sourceTree = "<group>"; };
 		3CCF0FD00D86E157003173B5 /* complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = complex.h; path = fft/complex.h; sourceTree = "<group>"; };
 		3CCF0FD50D86E157003173B5 /* w.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = w.h; path = fft/w.h; sourceTree = "<group>"; };
 		3CCF0FDA0D86E16E003173B5 /* accidentals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = accidentals.cpp; path = kguitar/accidentals.cpp; sourceTree = "<group>"; };
@@ -88,11 +163,6 @@
 		3CCF0FE20D86E16E003173B5 /* tabsong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tabsong.h; path = kguitar/tabsong.h; sourceTree = "<group>"; };
 		3CCF0FE30D86E16E003173B5 /* tabtrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tabtrack.cpp; path = kguitar/tabtrack.cpp; sourceTree = "<group>"; };
 		3CCF0FE40D86E16E003173B5 /* tabtrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tabtrack.h; path = kguitar/tabtrack.h; sourceTree = "<group>"; };
-		3CCF0FEE0D86E19B003173B5 /* portaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = portaudio.h; path = mac/portaudio/portaudio.h; sourceTree = "<group>"; };
-		3CCF0FF20D86E19B003173B5 /* pa_mac_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pa_mac_core.h; path = mac/portaudio/pa_mac_core.h; sourceTree = "<group>"; };
-		3CCF0FF40D86E19B003173B5 /* pa_jack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pa_jack.h; path = mac/portaudio/pa_jack.h; sourceTree = "<group>"; };
-		3CCF0FF50D86E19B003173B5 /* pa_asio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pa_asio.h; path = mac/portaudio/pa_asio.h; sourceTree = "<group>"; };
-		3CCF0FF60D86E19B003173B5 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = mac/portaudio/libportaudio.a; sourceTree = "<group>"; };
 		3CCF10180D86E4F8003173B5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		3CCF101A0D86E502003173B5 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = /System/Library/Frameworks/AudioUnit.framework; sourceTree = "<absolute>"; };
 		3CCF101C0D86E513003173B5 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
@@ -122,11 +192,14 @@
 				1F9A4951082D65C40032CDE9 /* osgUtil.framework in Frameworks */,
 				1FF6110B082F118D004EB1E4 /* osgViewer.framework in Frameworks */,
 				1FD8F432088C87A500B4318C /* osgIntrospection.framework in Frameworks */,
-				3CCF0FF70D86E19B003173B5 /* libportaudio.a in Frameworks */,
 				3CCF10190D86E4F8003173B5 /* AudioToolbox.framework in Frameworks */,
 				3CCF101B0D86E502003173B5 /* AudioUnit.framework in Frameworks */,
 				3CCF101D0D86E513003173B5 /* CoreAudio.framework in Frameworks */,
 				3CCF101F0D86E520003173B5 /* CoreServices.framework in Frameworks */,
+				254322C30FA6771200D258A6 /* libportaudio.a in Frameworks */,
+				25F5FF4B0FA71A790002BE66 /* libid3tag.a in Frameworks */,
+				25F5FF4C0FA71A790002BE66 /* libmad.a in Frameworks */,
+				25F5002A0FA725D60002BE66 /* libsamplerate.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,21 +247,42 @@
 		20286C2AFDCF999611CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				3C671B6A0DAC557C0062B480 /* utilities */,
-				3C671B670DAC55650062B480 /* SongPick.cpp */,
-				3C671B680DAC55650062B480 /* SongPick.h */,
-				3CCF0FED0D86E191003173B5 /* portaudio */,
+				25F5FF6F0FA71ED40002BE66 /* TunerMenu.h */,
+				25F5FF700FA71ED40002BE66 /* TunerMenu.cpp */,
+				25F5FF710FA71ED40002BE66 /* Tuner.h */,
+				25F5FF720FA71ED40002BE66 /* Tuner.cpp */,
+				25F5FF730FA71ED40002BE66 /* Sprite.h */,
+				25F5FF740FA71ED40002BE66 /* Sprite.cpp */,
+				25F5FF750FA71ED40002BE66 /* SongPlayMenu.h */,
+				25F5FF760FA71ED40002BE66 /* SongPlayMenu.cpp */,
+				25F5FF770FA71ED40002BE66 /* SongListItem.h */,
+				25F5FF780FA71ED40002BE66 /* SongListItem.cpp */,
+				25F5FF790FA71ED40002BE66 /* SongEditMenu.h */,
+				25F5FF7A0FA71ED40002BE66 /* SongEditMenu.cpp */,
+				25F5FF7B0FA71ED40002BE66 /* Song.h */,
+				25F5FF7C0FA71ED40002BE66 /* Song.cpp */,
+				25F5FF7D0FA71ED40002BE66 /* Scorer.h */,
+				25F5FF7E0FA71ED40002BE66 /* Scorer.cpp */,
+				25F5FF7F0FA71ED40002BE66 /* Options.h */,
+				25F5FF800FA71ED40002BE66 /* Options.cpp */,
+				25F5FF810FA71ED40002BE66 /* Menu.h */,
+				25F5FF820FA71ED40002BE66 /* Menu.cpp */,
+				25F5FF830FA71ED40002BE66 /* LineSprite.h */,
+				25F5FF840FA71ED40002BE66 /* LineSprite.cpp */,
+				25F5FF850FA71ED40002BE66 /* Input.h */,
+				25F5FF860FA71ED40002BE66 /* Input.cpp */,
+				25F5FF890FA71ED40002BE66 /* FilePick.h */,
+				25F5FF8A0FA71ED40002BE66 /* FilePick.cpp */,
+				25F5FF8B0FA71ED40002BE66 /* GuitarMain.cpp */,
+				25F5FF8C0FA71ED40002BE66 /* Guitar.h */,
+				25F5FF8D0FA71ED40002BE66 /* Guitar.cpp */,
+				25F5FF6B0FA71EA70002BE66 /* Backing.h */,
+				25F5FF6C0FA71EA70002BE66 /* Backing.cpp */,
+				25F5FF680FA71E9D0002BE66 /* Audio.cpp */,
+				25F5FF690FA71E9D0002BE66 /* Audio.h */,
+				25F5FFBF0FA71F3C0002BE66 /* utilities */,
 				3CCF0FCF0D86E149003173B5 /* kguitar */,
 				3CCF0FCE0D86E143003173B5 /* fft */,
-				3CCF0FC00D86E13B003173B5 /* Capture.cpp */,
-				3CCF0FC10D86E13B003173B5 /* Capture.h */,
-				3CCF0FC20D86E13B003173B5 /* GuitarMain.cpp */,
-				3CCF0FC30D86E13B003173B5 /* Keyboard.cpp */,
-				3CCF0FC40D86E13B003173B5 /* Keyboard.h */,
-				3CCF0FC50D86E13B003173B5 /* Notes.cpp */,
-				3CCF0FC60D86E13B003173B5 /* Notes.h */,
-				3CCF0FC70D86E13B003173B5 /* Scorer.cpp */,
-				3CCF0FC80D86E13B003173B5 /* Scorer.h */,
 				32DBCF6D0370B57F00C91783 /* guitarstorm_Prefix.pch */,
 			);
 			name = Sources;
@@ -197,6 +291,7 @@
 		20286C2CFDCF999611CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				25F500360FA726890002BE66 /* images */,
 				3CCF102A0D86E71B003173B5 /* tabs */,
 				8D0C4E960486CD37000505A6 /* Info.plist */,
 				0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */,
@@ -208,11 +303,14 @@
 		20286C32FDCF999611CA2CEA /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				25F500290FA725D60002BE66 /* libsamplerate.a */,
+				25F5FF490FA71A790002BE66 /* libid3tag.a */,
+				25F5FF4A0FA71A790002BE66 /* libmad.a */,
+				254322C20FA6771200D258A6 /* libportaudio.a */,
 				3CCF101E0D86E520003173B5 /* CoreServices.framework */,
 				3CCF101C0D86E513003173B5 /* CoreAudio.framework */,
 				3CCF101A0D86E502003173B5 /* AudioUnit.framework */,
 				3CCF10180D86E4F8003173B5 /* AudioToolbox.framework */,
-				3CCF0FF60D86E19B003173B5 /* libportaudio.a */,
 				1F49F6FE07AD6F150058BE5D /* OSG */,
 				1F49F83507AD6F520058BE5D /* OpenGL.framework */,
 				20286C33FDCF999611CA2CEA /* Carbon.framework */,
@@ -220,13 +318,38 @@
 			name = "External Frameworks and Libraries";
 			sourceTree = "<group>";
 		};
-		3C671B6A0DAC557C0062B480 /* utilities */ = {
+		25F500360FA726890002BE66 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				3C671B6B0DAC557C0062B480 /* Directory.h */,
-				3C671B6C0DAC557C0062B480 /* Directory_posix.cpp */,
+				25F500370FA726890002BE66 /* arm.tga */,
+				25F500380FA726890002BE66 /* body.tga */,
+				25F500390FA726890002BE66 /* bstring.tga */,
+				25F5003A0FA726890002BE66 /* cd.tga */,
+				25F5003B0FA726890002BE66 /* circle.tga */,
+				25F5003C0FA726890002BE66 /* duskcloudy.jpg */,
+				25F5003D0FA726890002BE66 /* duskcontrast.jpg */,
+				25F5003E0FA726890002BE66 /* duskstormy.jpg */,
+				25F5003F0FA726890002BE66 /* fret.tga */,
+				25F500400FA726890002BE66 /* head.tga */,
+				25F500410FA726890002BE66 /* neck.tga */,
+				25F500420FA726890002BE66 /* nut.tga */,
+				25F500430FA726890002BE66 /* pick.tga */,
+				25F500440FA726890002BE66 /* tick.tga */,
+				25F500450FA726890002BE66 /* tstring.tga */,
+				25F500460FA726890002BE66 /* tuner.tga */,
 			);
-			path = utilities;
+			path = images;
+			sourceTree = "<group>";
+		};
+		25F5FFBF0FA71F3C0002BE66 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				25F5FFC00FA71F4C0002BE66 /* Directory.h */,
+				25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */,
+				25F5FFC30FA71F4C0002BE66 /* FileCopy.cpp */,
+				25F5FFC40FA71F4C0002BE66 /* FileCopy.h */,
+			);
+			name = utilities;
 			sourceTree = "<group>";
 		};
 		3CCF0FCE0D86E143003173B5 /* fft */ = {
@@ -256,17 +379,6 @@
 				3CCF0FE40D86E16E003173B5 /* tabtrack.h */,
 			);
 			name = kguitar;
-			sourceTree = "<group>";
-		};
-		3CCF0FED0D86E191003173B5 /* portaudio */ = {
-			isa = PBXGroup;
-			children = (
-				3CCF0FEE0D86E19B003173B5 /* portaudio.h */,
-				3CCF0FF20D86E19B003173B5 /* pa_mac_core.h */,
-				3CCF0FF40D86E19B003173B5 /* pa_jack.h */,
-				3CCF0FF50D86E19B003173B5 /* pa_asio.h */,
-			);
-			name = portaudio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +427,22 @@
 				8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */,
 				8D0C4E8E0486CD37000505A6 /* main.nib in Resources */,
 				3CCF102F0D86E71B003173B5 /* tabs in Resources */,
+				25F500470FA726890002BE66 /* arm.tga in Resources */,
+				25F500480FA726890002BE66 /* body.tga in Resources */,
+				25F500490FA726890002BE66 /* bstring.tga in Resources */,
+				25F5004A0FA726890002BE66 /* cd.tga in Resources */,
+				25F5004B0FA726890002BE66 /* circle.tga in Resources */,
+				25F5004C0FA726890002BE66 /* duskcloudy.jpg in Resources */,
+				25F5004D0FA726890002BE66 /* duskcontrast.jpg in Resources */,
+				25F5004E0FA726890002BE66 /* duskstormy.jpg in Resources */,
+				25F5004F0FA726890002BE66 /* fret.tga in Resources */,
+				25F500500FA726890002BE66 /* head.tga in Resources */,
+				25F500510FA726890002BE66 /* neck.tga in Resources */,
+				25F500520FA726890002BE66 /* nut.tga in Resources */,
+				25F500530FA726890002BE66 /* pick.tga in Resources */,
+				25F500540FA726890002BE66 /* tick.tga in Resources */,
+				25F500550FA726890002BE66 /* tstring.tga in Resources */,
+				25F500560FA726890002BE66 /* tuner.tga in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,11 +453,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CCF0FC90D86E13B003173B5 /* Capture.cpp in Sources */,
-				3CCF0FCA0D86E13B003173B5 /* GuitarMain.cpp in Sources */,
-				3CCF0FCB0D86E13B003173B5 /* Keyboard.cpp in Sources */,
-				3CCF0FCC0D86E13B003173B5 /* Notes.cpp in Sources */,
-				3CCF0FCD0D86E13B003173B5 /* Scorer.cpp in Sources */,
 				3CCF0FE50D86E16E003173B5 /* accidentals.cpp in Sources */,
 				3CCF0FE60D86E16E003173B5 /* convertgtp.cpp in Sources */,
 				3CCF0FE70D86E16E003173B5 /* tabcolumn.cpp in Sources */,
@@ -337,8 +460,25 @@
 				3CCF0FE90D86E16E003173B5 /* tabtrack.cpp in Sources */,
 				3CCF10340D86EA11003173B5 /* fourier.cpp in Sources */,
 				3CCF10350D86EA11003173B5 /* fft.cpp in Sources */,
-				3C671B690DAC55650062B480 /* SongPick.cpp in Sources */,
-				3C671B6E0DAC557C0062B480 /* Directory_posix.cpp in Sources */,
+				25F5FF6A0FA71E9D0002BE66 /* Audio.cpp in Sources */,
+				25F5FF6D0FA71EA70002BE66 /* Backing.cpp in Sources */,
+				25F5FF900FA71ED40002BE66 /* TunerMenu.cpp in Sources */,
+				25F5FF910FA71ED40002BE66 /* Tuner.cpp in Sources */,
+				25F5FF920FA71ED40002BE66 /* Sprite.cpp in Sources */,
+				25F5FF930FA71ED40002BE66 /* SongPlayMenu.cpp in Sources */,
+				25F5FF940FA71ED40002BE66 /* SongListItem.cpp in Sources */,
+				25F5FF950FA71ED40002BE66 /* SongEditMenu.cpp in Sources */,
+				25F5FF960FA71ED40002BE66 /* Song.cpp in Sources */,
+				25F5FF970FA71ED40002BE66 /* Scorer.cpp in Sources */,
+				25F5FF980FA71ED40002BE66 /* Options.cpp in Sources */,
+				25F5FF990FA71ED40002BE66 /* Menu.cpp in Sources */,
+				25F5FF9A0FA71ED40002BE66 /* LineSprite.cpp in Sources */,
+				25F5FF9B0FA71ED40002BE66 /* Input.cpp in Sources */,
+				25F5FF9D0FA71ED40002BE66 /* FilePick.cpp in Sources */,
+				25F5FF9E0FA71ED40002BE66 /* GuitarMain.cpp in Sources */,
+				25F5FF9F0FA71ED40002BE66 /* Guitar.cpp in Sources */,
+				25F5FFC50FA71F4C0002BE66 /* Directory_posix.cpp in Sources */,
+				25F5FFC70FA71F4C0002BE66 /* FileCopy.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,11 +534,13 @@
 				GCC_PREFIX_HEADER = guitarstorm_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __USE_OSX_AGL_IMPLEMENTATION__;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = /sw/include;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/sw/lib,
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/portaudio\"";
 				OTHER_CFLAGS = "-DMACOSX";
@@ -424,6 +566,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/sw/lib,
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/portaudio\"";
 				OTHER_CFLAGS = "-DMACOSX";
@@ -446,6 +589,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/sw/lib,
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/portaudio\"";
 				OTHER_CFLAGS = "-DMACOSX";

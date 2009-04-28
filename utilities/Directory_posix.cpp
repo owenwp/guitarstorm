@@ -23,13 +23,17 @@
 
 // relative location of resource files
 #if MACOSX
-string Directory::resdir = "guitarstorm.app/Contents/Resources/";
+//string Directory::resdir = "guitarstorm.app/Contents/Resources/";
 #else
-string Directory::resdir = "";
+//string Directory::resdir = "";
 #endif
 
+void Directory::Load()
+{
+}
+
 // fill the contents map with all of the files in the given directory
-Directory::Directory(string n)
+/*Directory::Directory(string n)
 {
 	long size = pathconf(".", _PC_PATH_MAX);
 	char *buf;
@@ -76,4 +80,4 @@ Directory::Directory(string n)
 		
 		closedir(dirp);
 	}
-}
+}*/

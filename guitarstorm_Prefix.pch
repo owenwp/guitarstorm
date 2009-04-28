@@ -303,7 +303,6 @@
 #include <osgSim/LightPointNode>
 #include <osgSim/LightPointSystem>
 #include <osgSim/MultiSwitch>
-#include <osgSim/OpenFlightOptimizer>
 #include <osgSim/OverlayNode>
 #include <osgSim/ScalarBar>
 #include <osgSim/ScalarsToColors>

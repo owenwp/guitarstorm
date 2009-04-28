@@ -22,13 +22,6 @@
 #include <errno.h>
 
 // relative location of resource files
-#if MACOSX
-//string Directory::resdir = "guitarstorm.app/Contents/Resources/";
-#else
-//string Directory::resdir = "";
-#endif
-
-// relative location of resource files
 const string res = "";
 
 // fill the contents map with all of the files in the given directory

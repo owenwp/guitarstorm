@@ -5,13 +5,13 @@
 		activeExecutable = 25B65ECE0FA72F0F008A03BA /* guitarstorm */;
 		activeTarget = 8D0C4E890486CD37000505A6 /* guitarstorm */;
 		breakpoints = (
-			25D6091D0FA74D5600892052 /* Directory_posix.cpp:37 */,
-			25D6094A0FA74E1500892052 /* Directory_posix.cpp:37 */,
+			25D6091D0FA74D5600892052 /* Directory_posix.cpp:30 */,
+			25D6094A0FA74E1500892052 /* Directory_posix.cpp:30 */,
 			25D609570FA74EF800892052 /* FilePick.cpp:64 */,
 			25D6095F0FA74F1100892052 /* FilePick.cpp:65 */,
 			25D609610FA74F4800892052 /* FilePick.cpp:69 */,
 			25D609660FA74F5300892052 /* FilePick.cpp:67 */,
-			25D609770FA7507700892052 /* Directory_posix.cpp:60 */,
+			25D609770FA7507700892052 /* Directory_posix.cpp:53 */,
 		);
 		codeSenseManager = 25B65F030FA72F2E008A03BA /* Code sense */;
 		executables = (
@@ -132,6 +132,17 @@
 			25D6098D0FA7538B00892052 /* PBXTextBookmark */ = 25D6098D0FA7538B00892052 /* PBXTextBookmark */;
 			25D6098E0FA7538B00892052 /* PBXTextBookmark */ = 25D6098E0FA7538B00892052 /* PBXTextBookmark */;
 			25D609910FA753E800892052 /* PBXTextBookmark */ = 25D609910FA753E800892052 /* PBXTextBookmark */;
+			25D609B30FA756C800892052 /* PBXTextBookmark */ = 25D609B30FA756C800892052 /* PBXTextBookmark */;
+			25D609B40FA756C800892052 /* PBXTextBookmark */ = 25D609B40FA756C800892052 /* PBXTextBookmark */;
+			25D609B50FA756C800892052 /* PBXTextBookmark */ = 25D609B50FA756C800892052 /* PBXTextBookmark */;
+			25D609B90FA7579B00892052 /* PBXTextBookmark */ = 25D609B90FA7579B00892052 /* PBXTextBookmark */;
+			25D609BA0FA7579B00892052 /* PBXTextBookmark */ = 25D609BA0FA7579B00892052 /* PBXTextBookmark */;
+			25D609BB0FA7579B00892052 /* PBXTextBookmark */ = 25D609BB0FA7579B00892052 /* PBXTextBookmark */;
+			25D609BC0FA7579B00892052 /* PBXTextBookmark */ = 25D609BC0FA7579B00892052 /* PBXTextBookmark */;
+			25D609BD0FA7579B00892052 /* PBXTextBookmark */ = 25D609BD0FA7579B00892052 /* PBXTextBookmark */;
+			25D609BE0FA7579B00892052 /* PBXTextBookmark */ = 25D609BE0FA7579B00892052 /* PBXTextBookmark */;
+			25D609BF0FA7579B00892052 /* PBXTextBookmark */ = 25D609BF0FA7579B00892052 /* PBXTextBookmark */;
+			25D609C00FA7579B00892052 /* PBXTextBookmark */ = 25D609C00FA7579B00892052 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 25B65F020FA72F2E008A03BA /* Source Control */;
 		userBuildSettings = {
@@ -142,7 +153,7 @@
 		fRef = 25F5FF820FA71ED40002BE66 /* Menu.cpp */;
 		name = "Menu.cpp: 380";
 		rLen = 0;
-		rLoc = 7147;
+		rLoc = 7161;
 		rType = 0;
 		vrLen = 254;
 		vrLoc = 6979;
@@ -191,7 +202,7 @@
 		fRef = 25F5FF820FA71ED40002BE66 /* Menu.cpp */;
 		name = "Menu.cpp: 380";
 		rLen = 0;
-		rLoc = 7147;
+		rLoc = 7161;
 		rType = 0;
 		vrLen = 254;
 		vrLoc = 6979;
@@ -201,7 +212,7 @@
 		fRef = 25F5FF820FA71ED40002BE66 /* Menu.cpp */;
 		name = "Menu.cpp: 380";
 		rLen = 0;
-		rLoc = 7147;
+		rLoc = 7161;
 		rType = 0;
 		vrLen = 254;
 		vrLoc = 6979;
@@ -225,12 +236,12 @@
 		path = /Users/owenwp/Documents/guitarstorm/SongListItem.cpp;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {618, 2618}}";
-			sepNavSelRange = "{3992, 0}";
-			sepNavVisRange = "{3924, 1053}";
+			sepNavIntBoundsRect = "{{0, 0}, {804, 2744}}";
+			sepNavSelRange = "{2222, 0}";
+			sepNavVisRange = "{0, 1136}";
 		};
 	};
-	25D6091D0FA74D5600892052 /* Directory_posix.cpp:37 */ = {
+	25D6091D0FA74D5600892052 /* Directory_posix.cpp:30 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -242,7 +253,7 @@
 		functionName = "Directory::Load()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 37;
+		lineNumber = 30;
 		location = guitarstorm;
 		modificationTime = 262623356.032639;
 		state = 2;
@@ -252,7 +263,7 @@
 		fRef = 25F5FF820FA71ED40002BE66 /* Menu.cpp */;
 		name = "Menu.cpp: 380";
 		rLen = 0;
-		rLoc = 7147;
+		rLoc = 7161;
 		rType = 0;
 		vrLen = 434;
 		vrLoc = 6931;
@@ -262,7 +273,7 @@
 		fRef = 25D609160FA74B6D00892052 /* SongListItem.cpp */;
 		name = "SongListItem.cpp: 131";
 		rLen = 0;
-		rLoc = 3992;
+		rLoc = 4006;
 		rType = 0;
 		vrLen = 1053;
 		vrLoc = 3924;
@@ -312,7 +323,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 32";
 		rLen = 0;
-		rLoc = 1070;
+		rLoc = 905;
 		rType = 0;
 		vrLen = 714;
 		vrLoc = 806;
@@ -322,7 +333,7 @@
 		fRef = 25F5FF820FA71ED40002BE66 /* Menu.cpp */;
 		name = "Menu.cpp: 380";
 		rLen = 0;
-		rLoc = 7147;
+		rLoc = 7161;
 		rType = 0;
 		vrLen = 434;
 		vrLoc = 6931;
@@ -332,7 +343,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 67";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 505;
 		vrLoc = 1622;
@@ -352,7 +363,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 85";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 490;
 		vrLoc = 1655;
@@ -372,7 +383,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 85";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 514;
 		vrLoc = 1622;
@@ -392,7 +403,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 85";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 514;
 		vrLoc = 1622;
@@ -412,7 +423,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 74";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 490;
 		vrLoc = 1655;
@@ -432,7 +443,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 74";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 527;
 		vrLoc = 1622;
@@ -452,7 +463,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 72";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 527;
 		vrLoc = 1622;
@@ -472,7 +483,7 @@
 		fRef = 25D609160FA74B6D00892052 /* SongListItem.cpp */;
 		name = "SongListItem.cpp: 131";
 		rLen = 0;
-		rLoc = 3992;
+		rLoc = 4006;
 		rType = 0;
 		vrLen = 1053;
 		vrLoc = 3924;
@@ -482,7 +493,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 72";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 565;
 		vrLoc = 2549;
@@ -502,7 +513,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 32";
 		rLen = 0;
-		rLoc = 1070;
+		rLoc = 905;
 		rType = 0;
 		vrLen = 714;
 		vrLoc = 806;
@@ -542,7 +553,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 32";
 		rLen = 0;
-		rLoc = 1070;
+		rLoc = 905;
 		rType = 0;
 		vrLen = 615;
 		vrLoc = 1075;
@@ -552,12 +563,12 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 32";
 		rLen = 0;
-		rLoc = 1070;
+		rLoc = 905;
 		rType = 0;
 		vrLen = 779;
 		vrLoc = 594;
 	};
-	25D6094A0FA74E1500892052 /* Directory_posix.cpp:37 */ = {
+	25D6094A0FA74E1500892052 /* Directory_posix.cpp:30 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -569,7 +580,7 @@
 		functionName = "Directory::Load()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 37;
+		lineNumber = 30;
 		location = guitarstorm;
 		modificationTime = 262623356.032768;
 		state = 2;
@@ -579,7 +590,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 78";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 597;
 		vrLoc = 1075;
@@ -589,7 +600,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 81";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 410;
 		vrLoc = 1718;
@@ -599,7 +610,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 81";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 568;
 		vrLoc = 1145;
@@ -609,7 +620,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 81";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 568;
 		vrLoc = 1145;
@@ -647,7 +658,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 81";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 603;
 		vrLoc = 1145;
@@ -667,7 +678,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 81";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 603;
 		vrLoc = 1145;
@@ -805,7 +816,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 81";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 656;
 		vrLoc = 1011;
@@ -855,7 +866,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 81";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 656;
 		vrLoc = 1011;
@@ -875,12 +886,12 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 39";
 		rLen = 0;
-		rLoc = 1169;
+		rLoc = 1004;
 		rType = 0;
 		vrLen = 561;
 		vrLoc = 970;
 	};
-	25D609770FA7507700892052 /* Directory_posix.cpp:60 */ = {
+	25D609770FA7507700892052 /* Directory_posix.cpp:53 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -892,7 +903,7 @@
 		functionName = "Directory::Load()";
 		hitCount = 3;
 		ignoreCount = 0;
-		lineNumber = 60;
+		lineNumber = 53;
 		location = guitarstorm;
 		modificationTime = 262623607.170507;
 		state = 2;
@@ -912,7 +923,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 37";
 		rLen = 0;
-		rLoc = 1169;
+		rLoc = 1004;
 		rType = 0;
 		vrLen = 589;
 		vrLoc = 970;
@@ -922,7 +933,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 37";
 		rLen = 0;
-		rLoc = 1169;
+		rLoc = 1004;
 		rType = 0;
 		vrLen = 589;
 		vrLoc = 970;
@@ -942,7 +953,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 37";
 		rLen = 0;
-		rLoc = 1169;
+		rLoc = 1004;
 		rType = 0;
 		vrLen = 500;
 		vrLoc = 1167;
@@ -952,7 +963,7 @@
 		comments = "error: no match for 'operator=' in '((Directory*)this)->Directory::dirs. std::map<_Key, _Tp, _Compare, _Alloc>::operator[] [with _Key = std::string, _Tp = Directory, _Compare = std::less<std::string>, _Alloc = std::allocator<std::pair<const std::string, Directory> >](((const std::string&)((const std::string*)(& name)))) = Directory(std::basic_string<char, std::char_traits<char>, std::allocator<char> >(((const std::basic_string<char, std::char_traits<char>, std::allocator<char> >&)((const std::basic_string<char, std::char_traits<char>, std::allocator<char> >*)(& p)))), 0)'";
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		rLen = 0;
-		rLoc = 36;
+		rLoc = 29;
 		rType = 1;
 	};
 	25D609810FA7516400892052 /* PBXTextBookmark */ = {
@@ -960,7 +971,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 90";
 		rLen = 0;
-		rLoc = 2246;
+		rLoc = 2081;
 		rType = 0;
 		vrLen = 270;
 		vrLoc = 1470;
@@ -970,7 +981,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 74";
 		rLen = 0;
-		rLoc = 1789;
+		rLoc = 1624;
 		rType = 0;
 		vrLen = 602;
 		vrLoc = 1539;
@@ -980,7 +991,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 74";
 		rLen = 0;
-		rLoc = 1789;
+		rLoc = 1624;
 		rType = 0;
 		vrLen = 606;
 		vrLoc = 1539;
@@ -1000,7 +1011,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 74";
 		rLen = 0;
-		rLoc = 1789;
+		rLoc = 1624;
 		rType = 0;
 		vrLen = 606;
 		vrLoc = 1539;
@@ -1030,7 +1041,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 74";
 		rLen = 0;
-		rLoc = 1789;
+		rLoc = 1624;
 		rType = 0;
 		vrLen = 606;
 		vrLoc = 1539;
@@ -1050,7 +1061,7 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 92";
 		rLen = 0;
-		rLoc = 2166;
+		rLoc = 2001;
 		rType = 0;
 		vrLen = 543;
 		vrLoc = 1948;
@@ -1060,10 +1071,141 @@
 		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
 		name = "Directory_posix.cpp: 96";
 		rLen = 0;
-		rLoc = 2240;
+		rLoc = 2075;
 		rType = 0;
 		vrLen = 582;
 		vrLoc = 1948;
+	};
+	25D609B30FA756C800892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
+		name = "Directory_posix.cpp: 99";
+		rLen = 0;
+		rLoc = 2083;
+		rType = 0;
+		vrLen = 1050;
+		vrLoc = 0;
+	};
+	25D609B40FA756C800892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
+		name = "Directory_posix.cpp: 99";
+		rLen = 0;
+		rLoc = 2083;
+		rType = 0;
+		vrLen = 1050;
+		vrLoc = 0;
+	};
+	25D609B50FA756C800892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FF820FA71ED40002BE66 /* Menu.cpp */;
+		name = "Menu.cpp: 28";
+		rLen = 0;
+		rLoc = 984;
+		rType = 0;
+		vrLen = 1093;
+		vrLoc = 679;
+	};
+	25D609B90FA7579B00892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FF820FA71ED40002BE66 /* Menu.cpp */;
+		name = "Menu.cpp: 28";
+		rLen = 0;
+		rLoc = 983;
+		rType = 0;
+		vrLen = 1222;
+		vrLoc = 489;
+	};
+	25D609BA0FA7579B00892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FF810FA71ED40002BE66 /* Menu.h */;
+		name = "Menu.h: 44";
+		rLen = 0;
+		rLoc = 1233;
+		rType = 0;
+		vrLen = 707;
+		vrLoc = 1002;
+	};
+	25D609BB0FA7579B00892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
+		name = "Directory_posix.cpp: 25";
+		rLen = 0;
+		rLoc = 844;
+		rType = 0;
+		vrLen = 786;
+		vrLoc = 594;
+	};
+	25D609BC0FA7579B00892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FF820FA71ED40002BE66 /* Menu.cpp */;
+		name = "Menu.cpp: 28";
+		rLen = 0;
+		rLoc = 983;
+		rType = 0;
+		vrLen = 1222;
+		vrLoc = 489;
+	};
+	25D609BD0FA7579B00892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FF810FA71ED40002BE66 /* Menu.h */;
+		name = "Menu.h: 40";
+		rLen = 0;
+		rLoc = 1172;
+		rType = 0;
+		vrLen = 797;
+		vrLoc = 1002;
+	};
+	25D609BE0FA7579B00892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
+		name = "Directory_posix.cpp: 25";
+		rLen = 0;
+		rLoc = 844;
+		rType = 0;
+		vrLen = 786;
+		vrLoc = 594;
+	};
+	25D609BF0FA7579B00892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FF810FA71ED40002BE66 /* Menu.h */;
+		name = "Menu.h: 44";
+		rLen = 0;
+		rLoc = 1233;
+		rType = 0;
+		vrLen = 707;
+		vrLoc = 1002;
+	};
+	25D609C00FA7579B00892052 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */;
+		name = "Directory_posix.cpp: 22";
+		rLen = 0;
+		rLoc = 844;
+		rType = 0;
+		vrLen = 683;
+		vrLoc = 594;
+	};
+	25F5FF760FA71ED40002BE66 /* SongPlayMenu.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {588, 1344}}";
+			sepNavSelRange = "{2226, 12}";
+			sepNavVisRange = "{2172, 667}";
+		};
+	};
+	25F5FF7A0FA71ED40002BE66 /* SongEditMenu.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {876, 3612}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{6495, 881}";
+		};
+	};
+	25F5FF7C0FA71ED40002BE66 /* Song.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {550, 1554}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{2078, 449}";
+		};
 	};
 	25F5FF7F0FA71ED40002BE66 /* Options.h */ = {
 		uiCtxt = {
@@ -1079,11 +1221,18 @@
 			sepNavVisRange = "{5091, 532}";
 		};
 	};
+	25F5FF810FA71ED40002BE66 /* Menu.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {966, 2940}}";
+			sepNavSelRange = "{1233, 0}";
+			sepNavVisRange = "{1002, 707}";
+		};
+	};
 	25F5FF820FA71ED40002BE66 /* Menu.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {550, 6524}}";
-			sepNavSelRange = "{7147, 0}";
-			sepNavVisRange = "{6931, 434}";
+			sepNavIntBoundsRect = "{{0, 0}, {636, 6650}}";
+			sepNavSelRange = "{8545, 0}";
+			sepNavVisRange = "{8624, 787}";
 		};
 	};
 	25F5FF890FA71ED40002BE66 /* FilePick.h */ = {
@@ -1095,9 +1244,9 @@
 	};
 	25F5FF8B0FA71ED40002BE66 /* GuitarMain.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {633, 4060}}";
-			sepNavSelRange = "{6238, 0}";
-			sepNavVisRange = "{5954, 600}";
+			sepNavIntBoundsRect = "{{0, 0}, {930, 4102}}";
+			sepNavSelRange = "{10247, 0}";
+			sepNavVisRange = "{10220, 720}";
 		};
 	};
 	25F5FFC00FA71F4C0002BE66 /* Directory.h */ = {
@@ -1109,9 +1258,9 @@
 	};
 	25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {550, 2100}}";
-			sepNavSelRange = "{2240, 0}";
-			sepNavVisRange = "{1948, 582}";
+			sepNavIntBoundsRect = "{{0, 0}, {550, 1134}}";
+			sepNavSelRange = "{844, 0}";
+			sepNavVisRange = "{594, 706}";
 		};
 	};
 	8D0C4E890486CD37000505A6 /* guitarstorm */ = {

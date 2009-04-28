@@ -49,7 +49,7 @@ Guitar::Guitar()
 		str >> fret;
 
 		tnote[i] = new osgText::Text;
-		tnote[i]->setFont("fonts/arial.ttf");
+		tnote[i]->setFont(prefix+"fonts/arial.ttf");
 		//tnote[i]->setDataVariance(Object::DYNAMIC);
 		if(i == 3 || i == 5 || i == 7 || i == 9 || i == 12 || i == 15 || i == 17 || i == 19 || i == 21 || i == 23) 
 		{
@@ -561,7 +561,7 @@ bool Guitar::setSong(Difficulty *t, string pic, bool a)
 		osg::Geode* geodeTrack = new osg::Geode;
 		{
 			osg::ref_ptr<osgText::Text> trackText = new osgText::Text;
-			trackText->setFont("fonts/arial.ttf");
+			trackText->setFont(prefix+"fonts/arial.ttf");
 			trackText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
 			trackText->setCharacterSize(1.0f);
 			if(pic == "")
@@ -582,7 +582,7 @@ bool Guitar::setSong(Difficulty *t, string pic, bool a)
 		osg::Geode* geodeScore = new osg::Geode;
 		{
 			scoreText = new osgText::Text;
-			scoreText->setFont("fonts/arial.ttf");
+			scoreText->setFont(prefix+"fonts/arial.ttf");
 			scoreText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
 			scoreText->setCharacterSize(1.0f);
 			scoreText->setPosition(osg::Vec3(0.0f,0.0f,-7.0f));

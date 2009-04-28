@@ -37,6 +37,12 @@
 
 #include "Sprite.h"
 
+#if MACOSX
+#define prefix string("/library/")
+#else 
+#define prefix string("")
+#endif
+
 using namespace std;
 
 class Menu;

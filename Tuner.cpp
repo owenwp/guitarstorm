@@ -129,7 +129,7 @@ void Tuner::MakeTuner()
 	osg::Geode* geodeName = new osg::Geode;
     {
 		osg::ref_ptr<osgText::Text> itemText = new osgText::Text;
-        itemText->setFont("fonts/arial.ttf");
+        itemText->setFont(prefix+"fonts/arial.ttf");
         itemText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
 		itemText->setCharacterSize(0.125f);
 		itemText->setPosition(Vec3(1.25f,-0.25f,-0.4f));
@@ -147,7 +147,7 @@ void Tuner::MakeTuner()
 	osg::Geode* geodeFT = new osg::Geode;
     {
 		osg::ref_ptr<osgText::Text> itemText = new osgText::Text;
-        itemText->setFont("fonts/arial.ttf");
+        itemText->setFont(prefix+"fonts/arial.ttf");
         itemText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
 		itemText->setCharacterSize(0.1f);
 		itemText->setPosition(dpos + Vec3(-0.55f, -0.75f, 0.25f));
@@ -165,7 +165,7 @@ void Tuner::MakeTuner()
 	osg::Geode* geodeST = new osg::Geode;
     {
 		osg::ref_ptr<osgText::Text> itemText = new osgText::Text;
-        itemText->setFont("fonts/arial.ttf");
+        itemText->setFont(prefix+"fonts/arial.ttf");
         itemText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
 		itemText->setCharacterSize(0.1f);
 		itemText->setPosition(dpos + Vec3(0.55f, -0.75f, 0.25f));
@@ -183,7 +183,7 @@ void Tuner::MakeTuner()
 	osg::Geode* geodeAT = new osg::Geode;
     {
 		osg::ref_ptr<osgText::Text> itemText = new osgText::Text;
-        itemText->setFont("fonts/arial.ttf");
+        itemText->setFont(prefix+"fonts/arial.ttf");
         itemText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
 		itemText->setCharacterSize(0.2f);
 		itemText->setPosition(dpos + Vec3(0, -0.75f, 0.1f));
@@ -217,7 +217,7 @@ void Tuner::MakeTuner()
 	Geode* geodeSharp = new osg::Geode;
     {
 		stext = new osgText::Text;
-		stext->setFont("fonts/arial.ttf");
+		stext->setFont(prefix+"fonts/arial.ttf");
 		stext->setColor(Vec4(1.0f,0.0f,0.0f,1.0f));
 		stext->setCharacterSize(0.25f);
 		stext->setPosition(Vec3(1.45f,0.5f,0.5f));
@@ -234,7 +234,7 @@ void Tuner::MakeTuner()
 	Geode* geodeCN = new osg::Geode;
     {
 		ref_ptr<osgText::Text> label = new osgText::Text;
-		label->setFont("fonts/arial.ttf");
+		label->setFont(prefix+"fonts/arial.ttf");
 		label->setColor(Vec4(1.0f,1.0f,1.0f,1.0f));
 		label->setCharacterSize(0.1f);
 		label->setPosition(dpos + Vec3(-1.0f,0,1.4f));
@@ -251,7 +251,7 @@ void Tuner::MakeTuner()
 	Geode* geodeCP = new osg::Geode;
     {
 		ref_ptr<osgText::Text> label = new osgText::Text;
-		label->setFont("fonts/arial.ttf");
+		label->setFont(prefix+"fonts/arial.ttf");
 		label->setColor(Vec4(1.0f,1.0f,1.0f,1.0f));
 		label->setCharacterSize(0.1f);
 		label->setPosition(dpos + Vec3(1.0f,0,1.4f));
@@ -268,7 +268,7 @@ void Tuner::MakeTuner()
 	Geode* geodeCZ = new osg::Geode;
     {
 		ref_ptr<osgText::Text> label = new osgText::Text;
-		label->setFont("fonts/arial.ttf");
+		label->setFont(prefix+"fonts/arial.ttf");
 		label->setColor(Vec4(1.0f,1.0f,1.0f,1.0f));
 		label->setCharacterSize(0.1f);
 		label->setPosition(dpos + Vec3(0.0f,0,1.5f));

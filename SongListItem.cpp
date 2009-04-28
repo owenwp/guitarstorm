@@ -83,7 +83,7 @@ void SongListItem::Setup()
 			osg::Geode* geodeLabel = new osg::Geode;
 			{
 				osg::ref_ptr<osgText::Text> labelText = new osgText::Text;
-				labelText->setFont("fonts/arial.ttf");
+				labelText->setFont(prefix+"fonts/arial.ttf");
 				labelText->setColor(osg::Vec4(0.0f,0.0f,0.0f,1.0f));
 				labelText->setCharacterSize(min(1.0f, 2.0f/song.artist.length()));
 				labelText->setPosition(osg::Vec3(0,-0.05f,-0.5f));
@@ -102,7 +102,7 @@ void SongListItem::Setup()
 		osg::Geode* geodeTitle = new osg::Geode;
 		{
 			osg::ref_ptr<osgText::Text> titleText = new osgText::Text;
-			titleText->setFont("fonts/arial.ttf");
+			titleText->setFont(prefix+"fonts/arial.ttf");
 			titleText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
 			titleText->setCharacterSize(0.3f);
 			titleText->setPosition(osg::Vec3(0,-0.05f,-1.2f));
@@ -142,7 +142,7 @@ void SongListItem::Setup()
 	osg::Geode* geodeTitle = new osg::Geode;
 	{
 		osg::ref_ptr<osgText::Text> titleText = new osgText::Text;
-		titleText->setFont("fonts/arial.ttf");
+		titleText->setFont(prefix+"fonts/arial.ttf");
 		titleText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
 		titleText->setCharacterSize(0.75f);
 		titleText->setPosition(osg::Vec3(0,-0.05f,-0.1f));

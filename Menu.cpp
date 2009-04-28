@@ -25,7 +25,7 @@ void Item::Setup()
 	osg::Geode* geodeItem = new osg::Geode;
     {
 		itemText = new osgText::Text;
-        itemText->setFont("fonts/arial.ttf");
+        itemText->setFont(prefix+"fonts/arial.ttf");
         if(enabled) itemText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
         else itemText->setColor(osg::Vec4(0.5f,0.5f,0.5f,1.0f));
 		itemText->setCharacterSize(1.0f);
@@ -51,7 +51,7 @@ void Menu::Setup()
 	osg::Geode* geodeTitle = new osg::Geode;
     {
 		osg::ref_ptr<osgText::Text> itemText = new osgText::Text;
-        itemText->setFont("fonts/arial.ttf");
+        itemText->setFont(prefix+"fonts/arial.ttf");
         itemText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
         itemText->setCharacterSize(1.5f);
 		itemText->setPosition(osg::Vec3(0.0f,1.0f,11.0f));
@@ -394,7 +394,7 @@ void NumberItem::Setup()
 	osg::Geode* geodeNum = new osg::Geode;
     {
 		vtext = new osgText::Text;
-        vtext->setFont("fonts/arial.ttf");
+        vtext->setFont(prefix+"fonts/arial.ttf");
         vtext->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
         vtext->setCharacterSize(1.0f);
 		vtext->setPosition(osg::Vec3(X+12.0f,0.0f,Y));
@@ -440,7 +440,7 @@ void RealItem::Setup()
 	osg::Geode* geodeNum = new osg::Geode;
     {
 		vtext = new osgText::Text;
-        vtext->setFont("fonts/arial.ttf");
+        vtext->setFont(prefix+"fonts/arial.ttf");
         vtext->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
         vtext->setCharacterSize(1.0f);
 		vtext->setPosition(osg::Vec3(X+12.0f,0.0f,Y));

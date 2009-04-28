@@ -32,7 +32,7 @@ public:
 	void Load();
 	string Path(){return resdir + path;}
 
-	map<string, Directory> dirs;
+	map<string, Directory*> dirs;
 	map<string, string> files;
 
 	Directory& operator=(Directory &d) 

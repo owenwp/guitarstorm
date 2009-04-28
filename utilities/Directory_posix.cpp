@@ -28,9 +28,75 @@
 //string Directory::resdir = "";
 #endif
 
+// relative location of resource files
+const string res = "";
+
+// fill the contents map with all of the files in the given directory
 void Directory::Load()
-{
+{	
+	if(path[0] != '/')
+		resdir = res;
+	
+	long size = pathconf(".", _PC_PATH_MAX);
+	char *buf;
+	if ((buf = (char *)malloc((size_t)size)) != NULL) {
+		getcwd(buf, (size_t)size);
+		cout << buf << endl;
+		free(buf);
+	}
+	
+	cout << "Directory: " << (path) << endl; 
+	
+	DIR *dirp;
+	if(!path.length())
+	{
+		dirp = opendir("/");
+	}
+	else
+	{
+		dirp = opendir((path).c_str());
+	}
+	
+	if(dirp != NULL)
+	{
+		struct dirent *dp = NULL;
+		
+		while((dp = readdir(dirp)) != NULL)
+		{
+			struct stat file_stats;
+			
+			string name(dp->d_name);
+			
+			cout << (path + "/" + name) << endl;
+			
+			string p = path+"/"+name;
+			
+			if(stat((path + "/" + name).c_str(), &file_stats) == 0)
+			{
+				if(name[0] == '.')	// hidden
+				{
+					// do nothing
+				}
+				else if(S_ISDIR(file_stats.st_mode))
+				{
+					// create the folder structure, but do not load its contents
+					dirs[name] = new Directory(p, false);
+				} 
+				else 
+				{ 
+					files[name.substr(0, name.find("."))] = p;
+				} 
+			}
+			
+		}
+		closedir(dirp);
+	}
+	else
+	{
+		mkdir(Path().c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+	}
 }
+
 
 // fill the contents map with all of the files in the given directory
 /*Directory::Directory(string n)

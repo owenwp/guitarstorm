@@ -56,14 +56,14 @@ void SongListItem::Setup()
 
 	float x = -8;
 	float y = 8;
-	map<string, Directory>::iterator itr;
+	map<string, Directory*>::iterator itr;
 	for(itr=songDir->dirs.begin(); itr!=songDir->dirs.end(); itr++)
 	{
-		Directory sdir = itr->second;
-		sdir.Load();
+		Directory* sdir = itr->second;
+		sdir->Load();
 
 		Song song;
-		string dest = sdir.files["song"];
+		string dest = sdir->files["song"];
 		ifstream in(dest.c_str(), ios_base::binary);
 		if(!in.fail())
 		{
@@ -74,8 +74,8 @@ void SongListItem::Setup()
 		songs.push_back(song);
 
 		Sprite* art;
-		if(sdir.files["cover"] != "")
-			art = new Sprite(sdir.files["cover"], true);
+		if(sdir->files["cover"] != "")
+			art = new Sprite(sdir->files["cover"], true);
 		else
 		{
 			art = new Sprite("cd.tga", false);

@@ -51,7 +51,7 @@ void Directory::Load()
 				{ 
 					// create the folder structure, but do not load its contents
 					if (fileName[0] != '.') 
-						dirs[fileName] = Directory(p, false);
+						dirs[fileName] = new Directory(p, false);
 				} 
 				else 
 				{ 

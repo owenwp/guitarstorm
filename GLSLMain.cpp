@@ -11,10 +11,16 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-GLint v, f, p;
+GLint v, f, p; 
+GLuint t;
 
 void drawQuad()
 {
+	glEnable(GL_TEXTURE_2D);
+	glEnable (GL_BLEND);
+	
+	glBindTexture(GL_TEXTURE_2D, t);
+	
 	glBegin(GL_TRIANGLE_STRIP);
 	
 	glColor3f(1.0, 0.0, 0.0);
@@ -41,6 +47,39 @@ void renderScene()
 	drawQuad();
 	
 	glFlush();
+}
+
+void makeTexture()
+{
+	unsigned char* tex = (unsigned char*)malloc(32 * 32);
+	
+	for(int i=0; i<32; i++)
+	for(int j=0; j<32; j++)
+	{
+		int x = i-16;
+		int y = j-16;
+		int dist2 = x*x + y*y;
+		
+		if(dist2 < 14*14)
+		{
+			tex[i+32*j] = 0xff;
+		}
+		else
+		{
+			tex[i+32*j] = 0x00;
+		}
+	}
+	
+	glGenTextures(1, &t);
+	glBindTexture(GL_TEXTURE_2D, t);
+	
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, 32, 32, 0, GL_ALPHA, GL_UNSIGNED_BYTE, tex);
+	
+	free(tex);
 }
 
 void loadShaders()
@@ -92,12 +131,16 @@ int main(int argc, char **argv)
 	glutInitWindowSize(800, 600); 
 	glutCreateWindow("Guitar Storm GLSL Test");
 	
-	loadShaders();
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+	makeTexture();
+	
+	//loadShaders();
 	
 	glutDisplayFunc(renderScene);
 	glutMainLoop();
 	
-	unloadShaders();
+	//unloadShaders();
 	
 	return 0;
 }

@@ -102,13 +102,23 @@ void renderScene()
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	glLoadIdentity();
+	glTranslatef(0, 0, -11);
 	
-	glTranslatef(-0.5f, 0, 0);
-	drawQuad(circle, 1, 0, 0);
+	glPushMatrix();
+	{
+		glTranslatef(2, 1, 0);
+		glScalef(8, 8, 1);
+		drawQuad(circle, 1, 0, 0);
+	}
+	glPopMatrix();
 	
-	glTranslatef(-0.3f, 0, 0);
-	glScalef(0.5f, 0.5f, 1);
-	drawText("Owen", 0, 0, 1);
+	glPushMatrix();
+	{
+		glTranslatef(-4, -2, 0);
+		glScalef(2, 2, 1);
+		drawText("Owen", 0, 0, 1);
+	}
+	glPopMatrix();
 	
 	glFlush();
 }
@@ -263,6 +273,14 @@ void loadShaders()
 	
 	glLinkProgram(p);
 	glUseProgram(p);
+	
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	
+	gluPerspective(45, (float)800 / (float)600, 1, 20);
+	
+	glMatrixMode(GL_MODELVIEW);
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	
 	
 	glEnable(GL_TEXTURE_2D);
 	glEnable (GL_BLEND);

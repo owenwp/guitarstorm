@@ -24,6 +24,10 @@ FT_Face font;
 GLuint circle;
 GLuint text[128];
 float adv[128];
+float wid[128];
+float hgt[128];
+float xpad[128];
+float ypad[128];
 
 using namespace std;
 
@@ -35,11 +39,8 @@ inline int next_p2 (int a )
 	return rval;
 }
 
-void drawQuad(GLint t, float r, float g, float b)
-{
-	glEnable(GL_TEXTURE_2D);
-	glEnable (GL_BLEND);
-	
+void drawQuad(GLint t, float r=1, float g=1, float b=1)
+{	
 	glBindTexture(GL_TEXTURE_2D, t);
 	
 	glBegin(GL_TRIANGLE_STRIP);
@@ -61,6 +62,41 @@ void drawQuad(GLint t, float r, float g, float b)
 	glEnd();
 }
 
+void drawText(string str, float r=1, float g=1, float b=1)
+{	
+	glPushMatrix();
+	
+	const char* cstr = str.c_str();
+	int count = str.length();
+	
+	for(int i=0; i<count; i++)
+	{
+		glBindTexture(GL_TEXTURE_2D, text[cstr[i]]);
+		
+		glBegin(GL_TRIANGLE_STRIP);
+		
+		glColor3f(r, g, b);
+		
+		glTexCoord2f(0.0, ypad[cstr[i]]);
+		glVertex3f(0, 0, 0.0);
+		
+		glTexCoord2f(xpad[cstr[i]], ypad[cstr[i]]);
+		glVertex3f(wid[cstr[i]], 0, 0.0);
+		
+		glTexCoord2f(0.0, 0.0);
+		glVertex3f(0, hgt[cstr[i]], 0.0);
+		
+		glTexCoord2f(xpad[cstr[i]], 0.0);
+		glVertex3f(wid[cstr[i]], hgt[cstr[i]], 0.0);
+		
+		glEnd();
+		
+		glTranslatef(adv[cstr[i]], 0, 0);
+	}
+	
+	glPopMatrix();
+}
+
 void renderScene() 
 {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -70,15 +106,9 @@ void renderScene()
 	glTranslatef(-0.5f, 0, 0);
 	drawQuad(circle, 1, 0, 0);
 	
+	glTranslatef(-0.3f, 0, 0);
 	glScalef(0.5f, 0.5f, 1);
-	glTranslatef(0.1f, 0, 0);
-	drawQuad(text['O'], 0, 0, 1);
-	glTranslatef(adv['O'], 0, 0);
-	drawQuad(text['w'], 0, 0, 1);
-	glTranslatef(adv['w'], 0, 0);
-	drawQuad(text['e'], 0, 0, 1);
-	glTranslatef(adv['e'], 0, 0);
-	drawQuad(text['n'], 0, 0, 1);
+	drawText("Owen", 0, 0, 1);
 	
 	glFlush();
 }
@@ -132,6 +162,10 @@ void makeText()
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, width, height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, tex);
 		
 		adv[c] = font->glyph->advance.x / (50 * 64.0f);
+		wid[c] = bitmap.width / (50.0f);
+		hgt[c] = bitmap.rows / (50.0f);
+		xpad[c] = (float)bitmap.width / (float)width,
+		ypad[c] = (float)bitmap.rows / (float)height;
 		
 		free(tex);
 	}
@@ -229,6 +263,9 @@ void loadShaders()
 	
 	glLinkProgram(p);
 	glUseProgram(p);
+	
+	glEnable(GL_TEXTURE_2D);
+	glEnable (GL_BLEND);
 }
 
 void unloadFont()

@@ -640,6 +640,7 @@
 		3CCF0F930D86DFEF003173B5 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = /opt/local/include;
 			};
 			name = Development;

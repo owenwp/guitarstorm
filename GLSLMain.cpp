@@ -7,6 +7,7 @@
  *
  */
 
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <GLUT/GLUT.h>
@@ -95,11 +96,14 @@ void openShader(GLint shader, const char* name)
 	
 	string str;
 	
-	while(!in.eof())
+	do
 	{
-		in.getline(cstr, 128, 0);
+		in.get(cstr, 128, 0);
 		str += string(cstr);
 	}
+	while(in.gcount() == 127);
+	
+	cout << endl << "*** " << name << " ***" << endl << str;
 	
 	const GLchar* c = str.c_str();
 	
@@ -156,7 +160,7 @@ int main(int argc, char **argv)
 	glutDisplayFunc(renderScene);
 	glutMainLoop();
 	
-	//unloadShaders();
+	unloadShaders();
 	
 	return 0;
 }

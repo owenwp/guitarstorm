@@ -98,7 +98,7 @@
 		254322C20FA6771200D258A6 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = /usr/local/lib/libportaudio.a; sourceTree = "<absolute>"; };
 		25BA379D102F75B300A74F4B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
 		25BA37B3102F768F00A74F4B /* GLSLMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLMain.cpp; sourceTree = "<group>"; };
-		25BA37B8102F774100A74F4B /* GLSL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = GLSL; path = build/Development/GLSL; sourceTree = "<group>"; };
+		25BA37B8102F774100A74F4B /* GLSL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GLSL; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F500290FA725D60002BE66 /* libsamplerate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsamplerate.a; path = /usr/local/lib/libsamplerate.a; sourceTree = "<absolute>"; };
 		25F500370FA726890002BE66 /* arm.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.tga; sourceTree = "<group>"; };
 		25F500380FA726890002BE66 /* body.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = body.tga; sourceTree = "<group>"; };

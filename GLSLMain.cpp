@@ -42,6 +42,8 @@ inline int next_p2 (int a )
 void drawQuad(GLint t, float r=1, float g=1, float b=1)
 {	
 	glBindTexture(GL_TEXTURE_2D, t);
+	GLint loc = glGetUniformLocation(p,"edgeSize");
+	glUniform1f(loc, 1.0);
 	
 	glBegin(GL_TRIANGLE_STRIP);
 	
@@ -72,6 +74,8 @@ void drawText(string str, float r=1, float g=1, float b=1)
 	for(int i=0; i<count; i++)
 	{
 		glBindTexture(GL_TEXTURE_2D, text[cstr[i]]);
+		GLint loc = glGetUniformLocation(p,"edgeSize");
+		glUniform1f(loc, 16.0);
 		
 		glBegin(GL_TRIANGLE_STRIP);
 		

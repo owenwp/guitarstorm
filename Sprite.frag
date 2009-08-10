@@ -1,4 +1,5 @@
 uniform sampler2D tex;
+uniform float edgeSize;
 
 void main()
 {
@@ -7,9 +8,9 @@ void main()
 	
 	gl_FragColor = gl_Color;
 	
-	float delta = abs(abs(dFdx(alpha)) + abs(dFdy(alpha)));
-	float min = 0.5 - delta * 2.0;
-	float max = 0.5 + delta * 2.0;
+	float delta = abs(dFdx(gl_TexCoord[0].s)) + abs(dFdx(gl_TexCoord[0].t));
+	float min = 0.5 - delta * edgeSize;
+	float max = 0.5 + delta * edgeSize;
 
-	gl_FragColor.a *= smoothstep(min, max, alpha);
+	gl_FragColor.a = smoothstep(min, max, alpha);
 }

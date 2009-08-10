@@ -23,6 +23,7 @@
 		25BA37BE102F776200A74F4B /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25BA379D102F75B300A74F4B /* GLUT.framework */; };
 		25BA37CF102F77D400A74F4B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F83507AD6F520058BE5D /* OpenGL.framework */; };
 		25BA37D0102F77DF00A74F4B /* GLSLMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25BA37B3102F768F00A74F4B /* GLSLMain.cpp */; };
+		25F3498C102F7F440011023F /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F3498B102F7F440011023F /* libfreetype.a */; };
 		25F5002A0FA725D60002BE66 /* libsamplerate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F500290FA725D60002BE66 /* libsamplerate.a */; };
 		25F500470FA726890002BE66 /* arm.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500370FA726890002BE66 /* arm.tga */; };
 		25F500480FA726890002BE66 /* body.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500380FA726890002BE66 /* body.tga */; };
@@ -99,6 +100,7 @@
 		25BA379D102F75B300A74F4B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
 		25BA37B3102F768F00A74F4B /* GLSLMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLMain.cpp; sourceTree = "<group>"; };
 		25BA37B8102F774100A74F4B /* GLSL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GLSL; sourceTree = BUILT_PRODUCTS_DIR; };
+		25F3498B102F7F440011023F /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = /opt/local/lib/libfreetype.a; sourceTree = "<absolute>"; };
 		25F500290FA725D60002BE66 /* libsamplerate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsamplerate.a; path = /usr/local/lib/libsamplerate.a; sourceTree = "<absolute>"; };
 		25F500370FA726890002BE66 /* arm.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.tga; sourceTree = "<group>"; };
 		25F500380FA726890002BE66 /* body.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = body.tga; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			files = (
 				25BA37BE102F776200A74F4B /* GLUT.framework in Frameworks */,
 				25BA37CF102F77D400A74F4B /* OpenGL.framework in Frameworks */,
+				25F3498C102F7F440011023F /* libfreetype.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				25BA379D102F75B300A74F4B /* GLUT.framework */,
+				25F3498B102F7F440011023F /* libfreetype.a */,
 				25F500290FA725D60002BE66 /* libsamplerate.a */,
 				25F5FF490FA71A790002BE66 /* libid3tag.a */,
 				25F5FF4A0FA71A790002BE66 /* libmad.a */,
@@ -557,6 +561,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GLSL;
 			};
@@ -571,6 +579,10 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GLSL;
 				ZERO_LINK = NO;
@@ -584,6 +596,10 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GLSL;
 			};
@@ -592,18 +608,21 @@
 		3CCF0F930D86DFEF003173B5 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /opt/local/include;
 			};
 			name = Development;
 		};
 		3CCF0F940D86DFEF003173B5 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /opt/local/include;
 			};
 			name = Deployment;
 		};
 		3CCF0F950D86DFEF003173B5 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /opt/local/include;
 			};
 			name = Default;
 		};
@@ -619,7 +638,7 @@
 				GCC_PREFIX_HEADER = guitarstorm_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __USE_OSX_AGL_IMPLEMENTATION__;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = /sw/include;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -646,6 +665,7 @@
 				GCC_PREFIX_HEADER = guitarstorm_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __USE_OSX_AGL_IMPLEMENTATION__;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -669,6 +689,7 @@
 				GCC_PREFIX_HEADER = guitarstorm_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __USE_OSX_AGL_IMPLEMENTATION__;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (

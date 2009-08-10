@@ -7,12 +7,16 @@
  *
  */
 
+#include <fstream>
+#include <string>
 #include <GLUT/GLUT.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
 GLint v, f, p; 
 GLuint t;
+
+using namespace std;
 
 void drawQuad()
 {
@@ -82,6 +86,26 @@ void makeTexture()
 	free(tex);
 }
 
+void openShader(GLint shader, const char* name)
+{
+	ifstream in;
+	in.open(name, ios::in);
+	
+	char cstr[128];
+	
+	string str;
+	
+	while(!in.eof())
+	{
+		in.getline(cstr, 128, 0);
+		str += string(cstr);
+	}
+	
+	const GLchar* c = str.c_str();
+	
+	glShaderSource(shader, 1, &c, NULL);
+}
+
 void loadShaders()
 {
 	char *vs,*fs;
@@ -89,16 +113,8 @@ void loadShaders()
 	v = glCreateShader(GL_VERTEX_SHADER);
 	f = glCreateShader(GL_FRAGMENT_SHADER);	
 	
-	//vs = fopen("Sprite.vert");
-	//fs = fopen("Sprite.frag");
-	
-	const char * vv = "void main(){gl_FrontColor = gl_Color; gl_Position = ftransform();}";
-	const char * ff = "void main(){gl_FragColor = gl_Color;}";
-	
-	glShaderSource(v, 1, &vv,NULL);
-	glShaderSource(f, 1, &ff,NULL);
-	
-	//free(vs);free(fs);
+	openShader(v,"Sprite.vert");
+	openShader(f,"Sprite.frag");
 	
 	glCompileShader(v);
 	glCompileShader(f);
@@ -135,7 +151,7 @@ int main(int argc, char **argv)
 	
 	makeTexture();
 	
-	//loadShaders();
+	loadShaders();
 	
 	glutDisplayFunc(renderScene);
 	glutMainLoop();

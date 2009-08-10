@@ -22,9 +22,18 @@ GLint v, f, p;
 FT_Library ft;
 FT_Face font;
 GLuint circle;
-GLuint text;
+GLuint text[128];
+float adv[128];
 
 using namespace std;
+
+inline int next_p2 (int a )
+{
+	int rval=1;
+	// rval<<=1 Is A Prettier Way Of Writing rval*=2; 
+	while(rval<a) rval<<=1;
+	return rval;
+}
 
 void drawQuad(GLint t, float r, float g, float b)
 {
@@ -61,60 +70,71 @@ void renderScene()
 	glTranslatef(-0.5f, 0, 0);
 	drawQuad(circle, 1, 0, 0);
 	
-	glTranslatef(1.0f, 0, 0);
-	drawQuad(text, 0, 0, 1);
+	glScalef(0.5f, 0.5f, 1);
+	glTranslatef(0.1f, 0, 0);
+	drawQuad(text['O'], 0, 0, 1);
+	glTranslatef(adv['O'], 0, 0);
+	drawQuad(text['w'], 0, 0, 1);
+	glTranslatef(adv['w'], 0, 0);
+	drawQuad(text['e'], 0, 0, 1);
+	glTranslatef(adv['e'], 0, 0);
+	drawQuad(text['n'], 0, 0, 1);
 	
 	glFlush();
 }
 
 void makeText()
 {
-	char ch = 'n';
-	
-	// The First Thing We Do Is Get FreeType To Render Our Character
-	// Into A Bitmap.  This Actually Requires A Couple Of FreeType Commands:
-	
-	// Load The Glyph For Our Character.
-	if(FT_Load_Glyph( font, FT_Get_Char_Index( font, ch ), FT_LOAD_DEFAULT ))
-		return;
-	
-	// Move The Face's Glyph Into A Glyph Object.
-	FT_Glyph glyph;
-	if(FT_Get_Glyph( font->glyph, &glyph ))
-		return;
-	
-	// Convert The Glyph To A Bitmap.
-	FT_Glyph_To_Bitmap( &glyph, ft_render_mode_normal, 0, 1 );
-	FT_BitmapGlyph bitmap_glyph = (FT_BitmapGlyph)glyph;
-	
-	// This Reference Will Make Accessing The Bitmap Easier.
-	FT_Bitmap& bitmap=bitmap_glyph->bitmap;
-	
-	// Use Our Helper Function To Get The Widths Of
-	// The Bitmap Data That We Will Need In Order To Create
-	// Our Texture.
-	int width = 64;
-	int height = 64;
-	
-	// Allocate Memory For The Texture Data.
-	GLubyte* tex = (GLubyte*)malloc(width * height);
-	
-	for(int j=0; j <bitmap.rows;j++)
-	for(int i=0; i < bitmap.width; i++)
+	for(unsigned char c=0; c<128; c++)
 	{
-		tex[i+j*width]= bitmap.buffer[i + bitmap.width*j];
+		// The First Thing We Do Is Get FreeType To Render Our Character
+		// Into A Bitmap.  This Actually Requires A Couple Of FreeType Commands:
+		
+		// Load The Glyph For Our Character.
+		if(FT_Load_Glyph( font, FT_Get_Char_Index( font, c ), FT_LOAD_DEFAULT ))
+			return;
+		
+		// Move The Face's Glyph Into A Glyph Object.
+		FT_Glyph glyph;
+		if(FT_Get_Glyph( font->glyph, &glyph ))
+			return;
+		
+		// Convert The Glyph To A Bitmap.
+		FT_Glyph_To_Bitmap( &glyph, ft_render_mode_normal, 0, 1 );
+		FT_BitmapGlyph bitmap_glyph = (FT_BitmapGlyph)glyph;
+		
+		// This Reference Will Make Accessing The Bitmap Easier.
+		FT_Bitmap& bitmap=bitmap_glyph->bitmap;
+		
+		// Use Our Helper Function To Get The Widths Of
+		// The Bitmap Data That We Will Need In Order To Create
+		// Our Texture.
+		int width = next_p2( bitmap.width );
+		int height = next_p2( bitmap.rows );
+		
+		// Allocate Memory For The Texture Data.
+		GLubyte* tex = (GLubyte*)malloc(width * height);
+		memset(tex, 0, width*height);
+		
+		for(int j=0; j <bitmap.rows;j++)
+		for(int i=0; i < bitmap.width; i++)
+		{
+			tex[i + j*width]= bitmap.buffer[i + bitmap.width*j];
+		}
+		
+		glGenTextures(1, &text[c]);
+		glBindTexture(GL_TEXTURE_2D, text[c]);
+		
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, width, height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, tex);
+		
+		adv[c] = font->glyph->advance.x / (50 * 64.0f);
+		
+		free(tex);
 	}
-	
-	glGenTextures(1, &text);
-	glBindTexture(GL_TEXTURE_2D, text);
-	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, width, height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, tex);
-	
-	free(tex);
 }
 
 void makeCircle()
@@ -186,7 +206,7 @@ void loadFont()
 	// In Terms Of 1/64ths Of Pixels.  Thus, To Make A Font
 	// h Pixels High, We Need To Request A Size Of h*64.
 	// (h << 6 Is Just A Prettier Way Of Writing h*64)
-	FT_Set_Char_Size( font, 64 * 64, 64 * 64, 96, 96);
+	FT_Set_Char_Size( font, 50 * 64, 50 * 64, 96, 96);
 }
 
 void loadShaders()
@@ -227,6 +247,15 @@ void unloadShaders()
 	glDeleteProgram(p);
 }
 
+void unloadTextures()
+{
+	for(unsigned char c=0; c<128; c++)
+	{
+		glDeleteTextures(1, &text[c]);
+	}
+	glDeleteTextures(1, &circle);
+}
+
 int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
@@ -243,15 +272,14 @@ int main(int argc, char **argv)
 	
 	makeCircle();
 	makeText();
+	
+	unloadFont();
 
 	glutDisplayFunc(renderScene);
 	glutMainLoop();
 	
 	unloadShaders();
-	unloadFont();
-	
-	glDeleteTextures(1, &circle);
-	glDeleteTextures(1, &text);
+	unloadTextures();
 	
 	return 0;
 }

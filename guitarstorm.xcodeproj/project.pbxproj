@@ -20,6 +20,9 @@
 		1FD8F432088C87A500B4318C /* osgIntrospection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8F431088C87A500B4318C /* osgIntrospection.framework */; };
 		1FF6110B082F118D004EB1E4 /* osgViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF61109082F118D004EB1E4 /* osgViewer.framework */; };
 		254322C30FA6771200D258A6 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 254322C20FA6771200D258A6 /* libportaudio.a */; };
+		25BA37BE102F776200A74F4B /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25BA379D102F75B300A74F4B /* GLUT.framework */; };
+		25BA37CF102F77D400A74F4B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F83507AD6F520058BE5D /* OpenGL.framework */; };
+		25BA37D0102F77DF00A74F4B /* GLSLMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25BA37B3102F768F00A74F4B /* GLSLMain.cpp */; };
 		25F5002A0FA725D60002BE66 /* libsamplerate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F500290FA725D60002BE66 /* libsamplerate.a */; };
 		25F500470FA726890002BE66 /* arm.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500370FA726890002BE66 /* arm.tga */; };
 		25F500480FA726890002BE66 /* body.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500380FA726890002BE66 /* body.tga */; };
@@ -93,6 +96,9 @@
 		1FF61109082F118D004EB1E4 /* osgViewer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgViewer.framework; path = /Library/Frameworks/osgViewer.framework; sourceTree = "<absolute>"; };
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		254322C20FA6771200D258A6 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = /usr/local/lib/libportaudio.a; sourceTree = "<absolute>"; };
+		25BA379D102F75B300A74F4B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
+		25BA37B3102F768F00A74F4B /* GLSLMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLMain.cpp; sourceTree = "<group>"; };
+		25BA37B8102F774100A74F4B /* GLSL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = GLSL; path = build/Development/GLSL; sourceTree = "<group>"; };
 		25F500290FA725D60002BE66 /* libsamplerate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsamplerate.a; path = /usr/local/lib/libsamplerate.a; sourceTree = "<absolute>"; };
 		25F500370FA726890002BE66 /* arm.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.tga; sourceTree = "<group>"; };
 		25F500380FA726890002BE66 /* body.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = body.tga; sourceTree = "<group>"; };
@@ -175,6 +181,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		25BA37B6102F774100A74F4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25BA37BE102F776200A74F4B /* GLUT.framework in Frameworks */,
+				25BA37CF102F77D400A74F4B /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D0C4E910486CD37000505A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -210,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				8D0C4E970486CD37000505A6 /* guitarstorm.app */,
+				25BA37B8102F774100A74F4B /* GLSL */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -284,6 +300,7 @@
 				3CCF0FCF0D86E149003173B5 /* kguitar */,
 				3CCF0FCE0D86E143003173B5 /* fft */,
 				32DBCF6D0370B57F00C91783 /* guitarstorm_Prefix.pch */,
+				25BA37B3102F768F00A74F4B /* GLSLMain.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -303,6 +320,7 @@
 		20286C32FDCF999611CA2CEA /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				25BA379D102F75B300A74F4B /* GLUT.framework */,
 				25F500290FA725D60002BE66 /* libsamplerate.a */,
 				25F5FF490FA71A790002BE66 /* libid3tag.a */,
 				25F5FF4A0FA71A790002BE66 /* libmad.a */,
@@ -384,6 +402,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		25BA37B7102F774100A74F4B /* GLSL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25BA37BD102F776000A74F4B /* Build configuration list for PBXNativeTarget "GLSL" */;
+			buildPhases = (
+				25BA37B5102F774100A74F4B /* Sources */,
+				25BA37B6102F774100A74F4B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GLSL;
+			productName = GLSL;
+			productReference = 25BA37B8102F774100A74F4B /* GLSL */;
+			productType = "com.apple.product-type.tool";
+		};
 		8D0C4E890486CD37000505A6 /* guitarstorm */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3CCF0F9A0D86DFEF003173B5 /* Build configuration list for PBXNativeTarget "guitarstorm" */;
@@ -415,6 +449,7 @@
 			projectRoot = "";
 			targets = (
 				8D0C4E890486CD37000505A6 /* guitarstorm */,
+				25BA37B7102F774100A74F4B /* GLSL */,
 			);
 		};
 /* End PBXProject section */
@@ -449,6 +484,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		25BA37B5102F774100A74F4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25BA37D0102F77DF00A74F4B /* GLSLMain.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D0C4E8F0486CD37000505A6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -504,6 +547,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		25BA37BA102F774200A74F4B /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = GLSL;
+			};
+			name = Development;
+		};
+		25BA37BB102F774200A74F4B /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = GLSL;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		25BA37BC102F774200A74F4B /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = GLSL;
+			};
+			name = Default;
+		};
 		3CCF0F930D86DFEF003173B5 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -601,6 +686,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		25BA37BD102F776000A74F4B /* Build configuration list for PBXNativeTarget "GLSL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25BA37BA102F774200A74F4B /* Development */,
+				25BA37BB102F774200A74F4B /* Deployment */,
+				25BA37BC102F774200A74F4B /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
 		3CCF0F990D86DFEF003173B5 /* Build configuration list for PBXProject "guitarstorm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

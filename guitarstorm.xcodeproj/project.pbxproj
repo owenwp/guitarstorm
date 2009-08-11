@@ -20,29 +20,15 @@
 		1FD8F432088C87A500B4318C /* osgIntrospection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8F431088C87A500B4318C /* osgIntrospection.framework */; };
 		1FF6110B082F118D004EB1E4 /* osgViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF61109082F118D004EB1E4 /* osgViewer.framework */; };
 		254322C30FA6771200D258A6 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 254322C20FA6771200D258A6 /* libportaudio.a */; };
+		256274581031E5120023B882 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 256274571031E5120023B882 /* libpng.a */; };
+		256274951031E8F70023B882 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 256274811031E8F70023B882 /* images */; };
+		256274961031E8F70023B882 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 256274811031E8F70023B882 /* images */; };
+		256274991031E9390023B882 /* shaders in Resources */ = {isa = PBXBuildFile; fileRef = 256274971031E9390023B882 /* shaders */; };
 		259A0470102F9D4A00DA84FE /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25BA379D102F75B300A74F4B /* GLUT.framework */; };
 		259A0471102F9D4A00DA84FE /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F3498B102F7F440011023F /* libfreetype.a */; };
 		259A0472102F9D4A00DA84FE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F83507AD6F520058BE5D /* OpenGL.framework */; };
 		259A0474102F9D5100DA84FE /* GLSLMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25BA37B3102F768F00A74F4B /* GLSLMain.cpp */; };
-		259A0480102F9DE400DA84FE /* Sprite.vert in Resources */ = {isa = PBXBuildFile; fileRef = 259A047E102F9DB000DA84FE /* Sprite.vert */; };
-		259A0481102F9DE400DA84FE /* Sprite.frag in Resources */ = {isa = PBXBuildFile; fileRef = 259A047F102F9DBA00DA84FE /* Sprite.frag */; };
 		25F5002A0FA725D60002BE66 /* libsamplerate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F500290FA725D60002BE66 /* libsamplerate.a */; };
-		25F500470FA726890002BE66 /* arm.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500370FA726890002BE66 /* arm.tga */; };
-		25F500480FA726890002BE66 /* body.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500380FA726890002BE66 /* body.tga */; };
-		25F500490FA726890002BE66 /* bstring.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500390FA726890002BE66 /* bstring.tga */; };
-		25F5004A0FA726890002BE66 /* cd.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003A0FA726890002BE66 /* cd.tga */; };
-		25F5004B0FA726890002BE66 /* circle.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003B0FA726890002BE66 /* circle.tga */; };
-		25F5004C0FA726890002BE66 /* duskcloudy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003C0FA726890002BE66 /* duskcloudy.jpg */; };
-		25F5004D0FA726890002BE66 /* duskcontrast.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003D0FA726890002BE66 /* duskcontrast.jpg */; };
-		25F5004E0FA726890002BE66 /* duskstormy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003E0FA726890002BE66 /* duskstormy.jpg */; };
-		25F5004F0FA726890002BE66 /* fret.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F5003F0FA726890002BE66 /* fret.tga */; };
-		25F500500FA726890002BE66 /* head.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500400FA726890002BE66 /* head.tga */; };
-		25F500510FA726890002BE66 /* neck.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500410FA726890002BE66 /* neck.tga */; };
-		25F500520FA726890002BE66 /* nut.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500420FA726890002BE66 /* nut.tga */; };
-		25F500530FA726890002BE66 /* pick.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500430FA726890002BE66 /* pick.tga */; };
-		25F500540FA726890002BE66 /* tick.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500440FA726890002BE66 /* tick.tga */; };
-		25F500550FA726890002BE66 /* tstring.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500450FA726890002BE66 /* tstring.tga */; };
-		25F500560FA726890002BE66 /* tuner.tga in Resources */ = {isa = PBXBuildFile; fileRef = 25F500460FA726890002BE66 /* tuner.tga */; };
 		25F5FF4B0FA71A790002BE66 /* libid3tag.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F5FF490FA71A790002BE66 /* libid3tag.a */; };
 		25F5FF4C0FA71A790002BE66 /* libmad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F5FF4A0FA71A790002BE66 /* libmad.a */; };
 		25F5FF6A0FA71E9D0002BE66 /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF680FA71E9D0002BE66 /* Audio.cpp */; };
@@ -99,30 +85,15 @@
 		1FF61109082F118D004EB1E4 /* osgViewer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgViewer.framework; path = /Library/Frameworks/osgViewer.framework; sourceTree = "<absolute>"; };
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		254322C20FA6771200D258A6 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = /usr/local/lib/libportaudio.a; sourceTree = "<absolute>"; };
+		256274571031E5120023B882 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = /opt/local/lib/libpng.a; sourceTree = "<absolute>"; };
+		256274811031E8F70023B882 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		256274971031E9390023B882 /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shaders; sourceTree = "<group>"; };
 		259A0469102F9D1600DA84FE /* GLSLApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLSLApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		259A046B102F9D1600DA84FE /* GLSLApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GLSLApp-Info.plist"; sourceTree = "<group>"; };
-		259A047E102F9DB000DA84FE /* Sprite.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sprite.vert; sourceTree = "<group>"; };
-		259A047F102F9DBA00DA84FE /* Sprite.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sprite.frag; sourceTree = "<group>"; };
 		25BA379D102F75B300A74F4B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
 		25BA37B3102F768F00A74F4B /* GLSLMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLMain.cpp; sourceTree = "<group>"; };
 		25F3498B102F7F440011023F /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = /opt/local/lib/libfreetype.a; sourceTree = "<absolute>"; };
 		25F500290FA725D60002BE66 /* libsamplerate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsamplerate.a; path = /usr/local/lib/libsamplerate.a; sourceTree = "<absolute>"; };
-		25F500370FA726890002BE66 /* arm.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.tga; sourceTree = "<group>"; };
-		25F500380FA726890002BE66 /* body.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = body.tga; sourceTree = "<group>"; };
-		25F500390FA726890002BE66 /* bstring.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = bstring.tga; sourceTree = "<group>"; };
-		25F5003A0FA726890002BE66 /* cd.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = cd.tga; sourceTree = "<group>"; };
-		25F5003B0FA726890002BE66 /* circle.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = circle.tga; sourceTree = "<group>"; };
-		25F5003C0FA726890002BE66 /* duskcloudy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = duskcloudy.jpg; sourceTree = "<group>"; };
-		25F5003D0FA726890002BE66 /* duskcontrast.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = duskcontrast.jpg; sourceTree = "<group>"; };
-		25F5003E0FA726890002BE66 /* duskstormy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = duskstormy.jpg; sourceTree = "<group>"; };
-		25F5003F0FA726890002BE66 /* fret.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = fret.tga; sourceTree = "<group>"; };
-		25F500400FA726890002BE66 /* head.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = head.tga; sourceTree = "<group>"; };
-		25F500410FA726890002BE66 /* neck.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = neck.tga; sourceTree = "<group>"; };
-		25F500420FA726890002BE66 /* nut.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = nut.tga; sourceTree = "<group>"; };
-		25F500430FA726890002BE66 /* pick.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = pick.tga; sourceTree = "<group>"; };
-		25F500440FA726890002BE66 /* tick.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = tick.tga; sourceTree = "<group>"; };
-		25F500450FA726890002BE66 /* tstring.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = tstring.tga; sourceTree = "<group>"; };
-		25F500460FA726890002BE66 /* tuner.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = tuner.tga; sourceTree = "<group>"; };
 		25F5FF490FA71A790002BE66 /* libid3tag.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libid3tag.a; path = /sw/lib/libid3tag.a; sourceTree = "<absolute>"; };
 		25F5FF4A0FA71A790002BE66 /* libmad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmad.a; path = /sw/lib/libmad.a; sourceTree = "<absolute>"; };
 		25F5FF680FA71E9D0002BE66 /* Audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Audio.cpp; sourceTree = "<group>"; };
@@ -195,6 +166,7 @@
 				259A0470102F9D4A00DA84FE /* GLUT.framework in Frameworks */,
 				259A0471102F9D4A00DA84FE /* libfreetype.a in Frameworks */,
 				259A0472102F9D4A00DA84FE /* OpenGL.framework in Frameworks */,
+				256274581031E5120023B882 /* libpng.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,8 +288,8 @@
 		20286C2CFDCF999611CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				259A047D102F9D8500DA84FE /* Shaders */,
-				25F500360FA726890002BE66 /* images */,
+				256274971031E9390023B882 /* shaders */,
+				256274811031E8F70023B882 /* images */,
 				3CCF102A0D86E71B003173B5 /* tabs */,
 				8D0C4E960486CD37000505A6 /* Info.plist */,
 				259A046B102F9D1600DA84FE /* GLSLApp-Info.plist */,
@@ -332,6 +304,7 @@
 			children = (
 				25BA379D102F75B300A74F4B /* GLUT.framework */,
 				25F3498B102F7F440011023F /* libfreetype.a */,
+				256274571031E5120023B882 /* libpng.a */,
 				25F500290FA725D60002BE66 /* libsamplerate.a */,
 				25F5FF490FA71A790002BE66 /* libid3tag.a */,
 				25F5FF4A0FA71A790002BE66 /* libmad.a */,
@@ -345,38 +318,6 @@
 				20286C33FDCF999611CA2CEA /* Carbon.framework */,
 			);
 			name = "External Frameworks and Libraries";
-			sourceTree = "<group>";
-		};
-		259A047D102F9D8500DA84FE /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				259A047E102F9DB000DA84FE /* Sprite.vert */,
-				259A047F102F9DBA00DA84FE /* Sprite.frag */,
-			);
-			name = Shaders;
-			sourceTree = "<group>";
-		};
-		25F500360FA726890002BE66 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				25F500370FA726890002BE66 /* arm.tga */,
-				25F500380FA726890002BE66 /* body.tga */,
-				25F500390FA726890002BE66 /* bstring.tga */,
-				25F5003A0FA726890002BE66 /* cd.tga */,
-				25F5003B0FA726890002BE66 /* circle.tga */,
-				25F5003C0FA726890002BE66 /* duskcloudy.jpg */,
-				25F5003D0FA726890002BE66 /* duskcontrast.jpg */,
-				25F5003E0FA726890002BE66 /* duskstormy.jpg */,
-				25F5003F0FA726890002BE66 /* fret.tga */,
-				25F500400FA726890002BE66 /* head.tga */,
-				25F500410FA726890002BE66 /* neck.tga */,
-				25F500420FA726890002BE66 /* nut.tga */,
-				25F500430FA726890002BE66 /* pick.tga */,
-				25F500440FA726890002BE66 /* tick.tga */,
-				25F500450FA726890002BE66 /* tstring.tga */,
-				25F500460FA726890002BE66 /* tuner.tga */,
-			);
-			path = images;
 			sourceTree = "<group>";
 		};
 		25F5FFBF0FA71F3C0002BE66 /* utilities */ = {
@@ -480,8 +421,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				259A0480102F9DE400DA84FE /* Sprite.vert in Resources */,
-				259A0481102F9DE400DA84FE /* Sprite.frag in Resources */,
+				256274951031E8F70023B882 /* images in Resources */,
+				256274991031E9390023B882 /* shaders in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,22 +433,7 @@
 				8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */,
 				8D0C4E8E0486CD37000505A6 /* main.nib in Resources */,
 				3CCF102F0D86E71B003173B5 /* tabs in Resources */,
-				25F500470FA726890002BE66 /* arm.tga in Resources */,
-				25F500480FA726890002BE66 /* body.tga in Resources */,
-				25F500490FA726890002BE66 /* bstring.tga in Resources */,
-				25F5004A0FA726890002BE66 /* cd.tga in Resources */,
-				25F5004B0FA726890002BE66 /* circle.tga in Resources */,
-				25F5004C0FA726890002BE66 /* duskcloudy.jpg in Resources */,
-				25F5004D0FA726890002BE66 /* duskcontrast.jpg in Resources */,
-				25F5004E0FA726890002BE66 /* duskstormy.jpg in Resources */,
-				25F5004F0FA726890002BE66 /* fret.tga in Resources */,
-				25F500500FA726890002BE66 /* head.tga in Resources */,
-				25F500510FA726890002BE66 /* neck.tga in Resources */,
-				25F500520FA726890002BE66 /* nut.tga in Resources */,
-				25F500530FA726890002BE66 /* pick.tga in Resources */,
-				25F500540FA726890002BE66 /* tick.tga in Resources */,
-				25F500550FA726890002BE66 /* tstring.tga in Resources */,
-				25F500560FA726890002BE66 /* tuner.tga in Resources */,
+				256274961031E8F70023B882 /* images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

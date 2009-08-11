@@ -20,7 +20,6 @@
 		1FD8F432088C87A500B4318C /* osgIntrospection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8F431088C87A500B4318C /* osgIntrospection.framework */; };
 		1FF6110B082F118D004EB1E4 /* osgViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF61109082F118D004EB1E4 /* osgViewer.framework */; };
 		254322C30FA6771200D258A6 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 254322C20FA6771200D258A6 /* libportaudio.a */; };
-		256274581031E5120023B882 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 256274571031E5120023B882 /* libpng.a */; };
 		256274951031E8F70023B882 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 256274811031E8F70023B882 /* images */; };
 		256274961031E8F70023B882 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 256274811031E8F70023B882 /* images */; };
 		256274991031E9390023B882 /* shaders in Resources */ = {isa = PBXBuildFile; fileRef = 256274971031E9390023B882 /* shaders */; };
@@ -28,6 +27,8 @@
 		259A0471102F9D4A00DA84FE /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F3498B102F7F440011023F /* libfreetype.a */; };
 		259A0472102F9D4A00DA84FE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F83507AD6F520058BE5D /* OpenGL.framework */; };
 		259A0474102F9D5100DA84FE /* GLSLMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25BA37B3102F768F00A74F4B /* GLSLMain.cpp */; };
+		25A28171103207CA00D7C4CD /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25A28170103207CA00D7C4CD /* Texture.cpp */; };
+		25A2826A10321D7C00D7C4CD /* libIL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A2826910321D7C00D7C4CD /* libIL.dylib */; };
 		25F5002A0FA725D60002BE66 /* libsamplerate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F500290FA725D60002BE66 /* libsamplerate.a */; };
 		25F5FF4B0FA71A790002BE66 /* libid3tag.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F5FF490FA71A790002BE66 /* libid3tag.a */; };
 		25F5FF4C0FA71A790002BE66 /* libmad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F5FF4A0FA71A790002BE66 /* libmad.a */; };
@@ -85,11 +86,13 @@
 		1FF61109082F118D004EB1E4 /* osgViewer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = osgViewer.framework; path = /Library/Frameworks/osgViewer.framework; sourceTree = "<absolute>"; };
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		254322C20FA6771200D258A6 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = /usr/local/lib/libportaudio.a; sourceTree = "<absolute>"; };
-		256274571031E5120023B882 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = /opt/local/lib/libpng.a; sourceTree = "<absolute>"; };
 		256274811031E8F70023B882 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		256274971031E9390023B882 /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shaders; sourceTree = "<group>"; };
 		259A0469102F9D1600DA84FE /* GLSLApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLSLApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		259A046B102F9D1600DA84FE /* GLSLApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GLSLApp-Info.plist"; sourceTree = "<group>"; };
+		25A2816F103207CA00D7C4CD /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		25A28170103207CA00D7C4CD /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		25A2826910321D7C00D7C4CD /* libIL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.dylib; path = /opt/local/lib/libIL.dylib; sourceTree = "<absolute>"; };
 		25BA379D102F75B300A74F4B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
 		25BA37B3102F768F00A74F4B /* GLSLMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLMain.cpp; sourceTree = "<group>"; };
 		25F3498B102F7F440011023F /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = /opt/local/lib/libfreetype.a; sourceTree = "<absolute>"; };
@@ -166,7 +169,7 @@
 				259A0470102F9D4A00DA84FE /* GLUT.framework in Frameworks */,
 				259A0471102F9D4A00DA84FE /* libfreetype.a in Frameworks */,
 				259A0472102F9D4A00DA84FE /* OpenGL.framework in Frameworks */,
-				256274581031E5120023B882 /* libpng.a in Frameworks */,
+				25A2826A10321D7C00D7C4CD /* libIL.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +284,8 @@
 				3CCF0FCE0D86E143003173B5 /* fft */,
 				32DBCF6D0370B57F00C91783 /* guitarstorm_Prefix.pch */,
 				25BA37B3102F768F00A74F4B /* GLSLMain.cpp */,
+				25A2816F103207CA00D7C4CD /* Texture.h */,
+				25A28170103207CA00D7C4CD /* Texture.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -304,7 +309,7 @@
 			children = (
 				25BA379D102F75B300A74F4B /* GLUT.framework */,
 				25F3498B102F7F440011023F /* libfreetype.a */,
-				256274571031E5120023B882 /* libpng.a */,
+				25A2826910321D7C00D7C4CD /* libIL.dylib */,
 				25F500290FA725D60002BE66 /* libsamplerate.a */,
 				25F5FF490FA71A790002BE66 /* libid3tag.a */,
 				25F5FF4A0FA71A790002BE66 /* libmad.a */,
@@ -445,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				259A0474102F9D5100DA84FE /* GLSLMain.cpp in Sources */,
+				25A28171103207CA00D7C4CD /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

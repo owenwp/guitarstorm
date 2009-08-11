@@ -12,12 +12,14 @@
 #include <string>
 #include <math.h>
 #include <GLUT/GLUT.h>
-#include <png.h>
+#include <IL/il.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include <freetype/ftglyph.h>
 #include <freetype/ftoutln.h>
 #include <freetype/fttrigon.h>
+
+#include "Texture.h"
 
 GLint v, f, p; 
 FT_Library ft;
@@ -29,6 +31,7 @@ float wid[128];
 float hgt[128];
 float xpad[128];
 float ypad[128];
+Texture* body;
 
 using namespace std;
 
@@ -40,12 +43,8 @@ inline int next_p2 (int a )
 	return rval;
 }
 
-void drawQuad(GLint t, float r=1, float g=1, float b=1)
+void drawQuad(float r=1, float g=1, float b=1)
 {	
-	glBindTexture(GL_TEXTURE_2D, t);
-	GLint loc = glGetUniformLocation(p,"edgeSize");
-	glUniform1f(loc, 1.0);
-	
 	glBegin(GL_TRIANGLE_STRIP);
 	
 	glColor3f(r, g, b);
@@ -77,6 +76,8 @@ void drawText(string str, float r=1, float g=1, float b=1)
 		glBindTexture(GL_TEXTURE_2D, text[cstr[i]]);
 		GLint loc = glGetUniformLocation(p,"edgeSize");
 		glUniform1f(loc, 16.0);
+		loc = glGetUniformLocation(p,"alphaOnly");
+		glUniform1i(loc, 1);
 		
 		glBegin(GL_TRIANGLE_STRIP);
 		
@@ -111,9 +112,25 @@ void renderScene()
 	
 	glPushMatrix();
 	{
+		glBindTexture(GL_TEXTURE_2D, circle);
+		GLint loc = glGetUniformLocation(p,"edgeSize");
+		glUniform1f(loc, 1.0);
+		loc = glGetUniformLocation(p,"alphaOnly");
+		glUniform1i(loc, 1);
+		
 		glTranslatef(2, 1, 0);
 		glScalef(8, 8, 1);
-		drawQuad(circle, 1, 0, 0);
+		drawQuad(1, 0, 0);
+	}
+	glPopMatrix();
+	
+	glPushMatrix();
+	{
+		body->Bind(p);
+		
+		glTranslatef(-2, 0, 0);
+		glScalef(6, 6, 1);
+		drawQuad(1, 1, 1);
 	}
 	glPopMatrix();
 	
@@ -222,54 +239,6 @@ void makeCircle()
 	free(tex);
 }
 
-void openPNG(string name)
-{
-	string folder = "images/";
-	name = folder + name + ".png";
-	
-	// is this a png?
-	FILE *fp = fopen(name.c_str(), "rb");
-    if (!fp)
-    {
-        return;
-    }
-	png_bytep header;
-	png_size_t number;
-    fread(header, 1, number, fp);
-    if (png_sig_cmp(header, 0, number))
-    {
-        return;
-    }
-	
-	// initialize
-	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-    if (!png_ptr)
-        return;
-	
-    png_infop info_ptr = png_create_info_struct(png_ptr);
-    if (!info_ptr)
-    {
-        png_destroy_read_struct(&png_ptr,
-								(png_infopp)NULL, (png_infopp)NULL);
-        return;
-    }
-	
-    png_infop end_info = png_create_info_struct(png_ptr);
-    if (!end_info)
-    {
-        png_destroy_read_struct(&png_ptr, &info_ptr,
-								(png_infopp)NULL);
-        return;
-    }
-	
-	png_init_io(png_ptr, fp);
-	png_set_sig_bytes(png_ptr, number);
-	
-	// read it
-	png_read_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
-	png_bytepp row_pointers = png_get_rows(png_ptr, info_ptr);
-}
-
 void openShader(GLint shader, string name)
 {
 	string folder = "shaders/";
@@ -374,6 +343,7 @@ void unloadTextures()
 int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
+	ilInit();
 	
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100, 50); 
@@ -385,6 +355,8 @@ int main(int argc, char **argv)
 	loadShaders();
 	loadFont();
 	
+	body = new Texture("body");
+	
 	makeCircle();
 	makeText();
 	
@@ -395,6 +367,8 @@ int main(int argc, char **argv)
 	
 	unloadShaders();
 	unloadTextures();
+	
+	delete body;
 	
 	return 0;
 }

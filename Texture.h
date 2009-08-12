@@ -24,6 +24,8 @@
 
 using namespace std;
 
+unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, float domain);
+
 class Texture
 {
 private:

@@ -129,7 +129,7 @@ void renderScene()
 		body->Bind(p);
 		
 		glTranslatef(-2, 0, 0);
-		glScalef(6, 6, 1);
+		glScalef(8, 8, 1);
 		drawQuad(1, 1, 1);
 	}
 	glPopMatrix();

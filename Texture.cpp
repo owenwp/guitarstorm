@@ -8,6 +8,41 @@
  */
 
 #include "Texture.h"
+#include <math.h>
+
+unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, float domain)
+{	
+	int ix = x*w;
+	int iy = y*h;
+	int inside = mask[ix*w + iy] != 0;
+	
+	//return inside * 255;
+	
+	int kernel = 16;
+	float mindist;
+	float mindist2 = 1/0.0f;
+	bool edge = false;
+	for(int i=-kernel; i<kernel; i++)
+	for(int j=-kernel; j<kernel; j++)
+	{
+		if(ix+i<0 || iy+j<0 || ix+i>w || iy+j>h)
+			continue;
+		
+		if((mask[ix*w+iy + i*w+j] != 0) != inside)
+		{
+			float dist2 = i*i + j*j;
+			if(dist2 < mindist2)
+				mindist2 = dist2;
+		}
+	}
+	
+	if(mindist2 > kernel*kernel)
+		return inside ? 255 : 0;
+	
+	mindist = sqrt(mindist2) * (128/kernel);
+	
+	return inside ? 127+mindist : 127-mindist;
+}
 
 Texture::Texture(string name)
 { 
@@ -40,6 +75,8 @@ Texture::Texture(string name)
 	
 	if(ilLoadImage(name.c_str()))
 	{
+		ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE); 
+		
 		glGenTextures(1, &id); 
 		glBindTexture(GL_TEXTURE_2D, id);
 		
@@ -64,7 +101,7 @@ Texture::Texture(string name)
 				vData[pos1++] = iData[pos2++];
 				vData[pos1++] = iData[pos2++];
 				vData[pos1++] = iData[pos2++];
-				vData[pos1++] = (depth == 4 ? iData[pos2++] : 0xff) * (mData[i*mHeight*8+j*8] == 0 ? 0 : 1);
+				vData[pos1++] = edgeDistance(mData, mWidth, mHeight, i/(float)width, j/(float)height, 1.0f);
 			}
 			
 			glTexImage2D(GL_TEXTURE_2D, 0, 4, width,
@@ -80,8 +117,7 @@ Texture::Texture(string name)
 						 iData);
 		}
 
-		
-		edge = 1.0f;
+		edge = 32.0f;
 	}
 }
 

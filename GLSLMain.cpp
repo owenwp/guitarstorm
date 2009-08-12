@@ -118,7 +118,7 @@ void renderScene()
 		loc = glGetUniformLocation(p,"alphaOnly");
 		glUniform1i(loc, 1);
 		
-		glTranslatef(2, 1, 0);
+		glTranslatef(-3, 1, 0);
 		glScalef(8, 8, 1);
 		drawQuad(1, 0, 0);
 	}
@@ -128,8 +128,8 @@ void renderScene()
 	{
 		body->Bind(p);
 		
-		glTranslatef(-2, 0, 0);
-		glScalef(8, 8, 1);
+		glTranslatef(10, 0, 0);
+		glScalef(30, 30, 1);
 		drawQuad(1, 1, 1);
 	}
 	glPopMatrix();
@@ -138,7 +138,7 @@ void renderScene()
 	{
 		glTranslatef(-4, -2, 0);
 		glScalef(2, 2, 1);
-		drawText("Owen", 0, 0, 1);
+		drawText("Vector", 0, 0, 1);
 	}
 	glPopMatrix();
 	

@@ -15,13 +15,11 @@ unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, 
 	int ix = x*w;
 	int iy = y*h;
 	int inside = mask[ix*w + iy] != 0;
-	
-	//return inside * 255;
-	
+
 	int kernel = 16;
-	float mindist;
-	float mindist2 = 1/0.0f;
-	bool edge = false;
+	int mindist;
+	float mindist2 = 512*512;
+	
 	for(int i=-kernel; i<kernel; i++)
 	for(int j=-kernel; j<kernel; j++)
 	{
@@ -37,11 +35,15 @@ unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, 
 	}
 	
 	if(mindist2 > kernel*kernel)
-		return inside ? 255 : 0;
+	{
+		mindist = 127;
+	}
+	else
+	{
+		mindist = sqrt(mindist2) / kernel * 127;
+	}
 	
-	mindist = sqrt(mindist2) * (128/kernel);
-	
-	return inside ? 127+mindist : 127-mindist;
+	return inside ? 128+mindist : 128-mindist;
 }
 
 Texture::Texture(string name)
@@ -117,7 +119,7 @@ Texture::Texture(string name)
 						 iData);
 		}
 
-		edge = 32.0f;
+		edge = mWidth / 64.0f;
 	}
 }
 

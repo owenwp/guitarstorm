@@ -119,7 +119,7 @@ Texture::Texture(string name)
 						 iData);
 		}
 
-		edge = mWidth / 64.0f;
+		edge = mWidth / 32.0f;
 	}
 }
 

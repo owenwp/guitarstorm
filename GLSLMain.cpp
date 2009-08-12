@@ -117,16 +117,22 @@ void renderScene()
 		glUniform1f(loc, 1.0);
 		loc = glGetUniformLocation(p,"alphaOnly");
 		glUniform1i(loc, 1);
+		loc = glGetUniformLocation(p,"shadowAlpha");
+		glUniform1f(loc, 0);
 		
 		glTranslatef(-3, 1, 0);
 		glScalef(8, 8, 1);
-		drawQuad(1, 0, 0);
+		drawQuad(0, 1, 0);
 	}
 	glPopMatrix();
 	
 	glPushMatrix();
 	{
 		body->Bind(p);
+		GLint loc = glGetUniformLocation(p,"shadowAlpha");
+		glUniform1f(loc, 0.5);
+		loc = glGetUniformLocation(p,"shadowPosition");
+		glUniform3f(loc, 0.01, -0.001, 1);
 		
 		glTranslatef(10, 0, 0);
 		glScalef(30, 30, 1);
@@ -136,6 +142,9 @@ void renderScene()
 	
 	glPushMatrix();
 	{
+		GLint loc = glGetUniformLocation(p,"shadowAlpha");
+		glUniform1f(loc, 0);
+		
 		glTranslatef(-4, -2, 0);
 		glScalef(2, 2, 1);
 		drawText("Vector", 0, 0, 1);

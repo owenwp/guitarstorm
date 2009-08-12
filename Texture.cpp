@@ -11,7 +11,27 @@
 
 Texture::Texture(string name)
 { 
+	int mWidth = 0;
+	int mHeight = 0;
+	unsigned char* mData = NULL;
+	
 	string folder = "images/";
+	string mask = folder + name + "_mask.png";
+	
+	// see if there is an alpha mask
+	ILuint maskid;
+	ilGenImages(1, &maskid);
+	ilBindImage(maskid); 
+	
+	if(ilLoadImage(mask.c_str()))
+	{
+		ilConvertImage(IL_LUMINANCE, IL_UNSIGNED_BYTE); 
+		
+		mWidth = ilGetInteger(IL_IMAGE_WIDTH);
+		mHeight = ilGetInteger(IL_IMAGE_HEIGHT);
+		mData = ilGetData();
+	}
+	
 	name = folder + name + ".png";
 	
 	ILuint texid;
@@ -20,8 +40,6 @@ Texture::Texture(string name)
 	
 	if(ilLoadImage(name.c_str()))
 	{
-		ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE); 
-	
 		glGenTextures(1, &id); 
 		glBindTexture(GL_TEXTURE_2D, id);
 		
@@ -30,9 +48,38 @@ Texture::Texture(string name)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		
-		glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_BPP), ilGetInteger(IL_IMAGE_WIDTH),
-					 ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE,
-					 ilGetData());
+		int width = ilGetInteger(IL_IMAGE_WIDTH);
+		int height = ilGetInteger(IL_IMAGE_HEIGHT);
+		int depth = ilGetInteger(IL_IMAGE_BPP);
+		unsigned char* iData = ilGetData();
+		
+		if(mData)
+		{
+			unsigned char* vData = (unsigned char *)malloc(width * height * 4);
+			long int pos1 = 0, pos2 = 0;
+			
+			for(int i=0; i<width; i++)
+			for(int j=0; j<height; j++)
+			{
+				vData[pos1++] = iData[pos2++];
+				vData[pos1++] = iData[pos2++];
+				vData[pos1++] = iData[pos2++];
+				vData[pos1++] = (depth == 4 ? iData[pos2++] : 0xff) * (mData[i*mHeight*8+j*8] == 0 ? 0 : 1);
+			}
+			
+			glTexImage2D(GL_TEXTURE_2D, 0, 4, width,
+						height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+						 vData);
+			
+			free(vData);
+		}
+		else
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, depth, width,
+						 height, 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE,
+						 iData);
+		}
+
 		
 		edge = 1.0f;
 	}

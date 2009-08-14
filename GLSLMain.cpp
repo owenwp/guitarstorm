@@ -26,7 +26,7 @@ FT_Library ft;
 FT_Face font;
 GLuint circle;
 GLuint text[128];
-float adv[128];
+float kerning[128][128];
 float wid[128];
 float hgt[128];
 float xpad[128];
@@ -98,7 +98,8 @@ void drawText(string str, float r=1, float g=1, float b=1)
 		
 		glEnd();
 		
-		glTranslatef(adv[cstr[i]], 0, 0);
+		if(i+1 < count)
+			glTranslatef(kerning[cstr[i]][cstr[i+1]], 0, 0);
 	}
 	
 	glPopMatrix();
@@ -162,6 +163,8 @@ GLint makeVectorTexture(unsigned char* buffer, int bWidth, int bHeight, int vWid
 
 void makeText()
 {
+	bool use_kerning = FT_HAS_KERNING( font );
+	
 	for(unsigned char c=0; c<128; c++)
 	{
 		// The First Thing We Do Is Get FreeType To Render Our Character
@@ -215,7 +218,25 @@ void makeText()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, width, height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, tex);
 		
-		adv[c] = font->glyph->advance.x / (point * 64.0f);
+		for(int k=0; k<128; k++)
+		{
+			if(use_kerning)
+			{
+				FT_Vector kern;
+				FT_Get_Kerning( font,         
+								FT_Get_Char_Index( font, c ),    
+								FT_Get_Char_Index( font, k ),        
+								FT_KERNING_DEFAULT, 
+								&kern );   
+				
+				kerning[c][k] = (font->glyph->advance.x + kern.x) / (point * 64.0f);
+			}
+			else
+			{
+				kerning[c][k] = font->glyph->advance.x / (point * 64.0f);
+			}
+		}
+		
 		wid[c] = bitmap.width / (float)point;
 		hgt[c] = bitmap.rows / (float)point;
 		

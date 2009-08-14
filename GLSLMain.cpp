@@ -31,6 +31,7 @@ float wid[128];
 float hgt[128];
 float xpad[128];
 float ypad[128];
+int point = 200;
 Texture* body;
 
 using namespace std;
@@ -75,7 +76,7 @@ void drawText(string str, float r=1, float g=1, float b=1)
 	{
 		glBindTexture(GL_TEXTURE_2D, text[cstr[i]]);
 		GLint loc = glGetUniformLocation(p,"edgeSize");
-		glUniform1f(loc, 16.0);
+		glUniform1f(loc, 4.0);
 		loc = glGetUniformLocation(p,"alphaOnly");
 		glUniform1i(loc, 1);
 		
@@ -185,33 +186,41 @@ void makeText()
 		// Use Our Helper Function To Get The Widths Of
 		// The Bitmap Data That We Will Need In Order To Create
 		// Our Texture.
-		int width = next_p2( bitmap.width );
-		int height = next_p2( bitmap.rows );
+		int downsample = 8;
+		int width = next_p2( bitmap.width + 4 * downsample );
+		int height = next_p2( bitmap.rows + 4 * downsample );
+		
+		float xs = (float)bitmap.width / width;
+		float ys = (float)bitmap.rows / height;
+		
+		width /= downsample;
+		height /= downsample;
 		
 		// Allocate Memory For The Texture Data.
 		GLubyte* tex = (GLubyte*)malloc(width * height);
 		memset(tex, 0, width*height);
 		
-		for(int j=0; j <bitmap.rows;j++)
-		for(int i=0; i < bitmap.width; i++)
+		for(int i=0; i < width; i++)
+		for(int j=0; j < height; j++)
 		{
-			tex[i + j*width]= bitmap.buffer[i + bitmap.width*j];
+			tex[i + j*width]= edgeDistance(bitmap.buffer, bitmap.width, bitmap.rows, (i)/xs/width, (j)/ys/height, 1.0);
 		}
 		
 		glGenTextures(1, &text[c]);
 		glBindTexture(GL_TEXTURE_2D, text[c]);
 		
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, width, height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, tex);
 		
-		adv[c] = font->glyph->advance.x / (50 * 64.0f);
-		wid[c] = bitmap.width / (50.0f);
-		hgt[c] = bitmap.rows / (50.0f);
-		xpad[c] = (float)bitmap.width / (float)width,
-		ypad[c] = (float)bitmap.rows / (float)height;
+		adv[c] = font->glyph->advance.x / (point * 64.0f);
+		wid[c] = bitmap.width / (float)point;
+		hgt[c] = bitmap.rows / (float)point;
+		
+		xpad[c] = xs;
+		ypad[c] = ys;
 		
 		free(tex);
 	}
@@ -288,7 +297,7 @@ void loadFont()
 	// In Terms Of 1/64ths Of Pixels.  Thus, To Make A Font
 	// h Pixels High, We Need To Request A Size Of h*64.
 	// (h << 6 Is Just A Prettier Way Of Writing h*64)
-	FT_Set_Char_Size( font, 50 * 64, 50 * 64, 96, 96);
+	FT_Set_Char_Size( font, point * 64, point * 64, 96, 96);
 }
 
 void loadShaders()

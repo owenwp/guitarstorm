@@ -14,7 +14,18 @@ unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, 
 {	
 	int ix = x*w;
 	int iy = y*h;
-	int inside = mask[ix*w + iy] != 0;
+	
+	int inside;
+	if(ix<0 || iy<0 || ix>=w || iy>=h)
+	{
+		inside = 0;
+	}
+	else
+	{
+		inside = mask[ix + iy*w] != 0;
+	}
+	
+	//return inside * 0xff;
 
 	int kernel = 16;
 	int mindist;
@@ -23,10 +34,16 @@ unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, 
 	for(int i=-kernel; i<kernel; i++)
 	for(int j=-kernel; j<kernel; j++)
 	{
-		if(ix+i<0 || iy+j<0 || ix+i>w || iy+j>h)
-			continue;
-		
-		if((mask[ix*w+iy + i*w+j] != 0) != inside)
+		if(ix+i<0 || iy+j<0 || ix+i>=w || iy+j>=h)
+		{
+			if(inside != 0)
+			{
+				float dist2 = i*i + j*j;
+				if(dist2 < mindist2)
+					mindist2 = dist2;
+			}
+		}
+		else if((mask[ix+iy*w + i+j*w] != 0) != inside)
 		{
 			float dist2 = i*i + j*j;
 			if(dist2 < mindist2)
@@ -100,6 +117,8 @@ Texture::Texture(string name)
 			for(int i=0; i<width; i++)
 			for(int j=0; j<height; j++)
 			{
+				pos1 = (i + j*width)*4;
+				pos2 = (i + j*width)*3;
 				vData[pos1++] = iData[pos2++];
 				vData[pos1++] = iData[pos2++];
 				vData[pos1++] = iData[pos2++];

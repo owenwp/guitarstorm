@@ -138,7 +138,7 @@ Texture::Texture(string name)
 						 iData);
 		}
 
-		edge = mWidth / 32.0f;
+		edge = 0.025f;
 	}
 }
 

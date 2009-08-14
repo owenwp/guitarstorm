@@ -21,6 +21,8 @@
 
 #include "Texture.h"
 
+bool useShaders = true;
+
 GLint v, f, p; 
 FT_Library ft;
 FT_Face font;
@@ -33,6 +35,8 @@ float xpad[128];
 float ypad[128];
 int point = 200;
 Texture* body;
+
+float rotation = 0;
 
 using namespace std;
 
@@ -72,13 +76,14 @@ void drawText(string str, float r=1, float g=1, float b=1)
 	const char* cstr = str.c_str();
 	int count = str.length();
 	
+	GLint loc = glGetUniformLocation(p,"edgeSize");
+	glUniform1f(loc, 0.5);
+	loc = glGetUniformLocation(p,"alphaOnly");
+	glUniform1i(loc, 1);
+	
 	for(int i=0; i<count; i++)
 	{
 		glBindTexture(GL_TEXTURE_2D, text[cstr[i]]);
-		GLint loc = glGetUniformLocation(p,"edgeSize");
-		glUniform1f(loc, 4.0);
-		loc = glGetUniformLocation(p,"alphaOnly");
-		glUniform1i(loc, 1);
 		
 		glBegin(GL_TRIANGLE_STRIP);
 		
@@ -106,7 +111,7 @@ void drawText(string str, float r=1, float g=1, float b=1)
 }
 
 void renderScene() 
-{
+{	
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	glLoadIdentity();
@@ -134,10 +139,11 @@ void renderScene()
 		GLint loc = glGetUniformLocation(p,"shadowAlpha");
 		glUniform1f(loc, 0.5);
 		loc = glGetUniformLocation(p,"shadowPosition");
-		glUniform3f(loc, 0.01, -0.001, 1);
+		glUniform3f(loc, 1, -0.1, 1);
 		
 		glTranslatef(10, 0, 0);
 		glScalef(30, 30, 1);
+		glRotatef(rotation, 0, 0, 1);
 		drawQuad(1, 1, 1);
 	}
 	glPopMatrix();
@@ -153,7 +159,9 @@ void renderScene()
 	}
 	glPopMatrix();
 	
-	glFlush();
+	glutSwapBuffers();
+	
+	rotation += 0.1f;
 }
 
 GLint makeVectorTexture(unsigned char* buffer, int bWidth, int bHeight, int vWidth, int vHeight)
@@ -340,7 +348,6 @@ void loadShaders()
 	glAttachShader(p,f);
 	
 	glLinkProgram(p);
-	glUseProgram(p);
 	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -351,7 +358,17 @@ void loadShaders()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	
 	
 	glEnable(GL_TEXTURE_2D);
-	glEnable (GL_BLEND);
+	
+	if(!useShaders)
+	{
+		glAlphaFunc(GL_GREATER,0.5f);
+		glEnable(GL_ALPHA_TEST);
+	}
+	else
+	{
+		glEnable (GL_BLEND);
+		glUseProgram(p);
+	}
 }
 
 void unloadFont()
@@ -402,6 +419,7 @@ int main(int argc, char **argv)
 	unloadFont();
 
 	glutDisplayFunc(renderScene);
+	glutIdleFunc(renderScene);
 	glutMainLoop();
 	
 	unloadShaders();

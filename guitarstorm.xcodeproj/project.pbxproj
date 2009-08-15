@@ -27,6 +27,8 @@
 		259A0471102F9D4A00DA84FE /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F3498B102F7F440011023F /* libfreetype.a */; };
 		259A0472102F9D4A00DA84FE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F83507AD6F520058BE5D /* OpenGL.framework */; };
 		259A0474102F9D5100DA84FE /* GLSLMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25BA37B3102F768F00A74F4B /* GLSLMain.cpp */; };
+		259FACED10363485005477E7 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259FACEC10363485005477E7 /* Node.cpp */; };
+		259FACF61036375E005477E7 /* VectorMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259FACF51036375E005477E7 /* VectorMath.cpp */; };
 		25A28171103207CA00D7C4CD /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25A28170103207CA00D7C4CD /* Texture.cpp */; };
 		25A2826A10321D7C00D7C4CD /* libIL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A2826910321D7C00D7C4CD /* libIL.dylib */; };
 		25F5002A0FA725D60002BE66 /* libsamplerate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F500290FA725D60002BE66 /* libsamplerate.a */; };
@@ -90,6 +92,10 @@
 		256274971031E9390023B882 /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shaders; sourceTree = "<group>"; };
 		259A0469102F9D1600DA84FE /* GLSLApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLSLApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		259A046B102F9D1600DA84FE /* GLSLApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GLSLApp-Info.plist"; sourceTree = "<group>"; };
+		259FACEB10363485005477E7 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		259FACEC10363485005477E7 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		259FACF41036375E005477E7 /* VectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorMath.h; sourceTree = "<group>"; };
+		259FACF51036375E005477E7 /* VectorMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorMath.cpp; sourceTree = "<group>"; };
 		25A2816F103207CA00D7C4CD /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		25A28170103207CA00D7C4CD /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		25A2826910321D7C00D7C4CD /* libIL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.dylib; path = /opt/local/lib/libIL.dylib; sourceTree = "<absolute>"; };
@@ -286,6 +292,10 @@
 				25BA37B3102F768F00A74F4B /* GLSLMain.cpp */,
 				25A2816F103207CA00D7C4CD /* Texture.h */,
 				25A28170103207CA00D7C4CD /* Texture.cpp */,
+				259FACEB10363485005477E7 /* Node.h */,
+				259FACEC10363485005477E7 /* Node.cpp */,
+				259FACF41036375E005477E7 /* VectorMath.h */,
+				259FACF51036375E005477E7 /* VectorMath.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -451,6 +461,8 @@
 			files = (
 				259A0474102F9D5100DA84FE /* GLSLMain.cpp in Sources */,
 				25A28171103207CA00D7C4CD /* Texture.cpp in Sources */,
+				259FACED10363485005477E7 /* Node.cpp in Sources */,
+				259FACF61036375E005477E7 /* VectorMath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

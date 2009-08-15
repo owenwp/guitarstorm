@@ -1,12 +1,20 @@
 /*
- *  Texture.cpp
- *  guitarstorm
- *
- *  Created by Owen Pedrotti on 8/11/09.
- *  Copyright 2009 Zombie Process. All rights reserved.
- *
+ This file is part of Guitar Storm.
+ Copyright 2008 Zombie Process, Owen Pedrotti
+ 
+ Guitar Storm is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Guitar Storm is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Guitar Storm.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include "Texture.h"
 #include <math.h>
 
@@ -69,8 +77,18 @@ Texture::Texture(string name)
 	int mHeight = 0;
 	unsigned char* mData = NULL;
 	
+	int index = name.find_last_of('.');
+	string type;
+	if(index != string::npos)
+	{
+		type = name.substr(index, 4);
+		name = name.substr(0, index);
+	}
+	else
+		type = ".png";
+	
 	string folder = "images/";
-	string mask = folder + name + "_mask.png";
+	string mask = folder + name + "_mask" + type;
 	
 	// see if there is an alpha mask
 	ILuint maskid;
@@ -86,7 +104,7 @@ Texture::Texture(string name)
 		mData = ilGetData();
 	}
 	
-	name = folder + name + ".png";
+	name = folder + name + type;
 	
 	ILuint texid;
 	ilGenImages(1, &texid);

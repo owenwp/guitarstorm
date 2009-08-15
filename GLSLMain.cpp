@@ -20,6 +20,7 @@
 #include <freetype/fttrigon.h>
 
 #include "Texture.h"
+#include "Node.h"
 
 bool useShaders = true;
 

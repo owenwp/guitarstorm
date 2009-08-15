@@ -47,7 +47,7 @@ public:
 	void setGrow(vec g, float s) {grow = g; grows = s;}
 	
 	void update(float timeDelta);
-	void render();
+	void render(GLint program);
 	
 	void addChild(Renderable* c);
 	void insertChild(Renderable* c, int i);

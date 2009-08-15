@@ -19,11 +19,13 @@
 #ifndef RENDERABLE
 #define RENDERABLE
 
+#include <GLUT/glut.h>
+
 class Renderable
 {
 public:
 	virtual void update(float timeDelta)=0;
-	virtual void render()=0;
+	virtual void render(GLint program)=0;
 	
 	Renderable* next;
 };

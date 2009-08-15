@@ -23,14 +23,12 @@ using namespace std;
 Sprite::Sprite(Sprite* sprite)
 { 
 	tex = sprite->tex;
-	program = sprite->program;
 	color = sprite->color;
 	tints = sprite->tints;
 }
 
-Sprite::Sprite(GLint p, string filename, bool absolute)
+Sprite::Sprite(string filename, bool absolute)
 {
-	program = p;
 	tex = new Texture(filename);
 	color = vec(1,1,1,1);
 	tints = 0;
@@ -41,7 +39,7 @@ void Sprite::update(float timeDelta)
 	color += (tint - color) * min(1.0f, tints * timeDelta);
 }
 
-void Sprite::render()
+void Sprite::render(GLint program)
 {
 	if(!tex)
 		return;
@@ -50,7 +48,7 @@ void Sprite::render()
 	
 	glBegin(GL_TRIANGLE_STRIP);
 	
-	glColor4f(color.x, color.y, color.z, color.w);
+	glColor4f(color.x, color.y, color.z, 1);
 	
 	glTexCoord2f(0.0, 1.0);
 	glVertex3f(-0.5, -0.5, 0.0);

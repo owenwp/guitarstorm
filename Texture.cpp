@@ -18,6 +18,10 @@
 #include "Texture.h"
 #include <math.h>
 
+map<string, Texture*>textures;
+
+const string Location = "images/";
+
 unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, float domain)
 {	
 	int ix = x*w;
@@ -73,6 +77,15 @@ unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, 
 
 Texture::Texture(string name)
 { 
+	if(textures.find(name) != textures.end())
+	{
+		id = textures[name]->id;
+		edge = textures[name]->edge;
+		return;
+	}
+	
+	textures[name] = this;
+	
 	int mWidth = 0;
 	int mHeight = 0;
 	unsigned char* mData = NULL;
@@ -86,9 +99,8 @@ Texture::Texture(string name)
 	}
 	else
 		type = ".png";
-	
-	string folder = "images/";
-	string mask = folder + name + "_mask" + type;
+
+	string mask = Location + name + "_mask" + type;
 	
 	// see if there is an alpha mask
 	ILuint maskid;
@@ -104,7 +116,7 @@ Texture::Texture(string name)
 		mData = ilGetData();
 	}
 	
-	name = folder + name + type;
+	name = Location + name + type;
 	
 	ILuint texid;
 	ilGenImages(1, &texid);

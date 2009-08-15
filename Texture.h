@@ -21,6 +21,7 @@
 #include <GLUT/GLUT.h>
 #include <IL/il.h>
 #include <string>
+#include <map>
 
 using namespace std;
 

@@ -56,7 +56,7 @@ void Node::update(float timeDelta)
 	if(next) next->update(timeDelta);
 }
 
-void Node::render()
+void Node::render(GLint program)
 {
 	glPushMatrix();
 	
@@ -66,11 +66,11 @@ void Node::render()
 	glRotatef(rotation, 0, 0, 1);
 	glTranslatef(-center.x, -center.y, -center.z);
 	
-	if(children) children->render();
+	if(children) children->render(program);
 	
 	glPopMatrix();
 	
-	if(next) next->render();
+	if(next) next->render(program);
 }
 
 void Node::addChild(Renderable* c)

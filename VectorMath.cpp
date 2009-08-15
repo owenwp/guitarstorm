@@ -52,27 +52,27 @@ vec::vec(float _x, float _y, float _z, float _w)
 
 const vec vec::operator+(const vec &v) const
 {
-	return vec(x+v.x, y+v.y, z+v.z, w+v.w);
+	return vec(x+v.x, y+v.y, z+v.z, w);
 }
 
 const vec vec::operator-(const vec &v) const
 {
-	return vec(x-v.x, y-v.y, z-v.z, w-v.w);
+	return vec(x-v.x, y-v.y, z-v.z, w);
 }
 
 const vec vec::operator*(const float &s) const
 {
-	return vec(x*s, y*s, z*s, w*s);
+	return vec(x*s, y*s, z*s);
 }
 
 const vec vec::operator/(const float &s) const
 {
-	return vec(x/s, y/s, z/s, w/s);
+	return vec(x/s, y/s, z/s);
 }
 
 const float vec::operator*(const vec &v) const
 {
-	return x*v.x + y*v.y + z*v.z + w*v.w;
+	return x*v.x + y*v.y + z*v.z;
 }
 
 const vec vec::operator%(const vec &v) const
@@ -80,4 +80,50 @@ const vec vec::operator%(const vec &v) const
 	return vec(y * v.z - z * v.y,
 			   z * v.x - x * v.z,
 			   x * v.y - y * v.x);
+}
+
+vec& vec::operator+=(const vec &v)
+{	
+	x += v.x;
+	y += v.y;
+	z += v.z;
+	
+	return *this;
+}
+
+vec& vec::operator-=(const vec &v)
+{	
+	x -= v.x;
+	y -= v.y;
+	z -= v.z;
+	
+	return *this;
+}
+
+vec& vec::operator*=(const float &s)
+{	
+	x *= s;
+	y *= s;
+	z *= s;
+	
+	return *this;
+}
+
+vec& vec::operator/=(const float &s)
+{	
+	x /= s;
+	y /= s;
+	z /= s;
+	
+	return *this;
+}
+
+// cross product
+vec& vec::operator%=(const vec &v)
+{	
+	x = y * v.z - z * v.y;
+	y = z * v.x - x * v.z;
+	z = x * v.y - y * v.x;
+	
+	return *this;
 }

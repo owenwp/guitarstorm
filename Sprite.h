@@ -18,100 +18,37 @@
 #ifndef SPRITE
 #define SPRITE
 
-#include <osgViewer/Viewer>
-#include <osgViewer/ViewerEventHandlers>
-#include <osg/io_utils>
-
-#include <osg/MatrixTransform>
-#include <osg/Geode>
-#include <osg/Group>
-#include <osg/Switch>
-#include <osg/Notify>
-#include <osg/Geometry>
-#include <osg/BlendEquation>
-
-#include <OpenThreads/Thread>
 #include <string>
+#include <GLUT/GLUT.h>
+#include "VectorMath.h"
+#include "Renderable.h"
+#include "Texture.h"
 
-using namespace osg;
 using namespace std;
 
-class Sprite : public MatrixTransform
+class Sprite : public Renderable
 {
 public:
 	Sprite(Sprite* sprite);
-	Sprite(string filename = "", bool absolute = false);
+	Sprite(GLint p, string filename = "", bool absolute = false);
 
-	void setPosition(Vec3 p) {position = p; slides = 0;}
-	void setScale(Vec2 s) {scale = s; grows = 0;}
-	void setRotation(float r) {rotation = r; turns = 0;}
-	void setCenter(Vec3 c) {center = c;}
-	void setScroll(Vec2 s) {scroll = s;}
-	void setSpin(float s) {spin = s; turns = 0;}
-	void setColor(Vec4 c) {color = c; tints = 0;}
+	void setColor(vec c) {color = c; tints = 0;}
 	
-	Vec3 getPosition() {return position;}
-	Vec2 getScale() {return scale;}
-	float getRotation() {return rotation;}
-	Vec3 getCenter() {return center;}
-	Vec2 getScroll() {return scroll;}
-	float getSpin() {return spin;}
-	Vec4 getColor() {return color;}
+	vec getColor() {return color;}
 
-	void setSlide(Vec3 p, float s) {slide = p; slides = s;}
-	void setTurn(float t, float s) {turn = t; turns = s;}
-	void setGrow(Vec2 g, float s) {grow = g; grows = s;}
-	void setTint(Vec4 t, float s) {tint = t; tints = s;}
+	void setTint(vec t, float s) {tint = t; tints = s;}
 	
-	virtual void Update();
+	virtual void update(float timeDelta);
+	virtual void render();
 
 protected:
-	virtual void createSquare(Image* image);
-
-	Vec3 position;
-	Vec2 scale;
-	float rotation;
-	float spin;
-	Vec3 center;
-	Vec2 scroll;
-	Vec4 color;
+	GLint program;
+	Texture* tex;
 	
-	Vec3 slide;
-	float turn;
-	Vec2 grow;
-	Vec4 tint;
-
-	float slides;
-	float turns;
-	float grows;
+	vec color;
+	vec tint;
+	
 	float tints;
-
-	Vec4Array* colora;
-	Vec2Array* tcoords;
-
-	Geometry* geom;
-	Geode* geode;
-	StateSet* stateset;
-	float aspect;
-
-	double last;
-
-	static Timer* time;
-};
-
-class spriteCallback : public NodeCallback 
-{
-public:
-   virtual void operator()(Node* node, NodeVisitor* nv)
-   {
-      ref_ptr<Sprite> data = 
-         dynamic_cast<Sprite*> (node);
-      if(data != NULL)
-      {
-         data->Update();
-      }
-      traverse(node, nv); 
-   }
 };
 
 #endif

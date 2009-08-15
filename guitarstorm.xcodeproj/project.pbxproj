@@ -29,6 +29,8 @@
 		259A0474102F9D5100DA84FE /* GLSLMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25BA37B3102F768F00A74F4B /* GLSLMain.cpp */; };
 		259FACED10363485005477E7 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259FACEC10363485005477E7 /* Node.cpp */; };
 		259FACF61036375E005477E7 /* VectorMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259FACF51036375E005477E7 /* VectorMath.cpp */; };
+		259FAD8410364BD6005477E7 /* Renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259FAD8310364BD6005477E7 /* Renderable.cpp */; };
+		259FAD8A10364D25005477E7 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF740FA71ED40002BE66 /* Sprite.cpp */; };
 		25A28171103207CA00D7C4CD /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25A28170103207CA00D7C4CD /* Texture.cpp */; };
 		25A2826A10321D7C00D7C4CD /* libIL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A2826910321D7C00D7C4CD /* libIL.dylib */; };
 		25F5002A0FA725D60002BE66 /* libsamplerate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F500290FA725D60002BE66 /* libsamplerate.a */; };
@@ -96,6 +98,8 @@
 		259FACEC10363485005477E7 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
 		259FACF41036375E005477E7 /* VectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorMath.h; sourceTree = "<group>"; };
 		259FACF51036375E005477E7 /* VectorMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorMath.cpp; sourceTree = "<group>"; };
+		259FAD8210364BD6005477E7 /* Renderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderable.h; sourceTree = "<group>"; };
+		259FAD8310364BD6005477E7 /* Renderable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderable.cpp; sourceTree = "<group>"; };
 		25A2816F103207CA00D7C4CD /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		25A28170103207CA00D7C4CD /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		25A2826910321D7C00D7C4CD /* libIL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.dylib; path = /opt/local/lib/libIL.dylib; sourceTree = "<absolute>"; };
@@ -296,6 +300,8 @@
 				259FACEC10363485005477E7 /* Node.cpp */,
 				259FACF41036375E005477E7 /* VectorMath.h */,
 				259FACF51036375E005477E7 /* VectorMath.cpp */,
+				259FAD8210364BD6005477E7 /* Renderable.h */,
+				259FAD8310364BD6005477E7 /* Renderable.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -463,6 +469,8 @@
 				25A28171103207CA00D7C4CD /* Texture.cpp in Sources */,
 				259FACED10363485005477E7 /* Node.cpp in Sources */,
 				259FACF61036375E005477E7 /* VectorMath.cpp in Sources */,
+				259FAD8410364BD6005477E7 /* Renderable.cpp in Sources */,
+				259FAD8A10364D25005477E7 /* Sprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

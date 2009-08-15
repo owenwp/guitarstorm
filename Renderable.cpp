@@ -16,37 +16,5 @@
  along with Guitar Storm.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef VECMATH
-#define VECMATH
+#include "Renderable.h"
 
-struct vec
-{
-public:
-	vec();
-	vec(float _x, float _y);
-	vec(float _x, float _y, float _z);
-	vec(float _x, float _y, float _z, float _w);
-	
-	float x, y, z, w;
-	
-	const vec operator+(const vec &v) const;
-	const vec operator-(const vec &v) const;
-	const vec operator*(const float &s) const;
-	const vec operator/(const float &s) const;
-	
-	// dot product
-	const float operator*(const vec &v) const;
-	
-	// cross product
-	const vec operator%(const vec &v) const;
-	
-	vec& operator+=(const vec &v);
-	vec& operator-=(const vec &v);
-	vec& operator*=(const float &s);
-	vec& operator/=(const float &s);
-	
-	// cross product
-	vec& operator%=(const vec &v);
-};
-
-#endif

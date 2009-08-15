@@ -20,8 +20,9 @@
 #define NODE
 
 #include "VectorMath.h"
+#include "Renderable.h"
 
-class Node
+class Node : public Renderable
 {
 public:
 	Node();
@@ -45,11 +46,12 @@ public:
 	void setTurn(float t, float s) {turn = t; turns = s;}
 	void setGrow(vec g, float s) {grow = g; grows = s;}
 	
-	virtual void update();
-	virtual void render();
+	void update(float timeDelta);
+	void render();
 	
-	void addChild(Node* c);
-	void removeChild(Node* c);
+	void addChild(Renderable* c);
+	void insertChild(Renderable* c, int i);
+	void removeChild(Renderable* c);
 	void removeChild(int i);
 	
 protected:
@@ -68,8 +70,7 @@ protected:
 	float turns;
 	float grows;
 	
-	Node* children;
-	Node* next;
+	Renderable* children;
 };
 
 #endif

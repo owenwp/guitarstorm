@@ -21,6 +21,7 @@
 
 #include "Texture.h"
 #include "Node.h"
+#include "Sprite.h"
 
 bool useShaders = true;
 
@@ -35,9 +36,8 @@ float hgt[128];
 float xpad[128];
 float ypad[128];
 int point = 200;
-Texture* body;
 
-float rotation = 0;
+Node* body;
 
 using namespace std;
 
@@ -134,20 +134,12 @@ void renderScene()
 	}
 	glPopMatrix();
 	
-	glPushMatrix();
-	{
-		body->Bind(p);
-		GLint loc = glGetUniformLocation(p,"shadowAlpha");
-		glUniform1f(loc, 0.5);
-		loc = glGetUniformLocation(p,"shadowPosition");
-		glUniform3f(loc, 1, -0.1, 1);
-		
-		glTranslatef(10, 0, 0);
-		glScalef(30, 30, 1);
-		glRotatef(rotation, 0, 0, 1);
-		drawQuad(1, 1, 1);
-	}
-	glPopMatrix();
+	GLint loc = glGetUniformLocation(p,"shadowAlpha");
+	glUniform1f(loc, 0.5);
+	loc = glGetUniformLocation(p,"shadowPosition");
+	glUniform3f(loc, 1, -0.1, 1);
+	body->update(1.0f);
+	body->render();
 	
 	glPushMatrix();
 	{
@@ -161,8 +153,6 @@ void renderScene()
 	glPopMatrix();
 	
 	glutSwapBuffers();
-	
-	rotation += 0.1f;
 }
 
 GLint makeVectorTexture(unsigned char* buffer, int bWidth, int bHeight, int vWidth, int vHeight)
@@ -412,7 +402,11 @@ int main(int argc, char **argv)
 	loadShaders();
 	loadFont();
 	
-	body = new Texture("body");
+	body = new Node();
+	body->addChild(new Sprite(p, "body"));
+	body->setSpin(0.1f);
+	body->setPosition(vec(10, 0));
+	body->setScale(vec(30, 30));
 	
 	makeCircle();
 	makeText();

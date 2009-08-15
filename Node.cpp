@@ -16,11 +16,25 @@
  along with Guitar Storm.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "Node.h"
+#include <GLUT/GLUT.h>
+#include <iostream>
+
+using namespace std;
 
 Node::Node()
 {
-	children = 0;
-	next = 0;
+	position = vec(0,0,0);
+	scale = vec(1,1);
+	rotation = 0;
+	spin = 0;
+	
+	slides = 0;
+	turns = 0;
+	grows = 0;
+	turns = 0;
+	
+	children = NULL;
+	next = NULL;
 }
 
 Node::~Node()
@@ -29,23 +43,37 @@ Node::~Node()
 	if(children) delete children;
 }
 
-void Node::update()
+void Node::update(float timeDelta)
 {
 	// update
+	rotation += spin * timeDelta;
 	
-	if(children) children->update();
-	if(next) next->update();
+	position += (slide - position) * min(1.0f, slides * timeDelta);
+	rotation += (turn - rotation) * min(1.0f, turns * timeDelta);
+	scale += (grow - scale) * min(1.0f, grows * timeDelta);
+	
+	if(children) children->update(timeDelta);
+	if(next) next->update(timeDelta);
 }
 
 void Node::render()
 {
-	// render
+	glPushMatrix();
+	
+	// transform
+	glTranslatef(position.x, position.y, position.z);
+	glScalef(scale.x, scale.y, 1);
+	glRotatef(rotation, 0, 0, 1);
+	glTranslatef(-center.x, -center.y, -center.z);
 	
 	if(children) children->render();
+	
+	glPopMatrix();
+	
 	if(next) next->render();
 }
 
-void Node::addChild(Node* c)
+void Node::addChild(Renderable* c)
 {
 	if(children)
 		c->next = children;
@@ -53,10 +81,74 @@ void Node::addChild(Node* c)
 	children = c;
 }
 
-void Node::removeChild(Node* c)
+void Node::insertChild(Renderable* c, int i)
 {
+	if(!i-- || !children)
+	{
+		c->next = children;
+		children = c;
+	}
+	else if(!i-- || !children->next)
+	{
+		c->next = children->next;
+		children->next = c;
+	}
+	else
+	{
+		Renderable* n = children;
+		while(n->next)
+		{
+			if(!i-- || n->next->next)
+			{
+				c->next = n->next->next;
+				n->next = c;
+				return;
+			}
+			n = n->next;
+		}
+	}
+}
+
+void Node::removeChild(Renderable* c)
+{
+	if(children == c)
+	{
+		children = children->next;
+		c->next = NULL;
+		return;
+	}
+	
+	for(Renderable* n=children; n; n=n->next)
+	{
+		if(n->next == c)
+		{
+			n->next = c->next;
+			c->next = NULL;
+			return;
+		}
+	}
 }
 
 void Node::removeChild(int i)
 {
+	if(!i--)
+	{
+		Renderable* c = children;
+		children = children->next;
+		c->next = NULL;
+		delete c;
+		return;
+	}
+	
+	for(Renderable* n=children; n; n=n->next)
+	{
+		if(!i--)
+		{
+			Renderable* c = n->next;
+			n->next = c->next;
+			c->next = NULL;
+			delete c;
+			return;
+		}
+	}
 }

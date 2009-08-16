@@ -22,8 +22,16 @@
 #include <IL/il.h>
 #include <string>
 #include <map>
+#include "VectorMath.h"
 
 using namespace std;
+
+enum spriteShape
+{
+	shapeNone = 0,
+	shapeCircle,
+	shapeSquare
+};
 
 unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, float domain);
 
@@ -32,10 +40,14 @@ class Texture
 private:
 	GLuint id;
 	float edge;
+	bool alphaOnly;
 	
 public:
 	Texture(string name);
+	Texture(spriteShape shape = shapeNone);
 	~Texture();
+	
+	static void UnloadAll();
 	
 	void Bind(GLint p);
 };

@@ -22,15 +22,15 @@ using namespace std;
 
 Sprite::Sprite(Sprite* sprite)
 { 
-	tex = sprite->tex;
+	texture = sprite->texture;
 	color = sprite->color;
 	tints = sprite->tints;
 }
 
-Sprite::Sprite(string filename, bool absolute)
+Sprite::Sprite(Texture* tex, vec col)
 {
-	tex = new Texture(filename);
-	color = vec(1,1,1,1);
+	texture = tex;
+	color = col;
 	tints = 0;
 }
 
@@ -41,10 +41,10 @@ void Sprite::update(float timeDelta)
 
 void Sprite::render(GLint program)
 {
-	if(!tex)
+	if(!texture)
 		return;
 	
-	tex->Bind(program);
+	texture->Bind(program);
 	
 	glBegin(GL_TRIANGLE_STRIP);
 	

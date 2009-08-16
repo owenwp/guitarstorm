@@ -18,7 +18,8 @@
 #include "Texture.h"
 #include <math.h>
 
-map<string, Texture*>textures;
+map<string, Texture*> textures;
+map<int, Texture*> shapes;
 
 const string Location = "images/";
 
@@ -75,8 +76,72 @@ unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, 
 	return inside ? 128+mindist : 128-mindist;
 }
 
+void Texture::UnloadAll()
+{
+	for(map<string, Texture*>::iterator ti = textures.begin(); ti != textures.end(); ti++)
+	{
+		delete ti->second;
+	}
+	
+	for(map<int, Texture*>::iterator si = shapes.begin(); si != shapes.end(); si++)
+	{
+		delete si->second;
+	}
+}
+
+Texture::Texture(spriteShape shape)
+{
+	alphaOnly = true;
+	
+	if(shapes.find(shape) != shapes.end())
+	{
+		id = shapes[shape]->id;
+		edge = shapes[shape]->edge;
+		return;
+	}
+	
+	shapes[shape] = this;
+	
+	unsigned char* tex = (unsigned char*)malloc(16 * 16);
+	
+	switch (shape) 
+	{
+		case shapeCircle:
+			for(int i=0; i<16; i++)
+			for(int j=0; j<16; j++)
+			{
+				int x = i-8;
+				int y = j-8;
+				float dist2 = sqrt(x*x + y*y);
+				
+				dist2 -= 7;
+				dist2 *= -0.1f;
+				dist2 += 0.5f;
+				dist2 = min(1.0f, max(0.0f, dist2));
+				
+				tex[i+16*j] = (unsigned char)(dist2 * 255.0f);
+			}
+			
+			edge = 1.5f;
+			break;
+	}
+	
+	glGenTextures(1, &id);
+	glBindTexture(GL_TEXTURE_2D, id);
+	
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, 16, 16, 0, GL_ALPHA, GL_UNSIGNED_BYTE, tex);
+	
+	free(tex);
+}
+
 Texture::Texture(string name)
 { 
+	alphaOnly = false;
+	
 	if(textures.find(name) != textures.end())
 	{
 		id = textures[name]->id;
@@ -182,7 +247,6 @@ void Texture::Bind(GLint p)
 	
 	GLint loc = glGetUniformLocation(p,"edgeSize");
 	glUniform1f(loc, edge);
-	
 	loc = glGetUniformLocation(p,"alphaOnly");
-	glUniform1i(loc, 0);
+	glUniform1i(loc, alphaOnly);
 }

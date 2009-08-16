@@ -30,7 +30,7 @@ class Sprite : public Renderable
 {
 public:
 	Sprite(Sprite* sprite);
-	Sprite(string filename = "", bool absolute = false);
+	Sprite(Texture* tex, vec col = vec(1,1,1,1));
 
 	void setColor(vec c) {color = c; tints = 0;}
 	
@@ -42,7 +42,7 @@ public:
 	virtual void render(GLint program);
 
 protected:
-	Texture* tex;
+	Texture* texture;
 	
 	vec color;
 	vec tint;

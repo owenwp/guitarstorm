@@ -25,6 +25,7 @@ void SongPlayMenu::OnOpen()
 		return;
 	}
 
+	/*
 	Directory dir(song->path);
 	song->difficulty[0].tab = song->path + "/" + song->difficulty[0].name + ".tab";
 	song->difficulty[1].tab = song->path + "/" + song->difficulty[1].name + ".tab";
@@ -64,13 +65,13 @@ void SongPlayMenu::OnOpen()
 		Add(new SongPlayItem("Expert", &song->difficulty[3], false, -5, y, dir.files["cover"]));
 		y -= 2;
 	}
-
+	 */
 	Add(new BackItem("Back", -5, -11));
 }
 
 void SongPlayItem::Select()
 {
-	if(game)
+	/*if(game)
 	{
 		delete game;
 		game = NULL;
@@ -91,5 +92,5 @@ void SongPlayItem::Select()
 		parent->getScene()->addChild(game->getScene());
 		Input::setGuitar(game);
 		game->setSong(Track, picture, false);
-	}
+	}*/
 }

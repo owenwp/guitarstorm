@@ -22,20 +22,8 @@
 #include <sstream>
 #include <vector>
 
-#include <osgViewer/Viewer>
-#include <osgViewer/ViewerEventHandlers>
-#include <osg/io_utils>
-
-#include <osg/MatrixTransform>
-#include <osg/Geode>
-#include <osg/Group>
-#include <osg/Switch>
-#include <osg/Notify>
-#include <osg/Geometry>
-
-#include <osgText/Text>
-
 #include "Sprite.h"
+#include "Node.h"
 
 #if MACOSX
 #define prefix string("/library/")
@@ -46,15 +34,13 @@
 using namespace std;
 
 class Menu;
-class Item : public osg::Referenced
+class Item : public Node
 {
 public:
 	const string name;
 	const float X, Y;
 
-	osg::Group* getScene() { return _scene.get(); }
-
-	void Enable(bool e) {enabled = e; if(enabled) itemText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f)); else itemText->setColor(osg::Vec4(0.5f,0.5f,0.5f,1.0f));}
+	void Enable(bool e) {enabled = e; }//if(enabled) itemText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f)); else itemText->setColor(osg::Vec4(0.5f,0.5f,0.5f,1.0f));}
 	bool IsEnabled() {return enabled;}
 	float GetWidth() {return itemWidth;}
 
@@ -71,13 +57,11 @@ public:
 	void SetParent(Menu* p) {parent = p;}
 
 protected:
-	Item(string n, float x, float y, bool e = true):name(n),X(x),Y(y),enabled(e),parent(NULL) {_scene = new osg::Group; Setup();}
+	Item(string n, float x, float y, bool e = true):name(n),X(x),Y(y),enabled(e),parent(NULL) {Setup();}
 	
 	// method for initializing the menu item
 	virtual void Setup();
 
-	osg::ref_ptr<osg::Group>    _scene;
-	ref_ptr<osgText::Text> itemText;
 	float itemWidth;
 	Menu* parent;
 	bool enabled;
@@ -86,11 +70,10 @@ private:
 	Item():X(0),Y(0),name(""){}
 };
 
-class Menu : public osg::Referenced
+class Menu : public Node
 {
 public:
-	Menu(string n):open(false),firstOpen(true),name(n),select(0),parent(NULL),child(NULL),hidden(false) {_scene = new osg::Group; _mscene = new osg::Group; _scene->addChild(_mscene.get()); _mscene->setNodeMask(false); Setup();}
-	osg::Group* getScene() { return _scene.get(); }
+	Menu(string n):open(false),firstOpen(true),name(n),select(0),parent(NULL),child(NULL),hidden(false) {Setup();}
 
 	void Up();
 	void Down();
@@ -111,8 +94,6 @@ public:
 	bool IsOpen() {return open;}
 
 protected:
-	osg::ref_ptr<osg::Group>    _scene;
-	osg::ref_ptr<osg::Group>    _mscene;
 	bool firstOpen;
 
 	// override to implement menu events
@@ -152,11 +133,11 @@ public:
 class MenuItem : public Item
 {
 public:
-	MenuItem(string n, osg::ref_ptr<Menu> m, float x, float y):Item(n,x,y),menu(m){}
-	void Select() {parent->Open(menu.get());}
+	MenuItem(string n, Menu* m, float x, float y):Item(n,x,y),menu(m){}
+	void Select() {parent->Open(menu);}
 
 protected:
-	osg::ref_ptr<Menu> menu;
+	Menu* menu;
 };
 
 // goes back to the previous menu
@@ -188,7 +169,6 @@ public:
 	virtual void Select() {(*value)++; if(*value > maximum) (*value)=0; Change();}
 
 protected:
-	osg::ref_ptr<osgText::Text> vtext;
 	int *value;
 	string *vstrings;
 	int maximum;
@@ -204,7 +184,6 @@ public:
 	void Left() {(*value)-=increment; Change();}
 	void Right() {(*value)+=increment; Change();}
 protected:
-	osg::ref_ptr<osgText::Text> vtext;
 	float *value;
 	float increment;
 	bool show;

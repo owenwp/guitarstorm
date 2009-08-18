@@ -22,7 +22,7 @@ Menu* Input::menu = NULL;
 
 void Input::keyChange(int key,int value)
 {
-    if (value)
+    /*if (value)
     {    
 		if(guitar)
 		{
@@ -65,7 +65,7 @@ void Input::keyChange(int key,int value)
 				menu->Key((char)key);
 			}
 		}
-    }
+    }*/
 }
 
 void Input::mouseMove(float x, float y)

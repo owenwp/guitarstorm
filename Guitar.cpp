@@ -28,9 +28,9 @@ const float Guitar::bridgespace = 0.17f;
 
 Guitar::Guitar()
 {
-	scene = new Group();
+	//scene = new Group();
 	MakeGuitar();
-	scene->addChild(sprite);
+	/*scene->addChild(sprite);
 
 	scene->setUserData(this); 
 	scene->setUpdateCallback(new guitarCallback);
@@ -77,12 +77,12 @@ Guitar::Guitar()
 	}
 
 	sbeat = new Sprite("fret.tga");
-	sbeat->setScale(Vec2(0.5f, 0.5f));
+	sbeat->setScale(Vec2(0.5f, 0.5f));*/
 }
 
 void Guitar::MakeGuitar()
 {
-	Sprite* neck = new Sprite("neck.tga");
+	/*Sprite* neck = new Sprite("neck.tga");
 	neck->setCenter(Vec3(3,0,0));
 
 	Sprite* head = new Sprite("head.tga");
@@ -190,7 +190,7 @@ void Guitar::MakeGuitar()
 	nstr->setLine(Vec3(-0.95f, 0, 0.02f));
 	neck->addChild(nstr);
 	
-	sprite = neck;
+	sprite = neck;*/
 }
 
 void Guitar::Update()
@@ -198,7 +198,7 @@ void Guitar::Update()
 	if(!running)
 		return;
 
-	double t = time->time_s();
+	/*double t = time->time_s();
 	double delta = t - last;
 	if(stopped && delta < 0.2)
 		return;
@@ -415,7 +415,7 @@ void Guitar::Update()
 		}
 		s << "\nNote: " << scorer->lastnote << " Volume: " << Audio::readVol();
 		scoreText->setText(s.str());
-	}
+	}*/
 }
 
 void Guitar::PlaceNote(double t, int s, int f)
@@ -423,7 +423,7 @@ void Guitar::PlaceNote(double t, int s, int f)
 	if(f < 0 || f > 24)
 		return;
 
-	osg::Vec3 pos = osg::Vec3(3.5f - t, -0.3f, 0.13f*(s-3.0f));
+	/*osg::Vec3 pos = osg::Vec3(3.5f - t, -0.3f, 0.13f*(s-3.0f));
 
 	Sprite* spr = new Sprite(snote);
 
@@ -464,13 +464,13 @@ void Guitar::PlaceNote(double t, int s, int f)
 	spr->setUserData(fr);
 	fr->m = spr;
 	
-	chart->addChild(spr);
+	chart->addChild(spr);*/
 }
 
 
 void Guitar::PlaceBeat(double t)
 {
-	osg::Vec3 pos = osg::Vec3(3.5f - t, -0.1f, -0.04f);
+	/*osg::Vec3 pos = osg::Vec3(3.5f - t, -0.1f, -0.04f);
 
 	Sprite* spr = new Sprite(sbeat);
 	spr->setPosition(pos);
@@ -479,7 +479,7 @@ void Guitar::PlaceBeat(double t)
 	fr->t = t;
 	spr->setUserData(fr);
 
-	beats->addChild(spr);
+	beats->addChild(spr);*/
 }
 
 void Guitar::setSpeed(int percent)
@@ -489,7 +489,7 @@ void Guitar::setSpeed(int percent)
 
 	if(percent != 100)
 	{
-		Audio::pauseMusic();
+		//Audio::pauseMusic();
 		playing = false;
 	}
 }
@@ -502,7 +502,7 @@ bool Guitar::setSong(Difficulty *t, string pic, bool a)
 		return true;
 	}
 
-	chart->removeChildren(0, chart->getNumChildren());
+	/*chart->removeChildren(0, chart->getNumChildren());
 	beats->removeChildren(0, beats->getNumChildren());
 
 	std::string name = t->tab;
@@ -604,6 +604,6 @@ bool Guitar::setSong(Difficulty *t, string pic, bool a)
 	visible(true);
 
 	time = new osg::Timer();
-
+*/
 	return true;
 }

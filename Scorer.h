@@ -18,24 +18,12 @@
 #ifndef SCORER
 #define SCORER
 
-#include <osgViewer/Viewer>
-#include <osgViewer/ViewerEventHandlers>
-#include <osg/io_utils>
-
-#include <osg/MatrixTransform>
-#include <osg/Geode>
-#include <osg/Group>
-#include <osg/Switch>
-#include <osg/Notify>
-#include <osg/Geometry>
-
-#include <osgText/Text>
-
 #include "fft/fft.h"
-#include "Audio.h"
+//#include "Audio.h"
 #include "Sprite.h"
 
 #include <math.h>
+#include <list>
 
 using namespace std;
 
@@ -43,7 +31,7 @@ const double twelfthroot = 1.05946309;
 
 #define PI (3.141592653589793)
 
-struct Fret : public osg::Referenced
+struct Fret
 {
 	int s;
 	int f;
@@ -52,7 +40,7 @@ struct Fret : public osg::Referenced
 	bool hit;
 };
 
-class Scorer : public OpenThreads::Thread
+class Scorer
 {
 public:
 	Scorer();

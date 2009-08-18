@@ -23,15 +23,15 @@ LineSprite::LineSprite(LineSprite* sprite) : Sprite(sprite)
 	makeline = true;
 }
 
-LineSprite::LineSprite(string filename, bool absolute) : Sprite(filename, absolute)
+LineSprite::LineSprite(string filename, bool absolute) : Sprite(new Texture(0))
 {
-	line = Vec3(0, 0, 1);
+	line = vec(0, 1, 0);
 	makeline = true;
 }
 
 void LineSprite::Update()
 {
-	if(makeline)
+	/*if(makeline)
 	{
 		makeline = false;
 
@@ -61,5 +61,5 @@ void LineSprite::Update()
 	if(scale.y() != 1)
 		scale.y() = 1;
 
-	Sprite::Update();
+	Sprite::Update();*/
 }

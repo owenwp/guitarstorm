@@ -5,6 +5,7 @@
 
 #include "global.h"
 #include "accidentals.h"
+#include "VectorMath.h"
 
 // Durations as in MIDI:
 // 480 = whole
@@ -39,7 +40,7 @@
 // - if it has beams
 
 struct StemInfo {
-	osg::Vec2 bp;					// attach point
+	vec bp;					// attach point
 	char l1;					// level 1 beam
 	char l2;					// level 2 beam
 	char l3;					// level 3 beam
@@ -53,7 +54,7 @@ public:
 	float l;                              // Duration of note or chord
 	char a[MAX_STRINGS];                // Number of fret
 	char e[MAX_STRINGS];                // Effect parameter
-	vector<osg::Vec2> bend;
+	vec bend;
 	unsigned int flags;                         // Various flags
 
 	// TabColumn "volatile" data is calculated when needed,

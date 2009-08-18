@@ -61,7 +61,7 @@ const int sampleBits = 13;	// 12 seems to be absolute minimum
 Scorer::Scorer() : 
 samples(1 << sampleBits)	
 {
-	Init();
+	//Init();
 	active = false;
 	taken = true;
 
@@ -98,11 +98,12 @@ samples(1 << sampleBits)
 		freqcoeffs[i+1] = pow(twelfthroot, i/2.0);
 	}
 
-	this->start();
+	//this->start();
 }
 
 void Scorer::run()
 {
+	/*
 	while(true)
 	{
 		while(!active) YieldCurrentThread();
@@ -119,7 +120,7 @@ void Scorer::run()
 					 0.4 * sin(2.0 * PI * (k * f2 / SAMPLE_RATE)) ;
 		}
 		*/
-
+/*
 		// compute frequency spectrum
 		realfft (buf, samples, spec);
 
@@ -196,7 +197,7 @@ void Scorer::run()
 
 		taken = false;
 		while(!taken) YieldCurrentThread();
-	}
+	}*/
 }
 
 float* Scorer::Tune(Fret &f)

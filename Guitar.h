@@ -21,24 +21,23 @@
 #include <sstream>
 #include <fstream>
 
-#include "kguitar/convertgtp.h"
+//#include "kguitar/convertgtp.h"
 #include "Scorer.h"
-#include "Audio.h"
+//#include "Audio.h"
 #include "Song.h"
 #include "Menu.h"
 #include "Sprite.h"
 #include "LineSprite.h"
+#include "Node.h"
 
 using namespace std;
-using namespace osg;
 
-class Guitar : public Referenced
+class Guitar : public Node
 {
 public:
 	Guitar();
 
 	Sprite* getSprite() {return sprite;}
-	Group* getScene() { return scene.get(); }
 
 	bool setSong(Difficulty *t, string pic = "", bool a = true);
 
@@ -50,7 +49,7 @@ public:
 
 	Scorer* scorer;
 
-	void visible(bool v) { scene->setNodeMask(v); }
+	void visible(bool v) {  }
 	
 	bool running;
 	bool finished;
@@ -63,30 +62,27 @@ protected:
 	void MakeGuitar();
 
 	Sprite* sprite;
-	ref_ptr<Group>    scene;
-
+	
 	LineSprite* strings[6];
 	
-	Vec3 nstring[6];
-	Vec3 bstring[6];
+	vec nstring[6];
+	vec bstring[6];
 
 	Menu *parent;
 	Menu *pauseMenu;
-	
-	osg::Timer* time;
 
-	osgText::Text* tnote[25];
+	//osgText::Text* tnote[25];
 	Sprite* snote;
 	Sprite* sbeat;
 
-	Group* chart;
-	Group* beats;
+	//Group* chart;
+	//Group* beats;
 
-	vector<TabColumn>::iterator col;
-	vector<TabBar>::iterator bar;
+	//vector<TabColumn>::iterator col;
+	//vector<TabBar>::iterator bar;
 
-	vector<TabColumn>::iterator repc;
-	vector<TabBar>::iterator repb;
+	//vector<TabColumn>::iterator repc;
+	//vector<TabBar>::iterator repb;
 	int repcount;
 
 	double backdelay;
@@ -113,9 +109,9 @@ protected:
 	static const float neckspace;
 	static const float bridgespace;
 
-	TabTrack* tab;
+	//TabTrack* tab;
 
-	ref_ptr<osgText::Text> scoreText;
+	//ref_ptr<osgText::Text> scoreText;
 
 	int score;
 	int combo;
@@ -134,7 +130,7 @@ protected:
 	char octave;
 };
 
-class guitarCallback : public NodeCallback 
+/*class guitarCallback : public NodeCallback 
 {
 public:
    virtual void operator()(Node* node, NodeVisitor* nv)
@@ -147,6 +143,6 @@ public:
       }
       traverse(node, nv); 
    }
-};
+};*/
 
 #endif

@@ -44,7 +44,7 @@ protected:
 	void Change();
 
 	bool play;
-	osg::ref_ptr<Menu> action;
+	//osg::ref_ptr<Menu> action;
 	Directory *songDir;
 
 	int select;

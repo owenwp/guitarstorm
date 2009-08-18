@@ -19,7 +19,7 @@
 
 void SongListItem::Select() 
 {
-	action.release();
+	/*action.release();
 	if(select >= songs.size()) 
 		action = new SongEditMenu("Edit Song", NULL);
 	else if(play) 
@@ -27,7 +27,7 @@ void SongListItem::Select()
 	else 
 		action = new SongEditMenu("Edit Song", &songs[select]);
 	
-	parent->Open(action.get());
+	parent->Open(action.get());*/
 }
 
 void SongListItem::Mouse(float x) {}
@@ -75,12 +75,12 @@ void SongListItem::Setup()
 
 		Sprite* art;
 		if(sdir->files["cover"] != "")
-			art = new Sprite(sdir->files["cover"], true);
+			art = new Sprite(new Texture(sdir->files["cover"]));
 		else
 		{
-			art = new Sprite("cd.tga", false);
+			art = new Sprite(new Texture("cd.tga"));
 
-			osg::Geode* geodeLabel = new osg::Geode;
+			/*osg::Geode* geodeLabel = new osg::Geode;
 			{
 				osg::ref_ptr<osgText::Text> labelText = new osgText::Text;
 				labelText->setFont(prefix+"fonts/arial.ttf");
@@ -96,10 +96,10 @@ void SongListItem::Setup()
 				geodeLabel->addDrawable(labelText.get());
 		        
 				art->addChild(geodeLabel);
-			}
+			}*/
 		}
 
-		osg::Geode* geodeTitle = new osg::Geode;
+		/*osg::Geode* geodeTitle = new osg::Geode;
 		{
 			osg::ref_ptr<osgText::Text> titleText = new osgText::Text;
 			titleText->setFont(prefix+"fonts/arial.ttf");
@@ -132,13 +132,13 @@ void SongListItem::Setup()
 		if(song.backing == "none")
 			art->setColor(Vec4(1, 0, 0, 1));
 		_scene->addChild(art);
-
+		 */
 		icons.push_back(art);
 
 		y -= 2;
 	}
-	Sprite* art = new Sprite("cd.tga", false);
-	
+	Sprite* art = new Sprite(new Texture("cd.tga"));
+	/*
 	osg::Geode* geodeTitle = new osg::Geode;
 	{
 		osg::ref_ptr<osgText::Text> titleText = new osgText::Text;
@@ -165,7 +165,7 @@ void SongListItem::Setup()
 	art->setScale(Vec2(1,1));
 	art->setColor(Vec4(0, 1, 0, 0.25f));
 	_scene->addChild(art);
-
+	 */
 	icons.push_back(art);
 }
 
@@ -183,13 +183,13 @@ void SongListItem::Change()
 		
 		if(delta == 0)
 		{
-			icons[i]->setSlide(Vec3(0, 0.5f, 3), 5);
-			icons[i]->setGrow(Vec2(4,4), 5);
+			//icons[i]->setSlide(Vec3(0, 0.5f, 3), 5);
+			//icons[i]->setGrow(Vec2(4,4), 5);
 		}
 		else
 		{
-			icons[i]->setSlide(Vec3(delta / abs(delta) * 5 * logf(1.0f*abs(delta)+4), 0.5f + abs(delta) * 0.1f, 7 - abs(delta)), 5);
-			icons[i]->setGrow(Vec2(3,3), 5);
+			//icons[i]->setSlide(Vec3(delta / abs(delta) * 5 * logf(1.0f*abs(delta)+4), 0.5f + abs(delta) * 0.1f, 7 - abs(delta)), 5);
+			//icons[i]->setGrow(Vec2(3,3), 5);
 		}
 	}
 }

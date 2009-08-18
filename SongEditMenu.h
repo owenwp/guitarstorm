@@ -18,16 +18,19 @@
 #ifndef SONGEDITMENU
 #define SONGEDITMENU
 
-#include "id3tag.h"
+//#include "id3tag.h"
 
 #include "Menu.h"
 #include "Song.h"
 #include "Options.h"
-#include "Audio.h"
+//#include "Audio.h"
 #include "FilePick.h"
 #include "Guitar.h"
 #include "utilities/FileCopy.h"
-#include "kguitar/convertgtp.h"
+//#include "kguitar/convertgtp.h"
+
+struct TabSong;
+struct Difficulty;
 
 class TrackEditMenu : public Menu
 {
@@ -71,7 +74,6 @@ private:
 
 	bool filed;
 
-	osg::ref_ptr<osgText::Text> itemText;
 	Item* backitem;
 	Song* song;
 };

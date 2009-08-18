@@ -18,23 +18,10 @@
 #ifndef INPUT
 #define INPUT
 
-#include <osgViewer/Viewer>
-#include <osgViewer/ViewerEventHandlers>
-#include <osg/io_utils>
-
-#include <osg/MatrixTransform>
-#include <osg/Geode>
-#include <osg/Group>
-#include <osg/Switch>
-#include <osg/Notify>
-#include <osg/Geometry>
-
-#include <osgText/Text>
-
 #include "Guitar.h"
 #include "Menu.h"
 
-class Input : public osg::Referenced
+class Input
 {
 public:        
         void keyChange(int key,int value);
@@ -55,7 +42,7 @@ protected:
         ~Input() {}
 };
 
-class InputEventHandler : public osgGA::GUIEventHandler
+/*class InputEventHandler : public osgGA::GUIEventHandler
 {
 public:
     
@@ -102,6 +89,6 @@ public:
         }
         
         osg::ref_ptr<Input> _input; 
-};
+};*/
 
 #endif

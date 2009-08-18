@@ -19,7 +19,7 @@
 
 void TrackEditMenu::AddProps()
 {
-	string *trackList = new string[tab->t.size()+2];
+	/*string *trackList = new string[tab->t.size()+2];
 	trackList[0] = "None";
 	for(int i=0; i<tab->t.size(); i++)
 	{
@@ -29,14 +29,14 @@ void TrackEditMenu::AddProps()
 	Add(new NumberItem("Secondary Track", &difficulty->track2, trackList, -10, -4));
 	Add(new RealItem("Offset Coarse", &difficulty->offset, 0.5f, true, -10, -6));
 	Add(new RealItem("Offset Fine", &difficulty->offset, 0.01f, true, -10, -8));
-	
+	*/
 	// autoplay guitar
 	guitar = new Guitar();
-	guitar->getSprite()->setScale(Vec2(2.0f,2.0f));
-	guitar->getSprite()->setPosition(Vec3(3.0f,0.5f,4.25f));
-	guitar->getSprite()->setRotation(0);
-	guitar->setSong(difficulty, "", true);
-	_mscene->addChild(guitar->getScene());
+	//guitar->getSprite()->setScale(Vec2(2.0f,2.0f));
+	//guitar->getSprite()->setPosition(Vec3(3.0f,0.5f,4.25f));
+	//guitar->getSprite()->setRotation(0);
+	//guitar->setSong(difficulty, "", true);
+	//_mscene->addChild(guitar->getScene());
 }
 
 void TrackEditMenu::OnOpen()
@@ -46,7 +46,7 @@ void TrackEditMenu::OnOpen()
 		picker = new FilePick("Choose a Guitar Tab", Options::instance->tabDir, &pickpath);
 		Add(new MenuItem("Guitar Tab", picker, -10, 0));
 		Add(new BackItem("OK", -5, -10));
-
+		/*
 		if(difficulty->used.length())
 		{
 			tab = ConvertGtp::load(difficulty->tab);
@@ -59,21 +59,22 @@ void TrackEditMenu::OnOpen()
 		{
 			Open(picker);
 		}
+		 */
 	}
-	else if(guitar) 
-		guitar->setSong(difficulty, "", true);
+	//else if(guitar) 
+	//	guitar->setSong(difficulty, "", true);
 }
 
 void TrackEditMenu::OnClose()
 {
 	if(guitar) 
 		guitar->setSong(NULL);
-	Audio::stopMusic();
+	//Audio::stopMusic();
 }
 
 void TrackEditMenu::OnValueChange()
 {
-	if(!tab && pickpath.length())
+	/*if(!tab && pickpath.length())
 	{
 		tab = ConvertGtp::load(pickpath);
 		if(!tab)
@@ -91,12 +92,12 @@ void TrackEditMenu::OnValueChange()
 	if(guitar)
 	{
 		guitar->setOffset(difficulty->offset);
-	}
+	}*/
 }
 
 void SongEditMenu::Setup()
 {
-	osg::Geode* geodeTitle = new osg::Geode;
+	/*osg::Geode* geodeTitle = new osg::Geode;
     {
 		itemText = new osgText::Text;
         itemText->setFont("fonts/arial.ttf");
@@ -115,12 +116,12 @@ void SongEditMenu::Setup()
         geodeTitle->addDrawable(itemText.get());
         
         _mscene->addChild(geodeTitle);
-    }
+    }*/
 }
 
 void SongEditMenu::OnValueChange()
 {
-	itemText->setText(song->title + " by " + song->artist);
+	/*itemText->setText(song->title + " by " + song->artist);
 	filed = song->title != "" && song->artist != "";
 	if(song->backing != "none")
 	{
@@ -128,12 +129,12 @@ void SongEditMenu::OnValueChange()
 		GetArt(song->backing);
 		Audio::openMusic(song->backing);
 	}
-	backitem->Enable(filed);
+	backitem->Enable(filed);*/
 }
 
 void SongEditMenu::OnClose()
 {
-	Audio::stopMusic();
+	//Audio::stopMusic();
 }
 
 void SongEditMenu::OnOpen()
@@ -146,7 +147,7 @@ void SongEditMenu::OnOpen()
 	else
 		filed = true;
 
-	Audio::openMusic(song->backing);
+	/*Audio::openMusic(song->backing);
 
 	song->difficulty[0].name = "easy";
 	song->difficulty[1].name = "medium";
@@ -168,7 +169,7 @@ void SongEditMenu::OnOpen()
 
 	Add(new BackItem("Save", -5, -10));
 	Add(new BackItem("Cancel", -5, -11));
-
+	 */
 	OnValueChange();
 }
 
@@ -182,7 +183,7 @@ void SongEditMenu::OnSelect()
 
 void SongEditMenu::GetArt(string f)
 {
-	id3_file* file = id3_file_open(f.c_str(), ID3_FILE_MODE_READONLY);
+	/*id3_file* file = id3_file_open(f.c_str(), ID3_FILE_MODE_READONLY);
 	id3_tag* tag = id3_file_tag(file);
 	id3_frame* frame = id3_tag_findframe(tag, "APIC", 0);
 
@@ -209,7 +210,7 @@ void SongEditMenu::GetArt(string f)
 	}
 
 	id3_tag_delete(tag);
-	id3_file_close(file);
+	id3_file_close(file);*/
 }
 
 void SongEditMenu::Save()
@@ -226,7 +227,7 @@ void SongEditMenu::Save()
 		if(song->difficulty[i].used.length())
 		{
 			string dest = dir.Path() + "/" + song->difficulty[i].name + ".tab";
-			FileCopy(song->difficulty[i].tab, dest); 
+			//FileCopy(song->difficulty[i].tab, dest); 
 		}
 	}
 
@@ -246,12 +247,12 @@ void SongEditMenu::Load()
 		return;
 
 	in >> *song;
-	
+	/*
 	song->difficulty[0].tab = dir.Path() + "/" + song->difficulty[0].name + ".tab";
 	song->difficulty[1].tab = dir.Path() + "/" + song->difficulty[1].name + ".tab";
 	song->difficulty[2].tab = dir.Path() + "/" + song->difficulty[2].name + ".tab";
 	song->difficulty[3].tab = dir.Path() + "/" + song->difficulty[3].name + ".tab";
-	
+	*/
 	filed = true;
 	OnValueChange();
 }

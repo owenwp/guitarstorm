@@ -18,42 +18,27 @@
 #ifndef TUNER
 #define TUNER
 
-#include <osgViewer/Viewer>
-#include <osgViewer/ViewerEventHandlers>
-#include <osg/io_utils>
-
-#include <osg/MatrixTransform>
-#include <osg/Geode>
-#include <osg/Group>
-#include <osg/Switch>
-#include <osg/Notify>
-#include <osg/Geometry>
-
-#include <osgText/Text>
-
 #include "fft/fft.h"
-#include "Audio.h"
+//#include "Audio.h"
 #include "Sprite.h"
+#include "Node.h"
+#include "Options.h"
 
 #include <math.h>
 
 using namespace std;
-using namespace osg;
 
-class Tuner : public Referenced
+class Tuner : public Node
 {
 public:
 	Tuner();
-
-	Sprite* getSprite() {return sprite;}
-	Group* getScene() { return scene.get(); }
 
 	int getCents() { return cents; }
 	int getNote() { return note; }
 
 	void Update();
 
-	void visible(bool v) { scene->setNodeMask(v); }
+	void visible(bool v) { }
 
 protected:
 	void MakeTuner();
@@ -63,15 +48,12 @@ protected:
 	Sprite* flat;
 	Sprite* sharp;
 	Sprite* absolute;
-	ref_ptr<osgText::Text> ntext;
-	ref_ptr<osgText::Text> stext;
-	ref_ptr<Group>    scene;
 
 	int cents;
 	int note;
 };
 
-
+/*
 class tunerCallback : public NodeCallback 
 {
 public:
@@ -85,6 +67,6 @@ public:
       }
       traverse(node, nv); 
    }
-};
+};*/
 
 #endif

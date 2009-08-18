@@ -46,7 +46,6 @@ public:
 	void OnOpen();
 
 private:
-	osg::ref_ptr<osgText::Text> itemText;
 	Song* song;
 };
 

@@ -22,7 +22,7 @@ bool Menu::cursorActive = false;
 
 void Item::Setup()
 {
-	osg::Geode* geodeItem = new osg::Geode;
+	/*osg::Geode* geodeItem = new osg::Geode;
     {
 		itemText = new osgText::Text;
         itemText->setFont(prefix+"fonts/arial.ttf");
@@ -43,12 +43,12 @@ void Item::Setup()
         geodeItem->addDrawable(itemText.get());
         
         _scene->addChild(geodeItem);
-    }
+    }*/
 }
 
 void Menu::Setup()
 {
-	osg::Geode* geodeTitle = new osg::Geode;
+	/*osg::Geode* geodeTitle = new osg::Geode;
     {
 		osg::ref_ptr<osgText::Text> itemText = new osgText::Text;
         itemText->setFont(prefix+"fonts/arial.ttf");
@@ -67,15 +67,14 @@ void Menu::Setup()
         geodeTitle->addDrawable(itemText.get());
         
         _mscene->addChild(geodeTitle);
-    }
+    }*/
 
 	// add cursor
 	if(cursor == NULL)
 	{
-		cursor = new Sprite("pick.tga");
-		cursor->setCenter(Vec3(0.6f,0,0));
+		//cursor = new Sprite("pick.tga");
+		//cursor->setCenter(Vec3(0.6f,0,0));
 	}
-	_mscene->addChild(cursor);
 	
 	cursorOffset = -1;
 }
@@ -84,8 +83,8 @@ void Menu::Highlight()
 {
 	if(!cursorActive && cursor != NULL && items.size()>select) 
 	{
-		cursor->setTurn(0, 5);
-		cursor->setSlide(osg::Vec3(items[select]->X+cursorOffset,0.0f,items[select]->Y), 5.0f);
+		//cursor->setTurn(0, 5);
+		//cursor->setSlide(osg::Vec3(items[select]->X+cursorOffset,0.0f,items[select]->Y), 5.0f);
 	}
 }
 
@@ -153,7 +152,7 @@ void Menu::Mouse(float x, float y)
 	}
 	else if(open && cursor)
 	{
-		Vec3 pos = cursor->getPosition();
+		/*Vec3 pos = cursor->getPosition();
 		pos.x() = x * 0.04f;
 		pos.z() = y * 0.04f;
 		cursor->setSlide(pos, 10);
@@ -176,7 +175,7 @@ void Menu::Mouse(float x, float y)
 			}
 			index++;
 		}
-		//select = -1;
+		//select = -1;*/
 	}
 }
 
@@ -291,13 +290,13 @@ void Menu::Add(Item* i)
 		{
 			items.insert(it, i);
 			i->SetParent(this);
-			_mscene->addChild(i->getScene());
+			//_mscene->addChild(i->getScene());
 			return;
 		}
 	}
 	items.push_back(i);
 	i->SetParent(this);
-	_mscene->addChild(i->getScene());
+	//_mscene->addChild(i->getScene());
 	Highlight();
 }
 
@@ -306,16 +305,16 @@ void Menu::Open(Menu* c)
 	if(c && !child)
 	{
 		// hide the current menu
-		_mscene->setNodeMask(false);
+		//_mscene->setNodeMask(false);
 
 		// add the next menu
 		c->parent = this;
-		_scene->addChild(c->getScene());
+		//_scene->addChild(c->getScene());
 		child = c;
 		c->open = true;
 		c->select = 0;
 		c->Highlight();
-		c->_mscene->setNodeMask(true);
+		//c->_mscene->setNodeMask(true);
 		c->OnOpen();
 		c->firstOpen = false;
 	}
@@ -325,7 +324,7 @@ void Menu::Open(Menu* c)
 		Highlight();
 		firstOpen = false;
 		open = true;
-		_mscene->setNodeMask(true);
+		//_mscene->setNodeMask(true);
 	}
 }
 
@@ -337,14 +336,14 @@ void Menu::Close()
 	{
 		parent->OnValueChange();
 		parent->Highlight();
-		parent->_scene->removeChild(_scene.get());
-		parent->_mscene->setNodeMask(true);
+		parent->removeChild(this);
+		//parent->_mscene->setNodeMask(true);
 		parent->child = NULL;
 	}
 	else
 	{
 		// this is the bottom of the stack, just hide the menu
-		_mscene->setNodeMask(false);
+		//_mscene->setNodeMask(false);
 	}
 }
 
@@ -355,7 +354,7 @@ void Menu::Hide()
 	else
 	{
 		hidden = true;
-		_mscene->setNodeMask(false);
+		//_mscene->setNodeMask(false);
 	}
 }
 
@@ -366,7 +365,7 @@ void Menu::Show()
 	else
 	{
 		hidden = false;
-		_mscene->setNodeMask(true);
+		//_mscene->setNodeMask(true);
 	}
 }
 
@@ -391,7 +390,7 @@ void NumberItem::Setup()
 		maximum = max(0, i-1);
 	}
 
-	osg::Geode* geodeNum = new osg::Geode;
+	/*osg::Geode* geodeNum = new osg::Geode;
     {
 		vtext = new osgText::Text;
         vtext->setFont(prefix+"fonts/arial.ttf");
@@ -411,7 +410,7 @@ void NumberItem::Setup()
         geodeNum->addDrawable(vtext.get());
         
         _scene->addChild(geodeNum);
-    }
+    }*/
 }
 
 void NumberItem::Change()
@@ -431,13 +430,13 @@ void NumberItem::Change()
 	{
 		s << *value;
 	}
-	vtext->setText(s.str());
+	//vtext->setText(s.str());
 }
 
 // real item
 void RealItem::Setup()
 {
-	osg::Geode* geodeNum = new osg::Geode;
+	/*osg::Geode* geodeNum = new osg::Geode;
     {
 		vtext = new osgText::Text;
         vtext->setFont(prefix+"fonts/arial.ttf");
@@ -457,7 +456,7 @@ void RealItem::Setup()
         geodeNum->addDrawable(vtext.get());
         
         _scene->addChild(geodeNum);
-    }
+    }*/
 }
 
 void RealItem::Change()
@@ -467,8 +466,8 @@ void RealItem::Change()
 		std::ostringstream s;
 		s << ": ";
 		s << *value;
-		vtext->setText(s.str());
+		//vtext->setText(s.str());
 	}
-	else
-		vtext->setText("< >");
+	//else
+		//vtext->setText("< >");
 }

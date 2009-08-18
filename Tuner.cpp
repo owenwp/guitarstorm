@@ -54,19 +54,19 @@ End of Terms and Restrictions.
 
 Tuner::Tuner()
 {
-	scene = new Group();
+	//scene = new Group();
 	MakeTuner();
-	scene->addChild(sprite);
+	//scene->addChild(sprite);
 
-	scene->setUserData(this); 
-	scene->setUpdateCallback(new tunerCallback);
+	//scene->setUserData(this); 
+	//scene->setUpdateCallback(new tunerCallback);
 }
 
 void Tuner::MakeTuner()
 {
-	Sprite* tuner = new Sprite("tuner.tga");
+	Sprite* tuner = new Sprite(new Texture("tuner.tga"));
 
-	Sprite* back = new Sprite("");
+	/*Sprite* back = new Sprite("");
 	back->setColor(Vec4(0,0,0,1));
 	back->setScale(Vec2(1.8f, 0.9f));
 	back->setPosition(Vec3(0,1,0));
@@ -282,7 +282,7 @@ void Tuner::MakeTuner()
 		tuner->addChild(geodeCZ);
 	}
 
-	sprite = tuner;
+	sprite = tuner;*/
 }
 
 void Tuner::Update()
@@ -290,7 +290,7 @@ void Tuner::Update()
 	int samples = Options::instance->sampleRate;
 	float dark = 0.2f;
 	
-	if(Audio::readVol() < 500)
+	/*if(Audio::readVol() < 500)
 	{		
 		note = -1;
 		arm->setTurn(0, 0.5f);
@@ -402,5 +402,5 @@ void Tuner::Update()
 	case 10:
 		ntext->setText("G");
 		break;
-	}
+	}*/
 }

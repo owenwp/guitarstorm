@@ -15,22 +15,11 @@
     You should have received a copy of the GNU General Public License
     along with Guitar Storm.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include <osgViewer/Viewer>
-#include <osgViewer/ViewerEventHandlers>
-#include <osg/io_utils>
 
-#include <osg/MatrixTransform>
-#include <osg/Geode>
-#include <osg/Group>
-#include <osg/Switch>
-#include <osg/Notify>
-#include <osg/Geometry>
+#include <GLUT/GLUT.h>
+#include <IL/il.h>
 
-#include <OpenThreads/Thread>
-
-#include <osgText/Text>
-
-#include "Audio.h"
+//#include "Audio.h"
 #include "Input.h"
 #include "Menu.h"
 #include "SongListItem.h"
@@ -38,12 +27,18 @@
 #include "Options.h"
 #include "Sprite.h"
 #include "Guitar.h"
+#include "Texture.h"
+#include "Node.h"
+#include "Label.h"
 
-osgViewer::Viewer *_viewer = NULL;
+bool useShaders = true;
+
+GLint v, f, p; 
+Node* root;
 
 void quit()
 {
-	_viewer->setDone(true);
+	//_viewer->setDone(true);
 }
 
 void setupView()
@@ -52,128 +47,150 @@ void setupView()
 	int resy = Options::instance->resolutiony[Options::instance->screenResolution];
 	if(Options::instance->fullScreen)
 	{
-		//_viewer->setUpViewOnSingleScreen(0);
-		osg::GraphicsContext::WindowingSystemInterface* wsi = osg::GraphicsContext::getWindowingSystemInterface();
-		if (!wsi) 
-		{
-			//osg::notify(osg::NOTICE)<<"View::setUpViewOnSingleScreen() : Error, no WindowSystemInterface available, cannot create windows."<<std::endl;
-			return;
-		}
+	}
+	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+	glutInitWindowPosition(100, 50); 
+	glutInitWindowSize(800, 600); 
+	glutCreateWindow("Guitar Storm");
+	
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
 
-		osg::GraphicsContext::ScreenIdentifier si;
-		si.readDISPLAY();
-	    
-		// displayNum has not been set so reset it to 0.
-		if (si.displayNum<0) si.displayNum = 0;
+void deleteScene()
+{
+	delete root;
+	root = NULL;
+	
+	Texture::UnloadAll();
+	
+	glDetachShader(p, v);
+	glDetachShader(p, f);
+	
+	glDeleteShader(v);
+	glDeleteShader(f);
+	glDeleteProgram(p);
+	
+	exit(0);
+}
 
-		si.screenNum = 0;
+void renderScene() 
+{	
+	static int lastTime = glutGet(GLUT_ELAPSED_TIME);
+	int time = glutGet(GLUT_ELAPSED_TIME);
+	
+	float timeDelta = (time - lastTime) * 0.001f;
+	lastTime = time;
+	
+	if(!root)
+		return;
+	
+	root->update(timeDelta);
+	
+	glClear(GL_COLOR_BUFFER_BIT);
+	
+	glLoadIdentity();
+	glTranslatef(0, 0, -11);
+	
+	root->render(p);
+	
+	glutSwapBuffers();
+}
 
-		unsigned int width, height;
-		wsi->getScreenResolution(si, width, height);
+void openShader(GLint shader, string name)
+{
+	string folder = "shaders/";
+	name = folder + name;
+	ifstream in;
+	in.open(name.c_str(), ios::in);
+	
+	char cstr[128];
+	
+	string str;
+	
+	do
+	{
+		in.get(cstr, 128, 0);
+		str += string(cstr);
+	}
+	while(in.gcount() == 127);
+	
+	cout << endl << "*** " << name << " ***" << endl << str;
+	
+	const GLchar* c = str.c_str();
+	
+	glShaderSource(shader, 1, &c, NULL);
+}
 
-		osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
-        traits->hostName = si.hostName;
-		traits->displayNum = si.displayNum;
-		traits->screenNum = si.screenNum;
-		traits->x = 0;
-        traits->y = 0;
-        traits->width = width;
-        traits->height = height;
-        traits->windowDecoration = false;
-        traits->doubleBuffer = true;
-		traits->useCursor = false;
-        traits->sharedContext = 0;
-
-        osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits.get());
-
-        osg::ref_ptr<osg::Camera> camera = new Camera;
-        camera->setGraphicsContext(gc.get());
-        camera->setViewport(new Viewport(0,0, traits->width, traits->height));
-        GLenum buffer = traits->doubleBuffer ? GL_BACK : GL_FRONT;
-        camera->setDrawBuffer(buffer);
-        camera->setReadBuffer(buffer);
-		camera->setViewMatrixAsLookAt(
-			osg::Vec3(0,-28,0),
-			osg::Vec3(0,0,0),
-			osg::Vec3(0,0,1));
-		camera->setProjectionMatrixAsPerspective(45, traits->width / (float)traits->height, 1, 100);
-
-		osgViewer::GraphicsWindow* gw = dynamic_cast<osgViewer::GraphicsWindow*>(gc.get());
-		if (gw)
-		{
-			gw->getEventQueue()->getCurrentEventState()->setWindowRectangle(traits->x, traits->y, traits->width, traits->height );
-		}
-
-        // add this slave camera to the viewer, with a shift left of the projection matrix
-		_viewer->setCamera(camera.get());
+void loadShaders()
+{
+	char *vs,*fs;
+	
+	v = glCreateShader(GL_VERTEX_SHADER);
+	f = glCreateShader(GL_FRAGMENT_SHADER);	
+	
+	openShader(v,"Sprite.vert");
+	openShader(f,"Sprite.frag");
+	
+	glCompileShader(v);
+	glCompileShader(f);
+	
+	p = glCreateProgram();
+	
+	glAttachShader(p,v);
+	glAttachShader(p,f);
+	
+	glLinkProgram(p);
+	
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	
+	gluPerspective(45, (float)800 / (float)600, 1, 20);
+	
+	glMatrixMode(GL_MODELVIEW);
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	
+	
+	glEnable(GL_TEXTURE_2D);
+	
+	if(!useShaders)
+	{
+		glAlphaFunc(GL_GREATER,0.5f);
+		glEnable(GL_ALPHA_TEST);
 	}
 	else
 	{
-		osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
-        traits->x = 50;
-        traits->y = 50;
-        traits->width = resx;
-        traits->height = resy;
-        traits->windowDecoration = true;
-        traits->doubleBuffer = true;
-		traits->useCursor = false;
-        traits->sharedContext = 0;
-
-        osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits.get());
-
-        osg::ref_ptr<osg::Camera> camera = new Camera;
-        camera->setGraphicsContext(gc.get());
-        camera->setViewport(new Viewport(0,0, traits->width, traits->height));
-        GLenum buffer = traits->doubleBuffer ? GL_BACK : GL_FRONT;
-        camera->setDrawBuffer(buffer);
-        camera->setReadBuffer(buffer);
-		camera->setViewMatrixAsLookAt(
-			osg::Vec3(0,-28,0),
-			osg::Vec3(0,0,0),
-			osg::Vec3(0,0,1));
-		camera->setProjectionMatrixAsPerspective(45, traits->width / (float)traits->height, 1, 100);
-
-		osgViewer::GraphicsWindow* gw = dynamic_cast<osgViewer::GraphicsWindow*>(gc.get());
-		if (gw)
-		{
-			gw->getEventQueue()->getCurrentEventState()->setWindowRectangle(traits->x, traits->y, traits->width, traits->height );
-		}
-
-        // add this slave camera to the viewer, with a shift left of the projection matrix
-		_viewer->setCamera(camera.get());
+		glEnable (GL_BLEND);
+		glUseProgram(p);
 	}
 }
 
 int main(int argc, char **argv)
 {
-	osg::ArgumentParser arguments(&argc, argv);
-
-    // construct the viewer.
-    osgViewer::Viewer viewer(arguments);
-	_viewer = &viewer;
-
+	glutInit(&argc, argv);
+	ilInit();
+	
 	// setup viewer
 	setupView();
+	loadShaders();
 
 	// setup audio
-	Audio::init();
+	//Audio::init();
 
 	// setup keyboard input
-	osg::ref_ptr<Input> input = new Input;
+	Input* input = new Input;
 
 	// setup menus
-	osg::ref_ptr<Menu> menu = new Menu("GUITAR STORM");
-	osg::ref_ptr<Menu> play = new Menu("Play");
-	osg::ref_ptr<Menu> manage = new Menu("Manage");
-	osg::ref_ptr<Menu> tuner = new TunerMenu("Tuner", NULL);
-	osg::ref_ptr<Menu> options = new Menu("Options");
+	Menu* menu = new Menu("GUITAR STORM");
+	Menu* play = new Menu("Play");
+	Menu* manage = new Menu("Manage");
+	Menu* tuner = new TunerMenu("Tuner", NULL);
+	Menu* options = new Menu("Options");
 
-	osg::ref_ptr<Menu> audio = new OptionsMenu("Audio");
-	osg::ref_ptr<Menu> video = new OptionsMenu("Video");
-	osg::ref_ptr<Menu> game = new OptionsMenu("Game");
-	osg::ref_ptr<Menu> player = new OptionsMenu("Player");
-	osg::ref_ptr<Menu> about = new Menu("About");
-	Input::setMenu(menu.get());
+	Menu* audio = new OptionsMenu("Audio");
+	Menu* video = new OptionsMenu("Video");
+	Menu* game = new OptionsMenu("Game");
+	Menu* player = new OptionsMenu("Player");
+	Menu* about = new Menu("About");
+	Input::setMenu(menu);
 
 	menu->Add(new MenuItem("Play", play, -5, 0));
 	menu->Add(new MenuItem("Manage Songs", manage, -5, -2));
@@ -226,67 +243,38 @@ int main(int argc, char **argv)
 	menu->Open();
 
 	// setup scene
-	osg::Group* root = NULL;
-    osg::ClearNode* backdrop = new osg::ClearNode;
-    backdrop->setClearColor(osg::Vec4(0.1f,0.1f,0.1f,1.0f));
-	root = new osg::Group();
-	root->addChild(menu->getScene());
-    root->addChild(backdrop);
-	viewer.setSceneData( root );
+	root = new Node;
+	//root->addChild(menu);
 
 	// background
-	Sprite* clouds = new Sprite("duskcloudy.jpg");
-	clouds->setScale(Vec2(20, 20));
-	clouds->setPosition(Vec3(0,20,0));
-	clouds->setColor(Vec4(0.5f, 0.5f, 0.5f, 1));
-	clouds->setScroll(Vec2(-0.02f,0));
+	Node* clouds = new Node;
+	clouds->addChild(new Sprite(new Texture("duskcloudy.jpg")));
+	//clouds->setScale(vec(20, 20));
+	//clouds->setPosition(vec(0,0,0));
 	root->addChild(clouds);
 
 	// setup callbacks
-    viewer.addEventHandler(new osgViewer::StatsHandler);
-    viewer.addEventHandler(new osgViewer::WindowSizeHandler());
-    viewer.addEventHandler(new InputEventHandler(input.get()));
 
 	// begin audio capture
 	try 
 	{
 #ifndef NOAUDIO
-		Audio::startCapture();
+		//Audio::startCapture();
 #endif
 	}
 	catch(string err)
 	{
-		// setup interface
-		osg::Geode* geodeErr = new osg::Geode;
-		{
-			osg::ref_ptr<osgText::Text> errText = new osgText::Text;
-			errText->setFont(prefix+"fonts/arial.ttf");
-			errText->setColor(osg::Vec4(1.0f,0.0f,0.0f,1.0f));
-			errText->setCharacterSize(1.5f);
-			errText->setPosition(osg::Vec3(0.0f,-1.0f,6.0f));
-			errText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-			errText->setDrawMode(osgText::Text::TEXT);
-			errText->setAlignment(osgText::Text::CENTER_TOP);
-			errText->setAxisAlignment(osgText::Text::XZ_PLANE);
-			errText->setText(err);
-	        
-			geodeErr->addDrawable(errText.get());
-	        
-			root->addChild(geodeErr);
-		}
 	}
-
-	// setup camera
-	viewer.realize();
 
 	// run main loop
-	while (!viewer.done()) 
-	{  
-		viewer.frame(); 
-	}
+	glutDisplayFunc(renderScene);
+	glutIdleFunc(renderScene);
+	glutWMCloseFunc(deleteScene);
+	
+	glutMainLoop();
 
 	// shutdown
-	Audio::stopCapture();
+	//Audio::stopCapture();
 
 	return 0;
 }

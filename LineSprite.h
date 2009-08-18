@@ -26,14 +26,14 @@ public:
 	LineSprite(LineSprite* sprite);
 	LineSprite(string filename = "", bool absolute = false);
 
-	void setLine(Vec3 l) {line = l; makeline = true;}
+	void setLine(vec l) {line = l; makeline = true;}
 
-	Vec3 getLine() {return line;}
+	vec getLine() {return line;}
 
 	virtual void Update();
 
 protected:
-	Vec3 line;
+	vec line;
 	bool makeline;
 };
 

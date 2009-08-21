@@ -39,7 +39,6 @@ class Item : public Node
 {
 public:
 	const string name;
-	const float X, Y;
 
 	void Enable(bool e) {enabled = e; }//if(enabled) itemText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f)); else itemText->setColor(osg::Vec4(0.5f,0.5f,0.5f,1.0f));}
 	bool IsEnabled() {return enabled;}
@@ -58,7 +57,7 @@ public:
 	void SetParent(Menu* p) {parent = p;}
 
 protected:
-	Item(string n, float x, float y, bool e = true):name(n),X(x),Y(y),enabled(e),parent(NULL) {Setup();}
+	Item(string n, float x, float y, bool e = true):name(n),enabled(e),parent(NULL) {setPosition(vec(x,y)); Setup();}
 	
 	// method for initializing the menu item
 	virtual void Setup();
@@ -68,7 +67,7 @@ protected:
 	bool enabled;
 
 private:
-	Item():X(0),Y(0),name(""){}
+	Item():name(""){}
 };
 
 class Menu : public Node

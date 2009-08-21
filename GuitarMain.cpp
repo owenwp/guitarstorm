@@ -192,11 +192,11 @@ int main(int argc, char **argv)
 	Menu* about = new Menu("About");
 	Input::setMenu(menu);
 
-	menu->Add(new MenuItem("Play", play, -5, 0));
-	menu->Add(new MenuItem("Manage Songs", manage, -5, -2));
-	menu->Add(new MenuItem("Tune Guitar", tuner, -5, -4));
-	menu->Add(new MenuItem("Options", options, -5, -6));
-	menu->Add(new EventItem("Quit", &quit, -5, -10));
+	menu->Add(new MenuItem("Play", play, -2, 1));
+	menu->Add(new MenuItem("Manage Songs", manage, -2, 0));
+	menu->Add(new MenuItem("Tune Guitar", tuner, -2, -1));
+	menu->Add(new MenuItem("Options", options, -2, -2));
+	menu->Add(new EventItem("Quit", &quit, -2, -4));
 
 	play->Add(new SongListItem("<- Play ->", -5, -4, true));
 	manage->Add(new SongListItem("<- Manage ->", -5, -4, false));
@@ -256,6 +256,9 @@ int main(int argc, char **argv)
 	root->addChild(clouds);
 
 	// setup callbacks
+	glutDisplayFunc(renderScene);
+	glutIdleFunc(renderScene);
+	glutWMCloseFunc(deleteScene);
 
 	// begin audio capture
 	try 
@@ -269,10 +272,6 @@ int main(int argc, char **argv)
 	}
 
 	// run main loop
-	glutDisplayFunc(renderScene);
-	glutIdleFunc(renderScene);
-	glutWMCloseFunc(deleteScene);
-	
 	glutMainLoop();
 
 	// shutdown

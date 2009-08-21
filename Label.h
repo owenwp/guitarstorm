@@ -39,6 +39,7 @@ struct Font
 	float kerning[128][128];
 	float wid[128];
 	float hgt[128];
+	float top[128];
 	float xpad[128];
 	float ypad[128];
 	int point;

@@ -43,32 +43,18 @@ void Item::Setup()
         geodeItem->addDrawable(itemText.get());
         
         _scene->addChild(geodeItem);
-    }*/
+	 }*/
+	Node* header = new Node;
+	Label* l = new Label("arial", name, alignLeft);
+	l->setColor(vec(1,1,1));
+	header->addChild(l);
+	header->setPosition(vec(0, 0));
+	header->setScale(vec(0.5,0.5));
+	addChild(header);
 }
 
 void Menu::Setup()
-{
-	/*osg::Geode* geodeTitle = new osg::Geode;
-    {
-		osg::ref_ptr<osgText::Text> itemText = new osgText::Text;
-        itemText->setFont(prefix+"fonts/arial.ttf");
-        itemText->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
-        itemText->setCharacterSize(1.5f);
-		itemText->setPosition(osg::Vec3(0.0f,1.0f,11.0f));
-		itemText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-		itemText->setDrawMode(osgText::Text::TEXT);
-		itemText->setBackdropType(osgText::Text::OUTLINE);
-		itemText->setBackdropOffset(-0.05f, 0.0f);
-		itemText->setBackdropImplementation(osgText::Text::STENCIL_BUFFER);
-		itemText->setAlignment(osgText::Text::CENTER_TOP);
-        itemText->setAxisAlignment(osgText::Text::XZ_PLANE);
-		itemText->setText(name);
-        
-        geodeTitle->addDrawable(itemText.get());
-        
-        _mscene->addChild(geodeTitle);
-	 }*/
-	
+{	
 	Node* header = new Node;
 	Label* l = new Label("arial", name, alignCenter);
 	l->setColor(vec(1,1,0));
@@ -294,17 +280,17 @@ void Menu::Add(Item* i)
 	vector<Item*>::iterator it;
 	for(it=items.begin(); it!=items.end(); it++)
 	{
-		if((*it)->Y < i->Y)
+		if((*it)->getPosition().y < i->getPosition().y)
 		{
 			items.insert(it, i);
 			i->SetParent(this);
-			//_mscene->addChild(i->getScene());
+			addChild(i);
 			return;
 		}
 	}
 	items.push_back(i);
 	i->SetParent(this);
-	//_mscene->addChild(i->getScene());
+	addChild(i);
 	Highlight();
 }
 

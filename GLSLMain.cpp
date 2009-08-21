@@ -159,7 +159,7 @@ int main(int argc, char **argv)
 	root->addChild(text);
 	
 	text = new Node();
-	l = new Label("arial", "BIG");
+	l = new Label("arial", "Big");
 	l->setColor(vec(1,0,0));
 	text->addChild(l);
 	text->setPosition(vec(-5, 1));

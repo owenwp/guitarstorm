@@ -86,16 +86,16 @@ void Label::render(GLint program)
 		glColor4f(color.x, color.y, color.z, 1);
 		
 		glTexCoord2f(0.0, font->ypad[cstr[i]]);
-		glVertex3f(0, 0, 0.0);
+		glVertex3f(0, font->top[cstr[i]], 0.0);
 		
 		glTexCoord2f(font->xpad[cstr[i]], font->ypad[cstr[i]]);
-		glVertex3f(font->wid[cstr[i]], 0, 0.0);
+		glVertex3f(font->wid[cstr[i]], font->top[cstr[i]], 0.0);
 		
 		glTexCoord2f(0.0, 0.0);
-		glVertex3f(0, font->hgt[cstr[i]], 0.0);
+		glVertex3f(0, font->hgt[cstr[i]]+font->top[cstr[i]], 0.0);
 		
 		glTexCoord2f(font->xpad[cstr[i]], 0.0);
-		glVertex3f(font->wid[cstr[i]], font->hgt[cstr[i]], 0.0);
+		glVertex3f(font->wid[cstr[i]], font->hgt[cstr[i]]+font->top[cstr[i]], 0.0);
 		
 		glEnd();
 		
@@ -210,6 +210,7 @@ void Label::makeFont(string f)
 		
 		font->wid[c] = bitmap.width / (float)font->point;
 		font->hgt[c] = bitmap.rows / (float)font->point;
+		font->top[c] = (bitmap_glyph->top-bitmap.rows) / (float)font->point;
 		
 		font->xpad[c] = xs;
 		font->ypad[c] = ys;

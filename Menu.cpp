@@ -67,7 +67,15 @@ void Menu::Setup()
         geodeTitle->addDrawable(itemText.get());
         
         _mscene->addChild(geodeTitle);
-    }*/
+	 }*/
+	
+	Node* header = new Node;
+	Label* l = new Label("arial", name, alignCenter);
+	l->setColor(vec(1,1,0));
+	header->addChild(l);
+	header->setPosition(vec(0, 3));
+	header->setScale(vec(1,1));
+	addChild(header);
 
 	// add cursor
 	if(cursor == NULL)

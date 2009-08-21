@@ -44,10 +44,17 @@ struct Font
 	int point;
 };
 
+enum Alignment
+{
+	alignLeft = 0,
+	alignRight,
+	alignCenter
+};
+
 class Label : public Renderable
 {
 public:
-	Label(string f, string t = "");
+	Label(string f, string t = "", Alignment a = alignLeft);
 	void printf(string format, ...);
 	
 	void setColor(vec c) {color = c; tints = 0;}
@@ -62,7 +69,10 @@ public:
 protected:
 	Font* font;
 	
-	string text;
+	string text; 
+	Alignment align;
+	
+	float width;
 	
 	vec color;
 	vec tint;

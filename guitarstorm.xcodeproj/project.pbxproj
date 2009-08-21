@@ -21,6 +21,7 @@
 		259FADDB103652C3005477E7 /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259FADDA103652C3005477E7 /* Label.cpp */; };
 		25A28171103207CA00D7C4CD /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25A28170103207CA00D7C4CD /* Texture.cpp */; };
 		25A2826A10321D7C00D7C4CD /* libIL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A2826910321D7C00D7C4CD /* libIL.dylib */; };
+		25BBC6DD103E2A6B00A7CD0E /* shaders in Resources */ = {isa = PBXBuildFile; fileRef = 256274971031E9390023B882 /* shaders */; };
 		25C66F83103A27BE00615C65 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25A28170103207CA00D7C4CD /* Texture.cpp */; };
 		25C66F84103A27BE00615C65 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259FACEC10363485005477E7 /* Node.cpp */; };
 		25C66F85103A27BE00615C65 /* VectorMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259FACF51036375E005477E7 /* VectorMath.cpp */; };
@@ -402,6 +403,7 @@
 				8D0C4E8E0486CD37000505A6 /* main.nib in Resources */,
 				3CCF102F0D86E71B003173B5 /* tabs in Resources */,
 				256274961031E8F70023B882 /* images in Resources */,
+				25BBC6DD103E2A6B00A7CD0E /* shaders in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

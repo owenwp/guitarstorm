@@ -24,6 +24,7 @@
 
 #include "Sprite.h"
 #include "Node.h"
+#include "Label.h"
 
 #if MACOSX
 #define prefix string("/library/")

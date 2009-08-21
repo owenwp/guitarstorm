@@ -32,13 +32,23 @@ inline int next_p2 (int a )
 	return rval;
 }
 
-Label::Label(string f, string t)
+Label::Label(string f, string t, Alignment a)
 {
 	text = t;
+	align = a;
 	color = vec(1,1,1,1);
 	tints = 0;
+	width = 0;
 	
 	makeFont(f);
+	
+	for(int i=0; i<text.length(); i++)
+	{
+		if(i+1 < text.length())
+			width += font->kerning[text[i]][text[i+1]];
+		else
+			width += font->kerning[text[i]][' '];
+	}
 }
 
 void Label::printf(string format, ...)
@@ -61,6 +71,11 @@ void Label::render(GLint program)
 	glUniform1f(loc, 0.5);
 	loc = glGetUniformLocation(program,"alphaOnly");
 	glUniform1i(loc, 1);
+	
+	if(align == alignCenter)
+	{
+		glTranslatef(-width/2, 0, 0);
+	}
 	
 	for(int i=0; i<count; i++)
 	{

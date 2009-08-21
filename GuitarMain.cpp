@@ -244,14 +244,15 @@ int main(int argc, char **argv)
 
 	// setup scene
 	root = new Node;
-	//root->addChild(menu);
+	root->addChild(menu);
 
 	// background
 	Node* clouds = new Node;
 	Sprite* spr = new Sprite(new Texture("duskcloudy.jpg"));
 	spr->setScroll(vec(0.01, 0));
 	clouds->addChild(spr);
-	clouds->setScale(vec(10, 10));
+	clouds->setPosition(vec(0,0,-5));
+	clouds->setScale(vec(14, 14));
 	root->addChild(clouds);
 
 	// setup callbacks

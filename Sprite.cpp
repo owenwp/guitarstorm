@@ -25,6 +25,8 @@ Sprite::Sprite(Sprite* sprite)
 	texture = sprite->texture;
 	color = sprite->color;
 	tints = sprite->tints;
+	spos = sprite->spos;
+	scroll = sprite->scroll;
 }
 
 Sprite::Sprite(Texture* tex, vec col)
@@ -32,11 +34,14 @@ Sprite::Sprite(Texture* tex, vec col)
 	texture = tex;
 	color = col;
 	tints = 0;
+	spos = vec(0,0);
+	scroll = vec(0,0);
 }
 
 void Sprite::update(float timeDelta)
 {
 	color += (tint - color) * min(1.0f, tints * timeDelta);
+	spos += scroll * timeDelta;
 }
 
 void Sprite::render(GLint program)
@@ -44,23 +49,28 @@ void Sprite::render(GLint program)
 	if(!texture)
 		return;
 	
+	glPushMatrix();
+	
+	glScalef(texture->Aspect(), 1, 1);
 	texture->Bind(program);
 	
 	glBegin(GL_TRIANGLE_STRIP);
 	
 	glColor4f(color.x, color.y, color.z, 1);
 	
-	glTexCoord2f(0.0, 1.0);
+	glTexCoord2f(0.0+spos.x, 1.0+spos.y);
 	glVertex3f(-0.5, -0.5, 0.0);
 	
-	glTexCoord2f(1.0, 1.0);
+	glTexCoord2f(1.0+spos.x, 1.0+spos.y);
 	glVertex3f(0.5, -0.5, 0.0);
 	
-	glTexCoord2f(0.0, 0.0);
+	glTexCoord2f(0.0+spos.x, 0.0+spos.y);
 	glVertex3f(-0.5, 0.5, 0.0);
 	
-	glTexCoord2f(1.0, 0.0);
+	glTexCoord2f(1.0+spos.x, 0.0+spos.y);
 	glVertex3f(0.5, 0.5, 0.0);
 	
 	glEnd();
+	
+	glPopMatrix();
 }

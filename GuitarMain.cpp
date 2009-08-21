@@ -248,9 +248,10 @@ int main(int argc, char **argv)
 
 	// background
 	Node* clouds = new Node;
-	clouds->addChild(new Sprite(new Texture("duskcloudy.jpg")));
-	//clouds->setScale(vec(20, 20));
-	//clouds->setPosition(vec(0,0,0));
+	Sprite* spr = new Sprite(new Texture("duskcloudy.jpg"));
+	spr->setScroll(vec(0.01, 0));
+	clouds->addChild(spr);
+	clouds->setScale(vec(10, 10));
 	root->addChild(clouds);
 
 	// setup callbacks

@@ -33,8 +33,10 @@ public:
 	Sprite(Texture* tex, vec col = vec(1,1,1,1));
 
 	void setColor(vec c) {color = c; tints = 0;}
+	void setScroll(vec s) {scroll = s;}
 	
 	vec getColor() {return color;}
+	vec getScroll() {return scroll;}
 
 	void setTint(vec t, float s) {tint = t; tints = s;}
 	
@@ -45,7 +47,10 @@ protected:
 	Texture* texture;
 	
 	vec color;
+	vec scroll;
 	vec tint;
+	
+	vec spos;
 	
 	float tints;
 };

@@ -40,6 +40,7 @@ class Texture
 private:
 	GLuint id;
 	float edge;
+	float aspect;
 	bool alphaOnly;
 	
 public:
@@ -48,6 +49,8 @@ public:
 	~Texture();
 	
 	static void UnloadAll();
+	
+	float Aspect();
 	
 	void Bind(GLint p);
 };

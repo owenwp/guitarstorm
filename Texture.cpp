@@ -189,23 +189,23 @@ Texture::Texture(string name)
 	
 	if(ilLoadImage(name.c_str()))
 	{
-		ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE); 
-		
-		glGenTextures(1, &id); 
-		glBindTexture(GL_TEXTURE_2D, id);
-		
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		
+		int depth = ilGetInteger(IL_IMAGE_BPP);
 		int width = ilGetInteger(IL_IMAGE_WIDTH);
 		int height = ilGetInteger(IL_IMAGE_HEIGHT);
-		int depth = ilGetInteger(IL_IMAGE_BPP);
 		unsigned char* iData = ilGetData();
 		
 		if(mData)
 		{
+			ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE); 
+			
+			glGenTextures(1, &id); 
+			glBindTexture(GL_TEXTURE_2D, id);
+			
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			
 			unsigned char* vData = (unsigned char *)malloc(width * height * 4);
 			long int pos1 = 0, pos2 = 0;
 			
@@ -228,17 +228,31 @@ Texture::Texture(string name)
 		}
 		else
 		{
+			glGenTextures(1, &id); 
+			glBindTexture(GL_TEXTURE_2D, id);
+			
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			
 			glTexImage2D(GL_TEXTURE_2D, 0, depth, width,
 						 height, 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE,
 						 iData);
 		}
 
 		edge = 0.025f;
+		aspect = width / (float)height;
 	}
 }
 
 Texture::~Texture()
 {
+}
+
+float Texture::Aspect()
+{
+	return aspect;
 }
 
 void Texture::Bind(GLint p)

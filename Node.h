@@ -48,8 +48,8 @@ public:
 	
 	void setHidden(bool h) {hidden = h;}
 	
-	void update(float timeDelta);
-	void render(GLint program);
+	virtual void update(float timeDelta);
+	virtual void render(GLint program);
 	
 	void addChild(Renderable* c);
 	void insertChild(Renderable* c, int i);

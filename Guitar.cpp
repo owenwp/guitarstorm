@@ -28,16 +28,12 @@ const float Guitar::bridgespace = 0.17f;
 
 Guitar::Guitar()
 {
-	//scene = new Group();
 	MakeGuitar();
-	/*scene->addChild(sprite);
-
-	scene->setUserData(this); 
-	scene->setUpdateCallback(new guitarCallback);
 
 	running = false; 
 	finished = false;
 
+	/*
 	// create fret textures
 	snote = new Sprite("circle.tga");
 	snote->setScale(Vec2(0.1f, 0.1f));
@@ -82,30 +78,31 @@ Guitar::Guitar()
 
 void Guitar::MakeGuitar()
 {
-	/*Sprite* neck = new Sprite("neck.tga");
-	neck->setCenter(Vec3(3,0,0));
+	Node* neck = new Node;
+	neck->addChild(new Sprite(new Texture("neck.tga")));
+	neck->setScale(vec(4,4));
 
-	Sprite* head = new Sprite("head.tga");
-	head->setPosition(Vec3(-4.5, -0.1f, 0));
+	Node* head = new Node;
+	head->addChild(new Sprite(new Texture("head.tga")));
+	head->setScale(vec(4,4));
+	head->setPosition(vec(-9, 0));
 
-	Sprite* nut = new Sprite("nut.tga");
-	nut->setPosition(Vec3(nutpos, -0.2f, neckpos));
-	nut->setScale(Vec2(0.5f, 0.5f));
+	Node* nut = new Node;
+	nut->addChild(new Sprite(new Texture("nut.tga")));
+	nut->setPosition(vec(nutpos, neckpos));
+	nut->setScale(vec(1.0, 1.0));
 
-	Sprite* body = new Sprite("body.tga");
-	body->setPosition(Vec3(5.75f, 0.1f, 0));
-	body->setScale(Vec2(4,4));
+	Node* body = new Node;
+	body->addChild(new Sprite(new Texture("body.tga")));
+	body->setPosition(vec(11.5f, 0));
+	body->setScale(vec(16,16));
 
-	chart = new Group();
-	beats = new Group();
+	chart = new Node;
+	beats = new Node;
 
 	neck->addChild(chart);
 	neck->addChild(beats);
-
-	neck->addChild(body);
-	neck->addChild(head);
-	neck->addChild(nut);
-
+/*
 	strings[0] = new LineSprite("bstring.tga");
 	nstring[0] = Vec3(nutpos - 0.025f, -0.25f, neckpos - neckspace * 2.5f);
 	bstring[0] = Vec3(bridgepos, -0.25f, bridgeheight - bridgespace * 2.5f);
@@ -189,26 +186,30 @@ void Guitar::MakeGuitar()
 	nstr->setScale(Vec2(0.008f,1));
 	nstr->setLine(Vec3(-0.95f, 0, 0.02f));
 	neck->addChild(nstr);
+*/
 	
-	sprite = neck;*/
+	addChild(nut);
+	addChild(head);
+	addChild(neck);
+	addChild(body);
+	setCenter(vec(3,0,0));
 }
 
-void Guitar::Update()
+void Guitar::update(float timeDelta)
 {
+	Node::update(timeDelta);
+	
 	if(!running)
 		return;
 
-	/*double t = time->time_s();
-	double delta = t - last;
-	if(stopped && delta < 0.2)
+	if(stopped && timeDelta < 0.2)
 		return;
 
-	last = t;
 	float d2 = 0;
 	double cdelta;
 	if(speed != 0)
 	{
-		d2 = delta * speed;
+		d2 = timeDelta * speed;
 		realtime += d2;
 		cdelta = d2 * spacing;
 	}
@@ -221,7 +222,7 @@ void Guitar::Update()
 		}
 		else
 		{
-			d2 = delta;
+			d2 = timeDelta;
 			realtime += d2;
 			cdelta = d2 * spacing;
 		}
@@ -230,10 +231,10 @@ void Guitar::Update()
 
 	if(!playing && realtime > backdelay)
 	{
-		if(speed == 1)
-			playing = !Audio::playMusic();
-		else if(d2 > 0)	
-			Audio::advanceMusic(d2);
+		//if(speed == 1)
+		//	playing = !Audio::playMusic();
+		//else if(d2 > 0)	
+		//	Audio::advanceMusic(d2);
 	}
 
 	if(!stopped)
@@ -287,9 +288,9 @@ void Guitar::Update()
 						double t = 0.0;
 						for(int i=0; i<col->bend.size(); i++)
 						{
-							t += col->bend[i].x() / 60.0;
+							t += col->bend[i].x / 60.0;
 							PlaceNote(count + dur * t, s, 
-								col->a[s] + col->bend[i].y()/50);
+								col->a[s] + col->bend[i].y/50);
 						}
 					}
 					break;
@@ -306,33 +307,34 @@ void Guitar::Update()
 	// update positions
 	list<Fret> frets;
 
-	for(int i=chart->getNumChildren()-1; i >= 0; i--)
+	//for(int i=chart->getNumChildren()-1; i >= 0; i--)
 	{
+		/*
 		Sprite* note = ((Sprite*)chart->getChild(i));
 		Fret* fr = static_cast<Fret*>(note->getUserData());
 
 		float x = fr->t - current;
 
-		Vec3 pos = note->getPosition();
-		pos.x() = x;
-		Vec3 str = bstring[fr->s] - nstring[fr->s];
-		pos.z() = (nstring[fr->s] + (str * ((x - nstring[fr->s].x())/str.x()))).z();
+		vec pos = note->getPosition();
+		pos.x = x;
+		vec str = bstring[fr->s] - nstring[fr->s];
+		pos.z = (nstring[fr->s] + (str * ((x - nstring[fr->s].x)/str.x))).z;
 		//pos.z() = pos.z() - pos.z() * 2 * cdelta * neckscale;
 		note->setPosition(pos);
-		if(!scorer && pos.x() < nutpos)
+		if(!scorer && pos.x < nutpos)
 		{
 			chart->removeChild(i);	// autoplay
 		}
-		else if(pos.x() < nutpos - tolerance)
+		else if(pos.x < nutpos - tolerance)
 		{
             if(fr)
 				frets.push_back(*fr);
 
-			float a = 1 + (pos.x() - nutpos - tolerance) / 0.75f;
+			float a = 1 + (pos.x - nutpos - tolerance) / 0.75f;
 			if(a <= 0)
 				chart->removeChild(i);
 			else
-				note->setColor(Vec4(0.5f, 0.5f, 0.5f, a));
+				note->setColor(vec(0.5f, 0.5f, 0.5f, a));
 
 		}
 	}
@@ -344,17 +346,17 @@ void Guitar::Update()
 
 		float x = fr->t - current;
 
-		Vec3 pos = beat->getPosition();
-		Vec2 scal = beat->getScale(); // in progress
-		pos.x() = x;
-		scal.y() = scal.y() - cdelta * neckscale;
+		vec pos = beat->getPosition();
+		vec scal = beat->getScale(); // in progress
+		pos.x = x;
+		scal.y = scal.y - cdelta * neckscale;
 		beat->setPosition(pos);
 		beat->setScale(scal);
-		if(pos.x() < nutpos)
+		if(pos.x < nutpos)
 		{
 			beats->removeChild(i);
-			if(!playing || !scorer)
-				Audio::tick();
+			//if(!playing || !scorer)
+				//Audio::tick();
 		}
 	}
 
@@ -401,9 +403,10 @@ void Guitar::Update()
 				}
 			}
 		}
+	 */
 
 		// update score text
-		std::ostringstream s;
+		/*std::ostringstream s;
 		s	<< "Score:      " << score << "\n"
 			<< "Multiplier: " << multiplier << "X ";
 		for(int i=0; i< 8; i++)
@@ -414,8 +417,8 @@ void Guitar::Update()
 				s << "-";
 		}
 		s << "\nNote: " << scorer->lastnote << " Volume: " << Audio::readVol();
-		scoreText->setText(s.str());
-	}*/
+		scoreText->setText(s.str());*/
+	}
 }
 
 void Guitar::PlaceNote(double t, int s, int f)

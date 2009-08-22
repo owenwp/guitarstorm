@@ -21,7 +21,7 @@
 #include <sstream>
 #include <fstream>
 
-//#include "kguitar/convertgtp.h"
+#include "kguitar/convertgtp.h"
 #include "Scorer.h"
 //#include "Audio.h"
 #include "Song.h"
@@ -37,19 +37,15 @@ class Guitar : public Node
 public:
 	Guitar();
 
-	Sprite* getSprite() {return sprite;}
-
 	bool setSong(Difficulty *t, string pic = "", bool a = true);
 
 	void setSpeed(int percent);
 
 	void setOffset(float o) { current += tabdelay - backdelay - o; tabdelay -= tabdelay - backdelay - o; }
 
-	void Update();
+	void update(float timeDelta);
 
 	Scorer* scorer;
-
-	void visible(bool v) {  }
 	
 	bool running;
 	bool finished;
@@ -60,8 +56,6 @@ protected:
 	void PlaceNote(double t, int s, int f);
 
 	void MakeGuitar();
-
-	Sprite* sprite;
 	
 	LineSprite* strings[6];
 	
@@ -71,18 +65,18 @@ protected:
 	Menu *parent;
 	Menu *pauseMenu;
 
-	//osgText::Text* tnote[25];
+	Label* tnote[25];
 	Sprite* snote;
 	Sprite* sbeat;
 
-	//Group* chart;
-	//Group* beats;
+	Node* chart;
+	Node* beats;
 
-	//vector<TabColumn>::iterator col;
-	//vector<TabBar>::iterator bar;
+	vector<TabColumn>::iterator col;
+	vector<TabBar>::iterator bar;
 
-	//vector<TabColumn>::iterator repc;
-	//vector<TabBar>::iterator repb;
+	vector<TabColumn>::iterator repc;
+	vector<TabBar>::iterator repb;
 	int repcount;
 
 	double backdelay;
@@ -109,9 +103,9 @@ protected:
 	static const float neckspace;
 	static const float bridgespace;
 
-	//TabTrack* tab;
+	TabTrack* tab;
 
-	//ref_ptr<osgText::Text> scoreText;
+	Label* scoreText;
 
 	int score;
 	int combo;

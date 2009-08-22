@@ -32,11 +32,11 @@ void TrackEditMenu::AddProps()
 	
 	// autoplay guitar
 	guitar = new Guitar();
-	//guitar->getSprite()->setScale(Vec2(2.0f,2.0f));
-	//guitar->getSprite()->setPosition(Vec3(3.0f,0.5f,4.25f));
-	//guitar->getSprite()->setRotation(0);
-	//guitar->setSong(difficulty, "", true);
-	//_mscene->addChild(guitar->getScene());
+	guitar->setScale(vec(0.5,0.5));
+	guitar->setPosition(vec(1.5,0.5,1));
+	guitar->setRotation(0);
+	guitar->setSong(difficulty, "", true);
+	current->addChild(guitar);
 }
 
 void TrackEditMenu::OnOpen()

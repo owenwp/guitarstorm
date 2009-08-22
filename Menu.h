@@ -165,8 +165,8 @@ protected:
 class NumberItem : public Item
 {
 public:
-	NumberItem(string n, int *val, int max, float x, float y):Item(n,x,y),value(val),maximum(max),vstrings(NULL){Setup();}
-	NumberItem(string n, int *val, string *vstrs, float x, float y):Item(n,x,y),value(val),maximum(0),vstrings(vstrs){Setup();}
+	NumberItem(string n, int *val, int max, float x, float y):Item(n,x,y),value(val),maximum(max),vstrings(NULL){Setup(); Change();}
+	NumberItem(string n, int *val, string *vstrs, float x, float y):Item(n,x,y),value(val),maximum(0),vstrings(vstrs){Setup(); Change();}
 	void Left() {(*value)--; Change();}
 	void Right() {(*value)++; Change();}
 	virtual void Select() {(*value)++; if(*value > maximum) (*value)=0; Change();}
@@ -175,6 +175,8 @@ protected:
 	int *value;
 	string *vstrings;
 	int maximum;
+	
+	Label* label;
 
 	virtual void Setup();
 	virtual void Change();
@@ -183,13 +185,15 @@ protected:
 class RealItem : public Item
 {
 public:
-	RealItem(string n, float *val, float inc, bool s, float x, float y):Item(n,x,y),value(val),increment(inc),show(s){Setup();}
+	RealItem(string n, float *val, float inc, bool s, float x, float y):Item(n,x,y),value(val),increment(inc),show(s){Setup(); Change();}
 	void Left() {(*value)-=increment; Change();}
 	void Right() {(*value)+=increment; Change();}
 protected:
 	float *value;
 	float increment;
 	bool show;
+	
+	Label* label;
 
 	virtual void Setup();
 	virtual void Change();

@@ -63,7 +63,7 @@ void setupView()
 	}
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100, 50); 
-	glutInitWindowSize(800, 600); 
+	glutInitWindowSize(resx, resy); 
 	glutCreateWindow("Guitar Storm");
 	
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -257,6 +257,8 @@ int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
 	ilInit();
+	
+	Options::instance->Load();
 	
 	// setup viewer
 	setupView();

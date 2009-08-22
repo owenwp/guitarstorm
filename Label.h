@@ -70,6 +70,9 @@ public:
 protected:
 	Font* font;
 	
+	string newText;
+	bool hasNew;
+	
 	string text; 
 	Alignment align;
 	

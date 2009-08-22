@@ -388,28 +388,14 @@ void NumberItem::Setup()
 		while(vstrings[i].length()) i++;
 		maximum = max(0, i-1);
 	}
-
-	/*osg::Geode* geodeNum = new osg::Geode;
-    {
-		vtext = new osgText::Text;
-        vtext->setFont(prefix+"fonts/arial.ttf");
-        vtext->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
-        vtext->setCharacterSize(1.0f);
-		vtext->setPosition(osg::Vec3(X+12.0f,0.0f,Y));
-		vtext->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-		vtext->setDrawMode(osgText::Text::TEXT);
-		vtext->setBackdropType(osgText::Text::OUTLINE);
-		vtext->setBackdropOffset(-0.05f, 0.0f);
-		vtext->setBackdropImplementation(osgText::Text::STENCIL_BUFFER);
-		vtext->setAlignment(osgText::Text::LEFT_CENTER);
-        vtext->setAxisAlignment(osgText::Text::XZ_PLANE);
-		vtext->setText(": ");
-		Change();
-        
-        geodeNum->addDrawable(vtext.get());
-        
-        _scene->addChild(geodeNum);
-    }*/
+	
+	Node* num = new Node;
+	label = new Label("arial", ": ", alignLeft);
+	label->setColor(vec(1,1,1));
+	num->addChild(label);
+	num->setPosition(vec(6, 0));
+	num->setScale(vec(0.5,0.5));
+	addChild(num);
 }
 
 void NumberItem::Change()
@@ -429,33 +415,19 @@ void NumberItem::Change()
 	{
 		s << *value;
 	}
-	//vtext->setText(s.str());
+	label->printf(s.str());
 }
 
 // real item
 void RealItem::Setup()
 {
-	/*osg::Geode* geodeNum = new osg::Geode;
-    {
-		vtext = new osgText::Text;
-        vtext->setFont(prefix+"fonts/arial.ttf");
-        vtext->setColor(osg::Vec4(1.0f,1.0f,0.0f,1.0f));
-        vtext->setCharacterSize(1.0f);
-		vtext->setPosition(osg::Vec3(X+12.0f,0.0f,Y));
-		vtext->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-		vtext->setDrawMode(osgText::Text::TEXT);
-		vtext->setBackdropType(osgText::Text::OUTLINE);
-		vtext->setBackdropOffset(-0.05f, 0.0f);
-		vtext->setBackdropImplementation(osgText::Text::STENCIL_BUFFER);
-		vtext->setAlignment(osgText::Text::LEFT_CENTER);
-        vtext->setAxisAlignment(osgText::Text::XZ_PLANE);
-		vtext->setText(": ");
-		Change();
-        
-        geodeNum->addDrawable(vtext.get());
-        
-        _scene->addChild(geodeNum);
-    }*/
+	Node* num = new Node;
+	label = new Label("arial", ": ", alignLeft);
+	label->setColor(vec(1,1,1));
+	num->addChild(label);
+	num->setPosition(vec(6, 0));
+	num->setScale(vec(0.5,0.5));
+	addChild(num);
 }
 
 void RealItem::Change()
@@ -465,8 +437,8 @@ void RealItem::Change()
 		std::ostringstream s;
 		s << ": ";
 		s << *value;
-		//vtext->setText(s.str());
+		label->printf(s.str());
 	}
-	//else
-		//vtext->setText("< >");
+	else
+		label->printf("< >");
 }

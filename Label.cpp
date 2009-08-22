@@ -35,6 +35,7 @@ inline int next_p2 (int a )
 Label::Label(string f, string t, Alignment a)
 {
 	text = t;
+	hasNew = false;
 	align = a;
 	color = vec(1,1,1,1);
 	tints = 0;
@@ -53,6 +54,8 @@ Label::Label(string f, string t, Alignment a)
 
 void Label::printf(string format, ...)
 {
+	newText = format;
+	hasNew = true;
 }
 
 void Label::update(float timeDelta)
@@ -63,6 +66,12 @@ void Label::update(float timeDelta)
 void Label::render(GLint program)
 {
 	glPushMatrix();
+	
+	if(hasNew)
+	{
+		text = newText;
+		hasNew = false;
+	}
 	
 	const char* cstr = text.c_str();
 	int count = text.length();

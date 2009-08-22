@@ -36,23 +36,23 @@ void FilePick::OnOpen()
 	if(firstOpen && parent)
 	{
 		dir->Load();
-		float x = -5;
-		float y = 8;
+		float x = -4;
+		float y = 2;
 		fpos = 0;
 		map<string, Directory*>::iterator ditr;
 		for(ditr = dir->dirs.begin(); ditr != dir->dirs.end(); ditr++)
 		{
 			Add(new MenuItem(ditr->first, new FilePick(ditr->first, ditr->second, selected), x, y)); 
-			y -= 2;
+			y -= 1;
 			fpos++;
 		}
 		map<string, string>::iterator fitr;
 		for(fitr = dir->files.begin(); fitr != dir->files.end(); fitr++)
 		{
 			Add(new BackItem(fitr->first, x, y)); 
-			y -= 1;
+			y -= 0.5;
 		}
-		Add(new BackItem("Back", -5, -11));
+		Add(new BackItem("Back", -2, -4));
 	}
 	done = false;
 }
@@ -62,18 +62,18 @@ void DirPick::OnOpen()
 	if(firstOpen && parent)
 	{
 		dir->Load();
-		float x = -5;
-		float y = 8;
+		float x = -4;
+		float y = 2;
 		fpos = 0;
 		map<string, Directory*>::iterator ditr;
 		for(ditr = dir->dirs.begin(); ditr != dir->dirs.end(); ditr++)
 		{
 			Add(new MenuItem(ditr->first, new DirPick(ditr->first, ditr->second, selected), x, y)); 
-			y -= 1;
+			y -= 0.5;
 			fpos++;
 		}
-		Add(new BackItem("Choose", -5, -11));
-		Add(new BackItem("Back", -5, -12));
+		Add(new BackItem("Choose", -2, -4));
+		Add(new BackItem("Back", -2, -4.5));
 	}
 	done = false;
 }

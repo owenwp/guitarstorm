@@ -146,6 +146,8 @@ Texture::Texture(string name)
 	{
 		id = textures[name]->id;
 		edge = textures[name]->edge;
+		aspect = textures[name]->aspect;
+		alphaOnly = textures[name]->alphaOnly;
 		return;
 	}
 	

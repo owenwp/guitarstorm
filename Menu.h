@@ -62,6 +62,8 @@ protected:
 	
 	// method for initializing the menu item
 	virtual void Setup();
+	
+	Label* label;
 
 	float itemWidth;
 	Menu* parent;
@@ -176,7 +178,7 @@ protected:
 	string *vstrings;
 	int maximum;
 	
-	Label* label;
+	Label* vlabel;
 
 	virtual void Setup();
 	virtual void Change();
@@ -193,7 +195,7 @@ protected:
 	float increment;
 	bool show;
 	
-	Label* label;
+	Label* vlabel;
 
 	virtual void Setup();
 	virtual void Change();

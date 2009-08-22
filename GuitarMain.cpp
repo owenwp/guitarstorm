@@ -92,8 +92,8 @@ void makeMenus()
 	menu->Add(new MenuItem("Options", options, left, -2));
 	menu->Add(new EventItem("Quit", deleteScene, left, -4));
 	
-	play->Add(new SongListItem("<- Play ->", left, -2, true));
-	manage->Add(new SongListItem("<- Manage ->", left, -2, false));
+	play->Add(new SongListItem("<- Play ->", 0, -2, true));
+	manage->Add(new SongListItem("<- Manage ->", 0, -2, false));
 	
 	options->Add(new MenuItem("Audio Settings", audio, left, 2));
 	options->Add(new MenuItem("Video Settings", video, left, 1));

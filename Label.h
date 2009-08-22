@@ -63,6 +63,7 @@ public:
 	vec getColor() {return color;}
 	
 	void setTint(vec t, float s) {tint = t; tints = s;}
+	void setAlignment(Alignment a) {align = a;}
 	
 	virtual void update(float timeDelta);
 	virtual void render(GLint program);

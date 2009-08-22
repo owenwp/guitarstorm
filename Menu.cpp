@@ -21,34 +21,12 @@ Node* Menu::cursor = NULL;
 bool Menu::cursorActive = false;
 
 void Item::Setup()
-{
-	/*osg::Geode* geodeItem = new osg::Geode;
-    {
-		itemText = new osgText::Text;
-        itemText->setFont(prefix+"fonts/arial.ttf");
-        if(enabled) itemText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
-        else itemText->setColor(osg::Vec4(0.5f,0.5f,0.5f,1.0f));
-		itemText->setCharacterSize(1.0f);
-		itemText->setPosition(osg::Vec3(X,0.0f,Y));
-		itemText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-		itemText->setDrawMode(osgText::Text::TEXT);
-		itemText->setBackdropType(osgText::Text::OUTLINE);
-		itemText->setBackdropOffset(-0.05f, 0.0f);
-		itemText->setBackdropImplementation(osgText::Text::STENCIL_BUFFER);
-		itemText->setAlignment(osgText::Text::LEFT_CENTER);
-        itemText->setAxisAlignment(osgText::Text::XZ_PLANE);
-		itemText->setText(name);
-		itemWidth = itemText->getBound().radius();
-        
-        geodeItem->addDrawable(itemText.get());
-        
-        _scene->addChild(geodeItem);
-	 }*/
-	
+{	
 	Node* header = new Node;
-	Label* l = new Label("arial", name, alignLeft);
-	l->setColor(vec(1,1,1));
-	header->addChild(l);
+	label = new Label("arial", name, alignLeft);
+	if(enabled) label->setColor(vec(1,1,1));
+	else label->setColor(vec(0.5,0.5,0.5));
+	header->addChild(label);
 	header->setPosition(vec(0, 0));
 	header->setScale(vec(0.5,0.5));
 	addChild(header);
@@ -390,9 +368,9 @@ void NumberItem::Setup()
 	}
 	
 	Node* num = new Node;
-	label = new Label("arial", ": ", alignLeft);
-	label->setColor(vec(1,1,1));
-	num->addChild(label);
+	vlabel = new Label("arial", ": ", alignLeft);
+	vlabel->setColor(vec(1,1,1));
+	num->addChild(vlabel);
 	num->setPosition(vec(6, 0));
 	num->setScale(vec(0.5,0.5));
 	addChild(num);
@@ -415,7 +393,7 @@ void NumberItem::Change()
 	{
 		s << *value;
 	}
-	label->printf(s.str());
+	vlabel->printf(s.str());
 }
 
 // real item
@@ -437,8 +415,8 @@ void RealItem::Change()
 		std::ostringstream s;
 		s << ": ";
 		s << *value;
-		label->printf(s.str());
+		vlabel->printf(s.str());
 	}
 	else
-		label->printf("< >");
+		vlabel->printf("< >");
 }

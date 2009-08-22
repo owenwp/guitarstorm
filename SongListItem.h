@@ -49,7 +49,7 @@ protected:
 
 	int select;
 
-	vector<Sprite*> icons;
+	vector<Node*> icons;
 	vector<Song> songs;
 };
 

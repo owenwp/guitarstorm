@@ -53,10 +53,17 @@ Options::Options()
 	//defaultStompbox = NULL;
 
 	// directories
+#if MACOSX
+	songDir = string(getenv("HOME")) + "/Library/Guitar Storm/songs";
+	tabDir = string(getenv("HOME")) + "/Library/Guitar Storm/tabs";
+	fxDir = string(getenv("HOME")) + "/Library/Guitar Storm/effects";
+	backingDir = string(getenv("HOME")) + "/Music";
+#else
 	songDir = "songs";
 	tabDir = "tabs";
 	fxDir = "effects";
 	backingDir = "backing";
+#endif
 
 	// player
 	userName = "default";

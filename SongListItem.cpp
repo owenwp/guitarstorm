@@ -48,6 +48,8 @@ void SongListItem::Key(char k)
 
 void SongListItem::Setup()
 {
+	label->setAlignment(alignCenter);
+	
 	if(songDir) delete songDir;
 	songDir = new Directory(Options::instance->songDir);
 	
@@ -72,31 +74,28 @@ void SongListItem::Setup()
 		in.close();
 
 		songs.push_back(song);
-
+		
+		Node* node = new Node;
 		Sprite* art;
 		if(sdir->files["cover"] != "")
+		{
 			art = new Sprite(new Texture(sdir->files["cover"]));
+			node->addChild(art);
+		}
 		else
 		{
 			art = new Sprite(new Texture("cd.tga"));
-
-			/*osg::Geode* geodeLabel = new osg::Geode;
-			{
-				osg::ref_ptr<osgText::Text> labelText = new osgText::Text;
-				labelText->setFont(prefix+"fonts/arial.ttf");
-				labelText->setColor(osg::Vec4(0.0f,0.0f,0.0f,1.0f));
-				labelText->setCharacterSize(min(1.0f, 2.0f/song.artist.length()));
-				labelText->setPosition(osg::Vec3(0,-0.05f,-0.5f));
-				labelText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-				labelText->setDrawMode(osgText::Text::TEXT);
-				labelText->setAlignment(osgText::Text::CENTER_CENTER);
-				labelText->setAxisAlignment(osgText::Text::XZ_PLANE);
-				labelText->setText(song.artist.c_str());
-		        
-				geodeLabel->addDrawable(labelText.get());
-		        
-				art->addChild(geodeLabel);
-			}*/
+			node->addChild(art);
+			
+			Node* n = new Node;
+			//float size = min(1.0f, 2.0f/song.artist.length());
+			n->setScale(vec(0.18, 0.18));
+			n->setPosition(vec(0,-0.35,0.1));
+			Label* l = new Label("arial", "Artist", alignCenter);
+			//Label* l = new Label("arial", song.artist, alignCenter);
+			l->setColor(vec(0,0,0,1));
+			n->addChild(l);
+			node->addChild(n);
 		}
 
 		/*osg::Geode* geodeTitle = new osg::Geode;
@@ -133,40 +132,26 @@ void SongListItem::Setup()
 			art->setColor(Vec4(1, 0, 0, 1));
 		_scene->addChild(art);
 		 */
-		icons.push_back(art);
+		//icons.push_back(art);
+		
+		art->setColor(vec(1,1,1,1));
+		addChild(node);
+		icons.push_back(node);
 
 		y -= 2;
 	}
+	
+	Node* node = new Node;
 	Sprite* art = new Sprite(new Texture("cd.tga"));
-	/*
-	osg::Geode* geodeTitle = new osg::Geode;
-	{
-		osg::ref_ptr<osgText::Text> titleText = new osgText::Text;
-		titleText->setFont(prefix+"fonts/arial.ttf");
-		titleText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
-		titleText->setCharacterSize(0.75f);
-		titleText->setPosition(osg::Vec3(0,-0.05f,-0.1f));
-		titleText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-		titleText->setDrawMode(osgText::Text::TEXT);
-		titleText->setBackdropType(osgText::Text::OUTLINE);
-		titleText->setBackdropOffset(-0.05f, 0.0f);
-		titleText->setBackdropImplementation(osgText::Text::STENCIL_BUFFER);
-		titleText->setAlignment(osgText::Text::CENTER_CENTER);
-		titleText->setAxisAlignment(osgText::Text::XZ_PLANE);
-		titleText->setText("NEW");
-        
-		geodeTitle->addDrawable(titleText.get());
-        
-		art->addChild(geodeTitle);
-		art->setUserData(titleText.get());
-	}
-
-	art->setPosition(Vec3(x-2,0.1f,y));
-	art->setScale(Vec2(1,1));
-	art->setColor(Vec4(0, 1, 0, 0.25f));
-	_scene->addChild(art);
-	 */
-	icons.push_back(art);
+	art->setColor(vec(0,1,0,1));
+	Node* n = new Node;
+	n->setScale(vec(0.18, 0.18));
+	n->setPosition(vec(0,-0.35,0.1));
+	n->addChild(new Label("arial", "NEW", alignCenter));
+	node->addChild(art);
+	node->addChild(n);
+	addChild(node);
+	icons.push_back(node);
 }
 
 void SongListItem::Change() 
@@ -183,13 +168,13 @@ void SongListItem::Change()
 		
 		if(delta == 0)
 		{
-			//icons[i]->setSlide(Vec3(0, 0.5f, 3), 5);
-			//icons[i]->setGrow(Vec2(4,4), 5);
+			icons[i]->setSlide(vec(0, 2.5f, 3), 5);
+			icons[i]->setGrow(vec(2,2), 5);
 		}
 		else
 		{
-			//icons[i]->setSlide(Vec3(delta / abs(delta) * 5 * logf(1.0f*abs(delta)+4), 0.5f + abs(delta) * 0.1f, 7 - abs(delta)), 5);
-			//icons[i]->setGrow(Vec2(3,3), 5);
+			icons[i]->setSlide(vec(delta / abs(delta) * 1.5f * logf(1.0f*abs(delta)+4), 2.5f + abs(delta) * 0.05f, 5 - abs(delta) * 0.01f), 5);
+			icons[i]->setGrow(vec(1.5f,1.5f), 5);
 		}
 	}
 }

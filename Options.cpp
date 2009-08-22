@@ -244,8 +244,8 @@ void OptionsMenu::OnOpen()
 	changed = false;
 	if(firstOpen && parent)
 	{
-		Add(new BackItem("Cancel", -5, -10));
-		Add(new BackItem("OK", -5, -11));
+		Add(new BackItem("Cancel", -2, -4));
+		Add(new BackItem("OK", -2, -4.5));
 		//Add(new NullItem("Apply", -5, -12));
 	}
 }

@@ -46,6 +46,8 @@ public:
 	void setTurn(float t, float s) {turn = t; turns = s;}
 	void setGrow(vec g, float s) {grow = g; grows = s;}
 	
+	void setHidden(bool h) {hidden = h;}
+	
 	void update(float timeDelta);
 	void render(GLint program);
 	
@@ -70,6 +72,7 @@ protected:
 	float turns;
 	float grows;
 	
+	bool hidden;
 	Renderable* children;
 };
 

@@ -35,12 +35,23 @@ bool useShaders = true;
 
 GLint v, f, p; 
 Node* root;
-
 Menu* menu;
 
-void quit()
+void deleteScene()
 {
-	//_viewer->setDone(true);
+	delete root;
+	root = NULL;
+	
+	Texture::UnloadAll();
+	
+	glDetachShader(p, v);
+	glDetachShader(p, f);
+	
+	glDeleteShader(v);
+	glDeleteShader(f);
+	glDeleteProgram(p);
+	
+	exit(0);
 }
 
 void setupView()
@@ -58,21 +69,68 @@ void setupView()
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void deleteScene()
+void makeMenus()
 {
-	delete root;
-	root = NULL;
+	float left = -2;
+	float left2 = -4;
 	
-	Texture::UnloadAll();
+	menu = new Menu("GUITAR STORM");
+	Menu* play = new Menu("Play");
+	Menu* manage = new Menu("Manage");
+	Menu* tuner = new TunerMenu("Tuner", NULL);
+	Menu* options = new Menu("Options");
 	
-	glDetachShader(p, v);
-	glDetachShader(p, f);
+	Menu* audio = new OptionsMenu("Audio");
+	Menu* video = new OptionsMenu("Video");
+	Menu* game = new OptionsMenu("Game");
+	Menu* player = new OptionsMenu("Player");
+	Menu* about = new Menu("About");
 	
-	glDeleteShader(v);
-	glDeleteShader(f);
-	glDeleteProgram(p);
+	menu->Add(new MenuItem("Play", play, left, 1));
+	menu->Add(new MenuItem("Manage Songs", manage, left, 0));
+	menu->Add(new MenuItem("Tune Guitar", tuner, left, -1));
+	menu->Add(new MenuItem("Options", options, left, -2));
+	menu->Add(new EventItem("Quit", deleteScene, left, -4));
 	
-	exit(0);
+	play->Add(new SongListItem("<- Play ->", left, -2, true));
+	manage->Add(new SongListItem("<- Manage ->", left, -2, false));
+	
+	options->Add(new MenuItem("Audio Settings", audio, left, 2));
+	options->Add(new MenuItem("Video Settings", video, left, 1));
+	options->Add(new MenuItem("Game Settings", game, left, 0));
+	options->Add(new MenuItem("Player Settings", player, left, -1));
+	options->Add(new MenuItem("About", about, left, -2));
+	
+	audio->Add(new NumberItem("Guitar Volume", &Options::instance->guitarVolume, 100, left2, 2));
+	audio->Add(new NumberItem("Backing Volume", &Options::instance->backingVolume, 100, left2, 1));
+	audio->Add(new NumberItem("Metronome Volume", &Options::instance->metronomeVolume, 100, left2, 0));
+	audio->Add(new NumberItem("Input Device", &Options::instance->inputDevice, Options::instance->devices, left2, -1));
+	audio->Add(new NumberItem("Output Device", &Options::instance->outputDevice, Options::instance->devices, left2, -2));
+	audio->Add(new NumberItem("Sample Rate", &Options::instance->sampleRate, Options::instance->srates, left2, -3));
+	
+	video->Add(new NumberItem("Video Resolution", &Options::instance->screenResolution, Options::instance->resolutions, left2, 2));
+	video->Add(new NumberItem("Fullscreen", &Options::instance->fullScreen, Options::instance->noyes, left2, 1));
+	video->Add(new NumberItem("Detail Level", &Options::instance->detailLevel, Options::instance->details, left2, 0));
+	
+	game->Add(new NullItem("Default Guitar Distortion", left2, 2, false));
+	game->Add(new NullItem("Default Stomp Box Effect", left2, 1, false));
+	game->Add(new MenuItem("Song Folder", new DirPick("Directory for Songs", new Directory, &Options::instance->songDir), left2, 0));
+	game->Add(new MenuItem("Backing Track Folder", new DirPick("Directory for MP3s", new Directory, &Options::instance->backingDir), left2, -1));
+	game->Add(new MenuItem("Effect Folder", new DirPick("Directory for VST Plugins", new Directory, &Options::instance->fxDir), left2, -2));
+	game->Add(new MenuItem("Tab Folder", new DirPick("Directory for Guitar Pro Tabs", new Directory, &Options::instance->tabDir), left2, -3));
+	
+	player->Add(new NullItem("Add Friend", left2, 2, false));
+	player->Add(new NullItem("Manage Friends", left2, 1, false));
+	player->Add(new NullItem("Edit Profile", left2, 0, false));
+	player->Add(new NullItem("Change Password", left2, -1, false));
+	player->Add(new NullItem("Change Email Address", left2, -2, false));
+	player->Add(new NullItem("Delete Account", left2, -3, false));
+	
+	about->Add(new NullItem("GUITAR STORM", left, 2, false));
+	about->Add(new NullItem("Prototype 0.1", left, 1, false));
+	about->Add(new NullItem("Copyright 2008 Zombie Process, Owen Pedrotti", left2, -1, false));
+	about->Add(new NullItem("http://guitarstormgame.com/", left2, -2, false));
+	about->Add(new NullItem("http://guitarstorm.googlecode.com/", left2, -3, false));
 }
 
 void keyPressed(unsigned char key, int x, int y) 
@@ -208,66 +266,7 @@ int main(int argc, char **argv)
 	//Audio::init();
 	
 	// setup menus
-	menu = new Menu("GUITAR STORM");
-	Menu* play = new Menu("Play");
-	Menu* manage = new Menu("Manage");
-	Menu* tuner = new TunerMenu("Tuner", NULL);
-	Menu* options = new Menu("Options");
-
-	Menu* audio = new OptionsMenu("Audio");
-	Menu* video = new OptionsMenu("Video");
-	Menu* game = new OptionsMenu("Game");
-	Menu* player = new OptionsMenu("Player");
-	Menu* about = new Menu("About");
-
-	menu->Add(new MenuItem("Play", play, -2, 1));
-	menu->Add(new MenuItem("Manage Songs", manage, -2, 0));
-	menu->Add(new MenuItem("Tune Guitar", tuner, -2, -1));
-	menu->Add(new MenuItem("Options", options, -2, -2));
-	menu->Add(new EventItem("Quit", deleteScene, -2, -4));
-
-	play->Add(new SongListItem("<- Play ->", -5, -4, true));
-	manage->Add(new SongListItem("<- Manage ->", -5, -4, false));
-
-	options->Add(new MenuItem("Audio Settings", audio, -5, 2));
-	options->Add(new MenuItem("Video Settings", video, -5, 0));
-	options->Add(new MenuItem("Game Settings", game, -5, -2));
-	options->Add(new MenuItem("Player Settings", player, -5, -4));
-	options->Add(new MenuItem("About", about, -5, -6));
-
-	audio->Add(new NumberItem("Guitar Volume", &Options::instance->guitarVolume, 100, -10, 8));
-	audio->Add(new NumberItem("Backing Volume", &Options::instance->backingVolume, 100, -10, 6));
-	audio->Add(new NumberItem("Metronome Volume", &Options::instance->metronomeVolume, 100, -10, 4));
-	audio->Add(new NumberItem("Input Device", &Options::instance->inputDevice, Options::instance->devices, -10, 2));
-	audio->Add(new NumberItem("Output Device", &Options::instance->outputDevice, Options::instance->devices, -10, 0));
-	audio->Add(new NumberItem("Buffer Size", &Options::instance->bufferSize, Options::instance->bsizes, -10, -2));
-	audio->Add(new NumberItem("Sample Rate", &Options::instance->sampleRate, Options::instance->srates, -10, -4));
-
-	video->Add(new NumberItem("Video Resolution", &Options::instance->screenResolution, Options::instance->resolutions, -10, 8));
-	video->Add(new NumberItem("Fullscreen", &Options::instance->fullScreen, Options::instance->noyes, -10, 6));
-	video->Add(new NumberItem("Detail Level", &Options::instance->detailLevel, Options::instance->details, -10, 4));
-
-	game->Add(new NullItem("Guitar String Colors", -10, 8, false));
-	game->Add(new NullItem("Default Guitar Distortion", -10, 6, false));
-	game->Add(new NullItem("Default Stomp Box Effect", -10, 4, false));
-	game->Add(new MenuItem("Song Folder", new DirPick("Directory for Songs", new Directory, &Options::instance->songDir), -10, 2));
-	game->Add(new MenuItem("Backing Track Folder", new DirPick("Directory for MP3s", new Directory, &Options::instance->backingDir), -10, 0));
-	game->Add(new MenuItem("Effect Folder", new DirPick("Directory for VST Plugins", new Directory, &Options::instance->fxDir), -10, -2));
-	game->Add(new MenuItem("Tab Folder", new DirPick("Directory for Guitar Pro Tabs", new Directory, &Options::instance->tabDir), -10, -4));
-
-	player->Add(new NullItem("Add Friend", -10, 8, false));
-	player->Add(new NullItem("Manage Friends", -10, 6, false));
-	player->Add(new NullItem("Edit Profile", -10, 4, false));
-	player->Add(new NullItem("Change Password", -10, 2, false));
-	player->Add(new NullItem("Change Email Address", -10, 0, false));
-	player->Add(new NullItem("Delete Account", -10, -2, false));
-
-	about->Add(new NullItem("GUITAR STORM", -5, 4, false));
-	about->Add(new NullItem("Prototype 0.1", -5, 2, false));
-	about->Add(new NullItem("Copyright 2008 Zombie Process, Owen Pedrotti", -15, -2, false));
-	about->Add(new NullItem("http://guitarstormgame.com/", -8, -4, false));
-	about->Add(new NullItem("http://guitarstorm.googlecode.com/", -8, -6, false));
-
+	makeMenus();
 	menu->setScale(vec(20,20,1));
 	menu->setGrow(vec(1,1,1), 2.0);
 	menu->setPosition(vec(0,-30));

@@ -91,7 +91,7 @@ void Menu::OnOpen()
 {
 	if(firstOpen && parent)
 	{
-		Add(new BackItem("Back", -5, -11));
+		Add(new BackItem("Back", -2, -4));
 	}
 }
 
@@ -304,16 +304,15 @@ void Menu::Open(Menu* c)
 	if(c && !child)
 	{
 		// hide the current menu
-		//_mscene->setNodeMask(false);
+		current->setHidden(true);
 
 		// add the next menu
 		c->parent = this;
-		//_scene->addChild(c->getScene());
+		addChild(c);
 		child = c;
 		c->open = true;
 		c->select = 0;
 		c->Highlight();
-		//c->_mscene->setNodeMask(true);
 		c->OnOpen();
 		c->firstOpen = false;
 	}
@@ -323,8 +322,8 @@ void Menu::Open(Menu* c)
 		Highlight();
 		firstOpen = false;
 		open = true;
-		current->addChild(cursor);
-		//_mscene->setNodeMask(true);
+		addChild(cursor);
+		current->setHidden(false);
 	}
 }
 
@@ -337,13 +336,13 @@ void Menu::Close()
 		parent->OnValueChange();
 		parent->Highlight();
 		parent->removeChild(this);
-		//parent->_mscene->setNodeMask(true);
+		parent->current->setHidden(false);
 		parent->child = NULL;
 	}
 	else
 	{
 		// this is the bottom of the stack, just hide the menu
-		//_mscene->setNodeMask(false);
+		current->setHidden(true);
 	}
 }
 
@@ -354,7 +353,7 @@ void Menu::Hide()
 	else
 	{
 		hidden = true;
-		//_mscene->setNodeMask(false);
+		current->setHidden(true);
 	}
 }
 
@@ -365,7 +364,7 @@ void Menu::Show()
 	else
 	{
 		hidden = false;
-		//_mscene->setNodeMask(true);
+		current->setHidden(false);
 	}
 }
 

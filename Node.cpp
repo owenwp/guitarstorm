@@ -33,6 +33,8 @@ Node::Node()
 	grows = 0;
 	turns = 0;
 	
+	hidden = false;
+	
 	children = NULL;
 	next = NULL;
 }
@@ -58,6 +60,9 @@ void Node::update(float timeDelta)
 
 void Node::render(GLint program)
 {
+	if(hidden)
+		return;
+	
 	glPushMatrix();
 	
 	// transform

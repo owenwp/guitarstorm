@@ -24,5 +24,5 @@ void TunerMenu::OnOpen()
 	//tuner->getSprite()->setColor(Vec4(0.5f, 0.5f, 0.5f, 1));
 	//_mscene->addChild(tuner->getScene());
 
-	Add(new BackItem("Continue", -5, -11));
+	Add(new BackItem("Continue", -2, -4));
 }

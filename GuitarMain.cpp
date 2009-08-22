@@ -36,6 +36,8 @@ bool useShaders = true;
 GLint v, f, p; 
 Node* root;
 
+Menu* menu;
+
 void quit()
 {
 	//_viewer->setDone(true);
@@ -71,6 +73,36 @@ void deleteScene()
 	glDeleteProgram(p);
 	
 	exit(0);
+}
+
+void keyPressed(unsigned char key, int x, int y) 
+{
+	if (key == 27) 
+		deleteScene();
+	else if (key == 13)
+		menu->Select();
+	else
+		menu->Key((char)key);
+
+}
+
+void arrowPressed(int key, int x, int y) 
+{	
+	switch(key) 
+	{
+		case GLUT_KEY_UP:
+			menu->Up();
+			break;
+		case GLUT_KEY_DOWN:
+			menu->Down();
+			break;
+		case GLUT_KEY_LEFT:
+			menu->Left();
+			break;
+		case GLUT_KEY_RIGHT:
+			menu->Right();
+			break;
+	};
 }
 
 void renderScene() 
@@ -174,12 +206,9 @@ int main(int argc, char **argv)
 
 	// setup audio
 	//Audio::init();
-
-	// setup keyboard input
-	Input* input = new Input;
-
+	
 	// setup menus
-	Menu* menu = new Menu("GUITAR STORM");
+	menu = new Menu("GUITAR STORM");
 	Menu* play = new Menu("Play");
 	Menu* manage = new Menu("Manage");
 	Menu* tuner = new TunerMenu("Tuner", NULL);
@@ -190,13 +219,12 @@ int main(int argc, char **argv)
 	Menu* game = new OptionsMenu("Game");
 	Menu* player = new OptionsMenu("Player");
 	Menu* about = new Menu("About");
-	Input::setMenu(menu);
 
 	menu->Add(new MenuItem("Play", play, -2, 1));
 	menu->Add(new MenuItem("Manage Songs", manage, -2, 0));
 	menu->Add(new MenuItem("Tune Guitar", tuner, -2, -1));
 	menu->Add(new MenuItem("Options", options, -2, -2));
-	menu->Add(new EventItem("Quit", &quit, -2, -4));
+	menu->Add(new EventItem("Quit", deleteScene, -2, -4));
 
 	play->Add(new SongListItem("<- Play ->", -5, -4, true));
 	manage->Add(new SongListItem("<- Manage ->", -5, -4, false));
@@ -263,6 +291,8 @@ int main(int argc, char **argv)
 	// setup callbacks
 	glutDisplayFunc(renderScene);
 	glutIdleFunc(renderScene);
+	glutKeyboardFunc(keyPressed);
+	glutSpecialFunc(arrowPressed);
 	glutWMCloseFunc(deleteScene);
 
 	// begin audio capture

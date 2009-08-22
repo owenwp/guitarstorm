@@ -19,7 +19,9 @@
 
 void SongListItem::Select() 
 {
-	/*action.release();
+	if(action) 
+		delete action;
+	
 	if(select >= songs.size()) 
 		action = new SongEditMenu("Edit Song", NULL);
 	else if(play) 
@@ -27,7 +29,7 @@ void SongListItem::Select()
 	else 
 		action = new SongEditMenu("Edit Song", &songs[select]);
 	
-	parent->Open(action.get());*/
+	parent->Open(action);
 }
 
 void SongListItem::Mouse(float x) {}

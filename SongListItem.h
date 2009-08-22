@@ -30,7 +30,7 @@ struct Song;
 class SongListItem : public Item
 {	
 public:
-	SongListItem(string n, float x, float y, bool p):songDir(NULL),Item(n,x,y),play(p),select(0){Setup(); Change();}
+	SongListItem(string n, float x, float y, bool p):songDir(NULL),action(NULL),Item(n,x,y),play(p),select(0){Setup(); Change();}
 
 	void Mouse(float x);
 	void Select();
@@ -44,7 +44,7 @@ protected:
 	void Change();
 
 	bool play;
-	//osg::ref_ptr<Menu> action;
+	Menu* action;
 	Directory *songDir;
 
 	int select;

@@ -19,17 +19,17 @@
 
 void TrackEditMenu::AddProps()
 {
-	/*string *trackList = new string[tab->t.size()+2];
+	string *trackList = new string[tab->t.size()+2];
 	trackList[0] = "None";
 	for(int i=0; i<tab->t.size(); i++)
 	{
 		trackList[i+1] = tab->t[i].name;
 	}
-	Add(new NumberItem("Primary Track", &difficulty->track1, trackList, -10, -2));
-	Add(new NumberItem("Secondary Track", &difficulty->track2, trackList, -10, -4));
-	Add(new RealItem("Offset Coarse", &difficulty->offset, 0.5f, true, -10, -6));
-	Add(new RealItem("Offset Fine", &difficulty->offset, 0.01f, true, -10, -8));
-	*/
+	Add(new NumberItem("Primary Track", &difficulty->track1, trackList, -4, -2));
+	Add(new NumberItem("Secondary Track", &difficulty->track2, trackList, -4, -2.5));
+	Add(new RealItem("Offset Coarse", &difficulty->offset, 0.5f, true, -4, -3));
+	Add(new RealItem("Offset Fine", &difficulty->offset, 0.01f, true, -4, -3.5));
+	
 	// autoplay guitar
 	guitar = new Guitar();
 	//guitar->getSprite()->setScale(Vec2(2.0f,2.0f));
@@ -44,9 +44,9 @@ void TrackEditMenu::OnOpen()
 	if(firstOpen && parent)
 	{
 		picker = new FilePick("Choose a Guitar Tab", Options::instance->tabDir, &pickpath);
-		Add(new MenuItem("Guitar Tab", picker, -10, 0));
-		Add(new BackItem("OK", -5, -10));
-		/*
+		Add(new MenuItem("Guitar Tab", picker, -4, -1));
+		Add(new BackItem("OK", -2, -4.5));
+		
 		if(difficulty->used.length())
 		{
 			tab = ConvertGtp::load(difficulty->tab);
@@ -59,7 +59,6 @@ void TrackEditMenu::OnOpen()
 		{
 			Open(picker);
 		}
-		 */
 	}
 	//else if(guitar) 
 	//	guitar->setSong(difficulty, "", true);
@@ -147,7 +146,7 @@ void SongEditMenu::OnOpen()
 	else
 		filed = true;
 
-	/*Audio::openMusic(song->backing);
+	//Audio::openMusic(song->backing);
 
 	song->difficulty[0].name = "easy";
 	song->difficulty[1].name = "medium";
@@ -159,17 +158,17 @@ void SongEditMenu::OnOpen()
 	song->difficulty[2].tab = song->path + "/" + song->difficulty[2].name + ".tab";
 	song->difficulty[3].tab = song->path + "/" + song->difficulty[3].name + ".tab";
 	
-	Add(backitem = new MenuItem("Backing Track", new FilePick("Choose a Backing Track", Options::instance->backingDir, &song->backing), -5, 6));
-	Add(new NullItem("Distortion Effects", -5, 4, false));
-	Add(new NullItem("Stompbox Effect", -5, 2, false));
-	Add(new MenuItem("Easy", new TrackEditMenu(song->title + " - Easy", &song->difficulty[0]),-5, -2));
-	Add(new MenuItem("Medium", new TrackEditMenu(song->title + " - Medium", &song->difficulty[1]),-5, -4));
-	Add(new MenuItem("Hard", new TrackEditMenu(song->title + " - Hard", &song->difficulty[2]),-5, -6));
-	Add(new MenuItem("Expert", new TrackEditMenu(song->title + " - Expert", &song->difficulty[3]),-5, -8));
+	Add(backitem = new MenuItem("Backing Track", new FilePick("Choose a Backing Track", Options::instance->backingDir, &song->backing), -2, 2));
+	Add(new NullItem("Distortion Effects", -2, 1, false));
+	Add(new NullItem("Stompbox Effect", -2, 0, false));
+	Add(new MenuItem("Easy", new TrackEditMenu(song->title + " - Easy", &song->difficulty[0]),-2, -1));
+	Add(new MenuItem("Medium", new TrackEditMenu(song->title + " - Medium", &song->difficulty[1]),-2, -1.5));
+	Add(new MenuItem("Hard", new TrackEditMenu(song->title + " - Hard", &song->difficulty[2]),-2, -2));
+	Add(new MenuItem("Expert", new TrackEditMenu(song->title + " - Expert", &song->difficulty[3]),-2, -2.5));
 
-	Add(new BackItem("Save", -5, -10));
-	Add(new BackItem("Cancel", -5, -11));
-	 */
+	Add(new BackItem("Save", -2, -4));
+	Add(new BackItem("Cancel", -2, -4.5));
+	 
 	OnValueChange();
 }
 
@@ -227,7 +226,7 @@ void SongEditMenu::Save()
 		if(song->difficulty[i].used.length())
 		{
 			string dest = dir.Path() + "/" + song->difficulty[i].name + ".tab";
-			//FileCopy(song->difficulty[i].tab, dest); 
+			FileCopy(song->difficulty[i].tab, dest); 
 		}
 	}
 
@@ -247,12 +246,12 @@ void SongEditMenu::Load()
 		return;
 
 	in >> *song;
-	/*
+	
 	song->difficulty[0].tab = dir.Path() + "/" + song->difficulty[0].name + ".tab";
 	song->difficulty[1].tab = dir.Path() + "/" + song->difficulty[1].name + ".tab";
 	song->difficulty[2].tab = dir.Path() + "/" + song->difficulty[2].name + ".tab";
 	song->difficulty[3].tab = dir.Path() + "/" + song->difficulty[3].name + ".tab";
-	*/
+	
 	filed = true;
 	OnValueChange();
 }

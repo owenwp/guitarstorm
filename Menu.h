@@ -77,7 +77,8 @@ class Menu : public Node
 {
 public:
 	Menu(string n):open(false),firstOpen(true),name(n),select(0),parent(NULL),child(NULL),hidden(false) {Setup();}
-
+	~Menu();
+	
 	void Up();
 	void Down();
 	void Mouse(float x, float y);
@@ -123,8 +124,6 @@ protected:
 	
 	static Node* cursor;
 	static bool cursorActive;
-
-	~Menu();
 };
 
 // menu item that does nothing

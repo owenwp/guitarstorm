@@ -27,7 +27,7 @@
 #include "FilePick.h"
 #include "Guitar.h"
 #include "utilities/FileCopy.h"
-//#include "kguitar/convertgtp.h"
+#include "kguitar/convertgtp.h"
 
 struct TabSong;
 struct Difficulty;

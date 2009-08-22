@@ -400,9 +400,9 @@ void NumberItem::Change()
 void RealItem::Setup()
 {
 	Node* num = new Node;
-	label = new Label("arial", ": ", alignLeft);
-	label->setColor(vec(1,1,1));
-	num->addChild(label);
+	vlabel = new Label("arial", ": ", alignLeft);
+	vlabel->setColor(vec(1,1,1));
+	num->addChild(vlabel);
 	num->setPosition(vec(6, 0));
 	num->setScale(vec(0.5,0.5));
 	addChild(num);

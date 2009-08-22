@@ -10,6 +10,11 @@
 		256274951031E8F70023B882 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 256274811031E8F70023B882 /* images */; };
 		256274961031E8F70023B882 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 256274811031E8F70023B882 /* images */; };
 		256274991031E9390023B882 /* shaders in Resources */ = {isa = PBXBuildFile; fileRef = 256274971031E9390023B882 /* shaders */; };
+		256C9721104090FA00B5AC3E /* accidentals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FDA0D86E16E003173B5 /* accidentals.cpp */; };
+		256C9722104090FA00B5AC3E /* convertgtp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FDC0D86E16E003173B5 /* convertgtp.cpp */; };
+		256C9723104090FA00B5AC3E /* tabcolumn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FDF0D86E16E003173B5 /* tabcolumn.cpp */; };
+		256C9724104090FA00B5AC3E /* tabsong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FE10D86E16E003173B5 /* tabsong.cpp */; };
+		256C9725104090FA00B5AC3E /* tabtrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FE30D86E16E003173B5 /* tabtrack.cpp */; };
 		259A0470102F9D4A00DA84FE /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25BA379D102F75B300A74F4B /* GLUT.framework */; };
 		259A0471102F9D4A00DA84FE /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F3498B102F7F440011023F /* libfreetype.a */; };
 		259A0472102F9D4A00DA84FE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F83507AD6F520058BE5D /* OpenGL.framework */; };
@@ -452,6 +457,11 @@
 				25C66F85103A27BE00615C65 /* VectorMath.cpp in Sources */,
 				25C66F86103A27BE00615C65 /* Renderable.cpp in Sources */,
 				25C66F87103A27BE00615C65 /* Label.cpp in Sources */,
+				256C9721104090FA00B5AC3E /* accidentals.cpp in Sources */,
+				256C9722104090FA00B5AC3E /* convertgtp.cpp in Sources */,
+				256C9723104090FA00B5AC3E /* tabcolumn.cpp in Sources */,
+				256C9724104090FA00B5AC3E /* tabsong.cpp in Sources */,
+				256C9725104090FA00B5AC3E /* tabtrack.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

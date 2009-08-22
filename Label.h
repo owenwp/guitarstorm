@@ -43,6 +43,9 @@ struct Font
 	float xpad[128];
 	float ypad[128];
 	int point;
+	
+	static void UnloadAll();
+	~Font();
 };
 
 enum Alignment

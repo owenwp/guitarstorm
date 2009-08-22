@@ -43,6 +43,7 @@ void deleteScene()
 	root = NULL;
 	
 	Texture::UnloadAll();
+	Font::UnloadAll();
 	
 	glDetachShader(p, v);
 	glDetachShader(p, f);

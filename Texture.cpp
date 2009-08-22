@@ -97,6 +97,8 @@ Texture::Texture(spriteShape shape)
 	{
 		id = shapes[shape]->id;
 		edge = shapes[shape]->edge;
+		aspect = shapes[shape]->aspect;
+		alphaOnly = shapes[shape]->alphaOnly;
 		return;
 	}
 	
@@ -129,8 +131,8 @@ Texture::Texture(spriteShape shape)
 	glGenTextures(1, &id);
 	glBindTexture(GL_TEXTURE_2D, id);
 	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, 16, 16, 0, GL_ALPHA, GL_UNSIGNED_BYTE, tex);
@@ -250,6 +252,7 @@ Texture::Texture(string name)
 
 Texture::~Texture()
 {
+	glDeleteTextures(1, &id);
 }
 
 float Texture::Aspect()

@@ -39,7 +39,7 @@ void TabColumn::setFullDuration(size_t len)
 		test /= 2;
 	}
 
-	osg::notify(osg::INFO) << "Very strange full duration: " << len << ", can't detect, using 120" << endl;
+	//osg::notify(osg::INFO) << "Very strange full duration: " << len << ", can't detect, using 120" << endl;
 	l = 120;
 }
 

@@ -22,7 +22,7 @@ int vmin = 0;
 
 ostream& operator<<(ostream &stream, Song ob)
 {
-/*	stream << "Song";
+	stream << "Song";
 
 	// do serialization
 	stream << endl << ob.versionMaj;
@@ -36,13 +36,13 @@ ostream& operator<<(ostream &stream, Song ob)
 	stream << endl << ob.difficulty[1];
 	stream << endl << ob.difficulty[2];
 	stream << endl << ob.difficulty[3];
-*/
+
 	return stream;
 }
 
 istream& operator>>(istream &stream, Song &ob)
 {
-	/*char str[500];
+	char str[500];
 	stream >> str;
 	if(strncmp(str, "Song", 30))
 		return stream;
@@ -68,13 +68,13 @@ istream& operator>>(istream &stream, Song &ob)
 		stream >> ob.difficulty[2];
 		stream >> ob.difficulty[3];
 	}
-*/
+
 	return stream;
 }
 
 ostream& operator<<(ostream &stream, Difficulty ob)
 {
-	/*stream << endl << ob.name.c_str();
+	stream << endl << ob.name.c_str();
 	if(ob.used.length())
 	{
 		stream << endl << 1;
@@ -84,13 +84,13 @@ ostream& operator<<(ostream &stream, Difficulty ob)
 	}
 	else
 		stream << endl << 0;
-*/
+
 	return stream;
 }
 
 istream& operator>>(istream &stream, Difficulty &ob)
 {
-	/*char str[30];
+	char str[30];
 	int num;
 	stream >> str;
 	ob.name = str;
@@ -105,6 +105,6 @@ istream& operator>>(istream &stream, Difficulty &ob)
 	stream >> ob.track1;
 	stream >> ob.track2;
 	stream >> ob.offset;
-	*/
+	
 	return stream;
 }

@@ -926,13 +926,13 @@ void TabTrack::calcBeams()
 	for (size_t bn = 0; bn < b.size(); bn++) {
 		// loop t over all columns in this bar and calculate beams
 		for (size_t t = b[bn].start; (int) t <= lastColumn(bn); t++) {
-			c[t].stl.bp.x()=0;
-			c[t].stl.bp.y()=0;
+			c[t].stl.bp.x=0;
+			c[t].stl.bp.y=0;
 			c[t].stl.l1 = beamL1(t, 0, bn, this);
 			c[t].stl.l2 = beamL2plus(t, 0, bn, 2, this);
 			c[t].stl.l3 = beamL2plus(t, 0, bn, 3, this);
-			c[t].stu.bp.x()=0;
-			c[t].stu.bp.y()=0;
+			c[t].stu.bp.x=0;
+			c[t].stu.bp.y=0;
 			c[t].stu.l1 = beamL1(t, 1, bn, this);
 			c[t].stu.l2 = beamL2plus(t, 1, bn, 2, this);
 			c[t].stu.l3 = beamL2plus(t, 1, bn, 3, this);

@@ -24,6 +24,19 @@ map<string, Font*>fonts;
 
 const string Location = "/library/fonts/";
 
+void Font::UnloadAll()
+{
+	for(map<string, Font*>::iterator fi = fonts.begin(); fi != fonts.end(); fi++)
+	{
+		delete fi->second;
+	}
+}
+
+Font::~Font()
+{
+	glDeleteTextures(128, chars);
+}
+
 inline int next_p2 (int a )
 {
 	int rval=1;

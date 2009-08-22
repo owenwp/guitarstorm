@@ -144,7 +144,7 @@ void ConvertGtp::readChromaticGraph(TabColumn &col)
 		t = readDelphiInteger();                 // time
 		p = readDelphiInteger();                 // pitch
 		if(p % 50 == 0)
-			col.bend.push_back(osg::Vec2(t,p));
+			col.bend.push_back(vec(t,p));
 		num = readChar();                    // vibrato
 	}
 }
@@ -160,32 +160,32 @@ void ConvertGtp::readChord(vector<TabTrack>::iterator &trk, int x)
 	// GREYFIX: chord diagram
 	x1 = readDelphiInteger();
 	if (x1 != 257)
-		osg::notify(osg::INFO) << "Chord INT1=" << x1 << ", not 257\n";
+		;//osg::notify(osg::INFO) << "Chord INT1=" << x1 << ", not 257\n";
 	x2 = readDelphiInteger();
 	if (x2 != 0)
-		osg::notify(osg::INFO) << "Chord INT2=" << x2 << ", not 0\n";
+		;//osg::notify(osg::INFO) << "Chord INT2=" << x2 << ", not 0\n";
 	x3 = readDelphiInteger();
-	osg::notify(osg::INFO) << "Chord INT3: " << x3 << "\n"; // FF FF FF FF if there is diagram
+	//osg::notify(osg::INFO) << "Chord INT3: " << x3 << "\n"; // FF FF FF FF if there is diagram
 	x4 = readDelphiInteger();
 	if (x4 != 0)
-		osg::notify(osg::INFO) << "Chord INT4=" << x4 << ", not 0\n";
+		;//osg::notify(osg::INFO) << "Chord INT4=" << x4 << ", not 0\n";
 	num = readChar();
 	if (num != 0)
-		osg::notify(osg::INFO) << "Chord BYTE5=" << (int) num << ", not 0\n";
+		;//osg::notify(osg::INFO) << "Chord BYTE5=" << (int) num << ", not 0\n";
 	text = readPascalString(25);
-	osg::notify(osg::INFO) << "Chord diagram: " << text << "\n";
+	//osg::notify(osg::INFO) << "Chord diagram: " << text << "\n";
 	
 	// Chord diagram parameters - for every string
 	for (int i = 0; i < STRING_MAX_NUMBER; i++) {
 		x1 = readDelphiInteger();
 		trk->c[x].a[i] = x1;
-		osg::notify(osg::INFO) << x1 << "\n";
+		//osg::notify(osg::INFO) << x1 << "\n";
 	}
 	
 	// Unknown bytes
 	stream.read(garbage, 36);
 
-	osg::notify(osg::INFO) << "after chord, position: " << stream.tellg() << "\n";
+	//osg::notify(osg::INFO) << "after chord, position: " << stream.tellg() << "\n";
 }
 
 void ConvertGtp::readSignature()
@@ -193,7 +193,7 @@ void ConvertGtp::readSignature()
 	currentStage = string("readSignature");
 
 	string s = readPascalString(30);        // Format string
-	osg::notify(osg::INFO) << "GTP format: \"" << s << "\"\n";
+	//osg::notify(osg::INFO) << "GTP format: \"" << s << "\"\n";
 
 	// Parse version string
 	if (s == "FICHIER GUITARE PRO v1") {
@@ -262,7 +262,7 @@ void ConvertGtp::readSongAttributes()
 
 	currentStage = string("readSongAttributes: tempo");
 	song->tempo = readDelphiInteger();       // Tempo
-	osg::notify(osg::INFO) << "tempo: " << song->tempo << "\n";
+	//osg::notify(osg::INFO) << "tempo: " << song->tempo << "\n";
 
 	int oct = -1;
 	if (versionMajor >= 4) {
@@ -287,18 +287,18 @@ void ConvertGtp::readTrackDefaults()
 		reverb = readChar();                 // GREYFIX: reverb
 		phase = readChar();                 // GREYFIX: phase
 		tremolo = readChar();                // GREYFIX: tremolo
-		osg::notify(osg::INFO) << "=== TrackDefaults: " << i <<
+		/*osg::notify(osg::INFO) << "=== TrackDefaults: " << i <<
 			" (patch=" << trackPatch[i] <<
 			" vol=" << (int) volume <<
 			" p=" << (int) pan <<
 			" c=" << (int) chorus <<
 			" ph=" << (int) phase <<
 			" tr=" << (int) tremolo << "\n";
-
+*/
 		num = readChar();                    // 2 byte padding: must be 00 00
-		if (num != 0)  osg::notify(osg::INFO) << "1 of 2 byte padding: there is %1, must be 0\n" << num;
+		if (num != 0)  ;//osg::notify(osg::INFO) << "1 of 2 byte padding: there is %1, must be 0\n" << num;
 		num = readChar();
-		if (num != 0)  osg::notify(osg::INFO) << "2 of 2 byte padding: there is %1, must be 0\n" << num;
+		if (num != 0)  ;//osg::notify(osg::INFO) << "2 of 2 byte padding: there is %1, must be 0\n" << num;
 	}
 }
 
@@ -314,7 +314,7 @@ void ConvertGtp::readBarProperties()
 	bars.resize(numBars);
 
 	currentStage = string("readBarProperties");
-	osg::notify(osg::INFO) << "readBarProperties(): start\n";
+	//osg::notify(osg::INFO) << "readBarProperties(): start\n";
 
 	for (int i = 0; i < numBars; i++) 
 	{
@@ -323,50 +323,50 @@ void ConvertGtp::readBarProperties()
 
 		bar_bitmask = readChar();                   // bar property bitmask
 		if (bar_bitmask != 0)
-			osg::notify(osg::INFO) << "BAR #" << i << " - flags " << (int) bar_bitmask << "\n";
+			;//osg::notify(osg::INFO) << "BAR #" << i << " - flags " << (int) bar_bitmask << "\n";
 		// GREYFIX: new_time_numerator
 		if (bar_bitmask & 0x01) {
 			num = readChar();
 			time1 = num;
-			osg::notify(osg::INFO) << "new time1 signature: " << time1 << ":" << time2 << "\n";
+			//osg::notify(osg::INFO) << "new time1 signature: " << time1 << ":" << time2 << "\n";
 		}
 		// GREYFIX: new_time_denominator
 		if (bar_bitmask & 0x02) {
 			num = readChar();
 			time2 = num;
-			osg::notify(osg::INFO) << "new time2 signature: " << time1 << ":" << time2 << "\n";
+			//osg::notify(osg::INFO) << "new time2 signature: " << time1 << ":" << time2 << "\n";
 		}
 		// GREYFIX: begin repeat
 		if (bar_bitmask & 0x04) {
 			begin = true;
-			osg::notify(osg::INFO) << "begin repeat\n";
+			//osg::notify(osg::INFO) << "begin repeat\n";
 		}
 		// GREYFIX: number_of_repeats
 		if (bar_bitmask & 0x08) {
 			num = readChar();
 			end = num;
-			osg::notify(osg::INFO) << "end repeat " << (int) num << "x\n";
+			//osg::notify(osg::INFO) << "end repeat " << (int) num << "x\n";
 		}
 		// GREYFIX: alternative_ending_to
 		if (bar_bitmask & 0x10) {
 			num = readChar();
-			osg::notify(osg::INFO) << "alternative ending to " << (int) num << "\n";
+			//osg::notify(osg::INFO) << "alternative ending to " << (int) num << "\n";
 		}
 		// GREYFIX: new section
 		if (bar_bitmask & 0x20) {
 			text = readDelphiString();
 			readDelphiInteger(); // color?
-			osg::notify(osg::INFO) << "new section: " << text << "\n";
+			//osg::notify(osg::INFO) << "new section: " << text << "\n";
 		}
 		if (bar_bitmask & 0x40) {
 			num = readChar();                // GREYFIX: alterations_number
 			keysig = num;
 			num = readChar();                // GREYFIX: minor
-			osg::notify(osg::INFO) << "new key signature (" << keysig << ", " << num << ")\n";
+			//osg::notify(osg::INFO) << "new key signature (" << keysig << ", " << num << ")\n";
 		}
 		// GREYFIX: double bar
 		if (bar_bitmask & 0x80) {
-			osg::notify(osg::INFO) << "double bar\n";
+			//osg::notify(osg::INFO) << "double bar\n";
 		}
 
 		bars[i].start = 0;
@@ -377,7 +377,7 @@ void ConvertGtp::readBarProperties()
 		bars[i].begin = begin;
 		bars[i].end = end;
 	}
-	osg::notify(osg::INFO) << "readBarProperties(): end\n";
+	//osg::notify(osg::INFO) << "readBarProperties(): end\n";
 }
 
 void ConvertGtp::readTrackProperties()
@@ -397,23 +397,23 @@ void ConvertGtp::readTrackProperties()
 	//stream.read(tmp, 256);
 
 	currentStage = string("readTrackProperties");
-	osg::notify(osg::INFO) << "readTrackProperties(): start\n";
+	//osg::notify(osg::INFO) << "readTrackProperties(): start\n";
 
 	for (int i = 0; i < numTracks; i++) 
 	{
 		if(i>0) 
 			num = readChar();                    // GREYFIX: simulations bitmask
 		
-		osg::notify(osg::INFO) << "Simulations: " << num << "\n";
+		//osg::notify(osg::INFO) << "Simulations: " << num << "\n";
 
 		TabTrack *trk = new TabTrack(TabTrack::FretTab, "", 0, 0, 0, 6, 24);
 
 		trk->name = readPascalString(40);    // Track name
-		osg::notify(osg::INFO) << "Track: " << trk->name << "\n";
+		//osg::notify(osg::INFO) << "Track: " << trk->name << "\n";
 
 		// Tuning information
 
-		osg::notify(osg::INFO) << "pos: " << stream.tellg() << "\n";
+		//osg::notify(osg::INFO) << "pos: " << stream.tellg() << "\n";
 
 		strings = readDelphiInteger();
 		if (strings <= 0 || strings > STRING_MAX_NUMBER)  
@@ -440,12 +440,12 @@ void ConvertGtp::readTrackProperties()
 		capo = readDelphiInteger();          // GREYFIX: Capo
 		color = readDelphiInteger();         // GREYFIX: Color
 
-		osg::notify(osg::INFO) <<
+		/*osg::notify(osg::INFO) <<
 			"MIDI #" << trk->channel << "/" << (int) midiChannel2 << ", " <<
 			(int) trk->strings << " strings, " <<
 			(int) trk->frets << " frets, capo " <<
 			capo << "\n";
-
+*/
 		if (trk->frets <= 0 || (strongChecks && trk->frets > 100))  
 			throw string("Track %1: insane number of frets (%2)\n");
 		if (trk->channel > 16)  
@@ -458,7 +458,7 @@ void ConvertGtp::readTrackProperties()
 
 		song->t.push_back(*trk);
 	}
-	osg::notify(osg::INFO) << "readTrackProperties(): end\n";
+	//osg::notify(osg::INFO) << "readTrackProperties(): end\n";
 }
 
 void ConvertGtp::readTabs()
@@ -523,7 +523,7 @@ void ConvertGtp::readTabs()
 
 				if (beat_bitmask & 0x20) {
 					int tuple = readDelphiInteger();
-					osg::notify(osg::INFO) << "Tuple: " << tuple << "\n"; // GREYFIX: t for tuples
+					//osg::notify(osg::INFO) << "Tuple: " << tuple << "\n"; // GREYFIX: t for tuples
 					if (!(tuple == 3 || (tuple >= 5 && tuple <= 7) || (tuple >= 9 && tuple <= 13)))  
 						throw string("Insane tuple t: %1");
 				}
@@ -601,9 +601,9 @@ void ConvertGtp::readColumnEffects(vector<TabTrack>::iterator &trk, int x)
 	fx_bitmask1 = readChar();
 	if (versionMajor >= 4) {
 		fx_bitmask2 = readChar();
-		osg::notify(osg::INFO) << "column-wide fx: " << (int) fx_bitmask1 << "/" << (int) fx_bitmask2 << "\n";
+		//osg::notify(osg::INFO) << "column-wide fx: " << (int) fx_bitmask1 << "/" << (int) fx_bitmask2 << "\n";
 	} else {
-		osg::notify(osg::INFO) << "column-wide fx: " << (int) fx_bitmask1 << "\n";
+		//osg::notify(osg::INFO) << "column-wide fx: " << (int) fx_bitmask1 << "\n";
 	}
 
 	if (fx_bitmask1 & 0x20) {      // GREYFIX: string torture
@@ -626,12 +626,12 @@ void ConvertGtp::readColumnEffects(vector<TabTrack>::iterator &trk, int x)
 		}
 	}
 	if (fx_bitmask1 & 0x04) {      // GP3 column-wide natural harmonic
-		osg::notify(osg::INFO) << "GP3 column-wide natural harmonic\n";
+		//osg::notify(osg::INFO) << "GP3 column-wide natural harmonic\n";
 		for (int y = 0; y < trk->strings; y++)
 			trk->c[x].e[y] |= EFFECT_HARMONIC;
 	}
 	if (fx_bitmask1 & 0x08) {      // GP3 column-wide artificial harmonic
-		osg::notify(osg::INFO) << "GP3 column-wide artificial harmonic\n";
+		//osg::notify(osg::INFO) << "GP3 column-wide artificial harmonic\n";
 		for (int y = 0; y < trk->strings; y++)
 			trk->c[x].e[y] |= EFFECT_ARTHARM;
         }
@@ -700,9 +700,9 @@ void ConvertGtp::readNote(vector<TabTrack>::iterator &trk, int x, int y)
 		mod_mask1 = readChar();
 		if (versionMajor >= 4) {
 			mod_mask2 = readChar();
-			osg::notify(osg::INFO) << "note mod: mask1=" << mod_mask1 << " mask2=" << mod_mask2 << "\n";
+			//osg::notify(osg::INFO) << "note mod: mask1=" << mod_mask1 << " mask2=" << mod_mask2 << "\n";
 		} else {
-			osg::notify(osg::INFO) << "note mod: mask1=" << mod_mask1 << "\n";
+			//osg::notify(osg::INFO) << "note mod: mask1=" << mod_mask1 << "\n";
 		}
 		if (mod_mask1 & 0x01) {
 			trk->c[x].e[y] |= EFFECT_BEND;
@@ -758,12 +758,12 @@ map<string, string> ConvertGtp::header(string fileName)
 	}
 	catch (string msg) 
 	{
-		osg::notify(osg::WARN) << "Error loading Header: " << msg;
+		//osg::notify(osg::WARN) << "Error loading Header: " << msg;
 		song->info.clear();
 	}
 	catch ( exception e )
 	{
-		osg::notify(osg::WARN) << "Error loading Header: " << e.what();	
+		//osg::notify(osg::WARN) << "Error loading Header: " << e.what();	
 		song->info.clear();
 	}
 
@@ -793,12 +793,12 @@ TabSong* ConvertGtp::load(string fileName)
 	 	numBars = readDelphiInteger();           // Number of bars
 		if (numBars <= 0 || (strongChecks && numBars > 16384))  
 			throw string("Insane number of bars: %1");
-		osg::notify(osg::INFO) << "Bars: " << numBars << "\n";
+		//osg::notify(osg::INFO) << "Bars: " << numBars << "\n";
 
 	 	numTracks = readDelphiInteger();         // Number of tracks
 		if (numTracks <= 0 || (strongChecks && numTracks > 32))  
 			throw string("Insane number of tracks: %1");
-		osg::notify(osg::INFO) << "Tracks: " << numTracks << "\n";
+		//osg::notify(osg::INFO) << "Tracks: " << numTracks << "\n";
 
 	 	readBarProperties();
 	 	readTrackProperties();
@@ -808,21 +808,21 @@ TabSong* ConvertGtp::load(string fileName)
 		if (stream.eof()) {
 			int ex = readDelphiInteger();            // Exit code: 00 00 00 00
 			if (ex != 0)
-				osg::notify(osg::INFO) << "File not ended with 00 00 00 00\n";
+				;//osg::notify(osg::INFO) << "File not ended with 00 00 00 00\n";
 			if (!stream.eof())
-				osg::notify(osg::INFO) << "File not ended - there's more data!\n";
+				;//osg::notify(osg::INFO) << "File not ended - there's more data!\n";
 		}
 	} 
 	catch (string msg) 
 	{
-		osg::notify(osg::WARN) << "Error loading Tab: " << msg;
+		//osg::notify(osg::WARN) << "Error loading Tab: " << msg;
 		stream.close();
 		stream.clear();
 		return NULL;
 	}
 	catch ( exception e )
 	{
-		osg::notify(osg::WARN) << "Error loading Tab: " << e.what();
+		//osg::notify(osg::WARN) << "Error loading Tab: " << e.what();
 		stream.close();
 		stream.clear();
 		return NULL;

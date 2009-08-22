@@ -54,7 +54,7 @@ public:
 	float l;                              // Duration of note or chord
 	char a[MAX_STRINGS];                // Number of fret
 	char e[MAX_STRINGS];                // Effect parameter
-	vec bend;
+	vector<vec> bend;
 	unsigned int flags;                         // Various flags
 
 	// TabColumn "volatile" data is calculated when needed,

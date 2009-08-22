@@ -88,38 +88,28 @@ void SongListItem::Setup()
 			node->addChild(art);
 			
 			Node* n = new Node;
-			//float size = min(1.0f, 2.0f/song.artist.length());
-			n->setScale(vec(0.18, 0.18));
+			float size = min(0.1f, 1.0f/song.artist.length());
+			n->setScale(vec(size, size));
 			n->setPosition(vec(0,-0.35,0.1));
-			Label* l = new Label("arial", "Artist", alignCenter);
-			//Label* l = new Label("arial", song.artist, alignCenter);
+			Label* l = new Label("arial", song.artist, alignCenter);
 			l->setColor(vec(0,0,0,1));
 			n->addChild(l);
 			node->addChild(n);
 		}
+		
+		Node* title = new Node;
+		title->setScale(vec(0.15, 0.15));
+		title->setPosition(vec(0,-0.7,0.1));
+		
+		Node* shadow = new Node;
+		shadow->setScale(vec(5, 1));
+		title->addChild(new Sprite(new Texture(shapeCircle), vec(0,0,0,1)));
+		
+		title->addChild(shadow);
+		title->addChild(new Label("arial", song.title, alignCenter));
+		node->addChild(title);
 
-		/*osg::Geode* geodeTitle = new osg::Geode;
-		{
-			osg::ref_ptr<osgText::Text> titleText = new osgText::Text;
-			titleText->setFont(prefix+"fonts/arial.ttf");
-			titleText->setColor(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
-			titleText->setCharacterSize(0.3f);
-			titleText->setPosition(osg::Vec3(0,-0.05f,-1.2f));
-			titleText->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-			titleText->setDrawMode(osgText::Text::TEXT);
-			titleText->setBackdropType(osgText::Text::OUTLINE);
-			titleText->setBackdropOffset(-0.05f, 0.0f);
-			titleText->setBackdropImplementation(osgText::Text::STENCIL_BUFFER);
-			titleText->setAlignment(osgText::Text::CENTER_CENTER);
-			titleText->setAxisAlignment(osgText::Text::XZ_PLANE);
-			titleText->setText(song.title.c_str());
-	        
-			geodeTitle->addDrawable(titleText.get());
-	        
-			art->addChild(geodeTitle);
-			art->setUserData(titleText.get());
-		}
-
+		/*
 		Sprite* shadow = new Sprite("circle.tga");
 		shadow->setScale(Vec2(2,0.2f));
 		shadow->setColor(Vec4(0,0,0,0.5f));

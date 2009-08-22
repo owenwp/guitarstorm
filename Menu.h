@@ -35,6 +35,7 @@
 using namespace std;
 
 class Menu;
+
 class Item : public Node
 {
 public:
@@ -116,7 +117,9 @@ protected:
 	bool open;
 	bool hidden;
 	
-	static Sprite* cursor;
+	Node* current;
+	
+	static Node* cursor;
 	static bool cursorActive;
 
 	~Menu();

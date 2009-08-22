@@ -240,6 +240,10 @@ int main(int argc, char **argv)
 	about->Add(new NullItem("http://guitarstormgame.com/", -8, -4, false));
 	about->Add(new NullItem("http://guitarstorm.googlecode.com/", -8, -6, false));
 
+	menu->setScale(vec(20,20,1));
+	menu->setGrow(vec(1,1,1), 2.0);
+	menu->setPosition(vec(0,-30));
+	menu->setSlide(vec(0,0), 1.0);
 	menu->Open();
 
 	// setup scene
@@ -250,6 +254,7 @@ int main(int argc, char **argv)
 	Node* clouds = new Node;
 	Sprite* spr = new Sprite(new Texture("duskcloudy.jpg"));
 	spr->setScroll(vec(0.01, 0));
+	spr->setColor(vec(0.5, 0.5, 0.5, 1));
 	clouds->addChild(spr);
 	clouds->setPosition(vec(0,0,-5));
 	clouds->setScale(vec(14, 14));

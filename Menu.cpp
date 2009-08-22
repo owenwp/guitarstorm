@@ -17,7 +17,7 @@
 */
 #include "Menu.h"
 
-Sprite* Menu::cursor = NULL;
+Node* Menu::cursor = NULL;
 bool Menu::cursorActive = false;
 
 void Item::Setup()
@@ -44,6 +44,7 @@ void Item::Setup()
         
         _scene->addChild(geodeItem);
 	 }*/
+	
 	Node* header = new Node;
 	Label* l = new Label("arial", name, alignLeft);
 	l->setColor(vec(1,1,1));
@@ -55,30 +56,34 @@ void Item::Setup()
 
 void Menu::Setup()
 {	
+	current = new Node;
+	addChild(current);
+	
 	Node* header = new Node;
 	Label* l = new Label("arial", name, alignCenter);
 	l->setColor(vec(1,1,0));
 	header->addChild(l);
 	header->setPosition(vec(0, 3));
 	header->setScale(vec(1,1));
-	addChild(header);
+	current->addChild(header);
 
 	// add cursor
 	if(cursor == NULL)
 	{
-		//cursor = new Sprite("pick.tga");
-		//cursor->setCenter(Vec3(0.6f,0,0));
+		cursor = new Node;
+		cursor->addChild(new Sprite(new Texture("pick.tga")));
+		cursor->setCenter(vec(0.6f,0));
 	}
-	
-	cursorOffset = -1;
+
+	cursorOffset = -0.1;
 }
 
 void Menu::Highlight() 
 {
 	if(!cursorActive && cursor != NULL && items.size()>select) 
 	{
-		//cursor->setTurn(0, 5);
-		//cursor->setSlide(osg::Vec3(items[select]->X+cursorOffset,0.0f,items[select]->Y), 5.0f);
+		cursor->setTurn(0, 5);
+		cursor->setSlide(vec(items[select]->getPosition().x + cursorOffset, items[select]->getPosition().y+0.25), 5.0f);
 	}
 }
 
@@ -284,13 +289,13 @@ void Menu::Add(Item* i)
 		{
 			items.insert(it, i);
 			i->SetParent(this);
-			addChild(i);
+			current->addChild(i);
 			return;
 		}
 	}
 	items.push_back(i);
 	i->SetParent(this);
-	addChild(i);
+	current->addChild(i);
 	Highlight();
 }
 
@@ -318,6 +323,7 @@ void Menu::Open(Menu* c)
 		Highlight();
 		firstOpen = false;
 		open = true;
+		current->addChild(cursor);
 		//_mscene->setNodeMask(true);
 	}
 }

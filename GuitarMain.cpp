@@ -181,17 +181,22 @@ void renderScene()
 		return;
 	
 	// fps display
-	/*if(findex >= 20)
+	ftimes[findex++] = 1 / timeDelta;
+	if(findex >= 20)
 	{
 		fready = true;
 		findex = 0;
-	}*/
-	int framerate = 1 / timeDelta;
+	}
 	if(fready)
 	{
+		fready = false;
+		int ftotal = 0;
+		for(int i=0; i<20; i++)
+			ftotal += ftimes[i];
+		
 		std::ostringstream s;
 		s << "FPS: ";
-		s << framerate;
+		s << ftotal / 20;
 		fps->printf(s.str());
 	}
 	

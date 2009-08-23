@@ -42,6 +42,7 @@ private:
 	float edge;
 	float aspect;
 	bool alphaOnly;
+	bool blend;
 	
 public:
 	Texture(string name);

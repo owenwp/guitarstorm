@@ -33,7 +33,7 @@ void TrackEditMenu::AddProps()
 	// autoplay guitar
 	guitar = new Guitar();
 	guitar->setScale(vec(0.5,0.5));
-	guitar->setPosition(vec(1.5,0.5,1));
+	guitar->setPosition(vec(1.5,0.5));
 	guitar->setRotation(0);
 	guitar->setSong(difficulty, "", true);
 	current->addChild(guitar);

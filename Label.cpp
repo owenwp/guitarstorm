@@ -93,6 +93,8 @@ void Label::render(GLint program)
 	glUniform1f(loc, 0.5);
 	loc = glGetUniformLocation(program,"alphaOnly");
 	glUniform1i(loc, 1);
+	loc = glGetUniformLocation(program,"blend");
+	glUniform1i(loc, 0);
 	
 	if(align == alignCenter)
 	{

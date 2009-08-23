@@ -1,5 +1,6 @@
 uniform sampler2D tex;
 uniform int alphaOnly;
+uniform int blend;
 
 uniform float glowSize;
 uniform vec4 glowColor;
@@ -16,25 +17,32 @@ void main()
 	float shadow;
 	vec4 color;
 	
-	if(shadowAlpha > 0.001)
-	{
-		shadow = texture2D(tex, gl_TexCoord[0].st + shadowDirection.xy).a * shadowAlpha;
-	}
-	
-	if(alphaOnly == 0)
+	if(blend != 0)
 	{
 		color = gl_Color * texture;
 	}
 	else
 	{
-		color = gl_Color;
-	}
+		if(shadowAlpha > 0.001)
+		{
+			shadow = texture2D(tex, gl_TexCoord[0].st + shadowDirection.xy).a * shadowAlpha;
+		}
 		
-	color.a = (texture.a - 0.5) * edge;
-	
-	if(shadowAlpha > 0.001)
-	{
-		color.a = max(shadow, color.a);
+		if(alphaOnly == 0)
+		{
+			color = gl_Color * texture;
+		}
+		else
+		{
+			color = gl_Color;
+		}
+			
+		color.a = (texture.a - 0.5) * edge;
+		
+		if(shadowAlpha > 0.001)
+		{
+			color.a = max(shadow, color.a);
+		}
 	}
 	
 	gl_FragColor = color;

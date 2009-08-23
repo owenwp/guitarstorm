@@ -92,13 +92,13 @@ void Texture::UnloadAll()
 Texture::Texture(spriteShape shape)
 {
 	alphaOnly = true;
+	blend = false;
 	
 	if(shapes.find(shape) != shapes.end())
 	{
 		id = shapes[shape]->id;
 		edge = shapes[shape]->edge;
 		aspect = shapes[shape]->aspect;
-		alphaOnly = shapes[shape]->alphaOnly;
 		return;
 	}
 	
@@ -143,13 +143,14 @@ Texture::Texture(spriteShape shape)
 Texture::Texture(string name)
 { 
 	alphaOnly = false;
+	blend = true;
 	
 	if(textures.find(name) != textures.end())
 	{
 		id = textures[name]->id;
 		edge = textures[name]->edge;
 		aspect = textures[name]->aspect;
-		alphaOnly = textures[name]->alphaOnly;
+		blend = textures[name]->blend;
 		return;
 	}
 	
@@ -183,13 +184,15 @@ Texture::Texture(string name)
 		mWidth = ilGetInteger(IL_IMAGE_WIDTH);
 		mHeight = ilGetInteger(IL_IMAGE_HEIGHT);
 		mData = ilGetData();
+		
+		blend = false;
 	}
 	
 	name = Location + name + type;
 	
 	ILuint texid;
 	ilGenImages(1, &texid);
-	ilBindImage(texid); 
+	ilBindImage(texid);
 	
 	if(ilLoadImage(name.c_str()))
 	{
@@ -197,6 +200,8 @@ Texture::Texture(string name)
 		int width = ilGetInteger(IL_IMAGE_WIDTH);
 		int height = ilGetInteger(IL_IMAGE_HEIGHT);
 		unsigned char* iData = ilGetData();
+		
+		edge = 0.25f;
 		
 		if(mData)
 		{
@@ -228,6 +233,8 @@ Texture::Texture(string name)
 						height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
 						 vData);
 			
+			edge = 100.0f / mHeight;
+			
 			free(vData);
 		}
 		else
@@ -245,7 +252,6 @@ Texture::Texture(string name)
 						 iData);
 		}
 
-		edge = 0.025f;
 		aspect = width / (float)height;
 	}
 }
@@ -268,4 +274,6 @@ void Texture::Bind(GLint p)
 	glUniform1f(loc, edge);
 	loc = glGetUniformLocation(p,"alphaOnly");
 	glUniform1i(loc, alphaOnly);
+	loc = glGetUniformLocation(p,"blend");
+	glUniform1i(loc, blend);
 }

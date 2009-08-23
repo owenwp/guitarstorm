@@ -49,7 +49,7 @@ void Menu::Setup()
 	if(cursor == NULL)
 	{
 		cursor = new Node;
-		cursor->addChild(new Sprite(new Texture("pick.tga")));
+		cursor->addChild(new Sprite(new Texture("pick")));
 		cursor->setCenter(vec(0.6f,0));
 	}
 
@@ -348,13 +348,6 @@ void Menu::Show()
 
 Menu::~Menu()
 {
-	if(child) delete child;
-
-	vector<Item*>::iterator it;
-	for(it==items.begin(); it!=items.end(); it++)
-	{
-		delete (*it);
-	}
 }
 
 // number item

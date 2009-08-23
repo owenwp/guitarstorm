@@ -18,9 +18,9 @@
 #include "Guitar.h"
 
 const float Guitar::tolerance = 0.03f;
-const float Guitar::nutpos = -3.55f;
+const float Guitar::nutpos = -7.1f;
 const float Guitar::neckscale = 0.015f;
-const float Guitar::neckpos = -0.035f;
+const float Guitar::neckpos = -0.07f;
 const float Guitar::bridgepos = 6.67f;
 const float Guitar::bridgeheight = -0.05f;
 const float Guitar::neckspace = 0.115f;
@@ -79,22 +79,22 @@ Guitar::Guitar()
 void Guitar::MakeGuitar()
 {
 	Node* neck = new Node;
-	neck->addChild(new Sprite(new Texture("neck.tga")));
+	neck->addChild(new Sprite(new Texture("neck")));
 	neck->setScale(vec(4,4));
 
 	Node* head = new Node;
-	head->addChild(new Sprite(new Texture("head.tga")));
+	head->addChild(new Sprite(new Texture("head")));
 	head->setScale(vec(4,4));
 	head->setPosition(vec(-9, 0));
 
 	Node* nut = new Node;
-	nut->addChild(new Sprite(new Texture("nut.tga")));
+	nut->addChild(new Sprite(new Texture("nut")));
 	nut->setPosition(vec(nutpos, neckpos));
-	nut->setScale(vec(1.0, 1.0));
+	nut->setScale(vec(2, 2));
 
 	Node* body = new Node;
-	body->addChild(new Sprite(new Texture("body.tga")));
-	body->setPosition(vec(11.5f, 0));
+	body->addChild(new Sprite(new Texture("body")));
+	body->setPosition(vec(11.5f, -0.02));
 	body->setScale(vec(16,16));
 
 	chart = new Node;
@@ -505,10 +505,10 @@ bool Guitar::setSong(Difficulty *t, string pic, bool a)
 		return true;
 	}
 
-	/*chart->removeChildren(0, chart->getNumChildren());
-	beats->removeChildren(0, beats->getNumChildren());
+	//chart->removeChildren(0, chart->getNumChildren());
+	//beats->removeChildren(0, beats->getNumChildren());
 
-	std::string name = t->tab;
+	string name = t->tab;
 
 	backdelay = -min(0.0f, t->offset);
 	tabdelay = max(0.0f, t->offset);
@@ -553,7 +553,7 @@ bool Guitar::setSong(Difficulty *t, string pic, bool a)
 	if(!a)
 	{
 		// setup interface
-		if(pic != "")
+		/*if(pic != "")
 		{
 			Sprite* p = new Sprite(pic, true);
 			p->setScale(Vec2(2,2));
@@ -598,15 +598,13 @@ bool Guitar::setSong(Difficulty *t, string pic, bool a)
 			geodeScore->addDrawable(scoreText.get());
 	        
 			scene->addChild(geodeScore);
-		}
+		}*/
 	}
 
 	running = true;
 	playing = false;
 
-	visible(true);
+	hidden = false;
 
-	time = new osg::Timer();
-*/
 	return true;
 }

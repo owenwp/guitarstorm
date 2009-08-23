@@ -46,6 +46,8 @@ void Sprite::update(float timeDelta)
 
 void Sprite::render(GLint program)
 {
+	Renderable::render(program);
+	
 	if(!texture)
 		return;
 	

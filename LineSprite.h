@@ -24,17 +24,22 @@ class LineSprite : public Sprite
 {
 public:
 	LineSprite(LineSprite* sprite);
-	LineSprite(string filename = "", bool absolute = false);
+	LineSprite(Texture* tex, vec col = vec(1,1,1,1));
 
-	void setLine(vec l) {line = l; makeline = true;}
+	void setThickness(float t) {thickness = t; setLine(line);}
+	void setLine(vec l);
 
 	vec getLine() {return line;}
 
-	virtual void Update();
+	void render(GLint program);
 
 protected:
 	vec line;
+	float len;
+	float thickness;
 	bool makeline;
+	
+	vec points[4];
 };
 
 #endif

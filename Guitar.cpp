@@ -21,10 +21,10 @@ const float Guitar::tolerance = 0.03f;
 const float Guitar::nutpos = -7.1f;
 const float Guitar::neckscale = 0.015f;
 const float Guitar::neckpos = -0.07f;
-const float Guitar::bridgepos = 6.67f;
-const float Guitar::bridgeheight = -0.05f;
-const float Guitar::neckspace = 0.115f;
-const float Guitar::bridgespace = 0.17f;
+const float Guitar::bridgepos = 13.36f;
+const float Guitar::bridgeheight = -0.09f;
+const float Guitar::neckspace = 0.23f;
+const float Guitar::bridgespace = 0.31f;
 
 Guitar::Guitar()
 {
@@ -102,91 +102,90 @@ void Guitar::MakeGuitar()
 
 	neck->addChild(chart);
 	neck->addChild(beats);
-/*
-	strings[0] = new LineSprite("bstring.tga");
-	nstring[0] = Vec3(nutpos - 0.025f, -0.25f, neckpos - neckspace * 2.5f);
-	bstring[0] = Vec3(bridgepos, -0.25f, bridgeheight - bridgespace * 2.5f);
-	strings[0]->setPosition(nstring[0]);
-	strings[0]->setScale(Vec2(0.03f,1));
+
+	Node* s = new Node;
+	strings[0] = new LineSprite(new Texture("bstring.tga"));
+	s->addChild(strings[0]);
+	nstring[0] = vec(nutpos - 0.05f, neckpos - neckspace * 2.5f);
+	bstring[0] = vec(bridgepos, bridgeheight - bridgespace * 2.5f);
+	s->setPosition(nstring[0]);
+	strings[0]->setThickness(0.08);
 	strings[0]->setLine(bstring[0] - nstring[0]);
-	neck->addChild(strings[0]);
-
-	strings[1] = new LineSprite("bstring.tga");
-	nstring[1] = Vec3(nutpos - 0.025f, -0.25f, neckpos - neckspace * 1.5f);
-	bstring[1] = Vec3(bridgepos, -0.25f, bridgeheight - bridgespace * 1.5f);
-	strings[1]->setPosition(nstring[1]);
-	strings[1]->setScale(Vec2(0.025f,1));
+	LineSprite* nstr = new LineSprite(new Texture("bstring.tga"));
+	nstr->setThickness(0.08);
+	nstr->setLine(vec(-1.9, -0.04));
+	s->addChild(nstr);
+	addChild(s);
+	
+	s = new Node;
+	strings[1] = new LineSprite(new Texture("bstring.tga"));
+	s->addChild(strings[1]);
+	nstring[1] = vec(nutpos - 0.05f, neckpos - neckspace * 1.5f);
+	bstring[1] = vec(bridgepos, bridgeheight - bridgespace * 1.5f);
+	s->setPosition(nstring[1]);
+	strings[1]->setThickness(0.06);
 	strings[1]->setLine(bstring[1] - nstring[1]);
-	neck->addChild(strings[1]);
-
-	strings[2] = new LineSprite("bstring.tga");
-	nstring[2] = Vec3(nutpos - 0.025f, -0.25f, neckpos - neckspace * 0.5f);
-	bstring[2] = Vec3(bridgepos, -0.25f, bridgeheight - bridgespace * 0.5f);
-	strings[2]->setPosition(nstring[2]);
-	strings[2]->setScale(Vec2(0.02f,1));
+	nstr = new LineSprite(new Texture("bstring.tga"));
+	nstr->setThickness(0.06);
+	nstr->setLine(vec(-2.9, -0.26));
+	s->addChild(nstr);
+	addChild(s);
+	
+	s = new Node;
+	strings[2] = new LineSprite(new Texture("bstring.tga"));
+	s->addChild(strings[2]);
+	nstring[2] = vec(nutpos - 0.05f, neckpos - neckspace * 0.5f);
+	bstring[2] = vec(bridgepos, bridgeheight - bridgespace * 0.5f);
+	s->setPosition(nstring[2]);
+	strings[2]->setThickness(0.05);
 	strings[2]->setLine(bstring[2] - nstring[2]);
-	neck->addChild(strings[2]);
-
-	strings[3] = new LineSprite("tstring.tga");
-	nstring[3] = Vec3(nutpos - 0.025f, -0.25f, neckpos + neckspace * 0.5f);
-	bstring[3] = Vec3(bridgepos, -0.25f, bridgeheight + bridgespace * 0.5f);
-	strings[3]->setPosition(nstring[3]);
-	strings[3]->setScale(Vec2(0.015f,1));
+	nstr = new LineSprite(new Texture("bstring.tga"));
+	nstr->setThickness(0.05);
+	nstr->setLine(vec(-3.9, -0.54));
+	s->addChild(nstr);
+	addChild(s);
+	
+	s = new Node;
+	strings[3] = new LineSprite(new Texture("tstring.tga"));
+	s->addChild(strings[3]);
+	nstring[3] = vec(nutpos - 0.05f, neckpos + neckspace * 0.5f);
+	bstring[3] = vec(bridgepos, bridgeheight + bridgespace * 0.5f);
+	s->setPosition(nstring[3]);
+	strings[3]->setThickness(0.04);
 	strings[3]->setLine(bstring[3] - nstring[3]);
-	neck->addChild(strings[3]);
-
-	strings[4] = new LineSprite("tstring.tga");
-	nstring[4] = Vec3(nutpos - 0.025f, -0.25f, neckpos + neckspace * 1.5f);
-	bstring[4] = Vec3(bridgepos, -0.25f, bridgeheight + bridgespace * 1.5f);
-	strings[4]->setPosition(nstring[4]);
-	strings[4]->setScale(Vec2(0.01f,1));
+	nstr = new LineSprite(new Texture("tstring.tga"));
+	nstr->setThickness(0.04);
+	nstr->setLine(vec(-3.9, 0.54));
+	s->addChild(nstr);
+	addChild(s);
+	
+	s = new Node;
+	strings[4] = new LineSprite(new Texture("tstring.tga"));
+	s->addChild(strings[4]);
+	nstring[4] = vec(nutpos - 0.05f, neckpos + neckspace * 1.5f);
+	bstring[4] = vec(bridgepos, bridgeheight + bridgespace * 1.5f);
+	s->setPosition(nstring[4]);
+	strings[4]->setThickness(0.03);
 	strings[4]->setLine(bstring[4] - nstring[4]);
-	neck->addChild(strings[4]);
-
-	strings[5] = new LineSprite("tstring.tga");
-	nstring[5] = Vec3(nutpos - 0.025f, -0.25f, neckpos + neckspace * 2.5f);
-	bstring[5] = Vec3(bridgepos, -0.25f, bridgeheight + bridgespace * 2.5f);
-	strings[5]->setPosition(nstring[5]);
-	strings[5]->setScale(Vec2(0.008f,1));
+	nstr = new LineSprite(new Texture("tstring.tga"));
+	nstr->setThickness(0.03);
+	nstr->setLine(vec(-2.9, 0.26));
+	s->addChild(nstr);
+	addChild(s);
+	
+	s = new Node;
+	strings[5] = new LineSprite(new Texture("tstring.tga"));
+	s->addChild(strings[5]);
+	nstring[5] = vec(nutpos - 0.05f, neckpos + neckspace * 2.5f);
+	bstring[5] = vec(bridgepos, bridgeheight + bridgespace * 2.5f);
+	s->setPosition(nstring[5]);
+	strings[5]->setThickness(0.02);
 	strings[5]->setLine(bstring[5] - nstring[5]);
-	neck->addChild(strings[5]);
-
-	LineSprite* nstr = new LineSprite("bstring.tga");
-	nstr->setPosition(nstring[0]);
-	nstr->setScale(Vec2(0.03f,1));
-	nstr->setLine(Vec3(-0.95f, 0, -0.02f));
-	neck->addChild(nstr);
-
-	nstr = new LineSprite("bstring.tga");
-	nstr->setPosition(nstring[1]);
-	nstr->setScale(Vec2(0.025f,1));
-	nstr->setLine(Vec3(-1.45f, 0, -0.13f));
-	neck->addChild(nstr);
-
-	nstr = new LineSprite("bstring.tga");
-	nstr->setPosition(nstring[2]);
-	nstr->setScale(Vec2(0.02f,1));
-	nstr->setLine(Vec3(-1.95f, 0, -0.27f));
-	neck->addChild(nstr);
-
-	nstr = new LineSprite("tstring.tga");
-	nstr->setPosition(nstring[3]);
-	nstr->setScale(Vec2(0.015f,1));
-	nstr->setLine(Vec3(-1.95f, 0, 0.27f));
-	neck->addChild(nstr);
-
-	nstr = new LineSprite("tstring.tga");
-	nstr->setPosition(nstring[4]);
-	nstr->setScale(Vec2(0.01f,1));
-	nstr->setLine(Vec3(-1.45f, 0, 0.13f));
-	neck->addChild(nstr);
-
-	nstr = new LineSprite("tstring.tga");
-	nstr->setPosition(nstring[5]);
-	nstr->setScale(Vec2(0.008f,1));
-	nstr->setLine(Vec3(-0.95f, 0, 0.02f));
-	neck->addChild(nstr);
-*/
+	nstr = new LineSprite(new Texture("tstring.tga"));
+	nstr->setThickness(0.02);
+	nstr->setLine(vec(-1.9, 0.04));
+	s->addChild(nstr);
+	addChild(s);
 	
 	addChild(nut);
 	addChild(head);

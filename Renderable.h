@@ -25,9 +25,12 @@ class Renderable
 {
 public:
 	virtual void update(float timeDelta)=0;
-	virtual void render(GLint program)=0;
+	virtual void render(GLint program) {if(next) next->render(program);}
 	
 	Renderable* next;
+	
+protected:
+	Renderable() {next = 0;}
 };
 
 #endif

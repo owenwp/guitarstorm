@@ -19,47 +19,61 @@
 
 LineSprite::LineSprite(LineSprite* sprite) : Sprite(sprite)
 { 
-	line = sprite->line;
+	thickness = sprite->thickness;
+	setLine(sprite->line);
 	makeline = true;
 }
 
-LineSprite::LineSprite(string filename, bool absolute) : Sprite(new Texture(0))
+LineSprite::LineSprite(Texture* tex, vec col) : Sprite(tex, col)
 {
-	line = vec(0, 1, 0);
+	thickness = tex->Aspect();
+	setLine(vec(0, 1));
 	makeline = true;
 }
 
-void LineSprite::Update()
+void LineSprite::setLine(vec l) 
 {
-	/*if(makeline)
-	{
-		makeline = false;
+	line = l; 
+	len = length(line);
+	makeline = true;
+	
+	vec u = normalize(line % vec(0,0,1)) * (thickness/2);
+	
+	points[0] = u * -1;
+	points[1] = u;
+	points[2] = line + (u * -1);
+	points[3] = line + u;
+}
 
-		float len = line.length();
-		float ang = acos((line/len) * Vec3(0,0,1));
-		if(line.x() < 0)
-			ang = -ang;
-
-		Vec3Array* coords = new Vec3Array(4);
-		(*coords)[0].set(-0.5f, 0, 0);
-		(*coords)[1].set(0.5f, 0, 0);
-		(*coords)[2].set(0.5f, 0, len);
-		(*coords)[3].set(-0.5f, 0, len);
-		geom->setVertexArray(coords);
-
-		float tile = scale.y();
-
-		(*tcoords)[0].set(0.0f,0.0f);
-		(*tcoords)[1].set(1.0f,0.0f);
-		(*tcoords)[2].set(1.0f,len/tile);
-		(*tcoords)[3].set(0.0f,len/tile);
-		geom->setTexCoordArray(0,tcoords);
-
-		rotation = ang;
-	}
-
-	if(scale.y() != 1)
-		scale.y() = 1;
-
-	Sprite::Update();*/
+void LineSprite::render(GLint program)
+{
+	Renderable::render(program);
+	
+	if(!texture)
+		return;
+	
+	glPushMatrix();
+	
+	//glScalef(texture->Aspect(), 1, 1);
+	texture->Bind(program);
+	
+	glBegin(GL_TRIANGLE_STRIP);
+	
+	glColor4f(color.x, color.y, color.z, 1);
+	
+	glTexCoord2f(0.0+spos.x, len+spos.y);
+	glVertex3f(points[0].x, points[0].y, points[0].z);
+	
+	glTexCoord2f(1.0+spos.x, len+spos.y);
+	glVertex3f(points[1].x, points[1].y, points[1].z);
+	
+	glTexCoord2f(0.0+spos.x, 0.0+spos.y);
+	glVertex3f(points[2].x, points[2].y, points[2].z);
+	
+	glTexCoord2f(1.0+spos.x, 0.0+spos.y);
+	glVertex3f(points[3].x, points[3].y, points[3].z);
+	
+	glEnd();
+	
+	glPopMatrix();
 }

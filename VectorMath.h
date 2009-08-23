@@ -49,4 +49,9 @@ public:
 	vec& operator%=(const vec &v);
 };
 
+
+float length(vec v);
+
+vec normalize(vec v);
+
 #endif

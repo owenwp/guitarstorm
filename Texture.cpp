@@ -38,8 +38,6 @@ unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, 
 	{
 		inside = mask[ix + iy*w] != 0;
 	}
-	
-	//return inside * 0xff;
 
 	int kernel = 16;
 	int mindist;
@@ -77,21 +75,152 @@ unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, 
 	return inside ? 128+mindist : 128-mindist;
 }
 
+void Texture::preLoad(string name)
+{
+	loaded = false;
+	textures[name] = this;
+	
+	mWidth = 0;
+	mHeight = 0;
+	mData = NULL;
+	
+	int index = name.find_last_of('.');
+	string type;
+	if(index != string::npos)
+	{
+		type = name.substr(index, 4);
+		name = name.substr(0, index);
+	}
+	else
+		type = ".png";
+	
+	string mask = Location + name + "_mask" + type;
+	
+	// see if there is an alpha mask
+	ILuint maskid;
+	ilGenImages(1, &maskid);
+	ilBindImage(maskid); 
+	
+	if(ilLoadImage(mask.c_str()))
+	{
+		ilConvertImage(IL_LUMINANCE, IL_UNSIGNED_BYTE); 
+		
+		mWidth = ilGetInteger(IL_IMAGE_WIDTH);
+		mHeight = ilGetInteger(IL_IMAGE_HEIGHT);
+		mData = ilGetData();
+		
+		//ilDeleteImages(1, &maskid);
+		
+		blend = false;
+	}
+	
+	name = Location + name + type;
+	
+	ILuint texid;
+	ilGenImages(1, &texid);
+	ilBindImage(texid);
+	
+	if(ilLoadImage(name.c_str()))
+	{
+		depth = ilGetInteger(IL_IMAGE_BPP);
+		width = ilGetInteger(IL_IMAGE_WIDTH);
+		height = ilGetInteger(IL_IMAGE_HEIGHT);
+		iData = ilGetData();
+		
+		glGenTextures(1, &id);
+		
+		if(mData)
+		{
+			vData = (unsigned char *)malloc(width * height * 4);
+		}
+		else
+		{
+			postLoad();
+		}
+		
+		//ilDeleteImages(1, &texid);
+		
+		edge = 0.25f;
+	}
+}
+
 void Texture::run()
 {
-	for(int i=0; i<width; i++)
-	for(int j=0; j<height; j++)
+	if(mData)
 	{
-		vData[(i + j*width)*4+3] = edgeDistance(mData, mWidth, mHeight, i/(float)width, j/(float)height, 1.0f);
+		for(int i=0; i<width; i++)
+		for(int j=0; j<height; j++)
+		{
+			vData[(i + j*width)*4+3] = edgeDistance(mData, mWidth, mHeight, i/(float)width, j/(float)height, 1.0f);
+		}
 	}
+}
+
+void Texture::postLoad()
+{
+	if(loaded) 
+		return;
+	
+	if(mData)
+	{
+		//free(mData);
+		
+		long int pos1 = 0, pos2 = 0;
+		
+		for(int i=0; i<width; i++)
+		for(int j=0; j<height; j++)
+		{
+			pos1 = (i + j*width)*4;
+			pos2 = (i + j*width)*3;
+			vData[pos1++] = iData[pos2++];
+			vData[pos1++] = iData[pos2++];
+			vData[pos1++] = iData[pos2++];
+		}
+	
+		ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE); 
+		
+		glBindTexture(GL_TEXTURE_2D, id);
+		
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		
+		glTexImage2D(GL_TEXTURE_2D, 0, 4, width,
+					 height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+					 vData);
+		
+		edge = 100.0f / mWidth;
+		
+		free(vData);
+	}
+	else
+	{ 
+		glBindTexture(GL_TEXTURE_2D, id);
+		
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		
+		glTexImage2D(GL_TEXTURE_2D, 0, depth, width,
+					 height, 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE,
+					 iData);
+	}
+	
+	aspect = width / (float)height;
+	
+	//free(iData);
+	
+	loaded = true;
 }
 
 void Texture::Cache(string name)
 {
-	return;
 	if(textures.find(name) == textures.end())
 	{
 		Texture* t = new Texture();
+		t->preLoad(name);
 		t->loading = new thread(t);
 	}
 }
@@ -100,6 +229,11 @@ void Texture::UnloadAll()
 {
 	for(map<string, Texture*>::iterator ti = textures.begin(); ti != textures.end(); ti++)
 	{
+		if(ti->second->loading)
+		{
+			ti->second->loading->cancel();
+			ti->second->loading->join();
+		}
 		delete ti->second;
 	}
 	
@@ -158,6 +292,8 @@ Texture::Texture(spriteShape shape)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, 16, 16, 0, GL_ALPHA, GL_UNSIGNED_BYTE, tex);
 	
 	free(tex);
+	
+	loaded = true;
 }
 
 Texture::Texture(string name)
@@ -168,121 +304,24 @@ Texture::Texture(string name)
 	
 	if(textures.find(name) != textures.end())
 	{
-		if(textures[name]->loading)
-			textures[name]->loading->join();
+		Texture* t = textures[name];
+		if(t->loading)
+			t->loading->join();
 		
-		id = textures[name]->id;
-		edge = textures[name]->edge;
-		aspect = textures[name]->aspect;
-		blend = textures[name]->blend;
+		t->postLoad();
+		
+		id = t->id;
+		edge = t->edge;
+		aspect = t->aspect;
+		blend = t->blend;
 		return;
 	}
 	
-	textures[name] = this;
-	
-	mWidth = 0;
-	mHeight = 0;
-	mData = NULL;
-	
-	int index = name.find_last_of('.');
-	string type;
-	if(index != string::npos)
-	{
-		type = name.substr(index, 4);
-		name = name.substr(0, index);
-	}
-	else
-		type = ".png";
-	
-	string mask = Location + name + "_mask" + type;
-	
-	// see if there is an alpha mask
-	ILuint maskid;
-	ilGenImages(1, &maskid);
-	ilBindImage(maskid); 
-	
-	if(ilLoadImage(mask.c_str()))
-	{
-		ilConvertImage(IL_LUMINANCE, IL_UNSIGNED_BYTE); 
-		
-		mWidth = ilGetInteger(IL_IMAGE_WIDTH);
-		mHeight = ilGetInteger(IL_IMAGE_HEIGHT);
-		mData = ilGetData();
-		
-		blend = false;
-	}
-	
-	name = Location + name + type;
-	
-	ILuint texid;
-	ilGenImages(1, &texid);
-	ilBindImage(texid);
-	
-	if(ilLoadImage(name.c_str()))
-	{
-		int depth = ilGetInteger(IL_IMAGE_BPP);
-		width = ilGetInteger(IL_IMAGE_WIDTH);
-		height = ilGetInteger(IL_IMAGE_HEIGHT);
-		unsigned char* iData = ilGetData();
-		
-		edge = 0.25f;
-		
-		if(mData)
-		{
-			ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE); 
+	preLoad(name);
 			
-			glGenTextures(1, &id); 
-			glBindTexture(GL_TEXTURE_2D, id);
+	run();
 			
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			
-			vData = (unsigned char *)malloc(width * height * 4);
-			long int pos1 = 0, pos2 = 0;
-			
-			run();
-			
-			free(mData);
-			
-			for(int i=0; i<width; i++)
-			for(int j=0; j<height; j++)
-			{
-				pos1 = (i + j*width)*4;
-				pos2 = (i + j*width)*3;
-				vData[pos1++] = iData[pos2++];
-				vData[pos1++] = iData[pos2++];
-				vData[pos1++] = iData[pos2++];
-			}
-			
-			glTexImage2D(GL_TEXTURE_2D, 0, 4, width,
-						 height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
-						 vData);
-			
-			edge = 100.0f / mWidth;
-			
-			free(vData);
-		}
-		else
-		{
-			glGenTextures(1, &id); 
-			glBindTexture(GL_TEXTURE_2D, id);
-			
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			
-			glTexImage2D(GL_TEXTURE_2D, 0, depth, width,
-						 height, 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE,
-						 iData);
-		}
-		
-		aspect = width / (float)height;
-		
-		free(iData);
-	}
+	postLoad();
 }
 
 Texture::~Texture()

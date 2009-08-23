@@ -10,6 +10,6 @@ void main()
 	gl_TexCoord[0] = gl_MultiTexCoord0;
 	gl_FrontColor = gl_Color; 
 	gl_Position = ftransform();
-	edge = edgeSize * 10.0 * length(gl_ModelViewMatrix * vec4(1, 1, 0, 0));
+	edge = max(2.0, edgeSize * 10.0 * length(gl_ModelViewMatrix * vec4(1, 1, 0, 0)));
 	shadowDirection = gl_ModelViewMatrix * vec4(shadowPosition, 0) * 0.001;
 }

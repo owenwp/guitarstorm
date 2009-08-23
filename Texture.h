@@ -45,8 +45,12 @@ private:
 	bool alphaOnly;
 	bool blend;
 	
+	void preLoad(string name);
+	
 	thread* loading;
 	void run();
+	
+	void postLoad();
 	
 	Texture(){}
 	
@@ -55,9 +59,13 @@ private:
 	
 	int width;
 	int height;
+	int depth;
 	
 	unsigned char* mData;
 	unsigned char* vData;
+	unsigned char* iData;
+	
+	bool loaded;
 	
 public:
 	Texture(string name);

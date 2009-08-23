@@ -17,9 +17,11 @@
  */
 #include "Threads.h"
 #include <pthread.h>
+#include <iostream>
 
 void* runThread(void* r)
 {
+	std::cout << "Running thread\n";
 	((runnable*)r)->run();
 }
 
@@ -30,6 +32,7 @@ thread::thread(void (*run)())
 
 thread::thread(runnable* run)
 {	
+	std::cout << "Init thread\n";
 	pthread_create((pthread_t*)&id, NULL, runThread, run);
 }
 

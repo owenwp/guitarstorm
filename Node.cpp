@@ -60,21 +60,20 @@ void Node::update(float timeDelta)
 
 void Node::render(GLint program)
 {
-	if(hidden)
-		return;
-	
-	glPushMatrix();
-	
-	// transform
-	glTranslatef(position.x, position.y, position.z);
-	glScalef(scale.x, scale.y, 1);
-	glRotatef(rotation, 0, 0, 1);
-	glTranslatef(-center.x, -center.y, -center.z);
-	
-	if(children) children->render(program);
-	
-	glPopMatrix();
-	
+	if(!hidden)
+	{
+		glPushMatrix();
+		
+		// transform
+		glTranslatef(position.x, position.y, position.z);
+		glScalef(scale.x, scale.y, 1);
+		glRotatef(rotation, 0, 0, 1);
+		glTranslatef(-center.x, -center.y, -center.z);
+		
+		if(children) children->render(program);
+		
+		glPopMatrix();
+	}
 	if(next) next->render(program);
 }
 

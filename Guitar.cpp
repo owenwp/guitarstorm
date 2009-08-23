@@ -199,8 +199,6 @@ void Guitar::update(float timeDelta)
 {
 	Node::update(timeDelta);
 	
-	//body->setHidden(position.x > 0);
-	
 	if(!running)
 		return;
 

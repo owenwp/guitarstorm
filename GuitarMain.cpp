@@ -36,6 +36,11 @@ bool useShaders = true;
 GLint v, f, p; 
 Node* root;
 Menu* menu;
+Label* fps;
+
+float ftimes[20];
+int findex = 0;
+bool fready = false;
 
 void deleteScene()
 {
@@ -175,6 +180,21 @@ void renderScene()
 	if(!root)
 		return;
 	
+	// fps display
+	/*if(findex >= 20)
+	{
+		fready = true;
+		findex = 0;
+	}*/
+	int framerate = 1 / timeDelta;
+	if(fready)
+	{
+		std::ostringstream s;
+		s << "FPS: ";
+		s << framerate;
+		fps->printf(s.str());
+	}
+	
 	root->update(timeDelta);
 	
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -279,6 +299,14 @@ int main(int argc, char **argv)
 	// setup scene
 	root = new Node;
 	root->addChild(menu);
+	
+	// fps display
+	Node* display = new Node;
+	fps = new Label("arial", "FPS: ");
+	display->addChild(fps);
+	display->setScale(vec(0.25, 0.25));
+	display->setPosition(vec(-6, 4.25));
+	root->addChild(display);
 
 	// background
 	Node* clouds = new Node;

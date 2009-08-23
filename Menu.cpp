@@ -332,6 +332,7 @@ void Menu::Hide()
 	{
 		hidden = true;
 		current->setHidden(true);
+		cursor->setHidden(true);
 	}
 }
 
@@ -343,6 +344,7 @@ void Menu::Show()
 	{
 		hidden = false;
 		current->setHidden(false);
+		cursor->setHidden(false);
 	}
 }
 

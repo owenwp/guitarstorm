@@ -61,6 +61,8 @@ protected:
 	
 	vec nstring[6];
 	vec bstring[6];
+	
+	Node* body;
 
 	Menu *parent;
 	Menu *pauseMenu;

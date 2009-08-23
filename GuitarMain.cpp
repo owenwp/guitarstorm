@@ -174,7 +174,7 @@ void renderScene()
 	static int lastTime = glutGet(GLUT_ELAPSED_TIME);
 	int time = glutGet(GLUT_ELAPSED_TIME);
 	
-	float timeDelta = (time - lastTime) * 0.001f;
+	float timeDelta = min(0.1f, (time - lastTime) * 0.001f);
 	lastTime = time;
 	
 	if(!root)

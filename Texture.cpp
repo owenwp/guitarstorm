@@ -233,7 +233,7 @@ Texture::Texture(string name)
 						height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
 						 vData);
 			
-			edge = 100.0f / mHeight;
+			edge = 100.0f / mWidth;
 			
 			free(vData);
 		}

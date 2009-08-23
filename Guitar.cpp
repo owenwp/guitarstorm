@@ -92,7 +92,7 @@ void Guitar::MakeGuitar()
 	nut->setPosition(vec(nutpos, neckpos));
 	nut->setScale(vec(2, 2));
 
-	Node* body = new Node;
+	body = new Node;
 	body->addChild(new Sprite(new Texture("body")));
 	body->setPosition(vec(11.5f, -0.02));
 	body->setScale(vec(16,16));
@@ -198,6 +198,8 @@ void Guitar::MakeGuitar()
 void Guitar::update(float timeDelta)
 {
 	Node::update(timeDelta);
+	
+	//body->setHidden(position.x > 0);
 	
 	if(!running)
 		return;

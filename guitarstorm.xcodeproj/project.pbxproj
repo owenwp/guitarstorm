@@ -36,6 +36,7 @@
 		25C6704E103A342800615C65 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F3498B102F7F440011023F /* libfreetype.a */; };
 		25C6704F103A342800615C65 /* libIL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A2826910321D7C00D7C4CD /* libIL.dylib */; };
 		25C67050103A342800615C65 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F49F83507AD6F520058BE5D /* OpenGL.framework */; };
+		25E4BBA310410F780094E60F /* Threads_posix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25E4BBA210410F780094E60F /* Threads_posix.cpp */; };
 		25F5FF900FA71ED40002BE66 /* TunerMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF700FA71ED40002BE66 /* TunerMenu.cpp */; };
 		25F5FF910FA71ED40002BE66 /* Tuner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF720FA71ED40002BE66 /* Tuner.cpp */; };
 		25F5FF920FA71ED40002BE66 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF740FA71ED40002BE66 /* Sprite.cpp */; };
@@ -88,6 +89,8 @@
 		25A2826910321D7C00D7C4CD /* libIL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.dylib; path = /opt/local/lib/libIL.dylib; sourceTree = "<absolute>"; };
 		25BA379D102F75B300A74F4B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
 		25BA37B3102F768F00A74F4B /* GLSLMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLMain.cpp; sourceTree = "<group>"; };
+		25E4BBA110410F120094E60F /* Threads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Threads.h; sourceTree = "<group>"; };
+		25E4BBA210410F780094E60F /* Threads_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Threads_posix.cpp; sourceTree = "<group>"; };
 		25F3498B102F7F440011023F /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = /opt/local/lib/libfreetype.a; sourceTree = "<absolute>"; };
 		25F500290FA725D60002BE66 /* libsamplerate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsamplerate.a; path = /usr/local/lib/libsamplerate.a; sourceTree = "<absolute>"; };
 		25F5FF490FA71A790002BE66 /* libid3tag.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libid3tag.a; path = /sw/lib/libid3tag.a; sourceTree = "<absolute>"; };
@@ -125,10 +128,10 @@
 		25F5FF8B0FA71ED40002BE66 /* GuitarMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarMain.cpp; sourceTree = "<group>"; };
 		25F5FF8C0FA71ED40002BE66 /* Guitar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guitar.h; sourceTree = "<group>"; };
 		25F5FF8D0FA71ED40002BE66 /* Guitar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Guitar.cpp; sourceTree = "<group>"; };
-		25F5FFC00FA71F4C0002BE66 /* Directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Directory.h; path = utilities/Directory.h; sourceTree = "<group>"; };
-		25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Directory_posix.cpp; path = utilities/Directory_posix.cpp; sourceTree = "<group>"; };
-		25F5FFC30FA71F4C0002BE66 /* FileCopy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileCopy.cpp; path = utilities/FileCopy.cpp; sourceTree = "<group>"; };
-		25F5FFC40FA71F4C0002BE66 /* FileCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileCopy.h; path = utilities/FileCopy.h; sourceTree = "<group>"; };
+		25F5FFC00FA71F4C0002BE66 /* Directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Directory.h; sourceTree = "<group>"; };
+		25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Directory_posix.cpp; sourceTree = "<group>"; };
+		25F5FFC30FA71F4C0002BE66 /* FileCopy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileCopy.cpp; sourceTree = "<group>"; };
+		25F5FFC40FA71F4C0002BE66 /* FileCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCopy.h; sourceTree = "<group>"; };
 		32DBCF6D0370B57F00C91783 /* guitarstorm_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guitarstorm_Prefix.pch; sourceTree = "<group>"; };
 		3CCF0FD00D86E157003173B5 /* complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = complex.h; path = fft/complex.h; sourceTree = "<group>"; };
 		3CCF0FD50D86E157003173B5 /* w.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = w.h; path = fft/w.h; sourceTree = "<group>"; };
@@ -301,8 +304,10 @@
 				25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */,
 				25F5FFC30FA71F4C0002BE66 /* FileCopy.cpp */,
 				25F5FFC40FA71F4C0002BE66 /* FileCopy.h */,
+				25E4BBA110410F120094E60F /* Threads.h */,
+				25E4BBA210410F780094E60F /* Threads_posix.cpp */,
 			);
-			name = utilities;
+			path = utilities;
 			sourceTree = "<group>";
 		};
 		3CCF0FCE0D86E143003173B5 /* fft */ = {
@@ -462,6 +467,7 @@
 				256C9723104090FA00B5AC3E /* tabcolumn.cpp in Sources */,
 				256C9724104090FA00B5AC3E /* tabsong.cpp in Sources */,
 				256C9725104090FA00B5AC3E /* tabtrack.cpp in Sources */,
+				25E4BBA310410F780094E60F /* Threads_posix.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

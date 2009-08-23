@@ -17,6 +17,7 @@
  */
 #include "Texture.h"
 #include <math.h>
+#include <vector>
 
 map<string, Texture*> textures;
 map<int, Texture*> shapes;
@@ -74,6 +75,25 @@ unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, 
 	}
 	
 	return inside ? 128+mindist : 128-mindist;
+}
+
+void Texture::run()
+{
+	for(int i=0; i<width; i++)
+	for(int j=0; j<height; j++)
+	{
+		vData[(i + j*width)*4+3] = edgeDistance(mData, mWidth, mHeight, i/(float)width, j/(float)height, 1.0f);
+	}
+}
+
+void Texture::Cache(string name)
+{
+	return;
+	if(textures.find(name) == textures.end())
+	{
+		Texture* t = new Texture();
+		t->loading = new thread(t);
+	}
 }
 
 void Texture::UnloadAll()
@@ -142,11 +162,15 @@ Texture::Texture(spriteShape shape)
 
 Texture::Texture(string name)
 { 
+	loading = NULL;
 	alphaOnly = false;
 	blend = true;
 	
 	if(textures.find(name) != textures.end())
 	{
+		if(textures[name]->loading)
+			textures[name]->loading->join();
+		
 		id = textures[name]->id;
 		edge = textures[name]->edge;
 		aspect = textures[name]->aspect;
@@ -156,9 +180,9 @@ Texture::Texture(string name)
 	
 	textures[name] = this;
 	
-	int mWidth = 0;
-	int mHeight = 0;
-	unsigned char* mData = NULL;
+	mWidth = 0;
+	mHeight = 0;
+	mData = NULL;
 	
 	int index = name.find_last_of('.');
 	string type;
@@ -169,7 +193,7 @@ Texture::Texture(string name)
 	}
 	else
 		type = ".png";
-
+	
 	string mask = Location + name + "_mask" + type;
 	
 	// see if there is an alpha mask
@@ -197,8 +221,8 @@ Texture::Texture(string name)
 	if(ilLoadImage(name.c_str()))
 	{
 		int depth = ilGetInteger(IL_IMAGE_BPP);
-		int width = ilGetInteger(IL_IMAGE_WIDTH);
-		int height = ilGetInteger(IL_IMAGE_HEIGHT);
+		width = ilGetInteger(IL_IMAGE_WIDTH);
+		height = ilGetInteger(IL_IMAGE_HEIGHT);
 		unsigned char* iData = ilGetData();
 		
 		edge = 0.25f;
@@ -215,8 +239,12 @@ Texture::Texture(string name)
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			
-			unsigned char* vData = (unsigned char *)malloc(width * height * 4);
+			vData = (unsigned char *)malloc(width * height * 4);
 			long int pos1 = 0, pos2 = 0;
+			
+			run();
+			
+			free(mData);
 			
 			for(int i=0; i<width; i++)
 			for(int j=0; j<height; j++)
@@ -226,11 +254,10 @@ Texture::Texture(string name)
 				vData[pos1++] = iData[pos2++];
 				vData[pos1++] = iData[pos2++];
 				vData[pos1++] = iData[pos2++];
-				vData[pos1++] = edgeDistance(mData, mWidth, mHeight, i/(float)width, j/(float)height, 1.0f);
 			}
 			
 			glTexImage2D(GL_TEXTURE_2D, 0, 4, width,
-						height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+						 height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
 						 vData);
 			
 			edge = 100.0f / mWidth;
@@ -251,8 +278,10 @@ Texture::Texture(string name)
 						 height, 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE,
 						 iData);
 		}
-
+		
 		aspect = width / (float)height;
+		
+		free(iData);
 	}
 }
 

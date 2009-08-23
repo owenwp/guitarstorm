@@ -61,7 +61,7 @@ void deleteScene()
 }
 
 void setupView()
-{
+{	
 	int resx = Options::instance->resolutionx[Options::instance->screenResolution];
 	int resy = Options::instance->resolutiony[Options::instance->screenResolution];
 	if(Options::instance->fullScreen)
@@ -279,6 +279,11 @@ void loadShaders()
 	}
 }
 
+void blah()
+{
+	cout << "blah";
+}
+
 int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
@@ -340,6 +345,12 @@ int main(int argc, char **argv)
 	catch(string err)
 	{
 	}
+	
+	// cache textures
+	Texture::Cache("body");
+	Texture::Cache("neck");
+	Texture::Cache("head");
+	Texture::Cache("nut");
 
 	// run main loop
 	glutMainLoop();

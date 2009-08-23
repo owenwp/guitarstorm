@@ -23,6 +23,7 @@
 #include <string>
 #include <map>
 #include "VectorMath.h"
+#include "utilities/Threads.h"
 
 using namespace std;
 
@@ -35,7 +36,7 @@ enum spriteShape
 
 unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, float domain);
 
-class Texture
+class Texture : public runnable
 {
 private:
 	GLuint id;
@@ -44,11 +45,26 @@ private:
 	bool alphaOnly;
 	bool blend;
 	
+	thread* loading;
+	void run();
+	
+	Texture(){}
+	
+	int mWidth;
+	int mHeight;
+	
+	int width;
+	int height;
+	
+	unsigned char* mData;
+	unsigned char* vData;
+	
 public:
 	Texture(string name);
-	Texture(spriteShape shape = shapeNone);
+	Texture(spriteShape shape);
 	~Texture();
 	
+	static void Cache(string name);
 	static void UnloadAll();
 	
 	float Aspect();

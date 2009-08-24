@@ -116,8 +116,6 @@ Options::Options()
 	details = new string[10];
 	details[0] = "Low";
 	details[1] = "Normal";
-	details[2] = "High";
-	details[3] = "Ultra";
 	devices = NULL;
 
 	// load settings

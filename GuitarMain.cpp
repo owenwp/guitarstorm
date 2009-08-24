@@ -207,7 +207,19 @@ void renderScene()
 	glLoadIdentity();
 	glTranslatef(0, 0, -11);
 	
-	root->render(p);
+	switch (Options::instance->detailLevel) 
+	{
+		case 0:
+			glUseProgram(0);
+			root->render(0);
+			break;
+		default:
+			glEnable(GL_BLEND);
+			glDisable(GL_ALPHA_TEST);
+			glUseProgram(p);
+			root->render(p);
+			break;
+	}
 	
 	glutSwapBuffers();
 }
@@ -267,16 +279,9 @@ void loadShaders()
 	
 	glEnable(GL_TEXTURE_2D);
 	
-	if(!useShaders)
-	{
-		glAlphaFunc(GL_GREATER,0.5f);
-		glEnable(GL_ALPHA_TEST);
-	}
-	else
-	{
-		glEnable (GL_BLEND);
-		glUseProgram(p);
-	}
+	glAlphaFunc(GL_GREATER,0.5f);
+
+	glUseProgram(p);
 }
 
 void blah()

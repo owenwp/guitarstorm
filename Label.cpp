@@ -103,12 +103,19 @@ void Label::render(GLint program)
 	const char* cstr = text.c_str();
 	int count = text.length();
 	
-	GLint loc = glGetUniformLocation(program,"edgeSize");
-	glUniform1f(loc, 0.5);
-	loc = glGetUniformLocation(program,"alphaOnly");
-	glUniform1i(loc, 1);
-	loc = glGetUniformLocation(program,"blend");
-	glUniform1i(loc, 0);
+	if(program)
+	{
+		GLint loc = glGetUniformLocation(program,"edgeSize");
+		glUniform1f(loc, 0.5);
+		loc = glGetUniformLocation(program,"alphaOnly");
+		glUniform1i(loc, 1);
+		loc = glGetUniformLocation(program,"blend");
+		glUniform1i(loc, 0);
+	}
+	else
+	{
+		glEnable(GL_ALPHA_TEST);
+	}
 	
 	if(align == alignCenter)
 	{

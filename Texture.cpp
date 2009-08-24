@@ -339,10 +339,26 @@ void Texture::Bind(GLint p)
 {
 	glBindTexture(GL_TEXTURE_2D, id);
 	
-	GLint loc = glGetUniformLocation(p,"edgeSize");
-	glUniform1f(loc, edge);
-	loc = glGetUniformLocation(p,"alphaOnly");
-	glUniform1i(loc, alphaOnly);
-	loc = glGetUniformLocation(p,"blend");
-	glUniform1i(loc, blend);
+	if(p)
+	{
+		GLint loc = glGetUniformLocation(p,"edgeSize");
+		glUniform1f(loc, edge);
+		loc = glGetUniformLocation(p,"alphaOnly");
+		glUniform1i(loc, alphaOnly);
+		loc = glGetUniformLocation(p,"blend");
+		glUniform1i(loc, blend);
+	}
+	else
+	{
+		if(blend)
+		{
+			glEnable(GL_BLEND);
+			glDisable(GL_ALPHA_TEST);
+		}
+		else
+		{
+			glEnable(GL_ALPHA_TEST);
+			glDisable(GL_BLEND);
+		}
+	}
 }

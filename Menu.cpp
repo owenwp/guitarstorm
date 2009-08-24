@@ -35,8 +35,6 @@ void Item::Setup()
 void Menu::Setup()
 {	
 	current = new Node;
-	addChild(current);
-	
 	Node* header = new Node;
 	Label* l = new Label("arial", name, alignCenter);
 	l->setColor(vec(1,1,0));
@@ -52,6 +50,8 @@ void Menu::Setup()
 		cursor->addChild(new Sprite(new Texture("pick")));
 		cursor->setCenter(vec(0.6f,0));
 	}
+	
+	addChild(current);
 
 	cursorOffset = -0.1;
 }

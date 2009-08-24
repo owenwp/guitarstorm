@@ -58,6 +58,7 @@ enum Alignment
 class Label : public Renderable
 {
 public:
+	Label(Label* l);
 	Label(string f, string t = "", Alignment a = alignLeft);
 	void printf(string format, ...);
 	
@@ -67,6 +68,8 @@ public:
 	
 	void setTint(vec t, float s) {tint = t; tints = s;}
 	void setAlignment(Alignment a) {align = a;}
+	
+	float getWidth() {return width;}
 	
 	virtual void update(float timeDelta);
 	virtual void render(GLint program);

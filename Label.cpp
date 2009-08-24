@@ -45,6 +45,18 @@ inline int next_p2 (int a )
 	return rval;
 }
 
+Label::Label(Label* l)
+{
+	hasNew = false;
+	font = l->font;
+	text = l->text;
+	color = l->color;
+	align = l->align;
+	width = l->width;
+	tint = l->tint;
+	tints = l->tints;
+}
+
 Label::Label(string f, string t, Alignment a)
 {
 	text = t;
@@ -78,6 +90,8 @@ void Label::update(float timeDelta)
 
 void Label::render(GLint program)
 {
+	Renderable::render(program);
+	
 	glPushMatrix();
 	
 	if(hasNew)

@@ -61,6 +61,8 @@ void Node::update(float timeDelta)
 
 void Node::render(GLint program)
 {
+	Renderable::render(program);
+	
 	if(!hidden)
 	{
 		glPushMatrix();
@@ -75,7 +77,6 @@ void Node::render(GLint program)
 		
 		glPopMatrix();
 	}
-	if(next) next->render(program);
 }
 
 void Node::addChild(Renderable* c)

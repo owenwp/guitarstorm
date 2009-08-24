@@ -297,27 +297,10 @@ int main(int argc, char **argv)
 
 	// setup audio
 	//Audio::init();
-	
-	// setup menus
-	makeMenus();
-	menu->setScale(vec(20,20,1));
-	menu->setGrow(vec(1,1,1), 2.0);
-	menu->setPosition(vec(0,-30));
-	menu->setSlide(vec(0,0), 1.0);
-	menu->Open();
 
 	// setup scene
 	root = new Node;
-	root->addChild(menu);
 	
-	// fps display
-	Node* display = new Node;
-	fps = new Label("arial", "FPS: ");
-	display->addChild(fps);
-	display->setScale(vec(0.25, 0.25));
-	display->setPosition(vec(-6, 4.25));
-	root->addChild(display);
-
 	// background
 	Node* clouds = new Node;
 	Sprite* spr = new Sprite(new Texture("duskcloudy.jpg"));
@@ -327,6 +310,23 @@ int main(int argc, char **argv)
 	clouds->setPosition(vec(0,0,-5));
 	clouds->setScale(vec(14, 14));
 	root->addChild(clouds);
+	
+	// fps display
+	Node* display = new Node;
+	fps = new Label("arial", "FPS: ");
+	display->addChild(fps);
+	display->setScale(vec(0.25, 0.25));
+	display->setPosition(vec(-6, 4.25));
+	root->addChild(display);
+
+	// setup menus
+	makeMenus();
+	menu->setScale(vec(20,20,1));
+	menu->setGrow(vec(1,1,1), 2.0);
+	menu->setPosition(vec(0,-30));
+	menu->setSlide(vec(0,0), 1.0);
+	menu->Open();
+	root->addChild(menu);
 
 	// setup callbacks
 	glutDisplayFunc(renderScene);

@@ -33,44 +33,27 @@ Guitar::Guitar()
 	running = false; 
 	finished = false;
 
-	
 	// create fret textures
 	snote = new Sprite(new Texture(shapeCircle));
-	/*for(int i=0; i<25; i++)
+	
+	for(int i=0; i<25; i++)
 	{	
 		string fret;
 		stringstream str;
 		str << i;
 		str >> fret;
 
-		tnote[i] = new osgText::Text;
-		tnote[i]->setFont(prefix+"fonts/arial.ttf");
-		//tnote[i]->setDataVariance(Object::DYNAMIC);
+		tnote[i] = new Label("arial", str.str(), alignCenter);
 		if(i == 3 || i == 5 || i == 7 || i == 9 || i == 12 || i == 15 || i == 17 || i == 19 || i == 21 || i == 23) 
 		{
-			tnote[i]->setColor(Vec4(1,1,1,1));
-			tnote[i]->setBackdropColor(Vec4(0,0,0,1));
+			tnote[i]->setColor(vec(1,1,1,1));
 		}
 		else
 		{
-			tnote[i]->setColor(Vec4(0,0,0,1));
-			tnote[i]->setBackdropColor(Vec4(1,1,1,1));
+			tnote[i]->setColor(vec(0,0,0,1));
 		}
-		if(i < 10)
-			tnote[i]->setCharacterSize(1.5f);
-		else
-			tnote[i]->setCharacterSize(1.1f);
-		tnote[i]->setPosition(Vec3(0,-0.1f,0));
-		tnote[i]->setCharacterSizeMode(osgText::Text::OBJECT_COORDS);
-		tnote[i]->setBackdropType(osgText::Text::OUTLINE);
-		tnote[i]->setBackdropOffset(-0.05f, 0.0f);
-		tnote[i]->setBackdropImplementation(osgText::Text::STENCIL_BUFFER);
-		tnote[i]->setDrawMode(osgText::Text::TEXT);
-		tnote[i]->setAlignment(osgText::Text::CENTER_CENTER);
-		tnote[i]->setAxisAlignment(osgText::Text::XZ_PLANE);
-		tnote[i]->setText(fret);
 	}
-*/
+
 	sbeat = new Sprite(new Texture("fret.tga"));
 }
 
@@ -98,7 +81,11 @@ void Guitar::MakeGuitar()
 	chart = new Node;
 	beats = new Node;
 
-	addChild(chart);
+	addChild(body);
+	addChild(neck);
+	addChild(head);
+	addChild(beats);
+	addChild(nut);
 
 	Node* s = new Node;
 	strings[0] = new LineSprite(new Texture("bstring.tga"));
@@ -184,13 +171,7 @@ void Guitar::MakeGuitar()
 	s->addChild(nstr);
 	addChild(s);
 	
-	addChild(nut);
-
-	addChild(beats);
-	
-	addChild(head);
-	addChild(neck);
-	addChild(body);
+	addChild(chart);
 	
 	setCenter(vec(3,0,0));
 }
@@ -427,11 +408,18 @@ void Guitar::PlaceNote(double t, int s, int f)
 		return;
 
 	Node* n = new Node;
+	
 	Sprite* spr = new Sprite(snote);
 	n->addChild(spr);
 	
+	Node* num = new Node;
+	num->addChild(new Label(tnote[f]));
+	num->setPosition(vec(0,-0.35f));
+	num->setScale(vec(0.7f, 0.7f));
+	n->addChild(num);
+	
 	n->setPosition(bstring[s]);
-	n->setScale(vec(0.3f, 0.3f));
+	n->setScale(vec(0.4f, 0.4f));
 
 	float brightness = 0.7f;
 	float dark = 0.1f;

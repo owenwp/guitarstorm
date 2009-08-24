@@ -103,12 +103,8 @@ void SongListItem::Setup()
 		title->setScale(vec(0.15, 0.15));
 		title->setPosition(vec(0,-0.7,0.1));
 		
-		Node* shadow = new Node;
-		shadow->setScale(vec(5, 1));
-		title->addChild(new Sprite(new Texture(shapeCircle), vec(0,0,0,1)));
-		
-		title->addChild(shadow);
-		title->addChild(new Label("arial", song.title, alignCenter));
+		Label* tl = new Label("arial", song.title, alignCenter);
+		title->addChild(tl);
 		node->addChild(title);
 
 		/*
@@ -138,7 +134,7 @@ void SongListItem::Setup()
 	art->setColor(vec(0,1,0,1));
 	Node* n = new Node;
 	n->setScale(vec(0.18, 0.18));
-	n->setPosition(vec(0,-0.35,0.1));
+	n->setPosition(vec(0,-0.37,0.1));
 	n->addChild(new Label("arial", "NEW", alignCenter));
 	node->addChild(art);
 	node->addChild(n);

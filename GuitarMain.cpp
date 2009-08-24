@@ -33,6 +33,8 @@
 
 bool useShaders = true;
 
+bool isFullscreen;
+
 GLint v, f, p; 
 Node* root;
 Menu* menu;
@@ -64,13 +66,43 @@ void setupView()
 {	
 	int resx = Options::instance->resolutionx[Options::instance->screenResolution];
 	int resy = Options::instance->resolutiony[Options::instance->screenResolution];
-	if(Options::instance->fullScreen)
-	{
-	}
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-	glutInitWindowPosition(100, 50); 
-	glutInitWindowSize(resx, resy); 
-	glutCreateWindow("Guitar Storm");
+	
+	if(isFullscreen = Options::instance->fullScreen)
+	{
+		glutGameModeString(string(Options::instance->resolutions[Options::instance->screenResolution]+":32").c_str());
+		if (glutGameModeGet(GLUT_GAME_MODE_POSSIBLE)) 
+		{
+			glutEnterGameMode();
+		}
+		else
+		{
+			glutGameModeString(string(Options::instance->resolutions[0]+":32").c_str());
+			if (glutGameModeGet(GLUT_GAME_MODE_POSSIBLE)) 
+			{
+				Options::instance->screenResolution = 0;
+				Options::instance->Save();
+				glutEnterGameMode();
+			}
+			else
+			{
+				deleteScene();
+			}
+		}
+	}
+	else
+	{
+		glutInitWindowPosition(100, 50); 
+		glutInitWindowSize(resx, resy); 
+		glutCreateWindow("Guitar Storm");
+	}
+	
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	
+	gluPerspective(45, (float)resx / (float)resy, 1, 20);
+	
+	glMatrixMode(GL_MODELVIEW);
 	
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
@@ -269,12 +301,6 @@ void loadShaders()
 	
 	glLinkProgram(p);
 	
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	
-	gluPerspective(45, (float)800 / (float)600, 1, 20);
-	
-	glMatrixMode(GL_MODELVIEW);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	
 	
 	glEnable(GL_TEXTURE_2D);

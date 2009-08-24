@@ -78,25 +78,29 @@ Options::Options()
 	resolutionx[0] = 800;
 	resolutiony[0] = 600;
 
-	resolutions[1] = "1024x768";
+	resolutions[1] = "1024x640";
 	resolutionx[1] = 1024;
-	resolutiony[1] = 768;
+	resolutiony[1] = 640;
+	
+	resolutions[2] = "1024x768";
+	resolutionx[2] = 1024;
+	resolutiony[2] = 768;
 
-	resolutions[2] = "1280x720";
-	resolutionx[2] = 1280;
-	resolutiony[2] = 720;
-
-	resolutions[3] = "1280x986";
+	resolutions[3] = "1280x720";
 	resolutionx[3] = 1280;
-	resolutiony[3] = 986;
+	resolutiony[3] = 720;
 
-	resolutions[4] = "1280x1024";
+	resolutions[4] = "1280x800";
 	resolutionx[4] = 1280;
-	resolutiony[4] = 1024;
+	resolutiony[4] = 800;
 
-	resolutions[5] = "1920x1080";
-	resolutionx[5] = 1920;
-	resolutiony[5] = 1080;
+	resolutions[5] = "1280x1024";
+	resolutionx[5] = 1280;
+	resolutiony[5] = 1024;
+
+	resolutions[6] = "1920x1080";
+	resolutionx[6] = 1920;
+	resolutiony[6] = 1080;
 
 	noyes = new string[10];
 	noyes[0] = "No";
@@ -263,9 +267,19 @@ void OptionsMenu::OnSelect()
 			Options::instance->Load();
 		else if(items[select]->name == "OK" || items[select]->name == "Apply")
 		{
-			int resx = Options::instance->resolutionx[Options::instance->screenResolution];
-			int resy = Options::instance->resolutiony[Options::instance->screenResolution];
-			glutReshapeWindow(resx, resy);
+			if(!Options::instance->fullScreen)
+			{
+				int resx = Options::instance->resolutionx[Options::instance->screenResolution];
+				int resy = Options::instance->resolutiony[Options::instance->screenResolution];
+				
+				glMatrixMode(GL_PROJECTION);
+				glLoadIdentity();
+				
+				gluPerspective(45, (float)resx / (float)resy, 1, 20);
+				
+				glMatrixMode(GL_MODELVIEW);
+				glutReshapeWindow(resx, resy);
+			}
 			Options::instance->Save();
 			if(applyMethod) applyMethod();
 		}

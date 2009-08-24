@@ -279,6 +279,7 @@ Texture::Texture(spriteShape shape)
 			}
 			
 			edge = 1.5f;
+			aspect = 1;
 			break;
 	}
 	

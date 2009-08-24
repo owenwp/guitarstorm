@@ -37,6 +37,7 @@ Node::Node()
 	
 	children = NULL;
 	next = NULL;
+	count = 0;
 }
 
 Node::~Node()
@@ -83,6 +84,7 @@ void Node::addChild(Renderable* c)
 		c->next = children;
 	
 	children = c;
+	count++;
 }
 
 void Node::insertChild(Renderable* c, int i)
@@ -91,11 +93,13 @@ void Node::insertChild(Renderable* c, int i)
 	{
 		c->next = children;
 		children = c;
+		count++;
 	}
 	else if(!i-- || !children->next)
 	{
 		c->next = children->next;
 		children->next = c;
+		count++;
 	}
 	else
 	{
@@ -106,6 +110,7 @@ void Node::insertChild(Renderable* c, int i)
 			{
 				c->next = n->next->next;
 				n->next = c;
+				count++;
 				return;
 			}
 			n = n->next;
@@ -119,6 +124,7 @@ void Node::removeChild(Renderable* c)
 	{
 		children = children->next;
 		c->next = NULL;
+		count--;
 		return;
 	}
 	
@@ -128,19 +134,24 @@ void Node::removeChild(Renderable* c)
 		{
 			n->next = c->next;
 			c->next = NULL;
+			count--;
 			return;
 		}
 	}
 }
 
-void Node::removeChild(int i)
+void Node::removeChildren(int i, int c)
 {
+	if(!count)
+		return;
+	
 	if(!i--)
 	{
 		Renderable* c = children;
 		children = children->next;
 		c->next = NULL;
 		delete c;
+		count--;
 		return;
 	}
 	
@@ -152,7 +163,23 @@ void Node::removeChild(int i)
 			n->next = c->next;
 			c->next = NULL;
 			delete c;
+			count--;
 			return;
 		}
 	}
+}
+
+int Node::numChildren()
+{
+	return count;
+}
+
+void Node::setUserData(void* d)
+{
+	data = d;
+}
+
+void* Node::getUserData()
+{
+	return data;
 }

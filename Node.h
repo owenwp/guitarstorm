@@ -28,12 +28,16 @@ public:
 	Node();
 	~Node();
 	
+	void setUserData(void* d);
+	
 	void setPosition(vec p) {position = p; slides = 0;}
 	void setScale(vec s) {scale = s; grows = 0;}
 	void setRotation(float r) {rotation = r; turns = 0;}
 	void setCenter(vec c) {center = c;}
 	void setScroll(vec s) {scroll = s;}
 	void setSpin(float s) {spin = s; turns = 0;}
+	
+	void* getUserData();
 	
 	vec getPosition() {return position;}
 	vec getScale() {return scale;}
@@ -54,7 +58,11 @@ public:
 	void addChild(Renderable* c);
 	void insertChild(Renderable* c, int i);
 	void removeChild(Renderable* c);
-	void removeChild(int i);
+	void removeChildren(int i, int c=1);
+	
+	int numChildren();
+	
+	Renderable* children;
 	
 protected:
 	vec position;
@@ -73,7 +81,9 @@ protected:
 	float grows;
 	
 	bool hidden;
-	Renderable* children;
+	int count;
+	
+	void* data;
 };
 
 #endif

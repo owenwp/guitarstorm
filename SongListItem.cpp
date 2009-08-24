@@ -90,7 +90,7 @@ void SongListItem::Setup()
 			node->addChild(art);
 			
 			Node* n = new Node;
-			float size = min(0.1f, 1.0f/song.artist.length());
+			float size = min(0.2f, 1.0f/song.artist.length());
 			n->setScale(vec(size, size));
 			n->setPosition(vec(0,-0.35,0.1));
 			Label* l = new Label("arial", song.artist, alignCenter);

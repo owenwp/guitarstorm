@@ -263,6 +263,9 @@ void OptionsMenu::OnSelect()
 			Options::instance->Load();
 		else if(items[select]->name == "OK" || items[select]->name == "Apply")
 		{
+			int resx = Options::instance->resolutionx[Options::instance->screenResolution];
+			int resy = Options::instance->resolutiony[Options::instance->screenResolution];
+			glutReshapeWindow(resx, resy);
 			Options::instance->Save();
 			if(applyMethod) applyMethod();
 		}

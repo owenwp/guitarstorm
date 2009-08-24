@@ -14,6 +14,7 @@
 		256C9724104090FA00B5AC3E /* tabsong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FE10D86E16E003173B5 /* tabsong.cpp */; };
 		256C9725104090FA00B5AC3E /* tabtrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FE30D86E16E003173B5 /* tabtrack.cpp */; };
 		25BBC6DD103E2A6B00A7CD0E /* shaders in Resources */ = {isa = PBXBuildFile; fileRef = 256274971031E9390023B882 /* shaders */; };
+		25C17CB81042794600F81F87 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 25C17CB71042794600F81F87 /* Icon.icns */; };
 		25C66F83103A27BE00615C65 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25A28170103207CA00D7C4CD /* Texture.cpp */; };
 		25C66F84103A27BE00615C65 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259FACEC10363485005477E7 /* Node.cpp */; };
 		25C66F85103A27BE00615C65 /* VectorMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259FACF51036375E005477E7 /* VectorMath.cpp */; };
@@ -41,19 +42,12 @@
 		25F5FF9F0FA71ED40002BE66 /* Guitar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF8D0FA71ED40002BE66 /* Guitar.cpp */; };
 		25F5FFC50FA71F4C0002BE66 /* Directory_posix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FFC10FA71F4C0002BE66 /* Directory_posix.cpp */; };
 		25F5FFC70FA71F4C0002BE66 /* FileCopy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FFC30FA71F4C0002BE66 /* FileCopy.cpp */; };
-		3CCF10190D86E4F8003173B5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF10180D86E4F8003173B5 /* AudioToolbox.framework */; };
-		3CCF101B0D86E502003173B5 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF101A0D86E502003173B5 /* AudioUnit.framework */; };
-		3CCF101D0D86E513003173B5 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF101C0D86E513003173B5 /* CoreAudio.framework */; };
 		3CCF101F0D86E520003173B5 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCF101E0D86E520003173B5 /* CoreServices.framework */; };
 		3CCF10340D86EA11003173B5 /* fourier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF10320D86EA11003173B5 /* fourier.cpp */; };
 		3CCF10350D86EA11003173B5 /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF10330D86EA11003173B5 /* fft.cpp */; };
-		8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */; };
-		8D0C4E8E0486CD37000505A6 /* main.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02345980000FD03B11CA0E72 /* main.nib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0867D6ABFE840B52C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1870340FFE93FCAF11CA0CD7 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/main.nib; sourceTree = "<group>"; };
 		1F49F83507AD6F520058BE5D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		254322C20FA6771200D258A6 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = /usr/local/lib/libportaudio.a; sourceTree = "<absolute>"; };
 		256274811031E8F70023B882 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
@@ -70,6 +64,7 @@
 		25A28170103207CA00D7C4CD /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		25A2826910321D7C00D7C4CD /* libIL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.dylib; path = /opt/local/lib/libIL.dylib; sourceTree = "<absolute>"; };
 		25BA379D102F75B300A74F4B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
+		25C17CB71042794600F81F87 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		25E4BBA110410F120094E60F /* Threads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Threads.h; sourceTree = "<group>"; };
 		25E4BBA210410F780094E60F /* Threads_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Threads_posix.cpp; sourceTree = "<group>"; };
 		25F3498B102F7F440011023F /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = /opt/local/lib/libfreetype.a; sourceTree = "<absolute>"; };
@@ -127,14 +122,11 @@
 		3CCF0FE20D86E16E003173B5 /* tabsong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tabsong.h; path = kguitar/tabsong.h; sourceTree = "<group>"; };
 		3CCF0FE30D86E16E003173B5 /* tabtrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tabtrack.cpp; path = kguitar/tabtrack.cpp; sourceTree = "<group>"; };
 		3CCF0FE40D86E16E003173B5 /* tabtrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tabtrack.h; path = kguitar/tabtrack.h; sourceTree = "<group>"; };
-		3CCF10180D86E4F8003173B5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
-		3CCF101A0D86E502003173B5 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = /System/Library/Frameworks/AudioUnit.framework; sourceTree = "<absolute>"; };
-		3CCF101C0D86E513003173B5 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		3CCF101E0D86E520003173B5 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		3CCF10320D86EA11003173B5 /* fourier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fourier.cpp; path = fft/fourier.cpp; sourceTree = "<group>"; };
 		3CCF10330D86EA11003173B5 /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fft.cpp; path = fft/fft.cpp; sourceTree = "<group>"; };
 		8D0C4E960486CD37000505A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D0C4E970486CD37000505A6 /* guitarstorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = guitarstorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D0C4E970486CD37000505A6 /* Guitar Storm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guitar Storm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,9 +134,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CCF10190D86E4F8003173B5 /* AudioToolbox.framework in Frameworks */,
-				3CCF101B0D86E502003173B5 /* AudioUnit.framework in Frameworks */,
-				3CCF101D0D86E513003173B5 /* CoreAudio.framework in Frameworks */,
 				3CCF101F0D86E520003173B5 /* CoreServices.framework in Frameworks */,
 				25C6704D103A342800615C65 /* GLUT.framework in Frameworks */,
 				25C6704E103A342800615C65 /* libfreetype.a in Frameworks */,
@@ -159,7 +148,7 @@
 		195DF8CFFE9D517E11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D0C4E970486CD37000505A6 /* guitarstorm.app */,
+				8D0C4E970486CD37000505A6 /* Guitar Storm.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,8 +224,7 @@
 				256274971031E9390023B882 /* shaders */,
 				256274811031E8F70023B882 /* images */,
 				8D0C4E960486CD37000505A6 /* Info.plist */,
-				0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */,
-				02345980000FD03B11CA0E72 /* main.nib */,
+				25C17CB71042794600F81F87 /* Icon.icns */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -252,9 +240,6 @@
 				25F5FF4A0FA71A790002BE66 /* libmad.a */,
 				254322C20FA6771200D258A6 /* libportaudio.a */,
 				3CCF101E0D86E520003173B5 /* CoreServices.framework */,
-				3CCF101C0D86E513003173B5 /* CoreAudio.framework */,
-				3CCF101A0D86E502003173B5 /* AudioUnit.framework */,
-				3CCF10180D86E4F8003173B5 /* AudioToolbox.framework */,
 				1F49F83507AD6F520058BE5D /* OpenGL.framework */,
 			);
 			name = "External Frameworks and Libraries";
@@ -305,9 +290,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D0C4E890486CD37000505A6 /* guitarstorm */ = {
+		8D0C4E890486CD37000505A6 /* Guitar Storm */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3CCF0F9A0D86DFEF003173B5 /* Build configuration list for PBXNativeTarget "guitarstorm" */;
+			buildConfigurationList = 3CCF0F9A0D86DFEF003173B5 /* Build configuration list for PBXNativeTarget "Guitar Storm" */;
 			buildPhases = (
 				8D0C4E8C0486CD37000505A6 /* Resources */,
 				8D0C4E8F0486CD37000505A6 /* Sources */,
@@ -317,10 +302,10 @@
 			);
 			dependencies = (
 			);
-			name = guitarstorm;
+			name = "Guitar Storm";
 			productInstallPath = "$(HOME)/Applications";
 			productName = guitarstorm;
-			productReference = 8D0C4E970486CD37000505A6 /* guitarstorm.app */;
+			productReference = 8D0C4E970486CD37000505A6 /* Guitar Storm.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -335,7 +320,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D0C4E890486CD37000505A6 /* guitarstorm */,
+				8D0C4E890486CD37000505A6 /* Guitar Storm */,
 			);
 		};
 /* End PBXProject section */
@@ -345,10 +330,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */,
-				8D0C4E8E0486CD37000505A6 /* main.nib in Resources */,
 				256274961031E8F70023B882 /* images in Resources */,
 				25BBC6DD103E2A6B00A7CD0E /* shaders in Resources */,
+				25C17CB81042794600F81F87 /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,25 +377,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		02345980000FD03B11CA0E72 /* main.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1870340FFE93FCAF11CA0CD7 /* English */,
-			);
-			name = main.nib;
-			sourceTree = "<group>";
-		};
-		0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0867D6ABFE840B52C02AAC07 /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3CCF0F930D86DFEF003173B5 /* Development */ = {
@@ -460,7 +425,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/portaudio\"";
 				OTHER_CFLAGS = "-DMACOSX";
 				PREBINDING = NO;
-				PRODUCT_NAME = guitarstorm;
+				PRODUCT_NAME = "Guitar Storm";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -530,7 +495,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		3CCF0F9A0D86DFEF003173B5 /* Build configuration list for PBXNativeTarget "guitarstorm" */ = {
+		3CCF0F9A0D86DFEF003173B5 /* Build configuration list for PBXNativeTarget "Guitar Storm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3CCF0F960D86DFEF003173B5 /* Development */,

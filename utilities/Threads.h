@@ -32,12 +32,13 @@ class thread
 public:
 	thread(void (*run)());
 	thread(runnable* run);
+	~thread() {cancel(); join(); delete id;}
 	
 	void cancel();
 	void join();
 	
 private:
-	void** id;
+	void* id;
 };
 
 class mutex

@@ -27,21 +27,36 @@ void* runThread(void* r)
 
 thread::thread(void (*run)())
 {
-	pthread_create((pthread_t*)&id, NULL, (void* (*)(void*))run, NULL);
+	id = new pthread_t;
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+	
+	std::cout << "Init thread\n";
+	pthread_create((pthread_t*)id, NULL, (void* (*)(void*))run, NULL);
+	
+	pthread_attr_destroy(&attr);
 }
 
 thread::thread(runnable* run)
 {	
+	id = new pthread_t;
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+
 	std::cout << "Init thread\n";
-	pthread_create((pthread_t*)&id, NULL, runThread, run);
+	pthread_create((pthread_t*)id, NULL, runThread, run);
+	
+	pthread_attr_destroy(&attr);
 }
 
 void thread::cancel()
 {
-	pthread_cancel((pthread_t)&id);
+	pthread_cancel(*((pthread_t*)id));
 }
 
 void thread::join()
 {
-	pthread_join((pthread_t)&id, NULL);
+	pthread_join(*((pthread_t*)id), NULL);
 }

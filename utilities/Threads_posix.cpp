@@ -51,6 +51,13 @@ thread::thread(runnable* run)
 	pthread_attr_destroy(&attr);
 }
 
+thread::~thread()
+{
+	cancel(); 
+	join(); 
+	delete (pthread_t*)id;
+}
+
 void thread::cancel()
 {
 	pthread_cancel(*((pthread_t*)id));
@@ -59,4 +66,26 @@ void thread::cancel()
 void thread::join()
 {
 	pthread_join(*((pthread_t*)id), NULL);
+}
+
+mutex::mutex()
+{
+	id = new pthread_mutex_t;
+	pthread_mutex_init((pthread_mutex_t*)id, NULL);
+}
+
+mutex::~mutex()
+{
+	pthread_mutex_destroy((pthread_mutex_t*)id);
+	delete (pthread_mutex_t*)id;
+}
+
+void mutex::lock()
+{
+	pthread_mutex_lock((pthread_mutex_t*)id);
+}
+
+void mutex::unlock()
+{
+	pthread_mutex_unlock((pthread_mutex_t*)id);
 }

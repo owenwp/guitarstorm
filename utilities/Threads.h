@@ -32,7 +32,7 @@ class thread
 public:
 	thread(void (*run)());
 	thread(runnable* run);
-	~thread() {cancel(); join(); delete id;}
+	~thread();
 	
 	void cancel();
 	void join();
@@ -44,8 +44,14 @@ private:
 class mutex
 {
 public:
-	void lock(){}
-	void unlock(){}
+	mutex();
+	~mutex();
+	
+	void lock();
+	void unlock();
+	
+private:
+	void* id;
 };
 
 #endif

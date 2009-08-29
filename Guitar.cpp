@@ -212,10 +212,10 @@ void Guitar::update(float timeDelta)
 
 	if(!playing && realtime > backdelay)
 	{
-		//if(speed == 1)
-		//	playing = !Audio::playMusic();
-		//else if(d2 > 0)	
-		//	Audio::advanceMusic(d2);
+		if(speed == 1)
+			playing = !Audio::playMusic();
+		else if(d2 > 0)	
+			Audio::advanceMusic(d2);
 	}
 
 	if(!stopped)
@@ -336,8 +336,8 @@ void Guitar::update(float timeDelta)
 		if(pos.x < nutpos)
 		{
 			beats->removeChild(beat);
-			//if(!playing || !scorer)
-				//Audio::tick();
+			if(!playing || !scorer)
+				Audio::tick();
 		}
 	}
 /*

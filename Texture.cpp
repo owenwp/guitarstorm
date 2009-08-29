@@ -77,6 +77,8 @@ unsigned char edgeDistance(unsigned char* mask, int w, int h, float x, float y, 
 
 void Texture::preLoad(string name)
 {
+	bool absolute = name[0] == '/' || name[1] == ':';
+	
 	loaded = false;
 	textures[name] = this;
 	
@@ -94,7 +96,8 @@ void Texture::preLoad(string name)
 	else
 		type = ".png";
 	
-	string mask = Location + name + "_mask" + type;
+	string mask = name + "_mask" + type;
+	if(!absolute) mask = Location + mask;
 	
 	// see if there is an alpha mask
 	ILuint maskid;
@@ -114,7 +117,8 @@ void Texture::preLoad(string name)
 		blend = false;
 	}
 	
-	name = Location + name + type;
+	name = name + type;
+	if(!absolute) name = Location + name;
 	
 	ILuint texid;
 	ilGenImages(1, &texid);

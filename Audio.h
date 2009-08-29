@@ -18,9 +18,7 @@
 #ifndef AUDIO
 #define AUDIO
 
-#include "pa_asio.h"
-
-#include <OpenThreads/Thread>
+#include "portaudio.h"
 #include <iostream>
 #include <fstream>
 #include <math.h>

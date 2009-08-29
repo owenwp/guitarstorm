@@ -19,7 +19,7 @@
 #define SCORER
 
 #include "fft/fft.h"
-//#include "Audio.h"
+#include "Audio.h"
 #include "Sprite.h"
 
 #include <math.h>

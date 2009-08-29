@@ -60,20 +60,20 @@ void TrackEditMenu::OnOpen()
 			Open(picker);
 		}
 	}
-	//else if(guitar) 
-	//	guitar->setSong(difficulty, "", true);
+	else if(guitar) 
+		guitar->setSong(difficulty, "", true);
 }
 
 void TrackEditMenu::OnClose()
 {
 	if(guitar) 
 		guitar->setSong(NULL);
-	//Audio::stopMusic();
+	Audio::stopMusic();
 }
 
 void TrackEditMenu::OnValueChange()
 {
-	/*if(!tab && pickpath.length())
+	if(!tab && pickpath.length())
 	{
 		tab = ConvertGtp::load(pickpath);
 		if(!tab)
@@ -91,7 +91,7 @@ void TrackEditMenu::OnValueChange()
 	if(guitar)
 	{
 		guitar->setOffset(difficulty->offset);
-	}*/
+	}
 }
 
 void SongEditMenu::Setup()
@@ -120,7 +120,7 @@ void SongEditMenu::Setup()
 
 void SongEditMenu::OnValueChange()
 {
-	/*itemText->setText(song->title + " by " + song->artist);
+	//itemText->setText(song->title + " by " + song->artist);
 	filed = song->title != "" && song->artist != "";
 	if(song->backing != "none")
 	{
@@ -128,12 +128,12 @@ void SongEditMenu::OnValueChange()
 		GetArt(song->backing);
 		Audio::openMusic(song->backing);
 	}
-	backitem->Enable(filed);*/
+	backitem->Enable(filed);
 }
 
 void SongEditMenu::OnClose()
 {
-	//Audio::stopMusic();
+	Audio::stopMusic();
 }
 
 void SongEditMenu::OnOpen()
@@ -146,7 +146,7 @@ void SongEditMenu::OnOpen()
 	else
 		filed = true;
 
-	//Audio::openMusic(song->backing);
+	Audio::openMusic(song->backing);
 
 	song->difficulty[0].name = "easy";
 	song->difficulty[1].name = "medium";
@@ -182,7 +182,7 @@ void SongEditMenu::OnSelect()
 
 void SongEditMenu::GetArt(string f)
 {
-	/*id3_file* file = id3_file_open(f.c_str(), ID3_FILE_MODE_READONLY);
+	id3_file* file = id3_file_open(f.c_str(), ID3_FILE_MODE_READONLY);
 	id3_tag* tag = id3_file_tag(file);
 	id3_frame* frame = id3_tag_findframe(tag, "APIC", 0);
 
@@ -201,15 +201,15 @@ void SongEditMenu::GetArt(string f)
 
 		FileCopy((char*)pic, len, pfile);
 		
-		Sprite* art = new Sprite(pfile, true);
+		/*Sprite* art = new Sprite(pfile, true);
 		art->setPosition(Vec3(-10,0.5f,3));
 		art->setScale(Vec2(3,3));
-		_mscene->addChild(art);
+		_mscene->addChild(art);*/
 
 	}
 
 	id3_tag_delete(tag);
-	id3_file_close(file);*/
+	id3_file_close(file);
 }
 
 void SongEditMenu::Save()

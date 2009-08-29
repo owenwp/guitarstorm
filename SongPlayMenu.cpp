@@ -30,7 +30,7 @@ void SongPlayMenu::OnOpen()
 	song->difficulty[1].tab = song->path + "/" + song->difficulty[1].name + ".tab";
 	song->difficulty[2].tab = song->path + "/" + song->difficulty[2].name + ".tab";
 	song->difficulty[3].tab = song->path + "/" + song->difficulty[3].name + ".tab";
-	//Audio::openMusic(song->backing);
+	Audio::openMusic(song->backing);
 
 	Node* n = new Node;
 	Sprite* art;
@@ -76,7 +76,7 @@ void SongPlayItem::Select()
 	{
 		delete game;
 		game = NULL;
-		//Audio::stopMusic();
+		Audio::stopMusic();
 		parent->Show();
 		parent->Close();
 	}

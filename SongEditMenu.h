@@ -18,12 +18,12 @@
 #ifndef SONGEDITMENU
 #define SONGEDITMENU
 
-//#include "id3tag.h"
+#include "id3tag.h"
 
 #include "Menu.h"
 #include "Song.h"
 #include "Options.h"
-//#include "Audio.h"
+#include "Audio.h"
 #include "FilePick.h"
 #include "Guitar.h"
 #include "utilities/FileCopy.h"

@@ -103,10 +103,9 @@ samples(1 << sampleBits)
 
 void Scorer::run()
 {
-	/*
 	while(true)
 	{
-		while(!active) YieldCurrentThread();
+		while(!active);// YieldCurrentThread();
 
 		double* buf = Audio::readLast(samples);
 		
@@ -120,7 +119,7 @@ void Scorer::run()
 					 0.4 * sin(2.0 * PI * (k * f2 / SAMPLE_RATE)) ;
 		}
 		*/
-/*
+
 		// compute frequency spectrum
 		realfft (buf, samples, spec);
 
@@ -166,7 +165,7 @@ void Scorer::run()
 			lastnote = "  ";
 			
 			taken = false;
-			while(!taken) YieldCurrentThread();
+			while(!taken);// YieldCurrentThread();
 			continue;
 		}
 		frequency = 2.0 * ffreq * (double)SAMPLE_RATE / (double)samples;
@@ -196,8 +195,8 @@ void Scorer::run()
 		}
 
 		taken = false;
-		while(!taken) YieldCurrentThread();
-	}*/
+		while(!taken);// YieldCurrentThread();
+	}
 }
 
 float* Scorer::Tune(Fret &f)

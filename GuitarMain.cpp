@@ -19,7 +19,7 @@
 #include <GLUT/GLUT.h>
 #include <IL/il.h>
 
-//#include "Audio.h"
+#include "Audio.h"
 #include "Input.h"
 #include "Menu.h"
 #include "SongListItem.h"
@@ -327,7 +327,7 @@ int main(int argc, char **argv)
 	loadShaders();
 
 	// setup audio
-	//Audio::init();
+	Audio::init();
 
 	// setup scene
 	root = new Node;
@@ -370,7 +370,7 @@ int main(int argc, char **argv)
 	try 
 	{
 #ifndef NOAUDIO
-		//Audio::startCapture();
+		Audio::startCapture();
 #endif
 	}
 	catch(string err)
@@ -387,7 +387,7 @@ int main(int argc, char **argv)
 	glutMainLoop();
 
 	// shutdown
-	//Audio::stopCapture();
+	Audio::stopCapture();
 
 	return 0;
 }

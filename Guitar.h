@@ -23,7 +23,7 @@
 
 #include "kguitar/convertgtp.h"
 #include "Scorer.h"
-//#include "Audio.h"
+#include "Audio.h"
 #include "Song.h"
 #include "Menu.h"
 #include "Sprite.h"

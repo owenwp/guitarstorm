@@ -13,6 +13,12 @@
 		256C9723104090FA00B5AC3E /* tabcolumn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FDF0D86E16E003173B5 /* tabcolumn.cpp */; };
 		256C9724104090FA00B5AC3E /* tabsong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FE10D86E16E003173B5 /* tabsong.cpp */; };
 		256C9725104090FA00B5AC3E /* tabtrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCF0FE30D86E16E003173B5 /* tabtrack.cpp */; };
+		2573F4431049073700D432B8 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 254322C20FA6771200D258A6 /* libportaudio.a */; };
+		2573F446104907C900D432B8 /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF680FA71E9D0002BE66 /* Audio.cpp */; };
+		2573F447104907D600D432B8 /* libsamplerate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F500290FA725D60002BE66 /* libsamplerate.a */; };
+		2573F448104907D600D432B8 /* libid3tag.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F5FF490FA71A790002BE66 /* libid3tag.a */; };
+		2573F449104907D600D432B8 /* libmad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F5FF4A0FA71A790002BE66 /* libmad.a */; };
+		2573F4531049087A00D432B8 /* Backing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F5FF6C0FA71EA70002BE66 /* Backing.cpp */; };
 		25BBC6DD103E2A6B00A7CD0E /* shaders in Resources */ = {isa = PBXBuildFile; fileRef = 256274971031E9390023B882 /* shaders */; };
 		25C17CB81042794600F81F87 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 25C17CB71042794600F81F87 /* Icon.icns */; };
 		25C66F83103A27BE00615C65 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25A28170103207CA00D7C4CD /* Texture.cpp */; };
@@ -68,9 +74,9 @@
 		25E4BBA110410F120094E60F /* Threads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Threads.h; sourceTree = "<group>"; };
 		25E4BBA210410F780094E60F /* Threads_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Threads_posix.cpp; sourceTree = "<group>"; };
 		25F3498B102F7F440011023F /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = /opt/local/lib/libfreetype.a; sourceTree = "<absolute>"; };
-		25F500290FA725D60002BE66 /* libsamplerate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsamplerate.a; path = /usr/local/lib/libsamplerate.a; sourceTree = "<absolute>"; };
-		25F5FF490FA71A790002BE66 /* libid3tag.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libid3tag.a; path = /sw/lib/libid3tag.a; sourceTree = "<absolute>"; };
-		25F5FF4A0FA71A790002BE66 /* libmad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmad.a; path = /sw/lib/libmad.a; sourceTree = "<absolute>"; };
+		25F500290FA725D60002BE66 /* libsamplerate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsamplerate.a; path = /opt/local/lib/libsamplerate.a; sourceTree = "<absolute>"; };
+		25F5FF490FA71A790002BE66 /* libid3tag.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libid3tag.a; path = /opt/local/lib/libid3tag.a; sourceTree = "<absolute>"; };
+		25F5FF4A0FA71A790002BE66 /* libmad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmad.a; path = /opt/local/lib/libmad.a; sourceTree = "<absolute>"; };
 		25F5FF680FA71E9D0002BE66 /* Audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Audio.cpp; sourceTree = "<group>"; };
 		25F5FF690FA71E9D0002BE66 /* Audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Audio.h; sourceTree = "<group>"; };
 		25F5FF6B0FA71EA70002BE66 /* Backing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backing.h; sourceTree = "<group>"; };
@@ -139,6 +145,10 @@
 				25C6704E103A342800615C65 /* libfreetype.a in Frameworks */,
 				25C6704F103A342800615C65 /* libIL.dylib in Frameworks */,
 				25C67050103A342800615C65 /* OpenGL.framework in Frameworks */,
+				2573F4431049073700D432B8 /* libportaudio.a in Frameworks */,
+				2573F447104907D600D432B8 /* libsamplerate.a in Frameworks */,
+				2573F448104907D600D432B8 /* libid3tag.a in Frameworks */,
+				2573F449104907D600D432B8 /* libmad.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +383,8 @@
 				256C9724104090FA00B5AC3E /* tabsong.cpp in Sources */,
 				256C9725104090FA00B5AC3E /* tabtrack.cpp in Sources */,
 				25E4BBA310410F780094E60F /* Threads_posix.cpp in Sources */,
+				2573F446104907C900D432B8 /* Audio.cpp in Sources */,
+				2573F4531049087A00D432B8 /* Backing.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

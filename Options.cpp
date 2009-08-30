@@ -16,11 +16,16 @@
     along with Guitar Storm.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "Options.h"
+#include "yaml/yaml.h"
+
+using namespace YAML;
 
 #if MACOSX
 string optionsfile = string(getenv("HOME")) + "/Library/Preferences/GuitarStorm.dat";
+string optionsymlfile = string(getenv("HOME")) + "/Library/Preferences/GuitarStorm.yml";
 #else 
 string optionsfile = "options.dat";
+string optionsfile = "options.yml";
 #endif
 
 Options* Options::instance = new Options;
@@ -54,9 +59,9 @@ Options::Options()
 
 	// directories
 #if MACOSX
-	songDir = string(getenv("HOME")) + "/Library/Guitar Storm/songs";
-	tabDir = string(getenv("HOME")) + "/Library/Guitar Storm/tabs";
-	fxDir = string(getenv("HOME")) + "/Library/Guitar Storm/effects";
+	songDir = string(getenv("HOME")) + "/Library/Application Support/Guitar Storm/songs";
+	tabDir = string(getenv("HOME")) + "/Library/Application Support/Guitar Storm/tabs";
+	fxDir = string(getenv("HOME")) + "/Library/Application Support/Guitar Storm/effects";
 	backingDir = string(getenv("HOME")) + "/Music";
 #else
 	songDir = "songs";
@@ -128,124 +133,137 @@ Options::Options()
 
 void Options::Save()
 {
-	ofstream out;
-	out.open(optionsfile.c_str(), ios_base::binary);
+	Emitter out;
 
-	if(out.fail())
-		throw string("Failed to open options.dat for writing\n");
+	out << BeginMap;
+	
+	out << Key << "Audio" << Value << BeginMap;
+	{
+		out << Key << "GuitarVolume" << Value << guitarVolume;
+		out << Key << "BackingVolume" << Value << backingVolume;
+		out << Key << "MetronomeVolume" << Value << metronomeVolume;
+		out << Key << "InputDevice" << Value << inputDevice;
+		out << Key << "OutputDevice" << Value << outputDevice;
+		out << Key << "BufferSize" << Value << bufferSize;
+		out << Key << "SampleRate" << Value << sampleRate;
+	}
+	out << EndMap;
 
-	out << "Options";
-	out << endl << versionMaj << endl << versionMin;
+	out << Key << "Video" << Value << BeginMap;
+	{
+		out << Key << "Resolution" << Value << screenResolution;
+		out << Key << "Fullscreen" << Value << fullScreen;
+		out << Key << "Detail" << Value << detailLevel;
+	}
+	out << EndMap;
 
-	// audio
-	out << endl << guitarVolume;
-	out << endl << backingVolume;
-	out << endl << metronomeVolume;
-	out << endl << inputDevice;
-	out << endl << outputDevice;
-	out << endl << bufferSize;
-	out << endl << sampleRate;
-
-	// video
-	out << endl << screenResolution;
-	out << endl << fullScreen;
-	out << endl << detailLevel;
-
-	// game
-	out << endl << stringColors[0];
-	out << endl << stringColors[1];
-	out << endl << stringColors[2];
-	out << endl << stringColors[3];
-	out << endl << stringColors[4];
-	out << endl << stringColors[5];
-	//out << endl << defaultDistortion;
-	//out << endl << defaultStompbox;
+	out << Key << "Game" << Value << BeginMap;
+	{
+		out << Key << "StringColors" << Value << Flow << BeginSeq;
+		{
+			out << stringColors[0] << stringColors[1] << stringColors[2];
+			out << stringColors[3] << stringColors[4] << stringColors[5];
+		}
+		out << EndSeq;
+		//out << Key << "DefaultDistortion" << Value << defaultDistortion;
+		//out << Key << "DefaultStompBox" << Value << defaultStompbox;
+	}
+	out << EndMap;
 
 	// directories
-	out << endl << songDir.c_str();
-	out << endl << tabDir.c_str();
-	out << endl << fxDir.c_str();
-	out << endl << backingDir.c_str();
+	out << Key << "Directories" << Value << BeginMap;
+	{
+		out << Key << "Songs" << Value << songDir;
+		out << Key << "Tabs" << Value << tabDir;
+		out << Key << "FX" << Value << fxDir;
+		out << Key << "Backing" << Value << backingDir;
+	}
+	out << EndMap;
 
 	// player
-	out << endl << userName.c_str();
-	out << endl << passHash[0];
-	out << endl << passHash[1];
-	out << endl << passHash[2];
-	out << endl << passHash[3];
-	out << endl << savePassword;
-	out << endl << autoLogin;
+	out << Key << "Player" << Value << BeginMap;
+	{
+		out << Key << "UserName" << Value << userName;
+		out << Key << "PasswordHash" << Value << Flow << BeginSeq;
+		{
+			out << passHash[0] << passHash[1] << passHash[2] << passHash[3];
+		}
+		out << EndSeq;
+		out << Key << "SavePassword" << Value << savePassword;
+		out << Key << "AutoLogin" << Value << autoLogin;
+	}
+	out << EndMap;
 
-	out.close();
+	out << EndMap;
+	
+	if(out.good());
+	{
+		ofstream o(optionsymlfile.c_str(), ios::binary);
+		
+		if(!o.fail())
+		{
+			o.write(out.c_str(), out.size());
+		}
+	}
 }
 
 void Options::Load()
 {
-	ifstream in;
-	in.open(optionsfile.c_str(), ios_base::binary);
-
-	if(in.fail())
+	ifstream i(optionsymlfile.c_str(), ios::binary);
+	
+	if(i.fail())
 		return;
-
-	char opt[10];
-	in >> opt;
-	if(strncmp(opt, "Options", 10) != 0)
-		return;
-
-	// must use different loading routines for different versions
-	int vMaj, vMin;
-	in >> vMaj >> vMin;
-	if(vMaj == 0 && vMin == 11)
+	
+	YAML::Node in;
+	try
 	{
-		// audio
-		in >> guitarVolume;
-		in >> backingVolume;
-		in >> metronomeVolume;
-		in >> inputDevice;
-		in >> outputDevice;
-		in >> bufferSize;
-		in >> sampleRate;
-
-		// video
-		in >> screenResolution;
-		in >> fullScreen;
-		in >> detailLevel;
-
-		// game
-		in >> stringColors[0];
-		in >> stringColors[1];
-		in >> stringColors[2];
-		in >> stringColors[3];
-		in >> stringColors[4];
-		in >> stringColors[5];
-		//in >> defaultDistortion;
-		//in >> defaultStompbox;
-
-		// directories
-		in.ignore();
-		char dir[100];
-		in.getline(dir,100);
-		songDir = dir;
-		in.getline(dir,100);
-		tabDir = dir;
-		in.getline(dir,100);
-		fxDir = dir;
-		in.getline(dir,100);
-		backingDir = dir;
-
-		// player
-		char name[100];
-		in >> name;
-		userName = name;
-		in >> passHash[0];
-		in >> passHash[1];
-		in >> passHash[2];
-		in >> passHash[3];
-		in >> savePassword;
-		in >> autoLogin;
+		Parser parser(i);
+		parser.GetNextDocument(in);
+	} 
+	catch(ParserException& e) 
+	{
+		cout << "Error Loading Options: " << e.what() << "\n";
+		return;
 	}
+	
+	// audio
+	in["Audio"]["GuitarVolume"] >> guitarVolume;
+	in["Audio"]["BackingVolume"] >> backingVolume;
+	in["Audio"]["MetronomeVolume"] >> metronomeVolume;
+	in["Audio"]["InputDevice"] >> inputDevice;
+	in["Audio"]["OutputDevice"] >> outputDevice;
+	in["Audio"]["BufferSize"] >> bufferSize;
+	in["Audio"]["SampleRate"] >> sampleRate;
 
-	in.close();
+	// video
+	in["Video"]["Resolution"] >> screenResolution;
+	in["Video"]["Fullscreen"] >> fullScreen;
+	in["Video"]["Detail"] >> detailLevel;
+
+	// game
+	in["Game"]["StringColors"][0] >> stringColors[0];
+	in["Game"]["StringColors"][1] >> stringColors[1];
+	in["Game"]["StringColors"][2] >> stringColors[2];
+	in["Game"]["StringColors"][3] >> stringColors[3];
+	in["Game"]["StringColors"][4] >> stringColors[4];
+	in["Game"]["StringColors"][5] >> stringColors[5];
+	//in["Game"]["DefaultDistortion"] >> defaultDistortion;
+	//in["Game"]["DefaultStompBox"] >> defaultStompbox;
+
+	// directories
+	in["Directories"]["Songs"] >> songDir;
+	in["Directories"]["Tabs"] >> tabDir;
+	in["Directories"]["FX"] >> fxDir;
+	in["Directories"]["Backing"] >> backingDir;
+
+	// player
+	in["Player"]["UserName"] >> userName;
+	in["Player"]["PasswordHash"][0] >> passHash[0];
+	in["Player"]["PasswordHash"][1] >> passHash[1];
+	in["Player"]["PasswordHash"][2] >> passHash[2];
+	in["Player"]["PasswordHash"][3] >> passHash[3];
+	in["Player"]["SavePassword"] >> savePassword;
+	in["Player"]["AutoLogin"] >> autoLogin;
 }
 
 void OptionsMenu::OnOpen()

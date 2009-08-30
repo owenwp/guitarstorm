@@ -20,7 +20,6 @@
 #include <IL/il.h>
 
 #include "Audio.h"
-#include "Input.h"
 #include "Menu.h"
 #include "SongListItem.h"
 #include "TunerMenu.h"

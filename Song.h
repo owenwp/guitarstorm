@@ -22,6 +22,7 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include "yaml/yaml.h"
 
 using namespace std;
 
@@ -38,7 +39,7 @@ public:
 	int track2;
 
 	// serialization
-	friend ostream& operator<<(ostream &stream, Difficulty ob);
+	friend YAML::Emitter& operator<<(YAML::Emitter &stream, Difficulty ob);
 	friend istream& operator>>(istream &stream, Difficulty &ob);
 };
 
@@ -60,7 +61,7 @@ public:
 	//Effect *stompBox;
 
 	// serialization
-	friend ostream& operator<<(ostream &stream, Song ob);
+	friend YAML::Emitter& operator<<(YAML::Emitter &stream, Song ob);
 	friend istream& operator>>(istream &stream, Song &ob);
 
 private:
@@ -68,10 +69,10 @@ private:
 	static const int versionMin = 2;
 };
 
-ostream& operator<<(ostream &stream, Song ob);
+YAML::Emitter& operator<<(YAML::Emitter &stream, Song ob);
 istream& operator>>(istream &stream, Song &ob);
 
-ostream& operator<<(ostream &stream, Difficulty ob);
+YAML::Emitter& operator<<(YAML::Emitter &stream, Difficulty ob);
 istream& operator>>(istream &stream, Difficulty &ob);
 
 #endif

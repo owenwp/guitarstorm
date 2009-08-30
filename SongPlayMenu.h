@@ -21,7 +21,6 @@
 #include "Menu.h"
 #include "Song.h"
 #include "Options.h"
-#include "Input.h"
 #include "Guitar.h"
 #include "utilities/Directory.h"
 

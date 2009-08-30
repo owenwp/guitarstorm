@@ -17,26 +17,29 @@
 */
 #include "Song.h"
 
+using namespace YAML;
+
 int vmaj = 0;
 int vmin = 0;
 
-ostream& operator<<(ostream &stream, Song ob)
+Emitter& operator<<(Emitter& stream, Song ob)
 {
-	stream << "Song";
+	stream << BeginMap;
 
-	// do serialization
-	stream << endl << ob.versionMaj;
-	stream << endl << ob.versionMin;
-
-	stream << endl << ob.title.c_str();
-	stream << endl << ob.artist.c_str();
-	stream << endl << ob.backing.c_str();
-	stream << endl << ob.path.c_str();
-	stream << endl << ob.difficulty[0];
-	stream << endl << ob.difficulty[1];
-	stream << endl << ob.difficulty[2];
-	stream << endl << ob.difficulty[3];
-
+	stream << Key << "Title" << Value << ob.title;
+	stream << Key << "Artist" << Value << ob.artist;
+	stream << Key << "Backing" << Value << ob.backing;
+	stream << Key << "Path" << Value << ob.path;
+	stream << Key << "Difficulty" << Value << BeginSeq;
+	{
+		stream << ob.difficulty[0];
+		stream << ob.difficulty[1];
+		stream << ob.difficulty[2];
+		stream << ob.difficulty[3];
+	}
+	stream << EndSeq;
+	
+	stream << EndMap;
 	return stream;
 }
 
@@ -72,19 +75,22 @@ istream& operator>>(istream &stream, Song &ob)
 	return stream;
 }
 
-ostream& operator<<(ostream &stream, Difficulty ob)
+Emitter& operator<<(Emitter &stream, Difficulty ob)
 {
-	stream << endl << ob.name.c_str();
+	stream << BeginMap;
+	
 	if(ob.used.length())
 	{
-		stream << endl << 1;
-		stream << endl << ob.track1;
-		stream << endl << ob.track2;
-		stream << endl << ob.offset;
+		stream << Key << "Used" << Value << true;
+		stream << Key << "Track1" << Value << ob.track1;
+		stream << Key << "Track2" << Value << ob.track2;
+		stream << Key << "Offset" << Value << ob.offset;
 	}
 	else
-		stream << endl << 0;
+		stream << Key << "Used" << Value << false;
 
+	stream << EndMap;
+	
 	return stream;
 }
 

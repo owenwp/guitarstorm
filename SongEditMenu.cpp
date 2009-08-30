@@ -17,6 +17,8 @@
 */
 #include "SongEditMenu.h"
 
+using namespace YAML;
+
 void TrackEditMenu::AddProps()
 {
 	string *trackList = new string[tab->t.size()+2];
@@ -229,10 +231,21 @@ void SongEditMenu::Save()
 			FileCopy(song->difficulty[i].tab, dest); 
 		}
 	}
-
-	string dest = dir.Path() + "/song.dat";
-	ofstream out(dest.c_str(), ios_base::binary);
+	
+	Emitter out;
 	out << *song;
+	
+	if(out.good());
+	{
+		string dest = dir.Path() + "/song.yml";
+		ofstream o(dest.c_str(), ios::binary);
+		
+		if(!o.fail())
+		{
+			o.write(out.c_str(), out.size());
+		}
+	}
+	
 	filed = true;
 }
 

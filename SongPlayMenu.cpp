@@ -24,6 +24,11 @@ void SongPlayMenu::OnOpen()
 		Close();
 		return;
 	}
+	
+	song->difficulty[0].name = "easy";
+	song->difficulty[1].name = "medium";
+	song->difficulty[2].name = "hard";
+	song->difficulty[3].name = "expert";
 
 	Directory dir(song->path);
 	song->difficulty[0].tab = song->path + "/" + song->difficulty[0].name + ".tab";

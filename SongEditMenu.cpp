@@ -253,10 +253,23 @@ void SongEditMenu::Load()
 {
 	Directory dir(Options::instance->songDir + "/" + song->title + " - " + song->artist);
 
-	string dest = dir.Path() + "/song.dat";
-	ifstream in(dest.c_str(), ios_base::binary);
-	if(in.fail())
+	string dest = dir.Path() + "/song.dat";	
+	ifstream i(dest.c_str(), ios::binary);
+	
+	if(i.fail())
 		return;
+	
+	YAML::Node in;
+	try
+	{
+		Parser parser(i);
+		parser.GetNextDocument(in);
+	} 
+	catch(ParserException& e) 
+	{
+		cout << "Error Loading Song: " << e.what() << "\n";
+		return;
+	}
 
 	in >> *song;
 	

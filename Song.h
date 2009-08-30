@@ -40,7 +40,7 @@ public:
 
 	// serialization
 	friend YAML::Emitter& operator<<(YAML::Emitter &stream, Difficulty ob);
-	friend istream& operator>>(istream &stream, Difficulty &ob);
+	friend void operator>>(const YAML::Node &stream, Difficulty &ob);
 };
 
 struct Song
@@ -62,7 +62,7 @@ public:
 
 	// serialization
 	friend YAML::Emitter& operator<<(YAML::Emitter &stream, Song ob);
-	friend istream& operator>>(istream &stream, Song &ob);
+	friend void operator>>(const YAML::Node &stream, Song &ob);
 
 private:
 	static const int versionMaj = 0;
@@ -70,9 +70,9 @@ private:
 };
 
 YAML::Emitter& operator<<(YAML::Emitter &stream, Song ob);
-istream& operator>>(istream &stream, Song &ob);
+void operator>>(const YAML::Node &stream, Song &ob);
 
 YAML::Emitter& operator<<(YAML::Emitter &stream, Difficulty ob);
-istream& operator>>(istream &stream, Difficulty &ob);
+void operator>>(const YAML::Node &stream, Difficulty &ob);
 
 #endif

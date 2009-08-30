@@ -16,6 +16,9 @@
     along with Guitar Storm.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "SongListItem.h"
+#include "yaml/yaml.h"
+
+using namespace YAML;
 
 void SongListItem::Select() 
 {
@@ -68,14 +71,25 @@ void SongListItem::Setup()
 
 		Song song;
 		string dest = sdir->files["song"];
-		ifstream in(dest.c_str(), ios_base::binary);
-		if(!in.fail())
+		ifstream i(dest.c_str(), ios::binary);
+		
+		if(i.fail())
+			return;
+		
+		YAML::Node in;
+		try
 		{
+			Parser parser(i);
+			parser.GetNextDocument(in);
+			
 			in >> song;
+			
+			songs.push_back(song);
+		} 
+		catch(ParserException& e) 
+		{
+			cout << "Error Loading Song: " << e.what() << "\n";
 		}
-		in.close();
-
-		songs.push_back(song);
 		
 		Node* node = new Node;
 		Sprite* art;

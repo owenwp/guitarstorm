@@ -43,36 +43,17 @@ Emitter& operator<<(Emitter& stream, Song ob)
 	return stream;
 }
 
-istream& operator>>(istream &stream, Song &ob)
+void operator>>(const YAML::Node &stream, Song &ob)
 {
-	char str[500];
-	stream >> str;
-	if(strncmp(str, "Song", 30))
-		return stream;
+	stream["Title"] >> ob.title;
+	stream["Artist"] >> ob.artist;
+	stream["Backing"] >> ob.backing;
+	stream["Path"] >> ob.path;
 
-	// do serialization
-	stream >> vmaj;
-	stream >> vmin;
-
-	if(vmaj == Song::versionMaj && vmin == Song::versionMin)
-	{
-		stream.ignore();
-		stream.getline(str, 500);
-		ob.title = str;
-		stream.getline(str, 500);
-		ob.artist = str;
-		stream.getline(str, 500);
-		ob.backing = str;
-		stream.getline(str, 500);
-		ob.path = str;
-
-		stream >> ob.difficulty[0];
-		stream >> ob.difficulty[1];
-		stream >> ob.difficulty[2];
-		stream >> ob.difficulty[3];
-	}
-
-	return stream;
+	stream["Difficulty"][0] >> ob.difficulty[0];
+	stream["Difficulty"][1] >> ob.difficulty[1];
+	stream["Difficulty"][2] >> ob.difficulty[2];
+	stream["Difficulty"][3] >> ob.difficulty[3];
 }
 
 Emitter& operator<<(Emitter &stream, Difficulty ob)
@@ -94,23 +75,18 @@ Emitter& operator<<(Emitter &stream, Difficulty ob)
 	return stream;
 }
 
-istream& operator>>(istream &stream, Difficulty &ob)
+void operator>>(const YAML::Node &stream, Difficulty &ob)
 {
-	char str[30];
-	int num;
-	stream >> str;
-	ob.name = str;
-
-	stream >> num;
-	if(!num)
-		return stream;
-	else
+	bool used;
+	
+	stream["Used"] >> used;
+	
+	if(used)
 	{
 		ob.used = "true";
+		
+		stream["Track1"] >> ob.track1;
+		stream["Track2"] >> ob.track2;
+		stream["Offset"] >> ob.offset;
 	}
-	stream >> ob.track1;
-	stream >> ob.track2;
-	stream >> ob.offset;
-	
-	return stream;
 }
